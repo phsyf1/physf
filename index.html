@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- الوسم المسئول عن تغيير لون شريط المتصفح أعلى الشاشة -->
+    <meta name="theme-color" content="#121b35">
+    
     <title>معرض أعمالي | Portfolio</title>
     <!-- خط تجوال من Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-color: #38bdf8;
-            --accent-hover: #0284c7;
+            --bg-color: #121b35;       /* خلفية الموقع الأساسية */
+            --card-bg: #1a264a;         /* خلفية الكروت والأزرار */
+            --text-color: #ffffff;      /* لون الخط الرئيسي (أبيض) */
+            --text-muted: #cbd5e1;      /* لون الخط الثانوي (رمادي فاتح) */
+            --accent-color: #d4af37;    /* اللون الذهبي */
+            --accent-hover: #f3c63f;    /* ذهبي أفتح عند اللمس */
+            --border-color: #273763;    /* لون الحدود الفاصلة */
         }
 
         * {
@@ -38,8 +44,8 @@
         /* الهيدر والنبذة الشخصية */
         header {
             text-align: center;
-            padding: 60px 20px;
-            border-bottom: 1px solid #334155;
+            padding: 60px 20px 40px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .profile-img {
@@ -49,11 +55,13 @@
             object-fit: cover;
             border: 3px solid var(--accent-color);
             margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
         }
 
         h1 {
             font-size: 2.2rem;
-            margin-bottom: 10px;
+            color: var(--text-color);
+            margin-bottom: 8px;
         }
 
         .subtitle {
@@ -67,11 +75,12 @@
             color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto;
+            font-size: 1rem;
         }
 
         /* قسم المهارات */
         .skills-section {
-            padding: 40px 0;
+            padding: 30px 0;
             text-align: center;
         }
 
@@ -86,10 +95,11 @@
         .skill-tag {
             background-color: var(--card-bg);
             color: var(--accent-color);
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 20px;
             font-size: 0.9rem;
-            border: 1px solid #334155;
+            border: 1px solid var(--border-color);
+            font-weight: bold;
         }
 
         /* شبكة المشاريع */
@@ -99,9 +109,10 @@
 
         .section-title {
             font-size: 1.6rem;
+            color: var(--text-color);
             margin-bottom: 25px;
             border-right: 4px solid var(--accent-color);
-            padding-right: 10px;
+            padding-right: 12px;
         }
 
         .projects-grid {
@@ -114,19 +125,21 @@
             background-color: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #334155;
-            transition: transform 0.2s, border-color 0.2s;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent-color);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .project-img {
             width: 100%;
             height: 180px;
             object-fit: cover;
+            background-color: #0d1326;
         }
 
         .project-info {
@@ -135,6 +148,7 @@
 
         .project-title {
             font-size: 1.2rem;
+            color: var(--text-color);
             margin-bottom: 10px;
         }
 
@@ -149,6 +163,7 @@
             color: var(--accent-color);
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.2s;
         }
 
         .project-link:hover {
@@ -159,7 +174,7 @@
         footer {
             text-align: center;
             padding: 40px 0 20px;
-            border-top: 1px solid #334155;
+            border-top: 1px solid var(--border-color);
             margin-top: 40px;
         }
 
@@ -168,21 +183,25 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .social-btn {
             color: var(--text-color);
             text-decoration: none;
             background-color: var(--card-bg);
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 8px;
-            border: 1px solid #334155;
-            transition: background-color 0.2s;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            font-weight: 500;
         }
 
         .social-btn:hover {
             background-color: var(--accent-color);
-            color: #000;
+            color: #121b35;
+            font-weight: bold;
+            border-color: var(--accent-color);
         }
 
         .copyright {
@@ -196,16 +215,9 @@
     <div class="container">
         <!-- الهيدر والتعريف -->
         <header>
-            <!-- استبدل الرابط بصورتك الشخصية -->
             <img src="https://via.placeholder.com/120" alt="الصورة الشخصية" class="profile-img">
-            
-            <!-- ضع اسمك هنا -->
             <h1>اسمك الكامل</h1>
-            
-            <!-- مسمى وظيفتك أو تخصصك -->
             <div class="subtitle">التخصص / المسمى الوظيفي</div>
-            
-            <!-- نبذة مختصرة عنك -->
             <p class="bio">
                 مرحباً بك! أنا صانع محتوى / مصمم / مطور. أساعد الشركات والأفراد على تحويل أفكارهم إلى مشاريع حقيقية بجودة عالية.
             </p>
