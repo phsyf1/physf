@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض أعمالي | Portfolio</title>
+    <!-- خط تجوال من Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-hover: #0284c7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* الهيدر والنبذة الشخصية */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .bio {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* قسم المهارات */
+        .skills-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid #334155;
+        }
+
+        /* شبكة المشاريع */
+        .projects-section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            border-right: 4px solid var(--accent-color);
+            padding-right: 10px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .project-link:hover {
+            color: var(--accent-hover);
+        }
+
+        /* التواصل والفوتر */
+        footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            border-top: 1px solid #334155;
+            margin-top: 40px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            color: var(--text-color);
+            text-decoration: none;
+            background-color: var(--card-bg);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            transition: background-color 0.2s;
+        }
+
+        .social-btn:hover {
+            background-color: var(--accent-color);
+            color: #000;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- الهيدر والتعريف -->
+        <header>
+            <!-- استبدل الرابط بصورتك الشخصية -->
+            <img src="https://via.placeholder.com/120" alt="الصورة الشخصية" class="profile-img">
+            
+            <!-- ضع اسمك هنا -->
+            <h1>اسمك الكامل</h1>
+            
+            <!-- مسمى وظيفتك أو تخصصك -->
+            <div class="subtitle">التخصص / المسمى الوظيفي</div>
+            
+            <!-- نبذة مختصرة عنك -->
+            <p class="bio">
+                مرحباً بك! أنا صانع محتوى / مصمم / مطور. أساعد الشركات والأفراد على تحويل أفكارهم إلى مشاريع حقيقية بجودة عالية.
+            </p>
+        </header>
+
+        <!-- قسم المهارات -->
+        <section class="skills-section">
+            <div class="skills-container">
+                <span class="skill-tag">المهارة الأولى</span>
+                <span class="skill-tag">المهارة الثانية</span>
+                <span class="skill-tag">المهارة الثالثة</span>
+                <span class="skill-tag">المهارة الرابعة</span>
+            </div>
+        </section>
+
+        <!-- قسم المشاريع -->
+        <section class="projects-section">
+            <h2 class="section-title">معرض الأعمال</h2>
+            
+            <div class="projects-grid">
+                <!-- كارت مشروع 1 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/400x200" alt="مشروع 1" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">اسم المشروع الأول</h3>
+                        <p class="project-desc">وصف قصير للمشروع والخدمة التي قمت بتقديمها أو الأدوات التي استخدمتها.</p>
+                        <a href="#" class="project-link" target="_blank">معاينة المشروع ←</a>
+                    </div>
+                </div>
+
+                <!-- كارت مشروع 2 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/400x200" alt="مشروع 2" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">اسم المشروع الثاني</h3>
+                        <p class="project-desc">وصف قصير للمشروع والخدمة التي قمت بتقديمها أو الأدوات التي استخدمتها.</p>
+                        <a href="#" class="project-link" target="_blank">معاينة المشروع ←</a>
+                    </div>
+                </div>
+
+                <!-- كارت مشروع 3 -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/400x200" alt="مشروع 3" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">اسم المشروع الثالث</h3>
+                        <p class="project-desc">وصف قصير للمشروع والخدمة التي قمت بتقديمها أو الأدوات التي استخدمتها.</p>
+                        <a href="#" class="project-link" target="_blank">معاينة المشروع ←</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- الفوتر وروابط التواصل -->
+        <footer>
+            <div class="social-links">
+                <a href="mailto:your-email@gmail.com" class="social-btn">البريد الإلكتروني</a>
+                <a href="https://linkedin.com" target="_blank" class="social-btn">LinkedIn</a>
+                <a href="https://behance.net" target="_blank" class="social-btn">Behance / الأعمال</a>
+            </div>
+            <p class="copyright">جميع الحقوق محفوظة © 2026</p>
+        </footer>
+    </div>
+
+</body>
+</html>
