@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" id="theme-color-meta" content="#121b35">
+    <meta name="theme-color" id="theme-color-meta" content="#0b1329">
     
     <title>فَارِس الشِريـف | الشاعر وصانع المحتوى</title>
     
@@ -117,29 +117,33 @@
             box-shadow: var(--shadow);
         }
 
-        /* قائمة اللغات المنبثقة بدون أعلام */
+        /* حاوية زر الترجمة والقائمة المنبثقة */
+        .lang-wrapper {
+            position: relative;
+        }
+
         .lang-dropdown {
             display: none;
             position: absolute;
-            top: 50px;
-            left: 50px;
+            top: 48px;
+            left: 0;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             box-shadow: var(--shadow);
-            z-index: 100;
-            overflow: hidden;
+            z-index: 1000;
             flex-direction: column;
             min-width: 120px;
+            overflow: hidden;
         }
 
         html[dir="ltr"] .lang-dropdown {
             left: auto;
-            right: 50px;
+            right: 0;
         }
 
         .lang-dropdown.show {
-            display: flex;
+            display: flex !important;
         }
 
         .lang-option {
@@ -151,6 +155,7 @@
             cursor: pointer;
             font-size: 0.9rem;
             font-weight: 500;
+            width: 100%;
         }
 
         .lang-option:hover {
@@ -158,7 +163,7 @@
             color: var(--accent-color);
         }
 
-        /* الهيدر والصورة الدائرية التفاعلية */
+        /* الهيدر والصورة الدائرية */
         header {
             text-align: center;
             padding: 10px 10px 20px;
@@ -355,13 +360,15 @@
 
         .divider-with-text span { padding: 0 15px; font-weight: 500; }
 
-        /* أزرار السوشيال ميديا ومحاذاة الأيقونات بدقة مع النص */
+        /* أزرار وسائل التواصل الاجتماعي الـ 4 الظاهرة والمثبتة */
         .social-links {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 25px;
+            margin: 20px 0 30px;
+            width: 100%;
         }
 
         .social-btn {
@@ -378,15 +385,15 @@
             gap: 8px;
             font-size: 0.9rem;
             line-height: 1;
+            box-shadow: var(--shadow);
         }
 
         .social-btn i {
             color: var(--accent-color);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            line-height: 1;
         }
 
         .social-btn span {
@@ -397,7 +404,7 @@
         .social-btn:hover { background-color: var(--accent-color); color: #0b1329; }
         .social-btn:hover i { color: #0b1329; }
 
-        /* النافذة المنبثقة لمشاهدة الريلز */
+        /* النافذة المنبثقة لمشاهدة الريلز والصورة */
         .reel-modal, .image-modal {
             display: none;
             position: fixed;
@@ -462,35 +469,35 @@
     <div class="container">
         <!-- شريط التحكم العلوي -->
         <div class="top-nav">
-            <form class="search-box" onsubmit="handleSearchSubmit(event)">
-                <input type="text" id="searchInput" placeholder="ادخل نص البحث" oninput="filterReels()">
+            <form class="search-box" id="searchForm">
+                <input type="text" id="searchInput" placeholder="ادخل نص البحث">
                 <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
 
-            <!-- زر خيارات اللغة المستقل بدون أعلام -->
-            <button class="control-btn" id="langBtn" aria-label="Language Menu" onclick="toggleLangDropdown(event)">
-                <i class="fa-solid fa-language"></i>
-            </button>
-
-            <div class="lang-dropdown" id="langDropdown">
-                <button class="lang-option" onclick="selectLanguage('ar')">العربية</button>
-                <button class="lang-option" onclick="selectLanguage('en')">English</button>
-                <button class="lang-option" onclick="selectLanguage('es')">Español</button>
+            <!-- زر خيارات اللغة -->
+            <div class="lang-wrapper">
+                <button class="control-btn" id="langBtn" type="button" aria-label="Language Menu">
+                    <i class="fa-solid fa-globe"></i>
+                </button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <button type="button" class="lang-option" data-lang="ar">العربية</button>
+                    <button type="button" class="lang-option" data-lang="en">English</button>
+                    <button type="button" class="lang-option" data-lang="es">Español</button>
+                </div>
             </div>
 
-            <!-- زر التبديل بين الوضعين -->
-            <button class="control-btn" id="themeToggle" aria-label="Toggle Theme">
+            <!-- زر الثيم -->
+            <button class="control-btn" id="themeToggle" type="button" aria-label="Toggle Theme">
                 <i class="fa-solid fa-sun" id="themeIcon"></i>
             </button>
         </div>
 
         <!-- الهيدر -->
         <header>
-            <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/profile.jpg" alt="فارِس الشِريـف" class="profile-img" onclick="openImageModal(this.src)">
+            <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/profile.jpg" alt="فارِس الشِريـف" class="profile-img" id="profileImg">
             <h1 id="txt-name">فَارِس الشِريـف</h1>
             <div class="subtitle" id="txt-title">شاعر / صانع محتوى</div>
             <p class="bio" id="txt-bio">هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش</p>
-            <!-- الخط الجمالي الفاصل -->
             <div class="header-divider"></div>
         </header>
 
@@ -534,7 +541,7 @@
             </div>
         </section>
 
-        <!-- 5. نبذة تعريفية عني (عنوان خارج المربع مطابق لقسم تواصل معي) -->
+        <!-- 5. نبذة تعريفية عني -->
         <section>
             <h2 class="section-title" id="about-title">نبذة تعريفية عني</h2>
             <div class="about-box">
@@ -568,7 +575,7 @@
             <span id="txt-honor">شرفنا بمتابعتك</span>
         </div>
 
-        <!-- أزرار وسائل التواصل الاجتماعي -->
+        <!-- أزرار وسائل التواصل الاجتماعي الـ 4 الأساسية -->
         <div class="social-links">
             <a href="https://t.me/phsyf1" target="_blank" class="social-btn">
                 <i class="fa-brands fa-telegram"></i> <span id="btn-telegram">قناة التيليجرام</span>
@@ -576,4 +583,317 @@
             <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="social-btn">
                 <i class="fa-brands fa-tiktok"></i> <span id="btn-tiktok">تيك توك</span>
             </a>
-   
+            <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-btn">
+                <i class="fa-brands fa-facebook-f"></i> <span id="btn-facebook">فيسبوك</span>
+            </a>
+            <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-btn">
+                <i class="fa-brands fa-youtube"></i> <span id="btn-youtube">يوتيوب</span>
+            </a>
+        </div>
+
+        <footer>
+            <p id="txt-footer">© 2026 - جميع الحقوق محفوظة</p>
+        </footer>
+    </div>
+
+    <!-- النافذة المنبثقة لمشاهدة الريلز -->
+    <div class="reel-modal" id="reelModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeReelBtn">&times;</button>
+            <div class="video-container">
+                <iframe id="modalIframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- النافذة المنبثقة لعرض الصورة الشخصية -->
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content">
+            <button class="close-modal" id="closeImageBtn">&times;</button>
+            <img id="modalProfileImg" src="" alt="صورة الشاعر">
+        </div>
+    </div>
+
+    <!-- السكريبت المحدث والمحمي بالكامل -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 1. جلب المحتوى من الملفات الخارجة مع التعامل الذكي لعدم إخفاء الصفحة
+            async function loadSectionContent(fileUrl, containerId) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                const section = container.closest('section');
+
+                try {
+                    const response = await fetch(fileUrl);
+                    if (response.ok) {
+                        const html = await response.text();
+                        if (html.trim().length > 0 && html.includes('reel-card')) {
+                            container.innerHTML = html;
+                            if (section) section.style.display = 'block';
+                            setupScrollEvents(container);
+                        } else {
+                            if (section) section.style.display = 'none';
+                        }
+                    } else {
+                        if (container.children.length === 0 && section) {
+                            section.style.display = 'none';
+                        }
+                    }
+                } catch (err) {
+                    console.warn(`تنبيه: تعذر جلب ${fileUrl} (قد يعود ذلك للتشغيل المحلي المباشر).`);
+                    if (container.children.length === 0 && section) {
+                        // لا تخفِ القسم إذا كان بداخله عناصر مسبقاً
+                    }
+                }
+            }
+
+            loadSectionContent('quranshorts.html', 'quranshorts-container');
+            loadSectionContent('quranfullvideo.html', 'quranfull-container');
+            loadSectionContent('foryou.html', 'foryou-container');
+            loadSectionContent('poems.html', 'poems-container');
+
+            // 2. التحكم في أسهم السحب
+            window.updateScrollButtons = function(container) {
+                const wrapper = container.closest('.reels-wrapper');
+                if (!wrapper) return;
+                const rightBtn = wrapper.querySelector('.right-btn');
+                const leftBtn = wrapper.querySelector('.left-btn');
+                if (!rightBtn || !leftBtn) return;
+
+                const maxScroll = container.scrollWidth - container.clientWidth;
+                if (maxScroll <= 5) {
+                    rightBtn.style.display = 'none';
+                    leftBtn.style.display = 'none';
+                    return;
+                }
+
+                const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+                const scrollPos = Math.abs(container.scrollLeft);
+
+                let atRight = false;
+                let atLeft = false;
+
+                if (isRTL) {
+                    if (scrollPos <= 8) atRight = true;
+                    if (Math.abs(scrollPos - maxScroll) <= 8) atLeft = true;
+                    rightBtn.style.display = atRight ? 'none' : 'flex';
+                    leftBtn.style.display = atLeft ? 'none' : 'flex';
+                } else {
+                    if (container.scrollLeft <= 8) atLeft = true;
+                    if (Math.abs(container.scrollLeft - maxScroll) <= 8) atRight = true;
+                    leftBtn.style.display = atLeft ? 'none' : 'flex';
+                    rightBtn.style.display = atRight ? 'none' : 'flex';
+                }
+            };
+
+            function setupScrollEvents(container) {
+                container.addEventListener('scroll', () => updateScrollButtons(container));
+                setTimeout(() => updateScrollButtons(container), 300);
+            }
+
+            window.scrollSection = function(containerId, direction) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+                let scrollAmount = 260;
+
+                if (direction === 'left') {
+                    container.scrollBy({ left: isRTL ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+                } else {
+                    container.scrollBy({ left: isRTL ? scrollAmount : -scrollAmount, behavior: 'smooth' });
+                }
+            };
+
+            // 3. النوافذ المنبثقة
+            window.openReelModal = function(videoId) {
+                const modal = document.getElementById('reelModal');
+                const iframe = document.getElementById('modalIframe');
+                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const reelModal = document.getElementById('reelModal');
+            document.getElementById('closeReelBtn').addEventListener('click', closeReel);
+            reelModal.addEventListener('click', (e) => { if (e.target === reelModal) closeReel(); });
+
+            function closeReel() {
+                document.getElementById('modalIframe').src = '';
+                reelModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            // عرض الصورة الشخصية
+            const profileImg = document.getElementById('profileImg');
+            const imageModal = document.getElementById('imageModal');
+            profileImg.addEventListener('click', () => {
+                document.getElementById('modalProfileImg').src = profileImg.src;
+                imageModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            document.getElementById('closeImageBtn').addEventListener('click', closeImage);
+            imageModal.addEventListener('click', (e) => { if (e.target === imageModal) closeImage(); });
+
+            function closeImage() {
+                imageModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            // 4. تصفية وحقول البحث
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', () => {
+                const val = searchInput.value.toLowerCase().trim();
+                document.querySelectorAll('.reel-card').forEach(card => {
+                    const title = (card.getAttribute('data-title') || '').toLowerCase();
+                    card.style.display = title.includes(val) ? '' : 'none';
+                });
+            });
+
+            document.getElementById('searchForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                searchInput.blur();
+            });
+
+            // 5. زر التبديل بين الثيم المظلم والمضيء
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                themeIcon.className = newTheme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+            });
+
+            // 6. قائمة اللغات والترجمة الشاملة
+            const langBtn = document.getElementById('langBtn');
+            const langDropdown = document.getElementById('langDropdown');
+
+            langBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!langDropdown.contains(e.target) && e.target !== langBtn) {
+                    langDropdown.classList.remove('show');
+                }
+            });
+
+            document.querySelectorAll('.lang-option').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.getAttribute('data-lang');
+                    changeLanguage(lang);
+                    langDropdown.classList.remove('show');
+                });
+            });
+
+            const i18n = {
+                ar: {
+                    search: "ادخل نص البحث",
+                    name: "فَارِس الشِريـف",
+                    title: "شاعر / صانع محتوى",
+                    bio: "هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش",
+                    quranshorts: "تلاوات اخترناها لك",
+                    quranfull: "تلاوات عطرة",
+                    foryou: "من أجلك أنت",
+                    poems: "قصائدي",
+                    aboutTitle: "نبذة تعريفية عني",
+                    aboutDesc: "فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. يسعى في مسيرة حياته إلى ترك أثر نافع بين الناس، سواء بتلاواته أو قصائده الشعرية أو محتواه المرئي على مواقع التواصل الاجتماعي.",
+                    contactTitle: "تواصل معي",
+                    namePlaceholder: "اسم الكريم",
+                    emailPlaceholder: "بريدك الإلكتروني",
+                    msgPlaceholder: "اكتب رسالتك هنا...",
+                    submitBtn: "إرسال الرسالة",
+                    honor: "شرفنا بمتابعتك",
+                    telegram: "قناة التيليجرام",
+                    tiktok: "تيك توك",
+                    facebook: "فيسبوك",
+                    youtube: "يوتيوب",
+                    footer: "© 2026 - جميع الحقوق محفوظة"
+                },
+                en: {
+                    search: "Search content...",
+                    name: "Faris Al-Shareef",
+                    title: "Poet / Content Creator",
+                    bio: "Here you will find all the works of poet Faris Muhammad Dahesh.",
+                    quranshorts: "Selected Recitations",
+                    quranfull: "Fragrant Recitations",
+                    foryou: "For You",
+                    poems: "My Poems",
+                    aboutTitle: "About Me",
+                    aboutDesc: "Faris Muhammad Dahesh.. Egyptian poet and content creator, born July 3, 2003 in Asyut, Egypt. He strives to leave a meaningful impact through Quran recitations, poetry, and video content.",
+                    contactTitle: "Contact Me",
+                    namePlaceholder: "Your Name",
+                    emailPlaceholder: "Your Email",
+                    msgPlaceholder: "Write your message here...",
+                    submitBtn: "Send Message",
+                    honor: "Honored by your follow",
+                    telegram: "Telegram Channel",
+                    tiktok: "TikTok",
+                    facebook: "Facebook",
+                    youtube: "YouTube",
+                    footer: "© 2026 - All Rights Reserved"
+                },
+                es: {
+                    search: "Ingrese texto...",
+                    name: "Faris Al-Shareef",
+                    title: "Poeta / Creador de Contenido",
+                    bio: "Aquí encontrarás todas las obras del poeta Faris Muhammad Dahesh.",
+                    quranshorts: "Recitaciones Seleccionadas",
+                    quranfull: "Recitaciones Fragantes",
+                    foryou: "Para Ti",
+                    poems: "Mis Poemas",
+                    aboutTitle: "Sobre Mí",
+                    aboutDesc: "Faris Muhammad Dahesh.. Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 en Asiut, Egipto. Busca dejar un impacto positivo a través de recitaciones del Corán, poesía y redes sociales.",
+                    contactTitle: "Contáctame",
+                    namePlaceholder: "Tu Nombre",
+                    emailPlaceholder: "Tu Correo Electrónico",
+                    msgPlaceholder: "Escribe tu mensaje aquí...",
+                    submitBtn: "Enviar Mensaje",
+                    honor: "Honrados con tu seguimiento",
+                    telegram: "Canal de Telegram",
+                    tiktok: "TikTok",
+                    facebook: "Facebook",
+                    youtube: "YouTube",
+                    footer: "© 2026 - Todos los derechos reservados"
+                }
+            };
+
+            function changeLanguage(lang) {
+                document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+                document.documentElement.setAttribute('lang', lang);
+                
+                document.getElementById('searchInput').placeholder = i18n[lang].search;
+                document.getElementById('txt-name').innerText = i18n[lang].name;
+                document.getElementById('txt-title').innerText = i18n[lang].title;
+                document.getElementById('txt-bio').innerText = i18n[lang].bio;
+                document.getElementById('sec-quranshorts').innerText = i18n[lang].quranshorts;
+                document.getElementById('sec-quranfull').innerText = i18n[lang].quranfull;
+                document.getElementById('sec-foryou').innerText = i18n[lang].foryou;
+                document.getElementById('sec-poems').innerText = i18n[lang].poems;
+                document.getElementById('about-title').innerText = i18n[lang].aboutTitle;
+                document.getElementById('about-desc').innerText = i18n[lang].aboutDesc;
+                
+                document.getElementById('contact-title').innerText = i18n[lang].contactTitle;
+                document.getElementById('input-name').placeholder = i18n[lang].namePlaceholder;
+                document.getElementById('input-email').placeholder = i18n[lang].emailPlaceholder;
+                document.getElementById('input-msg').placeholder = i18n[lang].msgPlaceholder;
+                document.getElementById('btn-submit').innerHTML = `${i18n[lang].submitBtn} <i class="fa-solid fa-paper-plane"></i>`;
+
+                document.getElementById('txt-honor').innerText = i18n[lang].honor;
+                document.getElementById('btn-telegram').innerText = i18n[lang].telegram;
+                document.getElementById('btn-tiktok').innerText = i18n[lang].tiktok;
+                document.getElementById('btn-facebook').innerText = i18n[lang].facebook;
+                document.getElementById('btn-youtube').innerText = i18n[lang].youtube;
+                document.getElementById('txt-footer').innerText = i18n[lang].footer;
+
+                document.querySelectorAll('.reels-container').forEach(c => {
+                    if (window.updateScrollButtons) window.updateScrollButtons(c);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
