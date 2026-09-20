@@ -27,6 +27,7 @@
             --text-muted: #cbd5e1;         
             --accent-color: #d4af37;       
             --border-color: rgba(212, 175, 55, 0.3); 
+            --line-color: rgba(255, 255, 255, 0.15); /* لون رمادي ناعم للخط الفاصل */
             --input-bg: rgba(21, 32, 62, 0.85);
             --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
             --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -43,6 +44,7 @@
             --text-muted: #475569;
             --accent-color: #b8860b;
             --border-color: rgba(212, 175, 55, 0.3);
+            --line-color: rgba(0, 0, 0, 0.12); /* لون رمادي خفيف للوضع المضيء */
             --input-bg: #ffffff;
             --shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -237,14 +239,50 @@
             font-size: 0.9rem; 
         }
 
-        /* الخط الفاصل الصريح المستمر (–––––) */
+        /* الخط الفاصل بطول الشاشة بلون رمادي متناسق */
         .simple-divider {
-            width: 80%;
-            max-width: 450px;
+            width: 100%;
             height: 1px;
-            background-color: var(--border-color);
-            margin: 22px auto;
+            background-color: var(--line-color);
+            margin: 25px 0 20px;
             border: none;
+        }
+
+        /* المربعات الزخرفية أسفل الخط الفاصل */
+        .role-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .role-badge {
+            background: var(--card-bg-glass);
+            border: 1px solid var(--border-color);
+            color: var(--accent-color);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .role-badge:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+
+        .role-badge i {
+            font-size: 0.9rem;
+            color: var(--accent-color);
         }
 
         /* عناوين الأقسام */
@@ -560,8 +598,15 @@
             <div class="subtitle" id="txt-title">شاعر / صانع محتوى</div>
             <p class="bio" id="txt-bio">هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش</p>
             
-            <!-- الخط الفاصل الصريح المستمر (–––––) -->
-            <div class="simple-divider"></div>
+            <!-- الخط الفاصل بطول الشاشة -->
+            <hr class="simple-divider">
+
+            <!-- المربعات أسفل الخط الفاصل -->
+            <div class="role-badges">
+                <span class="role-badge"><i class="fa-solid fa-book-quran"></i> <span id="badge-quran">قارئ قرآن</span></span>
+                <span class="role-badge"><i class="fa-solid fa-pen-nib"></i> <span id="badge-poet">شاعر</span></span>
+                <span class="role-badge"><i class="fa-solid fa-clapperboard"></i> <span id="badge-creator">صانع محتوى</span></span>
+            </div>
         </header>
 
         <!-- الأقسام الديناميكية -->
@@ -695,17 +740,15 @@
                 }
 
                 if (isRTL) {
-                    // في وضع RTL (العربية): اليمين هو البداية (scrollPos ≈ 0)، واليسار هو النهاية
                     if (rightBtn) rightBtn.style.display = scrollPos <= 10 ? 'none' : 'flex';
                     if (leftBtn) leftBtn.style.display = (maxScroll - scrollPos) <= 10 ? 'none' : 'flex';
                 } else {
-                    // في وضع LTR (الإنجليزية/الإسبانية): اليسار هو البداية (scrollPos ≈ 0)، واليمين هو النهاية
                     if (leftBtn) leftBtn.style.display = scrollPos <= 10 ? 'none' : 'flex';
                     if (rightBtn) rightBtn.style.display = (maxScroll - scrollPos) <= 10 ? 'none' : 'flex';
                 }
             }
 
-            // إظهار الأقسام التي بها محتوى وإعداد المستمعين للتمرير
+            // إظهار الأقسام التي بها محتوى
             async function loadSectionContent(fileUrl, containerId) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -719,7 +762,6 @@
                             container.innerHTML = html;
                             if (section) section.style.display = 'block';
 
-                            // تحديث حالة الأسهم وإضافة مستمع لحركة التمرير
                             setTimeout(() => updateScrollButtons(container), 100);
                             container.addEventListener('scroll', () => updateScrollButtons(container));
                         } else {
@@ -814,7 +856,7 @@
                 searchInput.blur();
             });
 
-            // زر تبديل الوضع (Dark / Light) وتحديث لون الـ Statusbar / Toolbar متوافقاً
+            // زر تبديل الوضع (Dark / Light)
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             const themeColorMeta = document.getElementById('theme-color-meta');
@@ -825,7 +867,6 @@
                 document.documentElement.setAttribute('data-theme', newTheme);
                 themeIcon.className = newTheme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
                 
-                // تحديث theme-color ليتوافق مع شريط المتصفح/النظام المضيء أو الداكن
                 if (themeColorMeta) {
                     themeColorMeta.setAttribute('content', newTheme === 'light' ? '#f8fafc' : '#0b1329');
                 }
@@ -860,6 +901,9 @@
                     name: "فَارِس الشِريـف",
                     title: "شاعر / صانع محتوى",
                     bio: "هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش",
+                    badgeQuran: "قارئ قرآن",
+                    badgePoet: "شاعر",
+                    badgeCreator: "صانع محتوى",
                     quranshorts: "تلاوات اخترناها لك",
                     quranfull: "تلاوات عطرة",
                     foryou: "من أجلك أنت",
@@ -883,6 +927,9 @@
                     name: "Faris Al-Shareef",
                     title: "Poet / Content Creator",
                     bio: "Here you will find all the works of poet Faris Muhammad Dahesh.",
+                    badgeQuran: "Quran Reciter",
+                    badgePoet: "Poet",
+                    badgeCreator: "Content Creator",
                     quranshorts: "Selected Recitations",
                     quranfull: "Fragrant Recitations",
                     foryou: "For You",
@@ -906,6 +953,9 @@
                     name: "Faris Al-Shareef",
                     title: "Poeta / Creador de Contenido",
                     bio: "Aquí encontrarás todas las obras del poeta Faris Muhammad Dahesh.",
+                    badgeQuran: "Recitador del Corán",
+                    badgePoet: "Poeta",
+                    badgeCreator: "Creador de Contenido",
                     quranshorts: "Recitaciones Seleccionadas",
                     quranfull: "Recitaciones Fragantes",
                     foryou: "Para Ti",
@@ -934,6 +984,11 @@
                 document.getElementById('txt-name').innerText = i18n[lang].name;
                 document.getElementById('txt-title').innerText = i18n[lang].title;
                 document.getElementById('txt-bio').innerText = i18n[lang].bio;
+
+                document.getElementById('badge-quran').innerText = i18n[lang].badgeQuran;
+                document.getElementById('badge-poet').innerText = i18n[lang].badgePoet;
+                document.getElementById('badge-creator').innerText = i18n[lang].badgeCreator;
+
                 document.getElementById('sec-quranshorts').innerText = i18n[lang].quranshorts;
                 document.getElementById('sec-quranfull').innerText = i18n[lang].quranfull;
                 document.getElementById('sec-foryou').innerText = i18n[lang].foryou;
@@ -954,11 +1009,9 @@
                 document.getElementById('btn-youtube').innerText = i18n[lang].youtube;
                 document.getElementById('txt-footer').innerText = i18n[lang].footer;
 
-                // إعادت ضبط وإعادة فحص حالة الأسهم بعد تغيير الاتجاه RTL/LTR
                 document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
             }
 
-            // اعادة ضبط الأسهم عند تغيير حجم الشاشة
             window.addEventListener('resize', () => {
                 document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
             });
