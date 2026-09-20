@@ -18,29 +18,25 @@
     
     <style>
         :root {
-            --bg-color: #121b35;          
-            --card-bg: rgba(26, 38, 74, 0.65); 
+            --bg-color: #0b1329;          
+            --card-bg: #15203e; 
             --text-color: #ffffff;         
             --text-muted: #cbd5e1;         
             --accent-color: #d4af37;       
-            --border-color: rgba(212, 175, 55, 0.3); 
-            --input-bg: rgba(15, 23, 42, 0.6);
-            --blob-1: rgba(212, 175, 55, 0.12); 
-            --blob-2: rgba(56, 189, 248, 0.10); 
-            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --border-color: rgba(212, 175, 55, 0.25); 
+            --input-bg: #0f1830;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
         }
 
         [data-theme="light"] {
-            --bg-color: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.85);
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
             --text-color: #0f172a;
             --text-muted: #475569;
             --accent-color: #b8860b;
             --border-color: rgba(212, 175, 55, 0.35);
-            --input-bg: rgba(255, 255, 255, 0.95);
-            --blob-1: rgba(212, 175, 55, 0.18);
-            --blob-2: rgba(99, 102, 241, 0.12);
-            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+            --input-bg: #f8fafc;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
         }
 
         * {
@@ -61,44 +57,19 @@
             overflow-x: hidden;
         }
 
-        /* خلفية الإضاءات البلورية */
-        .bg-blobs {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(90px);
-            animation: floatBlob 14s infinite alternate ease-in-out;
-        }
-
-        .blob-1 { width: 350px; height: 350px; background: var(--blob-1); top: -50px; right: -50px; }
-        .blob-2 { width: 400px; height: 400px; background: var(--blob-2); bottom: -80px; left: -80px; animation-delay: -7s; }
-
-        @keyframes floatBlob {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 60px) scale(1.1); }
-        }
-
         .container {
             max-width: 950px;
             margin: 0 auto;
         }
 
-        /* شريط التحكم العلوي المدمج (البحث + اللغة + الثيم) */
+        /* شريط التحكم العلوي المدمج */
         .top-nav {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 25px;
             width: 100%;
+            position: relative;
         }
 
         .search-box {
@@ -108,7 +79,6 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 4px 12px;
-            backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
             flex: 1;
         }
@@ -131,18 +101,6 @@
             cursor: pointer;
         }
 
-        .lang-select {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--accent-color);
-            padding: 8px 10px;
-            border-radius: 12px;
-            outline: none;
-            cursor: pointer;
-            font-size: 0.88rem;
-            backdrop-filter: blur(10px);
-        }
-
         .control-btn {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -151,37 +109,94 @@
             height: 40px;
             border-radius: 12px;
             cursor: pointer;
-            backdrop-filter: blur(10px);
-            font-size: 1rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            box-shadow: var(--shadow);
         }
 
-        /* الهيدر والصورة المربعة بالحواف */
+        /* قائمة اللغات المنبثقة بدون أعلام */
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            overflow: hidden;
+            flex-direction: column;
+            min-width: 120px;
+        }
+
+        html[dir="ltr"] .lang-dropdown {
+            left: auto;
+            right: 50px;
+        }
+
+        .lang-dropdown.show {
+            display: flex;
+        }
+
+        .lang-option {
+            padding: 10px 15px;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .lang-option:hover {
+            background: var(--border-color);
+            color: var(--accent-color);
+        }
+
+        /* الهيدر والصورة الدائرية التفاعلية */
         header {
             text-align: center;
-            padding: 10px 10px 25px;
+            padding: 10px 10px 20px;
         }
 
         .profile-img {
             width: 130px;
             height: 130px;
-            border-radius: 45px;
+            border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--accent-color);
             margin-bottom: 15px;
             box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.04);
+            border-color: #ffffff;
         }
 
         h1 { font-size: 2.1rem; margin-bottom: 6px; }
         .subtitle { color: var(--accent-color); font-size: 1.05rem; margin-bottom: 12px; font-weight: 500; }
         .bio { color: var(--text-muted); max-width: 650px; margin: 0 auto; font-size: 1rem; }
 
+        /* الخط الجمالي الفاصل أسفل الهيدر */
+        .header-divider {
+            width: 160px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
         /* عناوين الأقسام */
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--text-color);
             margin: 35px 0 15px;
             border-right: 4px solid var(--accent-color);
@@ -195,7 +210,7 @@
             padding-left: 12px;
         }
 
-        /* حوايات الريلز والسحب */
+        /* حاويات الريلز والسحب */
         .reels-wrapper {
             position: relative;
             display: flex;
@@ -214,7 +229,6 @@
 
         .reels-container::-webkit-scrollbar { display: none; }
 
-        /* الكروت */
         .reel-card {
             position: relative;
             min-width: 200px;
@@ -243,17 +257,16 @@
             transform: translate(-50%, -50%);
             width: 45px;
             height: 45px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.65);
             color: var(--accent-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.1rem;
-            backdrop-filter: blur(4px);
         }
 
-        /* أزرار اتجاهات السحب التفاعلية */
+        /* أزرار اتجاهات السحب */
         .scroll-btn {
             position: absolute;
             top: 50%;
@@ -269,35 +282,30 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(6px);
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            box-shadow: var(--shadow);
         }
 
         .left-btn { left: -10px; }
         .right-btn { right: -10px; }
 
-        /* صندوق نبذة عن فارس */
+        /* صندوق نبذة تعريفية عني */
         .about-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 22px;
-            margin: 40px 0 25px;
-            backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
         }
 
-        .about-box h3 { color: var(--accent-color); margin-bottom: 10px; font-size: 1.2rem; }
         .about-box p { color: var(--text-muted); font-size: 0.98rem; line-height: 1.8; }
 
         /* نموذج التواصل */
-        .contact-section { padding: 10px 0 30px; }
+        .contact-section { padding: 10px 0 20px; }
         .contact-card {
             background: var(--card-bg);
             border-radius: 16px;
             padding: 24px;
             border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
         }
 
@@ -317,12 +325,12 @@
 
         .submit-btn {
             background: var(--accent-color);
-            color: #121b35;
+            color: #0b1329;
             border: none;
             padding: 12px 24px;
             border-radius: 10px;
             font-size: 0.95rem;
-            font-weight: 500;
+            font-weight: bold;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
@@ -330,9 +338,6 @@
             gap: 8px;
         }
 
-        .submit-btn:hover { filter: brightness(1.1); }
-
-        /* الخط الفاصل */
         .divider-with-text {
             display: flex;
             align-items: center;
@@ -350,7 +355,7 @@
 
         .divider-with-text span { padding: 0 15px; font-weight: 500; }
 
-        /* أزرار السوشيال ميديا */
+        /* أزرار السوشيال ميديا ومحاذاة الأيقونات بدقة مع النص */
         .social-links {
             display: flex;
             justify-content: center;
@@ -369,16 +374,31 @@
             font-weight: 500;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             font-size: 0.9rem;
+            line-height: 1;
         }
 
-        .social-btn i { color: var(--accent-color); }
-        .social-btn:hover { background-color: var(--accent-color); color: #121b35; }
-        .social-btn:hover i { color: #121b35; }
+        .social-btn i {
+            color: var(--accent-color);
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
 
-        /* النافذة المنبثقة */
-        .reel-modal {
+        .social-btn span {
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .social-btn:hover { background-color: var(--accent-color); color: #0b1329; }
+        .social-btn:hover i { color: #0b1329; }
+
+        /* النافذة المنبثقة لمشاهدة الريلز */
+        .reel-modal, .image-modal {
             display: none;
             position: fixed;
             inset: 0;
@@ -386,10 +406,10 @@
             z-index: 9999;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(5px);
         }
 
-        .reel-modal.active { display: flex; }
+        .reel-modal.active, .image-modal.active { display: flex; }
 
         .modal-content {
             position: relative;
@@ -418,30 +438,47 @@
             z-index: 20;
         }
 
+        /* معاينة الصورة شخصية */
+        .image-modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 85vh;
+        }
+
+        .image-modal-content img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
         footer { text-align: center; padding: 20px 0; color: var(--text-muted); font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
-    <div class="bg-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
-
     <div class="container">
-        <!-- شريط التحكم العلوي (مربع البحث + قائمة اللغات + زر الثيم في سطر واحد) -->
+        <!-- شريط التحكم العلوي -->
         <div class="top-nav">
             <form class="search-box" onsubmit="handleSearchSubmit(event)">
                 <input type="text" id="searchInput" placeholder="ادخل نص البحث" oninput="filterReels()">
                 <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
 
-            <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
-                <option value="ar">العربية 🇪🇬</option>
-                <option value="en">English 🇬🇧</option>
-                <option value="es">Español 🇪🇸</option>
-            </select>
+            <!-- زر خيارات اللغة المستقل بدون أعلام -->
+            <button class="control-btn" id="langBtn" aria-label="Language Menu" onclick="toggleLangDropdown(event)">
+                <i class="fa-solid fa-language"></i>
+            </button>
 
+            <div class="lang-dropdown" id="langDropdown">
+                <button class="lang-option" onclick="selectLanguage('ar')">العربية</button>
+                <button class="lang-option" onclick="selectLanguage('en')">English</button>
+                <button class="lang-option" onclick="selectLanguage('es')">Español</button>
+            </div>
+
+            <!-- زر التبديل بين الوضعين -->
             <button class="control-btn" id="themeToggle" aria-label="Toggle Theme">
                 <i class="fa-solid fa-sun" id="themeIcon"></i>
             </button>
@@ -449,10 +486,12 @@
 
         <!-- الهيدر -->
         <header>
-            <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/profile.jpg" alt="فارِس الشِريـف" class="profile-img">
+            <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/profile.jpg" alt="فارِس الشِريـف" class="profile-img" onclick="openImageModal(this.src)">
             <h1 id="txt-name">فَارِس الشِريـف</h1>
             <div class="subtitle" id="txt-title">شاعر / صانع محتوى</div>
             <p class="bio" id="txt-bio">هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش</p>
+            <!-- الخط الجمالي الفاصل -->
+            <div class="header-divider"></div>
         </header>
 
         <!-- 1. قسم تلاوات اخترناها لك -->
@@ -495,13 +534,15 @@
             </div>
         </section>
 
-        <!-- نبذة عن فارس -->
-        <div class="about-box">
-            <h3 id="about-title">نبذة عن فارس</h3>
-            <p id="about-desc">فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. يسعى في مسيرة حياته إلى ترك أثر نافع بين الناس، سواء بتلاواته أو قصائده الشعرية أو محتواه المرئي على مواقع التواصل الاجتماعي.</p>
-        </div>
+        <!-- 5. نبذة تعريفية عني (عنوان خارج المربع مطابق لقسم تواصل معي) -->
+        <section>
+            <h2 class="section-title" id="about-title">نبذة تعريفية عني</h2>
+            <div class="about-box">
+                <p id="about-desc">فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. يسعى في مسيرة حياته إلى ترك أثر نافع بين الناس، سواء بتلاواته أو قصائده الشعرية أو محتواه المرئي على مواقع التواصل الاجتماعي.</p>
+            </div>
+        </section>
 
-        <!-- نموذج التواصل -->
+        <!-- 6. نموذج التواصل -->
         <section class="contact-section">
             <h2 class="section-title" id="contact-title">تواصل معي</h2>
             <div class="contact-card">
@@ -535,22 +576,4 @@
             <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="social-btn">
                 <i class="fa-brands fa-tiktok"></i> <span id="btn-tiktok">تيك توك</span>
             </a>
-            <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-btn">
-                <i class="fa-brands fa-facebook-f"></i> <span id="btn-facebook">فيسبوك</span>
-            </a>
-            <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-btn">
-                <i class="fa-brands fa-youtube"></i> <span id="btn-youtube">يوتيوب</span>
-            </a>
-        </div>
-
-        <footer>
-            <p>© 2026 فَارِس الشِريـف - جميع الحقوق محفوظة</p>
-        </footer>
-    </div>
-
-    <!-- النافذة المنبثقة -->
-    <div class="reel-modal" id="reelModal" onclick="closeReelModal(event)">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeReelModal(event)">&times;</button>
-            <div class="video-container">
-                <iframe id="modalIframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></ifra
+   
