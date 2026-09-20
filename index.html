@@ -35,18 +35,19 @@
 
         [data-theme="light"] {
             --bg-color: #f8fafc;
-            --bg-gradient: radial-gradient(circle at top right, rgba(212, 175, 55, 0.15), transparent 45%), 
-                            radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.1), transparent 45%), 
+            --bg-gradient: radial-gradient(circle at top right, rgba(212, 175, 55, 0.25), transparent 50%), 
+                            radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.18), transparent 50%), 
                             #f8fafc;
-            --card-bg-glass: rgba(255, 255, 255, 0.85);
-            --nav-bg-glass: rgba(248, 250, 252, 0.85);
+            /* شفافية مخصصة للوضع المضيء لتفعيل تأثير البلور الزجاجي بجودة عالية */
+            --card-bg-glass: rgba(255, 255, 255, 0.65);
+            --nav-bg-glass: rgba(248, 250, 252, 0.75);
             --text-color: #0f172a;
             --text-muted: #475569;
             --accent-color: #b8860b;
-            --border-color: rgba(212, 175, 55, 0.3);
+            --border-color: rgba(212, 175, 55, 0.35);
             --line-color: rgba(0, 0, 0, 0.12); /* لون رمادي خفيف للوضع المضيء */
-            --input-bg: #ffffff;
-            --shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            --input-bg: rgba(255, 255, 255, 0.7);
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
@@ -68,10 +69,22 @@
             overflow-x: hidden;
         }
 
+        /* تأثير الحركة والتلاشي الحديث عند التحميل */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .container {
             max-width: 950px;
             margin: 0 auto;
-            animation: fadeInPage 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) ease-out;
         }
 
         /* شريط الـ Toolbar العلوي */
@@ -88,7 +101,6 @@
             border: none;
             box-shadow: none;
             padding: 0;
-            animation: slideDown 0.6s ease-out;
         }
 
         .search-box {
@@ -100,16 +112,15 @@
             padding: 2px 14px;
             flex: 1;
             box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             height: 42px;
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
         .search-box:focus-within {
             border-color: var(--accent-color);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
         .search-box input {
@@ -132,7 +143,7 @@
         }
 
         .search-btn:hover {
-            transform: scale(1.15);
+            transform: scale(1.1);
         }
 
         .control-btn {
@@ -149,15 +160,14 @@
             justify-content: center;
             flex-shrink: 0;
             box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
         .control-btn:hover {
             border-color: var(--accent-color);
-            transform: translateY(-2px) rotate(8deg);
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
         }
 
         .lang-wrapper {
@@ -179,9 +189,7 @@
             flex-direction: column;
             min-width: 120px;
             overflow: hidden;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            animation: fadeInUp 0.25s ease-out;
         }
 
         html[dir="ltr"] .lang-dropdown {
@@ -191,8 +199,6 @@
 
         .lang-dropdown.show {
             display: flex !important;
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .lang-option {
@@ -213,11 +219,10 @@
             color: var(--accent-color);
         }
 
-        /* الهيدر والصورة الشخصية */
+        /* الهيدر والصورة الشخصية (بدون طوفان للحفاظ على الهيبة) */
         header {
             text-align: center;
             padding: 5px 10px 10px;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         .profile-img-wrapper {
@@ -228,13 +233,12 @@
             box-shadow: var(--shadow-sm);
             margin-bottom: 12px;
             cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-            animation: floatProfile 4s ease-in-out infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .profile-img-wrapper:hover {
-            transform: scale(1.08) rotate(2deg);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+            transform: scale(1.03);
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.4);
         }
 
         .profile-img {
@@ -296,25 +300,20 @@
             align-items: center;
             gap: 8px;
             box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .role-badge:hover {
-            transform: translateY(-4px) scale(1.03);
+            transform: translateY(-2px);
             border-color: var(--accent-color);
-            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
         }
 
         .role-badge i {
             font-size: 0.9rem;
             color: var(--accent-color);
-            transition: transform 0.3s ease;
-        }
-
-        .role-badge:hover i {
-            transform: scale(1.2);
         }
 
         /* عناوين الأقسام */
@@ -337,7 +336,7 @@
         /* الأقسام الديناميكية */
         .dynamic-reel-section {
             display: none;
-            animation: fadeInUp 0.7s ease-out;
+            animation: fadeInUp 0.5s ease-out;
         }
 
         .reels-wrapper {
@@ -370,17 +369,25 @@
             box-shadow: var(--shadow);
             flex-shrink: 0;
             background-color: #000;
-            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .reel-card:hover {
-            transform: translateY(-6px) scale(1.02);
+            transform: translateY(-4px);
             border-color: var(--accent-color);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
 
-        .reel-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .reel-card:hover img { transform: scale(1.08); }
+        .reel-card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.4s ease;
+        }
+
+        .reel-card:hover img {
+            transform: scale(1.05);
+        }
 
         .play-icon {
             position: absolute;
@@ -396,13 +403,12 @@
             align-items: center;
             justify-content: center;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
 
         .reel-card:hover .play-icon {
-            background: var(--accent-color);
-            color: #0b1329;
             transform: translate(-50%, -50%) scale(1.15);
+            background: rgba(0, 0, 0, 0.85);
         }
 
         /* أسهم التمرير */
@@ -423,32 +429,31 @@
             align-items: center;
             justify-content: center;
             box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, border-color 0.2s ease;
         }
 
         .scroll-btn:hover {
-            background: var(--accent-color);
-            color: #0b1329;
             transform: translateY(-50%) scale(1.1);
+            border-color: var(--accent-color);
         }
 
         .left-btn { left: -8px; }
         .right-btn { right: -8px; }
 
-        /* نبذة تعريفية ونموذج التواصل */
+        /* نبذة تعريفية ونموذج التواصل مع تفعيل خلفية البلور الزجاجي */
         .about-box, .contact-card {
             background: var(--card-bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 20px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: border-color 0.3s ease;
         }
 
         .about-box:hover, .contact-card:hover {
-            border-color: rgba(212, 175, 55, 0.5);
+            border-color: var(--accent-color);
         }
 
         .about-box p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; }
@@ -459,6 +464,8 @@
             width: 100%;
             padding: 12px 15px;
             background: var(--input-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             border-radius: 10px;
             color: var(--text-color);
@@ -469,7 +476,7 @@
 
         .form-group input:focus, .form-group textarea:focus { 
             border-color: var(--accent-color); 
-            box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.25);
         }
 
         .submit-btn {
@@ -485,12 +492,13 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
         }
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+            opacity: 0.95;
         }
 
         /* فاصل شرفنا بمتابعتك */
@@ -525,8 +533,8 @@
             color: var(--text-color);
             text-decoration: none;
             background: var(--card-bg-glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 9px 16px;
             border-radius: 12px;
             border: 1px solid var(--border-color);
@@ -537,66 +545,66 @@
             gap: 8px;
             font-size: 0.88rem;
             box-shadow: var(--shadow-sm);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.2s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
         }
 
         .social-btn i {
             color: var(--accent-color);
             font-size: 1rem;
-            transition: color 0.3s ease, transform 0.3s ease;
+            transition: color 0.25s ease;
         }
 
         .social-btn:hover { 
             background: var(--accent-color); 
             color: #0b1329; 
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
         }
 
-        .social-btn:hover i { 
-            color: #0b1329; 
-            transform: scale(1.15);
-        }
+        .social-btn:hover i { color: #0b1329; }
 
-        /* ===== زر FAB التفاعلي للاشتراك في القناة ===== */
+        /* Floating Action Button (FAB) اشترك في القناة */
         .fab-subscribe {
             position: fixed;
-            bottom: 25px;
-            left: 25px;
-            z-index: 999;
-            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            bottom: 22px;
+            left: 22px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ff0000;
             color: #ffffff;
-            padding: 12px 20px;
-            border-radius: 50px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+            justify-content: center;
+            font-size: 1.35rem;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 0.92rem;
-            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 18px rgba(255, 0, 0, 0.45);
+            z-index: 9999;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, background 0.3s ease;
             animation: pulseFab 2.5s infinite;
         }
 
         html[dir="ltr"] .fab-subscribe {
             left: auto;
-            right: 25px;
-        }
-
-        .fab-subscribe i {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
+            right: 22px;
         }
 
         .fab-subscribe:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(255, 0, 0, 0.6);
+            transform: scale(1.12);
+            box-shadow: 0 6px 22px rgba(255, 0, 0, 0.65);
+            background: #cc0000;
             color: #ffffff;
         }
 
-        .fab-subscribe:hover i {
-            transform: scale(1.2);
+        @keyframes pulseFab {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
+            }
+            70% {
+                box-shadow: 0 0 0 12px rgba(255, 0, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+            }
         }
 
         /* النوافذ المنبثقة */
@@ -609,14 +617,9 @@
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(8px);
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
-        .reel-modal.active, .image-modal.active { 
-            display: flex; 
-            opacity: 1;
-        }
+        .reel-modal.active, .image-modal.active { display: flex; }
 
         .modal-content {
             position: relative;
@@ -629,12 +632,7 @@
             overflow: hidden;
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .reel-modal.active .modal-content {
-            transform: scale(1);
+            animation: fadeInUp 0.3s ease-out;
         }
 
         .video-container {
@@ -665,24 +663,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
 
         .close-modal:hover {
             background: rgba(255, 0, 0, 0.8);
-            transform: rotate(90deg);
+            transform: scale(1.08);
         }
 
         .image-modal-content {
             position: relative;
             max-width: 90vw;
             max-height: 85vh;
-            transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .image-modal.active .image-modal-content {
-            transform: scale(1);
+            animation: fadeInUp 0.3s ease-out;
         }
 
         .image-modal-content img {
@@ -695,33 +688,6 @@
         }
 
         footer { text-align: center; padding: 10px 0 20px; color: var(--text-muted); font-size: 0.85rem; }
-
-        /* Animation Keyframes */
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes floatProfile {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-7px); }
-        }
-
-        @keyframes pulseFab {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5); }
-            70% { box-shadow: 0 0 0 16px rgba(255, 0, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
-        }
     </style>
 </head>
 <body>
@@ -860,10 +826,9 @@
         </footer>
     </div>
 
-    <!-- زر FAB العائم للاشتراك في القناة -->
-    <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="fab-subscribe" id="fabSubscribeBtn" title="اشترك في القناة">
+    <!-- زر FAB اشترك في القناة العائم (50dp * 50dp) -->
+    <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="fab-subscribe" aria-label="اشترك في القناة" title="اشترك في القناة">
         <i class="fa-brands fa-youtube"></i>
-        <span id="txt-fab">اشترك في القناة</span>
     </a>
 
     <!-- نافذة عرض الفيديو -->
@@ -1087,7 +1052,6 @@
                     tiktok: "تيك توك",
                     facebook: "فيسبوك",
                     youtube: "يوتيوب",
-                    fabText: "اشترك في القناة",
                     footer: "© 2026 - جميع الحقوق محفوظة"
                 },
                 en: {
@@ -1114,7 +1078,6 @@
                     tiktok: "TikTok",
                     facebook: "Facebook",
                     youtube: "YouTube",
-                    fabText: "Subscribe to Channel",
                     footer: "© 2026 - All Rights Reserved"
                 },
                 es: {
@@ -1141,7 +1104,6 @@
                     tiktok: "TikTok",
                     facebook: "Facebook",
                     youtube: "YouTube",
-                    fabText: "Suscríbete al canal",
                     footer: "© 2026 - Todos los derechos reservados"
                 }
             };
@@ -1177,7 +1139,6 @@
                 document.getElementById('btn-tiktok').innerText = i18n[lang].tiktok;
                 document.getElementById('btn-facebook').innerText = i18n[lang].facebook;
                 document.getElementById('btn-youtube').innerText = i18n[lang].youtube;
-                document.getElementById('txt-fab').innerText = i18n[lang].fabText;
                 document.getElementById('txt-footer').innerText = i18n[lang].footer;
 
                 document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
