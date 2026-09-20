@@ -8,8 +8,8 @@
     <meta name="theme-color" content="#121b35">
     
     <title>معرض أعمالي | Portfolio</title>
-    <!-- خط تجوال من Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <!-- استدعاء خط تجوال بأوزان Regular (400) و Medium (500) -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -34,6 +34,7 @@
             color: var(--text-color);
             line-height: 1.6;
             padding: 20px;
+            font-weight: 400; /* تجوال ريجيولار كخط أساسي للنصوص */
         }
 
         .container {
@@ -62,12 +63,13 @@
             font-size: 2.2rem;
             color: var(--text-color);
             margin-bottom: 8px;
+            font-weight: 500; /* تجوال ميديم للعناوين */
         }
 
         .subtitle {
             color: var(--accent-color);
             font-size: 1.1rem;
-            font-weight: 700;
+            font-weight: 500; /* تجوال ميديم للمسمى الوظيفي */
             margin-bottom: 15px;
         }
 
@@ -76,6 +78,7 @@
             max-width: 600px;
             margin: 0 auto;
             font-size: 1rem;
+            font-weight: 400; /* تجوال ريجيولار */
         }
 
         /* قسم المهارات */
@@ -99,7 +102,7 @@
             border-radius: 20px;
             font-size: 0.9rem;
             border: 1px solid var(--border-color);
-            font-weight: bold;
+            font-weight: 500; /* تجوال ميديم للمهارات */
         }
 
         /* شبكة المشاريع */
@@ -113,6 +116,7 @@
             margin-bottom: 25px;
             border-right: 4px solid var(--accent-color);
             padding-right: 12px;
+            font-weight: 500; /* تجوال ميديم للعناوين الرئيسية */
         }
 
         .projects-grid {
@@ -150,19 +154,21 @@
             font-size: 1.2rem;
             color: var(--text-color);
             margin-bottom: 10px;
+            font-weight: 500; /* تجوال ميديم اسم المشروع */
         }
 
         .project-desc {
             color: var(--text-muted);
             font-size: 0.95rem;
             margin-bottom: 15px;
+            font-weight: 400; /* تجوال ريجيولار وصف المشروع */
         }
 
         .project-link {
             display: inline-block;
             color: var(--accent-color);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500; /* تجوال ميديم لرابط المعاينة */
             transition: color 0.2s;
         }
 
@@ -194,19 +200,19 @@
             border-radius: 8px;
             border: 1px solid var(--border-color);
             transition: all 0.2s ease;
-            font-weight: 500;
+            font-weight: 500; /* تجوال ميديم للأزرار */
         }
 
         .social-btn:hover {
             background-color: var(--accent-color);
             color: #121b35;
-            font-weight: bold;
             border-color: var(--accent-color);
         }
 
         .copyright {
             color: var(--text-muted);
             font-size: 0.85rem;
+            font-weight: 400; /* تجوال ريجيولار للحقوق */
         }
     </style>
 </head>
