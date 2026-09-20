@@ -594,4 +594,325 @@
             <div class="reels-wrapper">
                 <button class="scroll-btn right-btn" onclick="scrollSection('poems-container', 'right')"><i class="fa-solid fa-chevron-right"></i></button>
                 <div class="reels-container" id="poems-container"></div>
-                <button class="scroll-btn left-btn" onclick="scrollSection('poems-container', 'left')
+                <button class="scroll-btn left-btn" onclick="scrollSection('poems-container', 'left')"><i class="fa-solid fa-chevron-left"></i></button>
+            </div>
+        </section>
+
+        <!-- نبذة تعريفية عني -->
+        <section>
+            <h2 class="section-title" id="about-title">نبذة تعريفية عني</h2>
+            <div class="about-box">
+                <p id="about-desc">فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. يسعى في مسيرة حياته إلى ترك أثر نافع بين الناس، سواء بتلاواته أو قصائده الشعرية أو محتواه المرئي على مواقع التواصل الاجتماعي.</p>
+            </div>
+        </section>
+
+        <!-- نموذج التواصل -->
+        <section class="contact-section">
+            <h2 class="section-title" id="contact-title">تواصل معي</h2>
+            <div class="contact-card">
+                <form action="https://formsubmit.co/faris.dahesh@gmail.com" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" id="input-name" placeholder="اسم الكريم" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" id="input-email" placeholder="بريدك الإلكتروني" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" id="input-msg" rows="4" placeholder="اكتب رسالتك هنا..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" id="btn-submit">
+                        إرسال الرسالة <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- فاصل شرفنا بمتابعتك بدون تكرار الخطوط -->
+        <div class="divider-with-text">
+            <span id="txt-honor">شرفنا بمتابعتك</span>
+        </div>
+
+        <div class="social-links">
+            <a href="https://t.me/phsyf1" target="_blank" class="social-btn">
+                <i class="fa-brands fa-telegram"></i> <span id="btn-telegram">تيليجرام</span>
+            </a>
+            <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="social-btn">
+                <i class="fa-brands fa-tiktok"></i> <span id="btn-tiktok">تيك توك</span>
+            </a>
+            <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-btn">
+                <i class="fa-brands fa-facebook-f"></i> <span id="btn-facebook">فيسبوك</span>
+            </a>
+            <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-btn">
+                <i class="fa-brands fa-youtube"></i> <span id="btn-youtube">يوتيوب</span>
+            </a>
+        </div>
+
+        <footer>
+            <p id="txt-footer">© 2026 - جميع الحقوق محفوظة</p>
+        </footer>
+    </div>
+
+    <!-- نافذة عرض الفيديو -->
+    <div class="reel-modal" id="reelModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeReelBtn">&times;</button>
+            <div class="video-container">
+                <iframe id="modalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة عرض الصورة -->
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content">
+            <button class="close-modal" id="closeImageBtn">&times;</button>
+            <img id="modalProfileImg" src="" alt="صورة الشاعر">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // جلب الأقسام وإظهار القسم فقط إذا احتوى على كروت Reels
+            async function loadSectionContent(fileUrl, containerId) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                const section = container.closest('.dynamic-reel-section');
+
+                try {
+                    const response = await fetch(fileUrl);
+                    if (response.ok) {
+                        const html = await response.text();
+                        if (html.trim().length > 0 && html.includes('reel-card')) {
+                            container.innerHTML = html;
+                            if (section) section.style.display = 'block'; // إظهار القسم عند وجود محتوى فقط
+                        } else {
+                            if (section) section.style.display = 'none';
+                        }
+                    } else {
+                        if (section) section.style.display = 'none';
+                    }
+                } catch (err) {
+                    if (section) section.style.display = 'none';
+                }
+            }
+
+            loadSectionContent('quranshorts.html', 'quranshorts-container');
+            loadSectionContent('quranfullvideo.html', 'quranfull-container');
+            loadSectionContent('foryou.html', 'foryou-container');
+            loadSectionContent('poems.html', 'poems-container');
+
+            // التمرير بالأزرار لليمين واليسار
+            window.scrollSection = function(containerId, direction) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                
+                const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+                const scrollAmount = 240;
+
+                if (direction === 'left') {
+                    container.scrollBy({ left: isRTL ? -scrollAmount : -scrollAmount, behavior: 'smooth' });
+                } else {
+                    container.scrollBy({ left: isRTL ? scrollAmount : scrollAmount, behavior: 'smooth' });
+                }
+            };
+
+            // تشغيل الفيديو
+            window.openReelModal = function(videoUrl) {
+                const modal = document.getElementById('reelModal');
+                const iframe = document.getElementById('modalIframe');
+
+                if (!videoUrl.includes('http')) {
+                    iframe.src = `https://www.youtube.com/embed/${videoUrl}?autoplay=1&rel=0`;
+                } else if (videoUrl.includes('facebook.com')) {
+                    iframe.src = `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(videoUrl)}&show_text=false&autoplay=true`;
+                } else {
+                    iframe.src = videoUrl;
+                }
+
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const reelModal = document.getElementById('reelModal');
+            document.getElementById('closeReelBtn').addEventListener('click', closeReel);
+            reelModal.addEventListener('click', (e) => { if (e.target === reelModal) closeReel(); });
+
+            function closeReel() {
+                document.getElementById('modalIframe').src = '';
+                reelModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            // معاينة الصورة الشخصية
+            const profileWrapper = document.getElementById('profileImgWrapper');
+            const profileImg = document.getElementById('profileImg');
+            const imageModal = document.getElementById('imageModal');
+
+            profileWrapper.addEventListener('click', () => {
+                document.getElementById('modalProfileImg').src = profileImg.src;
+                imageModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            document.getElementById('closeImageBtn').addEventListener('click', closeImage);
+            imageModal.addEventListener('click', (e) => { if (e.target === imageModal) closeImage(); });
+
+            function closeImage() {
+                imageModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            // البحث المباشر
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', () => {
+                const val = searchInput.value.toLowerCase().trim();
+                document.querySelectorAll('.reel-card').forEach(card => {
+                    const title = (card.getAttribute('data-title') || '').toLowerCase();
+                    card.style.display = title.includes(val) ? '' : 'none';
+                });
+            });
+
+            document.getElementById('searchForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                searchInput.blur();
+            });
+
+            // تبديل الثيم
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                themeIcon.className = newTheme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+            });
+
+            // الترجمة واللغات
+            const langBtn = document.getElementById('langBtn');
+            const langDropdown = document.getElementById('langDropdown');
+
+            langBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!langDropdown.contains(e.target) && e.target !== langBtn) {
+                    langDropdown.classList.remove('show');
+                }
+            });
+
+            document.querySelectorAll('.lang-option').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.getAttribute('data-lang');
+                    changeLanguage(lang);
+                    langDropdown.classList.remove('show');
+                });
+            });
+
+            const i18n = {
+                ar: {
+                    search: "ادخل نص البحث",
+                    name: "فَارِس الشِريـف",
+                    title: "شاعر / صانع محتوى",
+                    bio: "هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش",
+                    quranshorts: "تلاوات اخترناها لك",
+                    quranfull: "تلاوات عطرة",
+                    foryou: "من أجلك أنت",
+                    poems: "قصائدي",
+                    aboutTitle: "نبذة تعريفية عني",
+                    aboutDesc: "فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. يسعى في مسيرة حياته إلى ترك أثر نافع بين الناس، سواء بتلاواته أو قصائده الشعرية أو محتواه المرئي على مواقع التواصل الاجتماعي.",
+                    contactTitle: "تواصل معي",
+                    namePlaceholder: "اسم الكريم",
+                    emailPlaceholder: "بريدك الإلكتروني",
+                    msgPlaceholder: "اكتب رسالتك هنا...",
+                    submitBtn: "إرسال الرسالة",
+                    honor: "شرفنا بمتابعتك",
+                    telegram: "تيليجرام",
+                    tiktok: "تيك توك",
+                    facebook: "فيسبوك",
+                    youtube: "يوتيوب",
+                    footer: "© 2026 - جميع الحقوق محفوظة"
+                },
+                en: {
+                    search: "Search content...",
+                    name: "Faris Al-Shareef",
+                    title: "Poet / Content Creator",
+                    bio: "Here you will find all the works of poet Faris Muhammad Dahesh.",
+                    quranshorts: "Selected Recitations",
+                    quranfull: "Fragrant Recitations",
+                    foryou: "For You",
+                    poems: "My Poems",
+                    aboutTitle: "About Me",
+                    aboutDesc: "Faris Muhammad Dahesh.. Egyptian poet and content creator, born July 3, 2003 in Asyut, Egypt. He strives to leave a meaningful impact through Quran recitations, poetry, and video content.",
+                    contactTitle: "Contact Me",
+                    namePlaceholder: "Your Name",
+                    emailPlaceholder: "Your Email",
+                    msgPlaceholder: "Write your message here...",
+                    submitBtn: "Send Message",
+                    honor: "Honored by your follow",
+                    telegram: "Telegram",
+                    tiktok: "TikTok",
+                    facebook: "Facebook",
+                    youtube: "YouTube",
+                    footer: "© 2026 - All Rights Reserved"
+                },
+                es: {
+                    search: "Ingrese texto...",
+                    name: "Faris Al-Shareef",
+                    title: "Poeta / Creador de Contenido",
+                    bio: "Aquí encontrarás todas las obras del poeta Faris Muhammad Dahesh.",
+                    quranshorts: "Recitaciones Seleccionadas",
+                    quranfull: "Recitaciones Fragantes",
+                    foryou: "Para Ti",
+                    poems: "Mis Poemas",
+                    aboutTitle: "Sobre Mí",
+                    aboutDesc: "Faris Muhammad Dahesh.. Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 en Asiut, Egipto. Busca dejar un impacto positivo a través de recitaciones del Corán, poesía y redes sociales.",
+                    contactTitle: "Contáctame",
+                    namePlaceholder: "Tu Nombre",
+                    emailPlaceholder: "Tu Correo Electrónico",
+                    msgPlaceholder: "Escribe tu mensaje aquí...",
+                    submitBtn: "Enviar Mensaje",
+                    honor: "Honrados con tu seguimiento",
+                    telegram: "Telegram",
+                    tiktok: "TikTok",
+                    facebook: "Facebook",
+                    youtube: "YouTube",
+                    footer: "© 2026 - Todos los derechos reservados"
+                }
+            };
+
+            function changeLanguage(lang) {
+                document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+                document.documentElement.setAttribute('lang', lang);
+                
+                document.getElementById('searchInput').placeholder = i18n[lang].search;
+                document.getElementById('txt-name').innerText = i18n[lang].name;
+                document.getElementById('txt-title').innerText = i18n[lang].title;
+                document.getElementById('txt-bio').innerText = i18n[lang].bio;
+                document.getElementById('sec-quranshorts').innerText = i18n[lang].quranshorts;
+                document.getElementById('sec-quranfull').innerText = i18n[lang].quranfull;
+                document.getElementById('sec-foryou').innerText = i18n[lang].foryou;
+                document.getElementById('sec-poems').innerText = i18n[lang].poems;
+                document.getElementById('about-title').innerText = i18n[lang].aboutTitle;
+                document.getElementById('about-desc').innerText = i18n[lang].aboutDesc;
+                
+                document.getElementById('contact-title').innerText = i18n[lang].contactTitle;
+                document.getElementById('input-name').placeholder = i18n[lang].namePlaceholder;
+                document.getElementById('input-email').placeholder = i18n[lang].emailPlaceholder;
+                document.getElementById('input-msg').placeholder = i18n[lang].msgPlaceholder;
+                document.getElementById('btn-submit').innerHTML = `${i18n[lang].submitBtn} <i class="fa-solid fa-paper-plane"></i>`;
+
+                document.getElementById('txt-honor').innerText = i18n[lang].honor;
+                document.getElementById('btn-telegram').innerText = i18n[lang].telegram;
+                document.getElementById('btn-tiktok').innerText = i18n[lang].tiktok;
+                document.getElementById('btn-facebook').innerText = i18n[lang].facebook;
+                document.getElementById('btn-youtube').innerText = i18n[lang].youtube;
+                document.getElementById('txt-footer').innerText = i18n[lang].footer;
+            }
+        });
+    </script>
+</body>
+</html>
