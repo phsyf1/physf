@@ -7,7 +7,7 @@
     
     <title>فَارِس الشِريـف | الشاعر وصانع المحتوى</title>
     
-    <!-- وسوم الـ SEO للظهور في محركات البحث -->
+    <!-- وسوم SEO -->
     <meta name="description" content="الموقع الرسمي للشاعر وصانع المحتوى فارس محمد داهش. تلاوات خاشعة، قصائد شعرية، ومحتوى مرئي ملهم.">
     <meta name="keywords" content="فارس الشريف, فارس محمد داهش, شاعر مصري, تلاوات عطرة, من أجلك أنت, قصائد شعرية">
     <meta name="robots" content="index, follow">
@@ -18,24 +18,28 @@
     
     <style>
         :root {
-            --bg-overlay: rgba(18, 27, 53, 0.92);
-            --card-bg: rgba(26, 38, 74, 0.70); 
+            --bg-color: #121b35;          
+            --card-bg: rgba(26, 38, 74, 0.65); 
             --text-color: #ffffff;         
             --text-muted: #cbd5e1;         
             --accent-color: #d4af37;       
             --border-color: rgba(212, 175, 55, 0.3); 
-            --input-bg: rgba(15, 23, 42, 0.65);
+            --input-bg: rgba(15, 23, 42, 0.6);
+            --blob-1: rgba(212, 175, 55, 0.12); 
+            --blob-2: rgba(56, 189, 248, 0.10); 
             --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
         [data-theme="light"] {
-            --bg-overlay: rgba(248, 250, 252, 0.92);
+            --bg-color: #f8fafc;
             --card-bg: rgba(255, 255, 255, 0.85);
             --text-color: #0f172a;
             --text-muted: #475569;
             --accent-color: #b8860b;
-            --border-color: rgba(212, 175, 55, 0.4);
+            --border-color: rgba(212, 175, 55, 0.35);
             --input-bg: rgba(255, 255, 255, 0.95);
+            --blob-1: rgba(212, 175, 55, 0.18);
+            --blob-2: rgba(99, 102, 241, 0.12);
             --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
         }
 
@@ -44,20 +48,43 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Tajawal', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
-        /* خلفية الموقع المتداخلة بنسبة شفافية 92% مع الصورة */
         body {
-            background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
-                              url('https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/future-studio.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
             padding: 20px 15px;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* خلفية الإضاءات البلورية */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            animation: floatBlob 14s infinite alternate ease-in-out;
+        }
+
+        .blob-1 { width: 350px; height: 350px; background: var(--blob-1); top: -50px; right: -50px; }
+        .blob-2 { width: 400px; height: 400px; background: var(--blob-2); bottom: -80px; left: -80px; animation-delay: -7s; }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 60px) scale(1.1); }
         }
 
         .container {
@@ -65,44 +92,13 @@
             margin: 0 auto;
         }
 
-        /* أزرار التحكم العلوية (اللغة، الثيم) */
+        /* شريط التحكم العلوي المدمج (البحث + اللغة + الثيم) */
         .top-nav {
             display: flex;
-            justify-content: flex-end;
             align-items: center;
             gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .control-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--accent-color);
-            padding: 8px 14px;
-            border-radius: 12px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .lang-select {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--accent-color);
-            padding: 8px;
-            border-radius: 12px;
-            outline: none;
-            cursor: pointer;
-            font-size: 0.88rem;
-        }
-
-        /* مربع البحث بعرض الشاشة مع التباعد */
-        .search-container {
+            margin-bottom: 25px;
             width: 100%;
-            margin: 10px 0 25px;
         }
 
         .search-box {
@@ -110,11 +106,11 @@
             align-items: center;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 15px;
-            padding: 6px 16px;
+            border-radius: 12px;
+            padding: 4px 12px;
             backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
-            width: 100%;
+            flex: 1;
         }
 
         .search-box input {
@@ -122,55 +118,68 @@
             border: none;
             outline: none;
             color: var(--text-color);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             width: 100%;
-            padding: 8px;
+            padding: 6px;
         }
 
         .search-btn {
             background: none;
             border: none;
             color: var(--accent-color);
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
         }
 
-        /* الهيدر والصورة المربعة بحواف 45 وسُمك 3px */
+        .lang-select {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--accent-color);
+            padding: 8px 10px;
+            border-radius: 12px;
+            outline: none;
+            cursor: pointer;
+            font-size: 0.88rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--accent-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* الهيدر والصورة المربعة بالحواف */
         header {
             text-align: center;
-            padding: 20px 10px 30px;
+            padding: 10px 10px 25px;
         }
 
         .profile-img {
             width: 130px;
             height: 130px;
-            border-radius: 45px; /* حواف 45 */
+            border-radius: 45px;
             object-fit: cover;
-            border: 3px solid var(--accent-color); /* سمك 3px */
+            border: 3px solid var(--accent-color);
             margin-bottom: 15px;
             box-shadow: var(--shadow);
         }
 
-        h1 {
-            font-size: 2.1rem;
-            margin-bottom: 6px;
-        }
+        h1 { font-size: 2.1rem; margin-bottom: 6px; }
+        .subtitle { color: var(--accent-color); font-size: 1.05rem; margin-bottom: 12px; font-weight: 500; }
+        .bio { color: var(--text-muted); max-width: 650px; margin: 0 auto; font-size: 1rem; }
 
-        .subtitle {
-            color: var(--accent-color);
-            font-size: 1.05rem;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-
-        .bio {
-            color: var(--text-muted);
-            max-width: 650px;
-            margin: 0 auto;
-            font-size: 1rem;
-        }
-
-        /* الأقسام العامة */
+        /* عناوين الأقسام */
         .section-title {
             font-size: 1.5rem;
             color: var(--text-color);
@@ -186,7 +195,7 @@
             padding-left: 12px;
         }
 
-        /* حوايات الريلز والفيديوهات والسحب الأفقي */
+        /* حوايات الريلز والسحب */
         .reels-wrapper {
             position: relative;
             display: flex;
@@ -205,7 +214,7 @@
 
         .reels-container::-webkit-scrollbar { display: none; }
 
-        /* الكروت بدون عناوين داخلية بناءً على طلبك */
+        /* الكروت */
         .reel-card {
             position: relative;
             min-width: 200px;
@@ -225,11 +234,7 @@
             border-color: var(--accent-color);
         }
 
-        .reel-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .reel-card img { width: 100%; height: 100%; object-fit: cover; }
 
         .play-icon {
             position: absolute;
@@ -248,7 +253,7 @@
             backdrop-filter: blur(4px);
         }
 
-        /* أزرار اتجاهات السحب المعتدلة */
+        /* أزرار اتجاهات السحب التفاعلية */
         .scroll-btn {
             position: absolute;
             top: 50%;
@@ -265,12 +270,13 @@
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(6px);
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         .left-btn { left: -10px; }
         .right-btn { right: -10px; }
 
-        /* قسم نبذة عن فارس فوق السوشيال ميديا */
+        /* صندوق نبذة عن فارس */
         .about-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -281,19 +287,52 @@
             box-shadow: var(--shadow);
         }
 
-        .about-box h3 {
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+        .about-box h3 { color: var(--accent-color); margin-bottom: 10px; font-size: 1.2rem; }
+        .about-box p { color: var(--text-muted); font-size: 0.98rem; line-height: 1.8; }
+
+        /* نموذج التواصل */
+        .contact-section { padding: 10px 0 30px; }
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
         }
 
-        .about-box p {
-            color: var(--text-muted);
-            font-size: 0.98rem;
-            line-height: 1.8;
+        .contact-form { display: flex; flex-direction: column; gap: 14px; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-color);
+            font-size: 0.92rem;
+            outline: none;
         }
 
-        /* الخط الفاصل وفي نصه الكلمة */
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-color); }
+
+        .submit-btn {
+            background: var(--accent-color);
+            color: #121b35;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .submit-btn:hover { filter: brightness(1.1); }
+
+        /* الخط الفاصل */
         .divider-with-text {
             display: flex;
             align-items: center;
@@ -303,17 +342,13 @@
             font-size: 0.95rem;
         }
 
-        .divider-with-text::before,
-        .divider-with-text::after {
+        .divider-with-text::before, .divider-with-text::after {
             content: '';
             flex: 1;
             border-bottom: 1px solid var(--border-color);
         }
 
-        .divider-with-text span {
-            padding: 0 15px;
-            font-weight: 500;
-        }
+        .divider-with-text span { padding: 0 15px; font-weight: 500; }
 
         /* أزرار السوشيال ميديا */
         .social-links {
@@ -339,15 +374,10 @@
         }
 
         .social-btn i { color: var(--accent-color); }
-
-        .social-btn:hover {
-            background-color: var(--accent-color);
-            color: #121b35;
-        }
-
+        .social-btn:hover { background-color: var(--accent-color); color: #121b35; }
         .social-btn:hover i { color: #121b35; }
 
-        /* النافذة المنبثقة (Modal) */
+        /* النافذة المنبثقة */
         .reel-modal {
             display: none;
             position: fixed;
@@ -393,28 +423,28 @@
 </head>
 <body>
 
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
     <div class="container">
-        <!-- شريط التحكم العلوي -->
+        <!-- شريط التحكم العلوي (مربع البحث + قائمة اللغات + زر الثيم في سطر واحد) -->
         <div class="top-nav">
-            <!-- قائمة اختيار اللغة -->
+            <form class="search-box" onsubmit="handleSearchSubmit(event)">
+                <input type="text" id="searchInput" placeholder="ادخل نص البحث" oninput="filterReels()">
+                <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+
             <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
                 <option value="ar">العربية 🇪🇬</option>
                 <option value="en">English 🇬🇧</option>
                 <option value="es">Español 🇪🇸</option>
             </select>
 
-            <!-- زر الثيم -->
-            <button class="control-btn" id="themeToggle">
+            <button class="control-btn" id="themeToggle" aria-label="Toggle Theme">
                 <i class="fa-solid fa-sun" id="themeIcon"></i>
             </button>
-        </div>
-
-        <!-- مربع البحث بعرض الشاشة -->
-        <div class="search-container">
-            <form class="search-box" onsubmit="handleSearchSubmit(event)">
-                <input type="text" id="searchInput" placeholder="ادخل نص البحث" oninput="filterReels()">
-                <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
         </div>
 
         <!-- الهيدر -->
@@ -430,9 +460,7 @@
             <h2 class="section-title" id="sec-quranshorts">تلاوات اخترناها لك</h2>
             <div class="reels-wrapper">
                 <button class="scroll-btn right-btn" onclick="scrollSection('quranshorts-container', 'right')"><i class="fa-solid fa-chevron-right"></i></button>
-                <div class="reels-container" id="quranshorts-container">
-                    <!-- سيتم جلب العناصر من ملف quranshorts.html -->
-                </div>
+                <div class="reels-container" id="quranshorts-container"></div>
                 <button class="scroll-btn left-btn" onclick="scrollSection('quranshorts-container', 'left')"><i class="fa-solid fa-chevron-left"></i></button>
             </div>
         </section>
@@ -442,9 +470,7 @@
             <h2 class="section-title" id="sec-quranfull">تلاوات عطرة</h2>
             <div class="reels-wrapper">
                 <button class="scroll-btn right-btn" onclick="scrollSection('quranfull-container', 'right')"><i class="fa-solid fa-chevron-right"></i></button>
-                <div class="reels-container" id="quranfull-container">
-                    <!-- سيتم جلب العناصر من ملف quranfullvideo.html -->
-                </div>
+                <div class="reels-container" id="quranfull-container"></div>
                 <button class="scroll-btn left-btn" onclick="scrollSection('quranfull-container', 'left')"><i class="fa-solid fa-chevron-left"></i></button>
             </div>
         </section>
@@ -454,9 +480,7 @@
             <h2 class="section-title" id="sec-foryou">من أجلك أنت</h2>
             <div class="reels-wrapper">
                 <button class="scroll-btn right-btn" onclick="scrollSection('foryou-container', 'right')"><i class="fa-solid fa-chevron-right"></i></button>
-                <div class="reels-container" id="foryou-container">
-                    <!-- سيتم جلب العناصر من ملف foryou.html -->
-                </div>
+                <div class="reels-container" id="foryou-container"></div>
                 <button class="scroll-btn left-btn" onclick="scrollSection('foryou-container', 'left')"><i class="fa-solid fa-chevron-left"></i></button>
             </div>
         </section>
@@ -466,25 +490,44 @@
             <h2 class="section-title" id="sec-poems">قصائدي</h2>
             <div class="reels-wrapper">
                 <button class="scroll-btn right-btn" onclick="scrollSection('poems-container', 'right')"><i class="fa-solid fa-chevron-right"></i></button>
-                <div class="reels-container" id="poems-container">
-                    <!-- سيتم جلب العناصر من ملف poems.html -->
-                </div>
+                <div class="reels-container" id="poems-container"></div>
                 <button class="scroll-btn left-btn" onclick="scrollSection('poems-container', 'left')"><i class="fa-solid fa-chevron-left"></i></button>
             </div>
         </section>
 
-        <!-- نبذة عن فارس (فوق أزرار المتابعة) -->
+        <!-- نبذة عن فارس -->
         <div class="about-box">
             <h3 id="about-title">نبذة عن فارس</h3>
             <p id="about-desc">فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. يسعى في مسيرة حياته إلى ترك أثر نافع بين الناس، سواء بتلاواته أو قصائده الشعرية أو محتواه المرئي على مواقع التواصل الاجتماعي.</p>
         </div>
 
-        <!-- فاصل وفي نصه عبارة شرفنا بمتابعتك -->
+        <!-- نموذج التواصل -->
+        <section class="contact-section">
+            <h2 class="section-title" id="contact-title">تواصل معي</h2>
+            <div class="contact-card">
+                <form action="https://formsubmit.co/faris.dahesh@gmail.com" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" id="input-name" placeholder="اسم الكريم" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" id="input-email" placeholder="بريدك الإلكتروني" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" id="input-msg" rows="4" placeholder="اكتب رسالتك هنا..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" id="btn-submit">
+                        إرسال الرسالة <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- الخط الفاصل -->
         <div class="divider-with-text">
             <span id="txt-honor">شرفنا بمتابعتك</span>
         </div>
 
-        <!-- أزرار التواصل والسوشيال ميديا -->
+        <!-- أزرار وسائل التواصل الاجتماعي -->
         <div class="social-links">
             <a href="https://t.me/phsyf1" target="_blank" class="social-btn">
                 <i class="fa-brands fa-telegram"></i> <span id="btn-telegram">قناة التيليجرام</span>
@@ -510,154 +553,4 @@
         <div class="modal-content">
             <button class="close-modal" onclick="closeReelModal(event)">&times;</button>
             <div class="video-container">
-                <iframe id="modalIframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-
-    <!-- السكريبت البرمجي -->
-    <script>
-        // دمج جلب الملفات المخصصة تلقائياً (النقطة 8)
-        async function loadSectionContent(fileUrl, containerId) {
-            try {
-                const response = await fetch(fileUrl);
-                if (response.ok) {
-                    const html = await response.text();
-                    document.getElementById(containerId).innerHTML = html;
-                }
-            } catch (err) {
-                console.log("تنبيه: يتطلب جلب الملفات استضافة مثل GitHub Pages", err);
-            }
-        }
-
-        // تحميل الأقسام الخارجية عند فتح الموقع
-        window.addEventListener('DOMContentLoaded', () => {
-            loadSectionContent('quranshorts.html', 'quranshorts-container');
-            loadSectionContent('quranfullvideo.html', 'quranfull-container');
-            loadSectionContent('foryou.html', 'foryou-container');
-            loadSectionContent('poems.html', 'poems-container');
-        });
-
-        // تصحيح اتجاه حركة أزرار السحب (النقطة 7)
-        function scrollSection(containerId, direction) {
-            const container = document.getElementById(containerId);
-            const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-            
-            let scrollAmount = 250;
-            if (direction === 'left') {
-                container.scrollBy({ left: isRTL ? -scrollAmount : scrollAmount, behavior: 'smooth' });
-            } else {
-                container.scrollBy({ left: isRTL ? scrollAmount : -scrollAmount, behavior: 'smooth' });
-            }
-        }
-
-        // النافذة المنبثقة
-        function openReelModal(videoId) {
-            const modal = document.getElementById('reelModal');
-            const iframe = document.getElementById('modalIframe');
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeReelModal(event) {
-            if (event.target.classList.contains('reel-modal') || event.target.classList.contains('close-modal')) {
-                const modal = document.getElementById('reelModal');
-                const iframe = document.getElementById('modalIframe');
-                iframe.src = '';
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        // البحث وإخفاء الكيبورد
-        function filterReels() {
-            const input = document.getElementById('searchInput').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.reel-card');
-            cards.forEach(card => {
-                const title = (card.getAttribute('data-title') || '').toLowerCase();
-                card.style.display = title.includes(input) ? '' : 'none';
-            });
-        }
-
-        function handleSearchSubmit(e) {
-            e.preventDefault();
-            document.getElementById('searchInput').blur();
-        }
-
-        // تغيير الثيم
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            themeIcon.className = newTheme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
-        });
-
-        // ترجمة الموقع للغات (العربية، الإنجليزية، الإسبانية)
-        const i18n = {
-            ar: {
-                search: "ادخل نص البحث",
-                name: "فَارِس الشِريـف",
-                title: "شاعر / صانع محتوى",
-                bio: "هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش",
-                quranshorts: "تلاوات اخترناها لك",
-                quranfull: "تلاوات عطرة",
-                foryou: "من أجلك أنت",
-                poems: "قصائدي",
-                aboutTitle: "نبذة عن فارس",
-                aboutDesc: "فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. يسعى في مسيرة حياته إلى ترك أثر نافع بين الناس، سواء بتلاواته أو قصائده الشعرية أو محتواه المرئي على مواقع التواصل الاجتماعي.",
-                honor: "شرفنا بمتابعتك",
-                telegram: "قناة التيليجرام"
-            },
-            en: {
-                search: "Enter search text...",
-                name: "Faris Al-Shareef",
-                title: "Poet / Content Creator",
-                bio: "Here you will find all the works of poet Faris Muhammad Dahesh.",
-                quranshorts: "Selected Recitations",
-                quranfull: "Fragrant Recitations",
-                foryou: "For You",
-                poems: "My Poems",
-                aboutTitle: "About Faris",
-                aboutDesc: "Faris Muhammad Dahesh.. Egyptian poet and content creator, born July 3, 2003 in Asyut, Egypt. He strives to leave a meaningful impact through Quran recitations, poetry, and social media content.",
-                honor: "Honored by your follow",
-                telegram: "Telegram Channel"
-            },
-            es: {
-                search: "Ingrese texto de búsqueda...",
-                name: "Faris Al-Shareef",
-                title: "Poeta / Creador de Contenido",
-                bio: "Aquí encontrarás todas las obras del poeta Faris Muhammad Dahesh.",
-                quranshorts: "Recitaciones Seleccionadas",
-                quranfull: "Recitaciones Fragantes",
-                foryou: "Para Ti",
-                poems: "Mis Poemas",
-                aboutTitle: "Sobre Faris",
-                aboutDesc: "Faris Muhammad Dahesh.. Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 en Asiut, Egipto. Busca dejar un impacto positivo a través de recitaciones del Corán, poesía y redes sociales.",
-                honor: "Honrados con tu seguimiento",
-                telegram: "Canal de Telegram"
-            }
-        };
-
-        function changeLanguage(lang) {
-            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-            document.documentElement.setAttribute('lang', lang);
-            
-            document.getElementById('searchInput').placeholder = i18n[lang].search;
-            document.getElementById('txt-name').innerText = i18n[lang].name;
-            document.getElementById('txt-title').innerText = i18n[lang].title;
-            document.getElementById('txt-bio').innerText = i18n[lang].bio;
-            document.getElementById('sec-quranshorts').innerText = i18n[lang].quranshorts;
-            document.getElementById('sec-quranfull').innerText = i18n[lang].quranfull;
-            document.getElementById('sec-foryou').innerText = i18n[lang].foryou;
-            document.getElementById('sec-poems').innerText = i18n[lang].poems;
-            document.getElementById('about-title').innerText = i18n[lang].aboutTitle;
-            document.getElementById('about-desc').innerText = i18n[lang].aboutDesc;
-            document.getElementById('txt-honor').innerText = i18n[lang].honor;
-            document.getElementById('btn-telegram').innerText = i18n[lang].telegram;
-        }
-    </script>
-</body>
-</html>
+                <iframe id="modalIframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></ifra
