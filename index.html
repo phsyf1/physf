@@ -325,6 +325,7 @@
             font-size: 1rem;
         }
 
+        /* أسهم التمرير */
         .scroll-btn {
             position: absolute;
             top: 50%;
@@ -342,6 +343,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: var(--shadow-sm);
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         .left-btn { left: -8px; }
@@ -558,7 +560,7 @@
             <div class="subtitle" id="txt-title">شاعر / صانع محتوى</div>
             <p class="bio" id="txt-bio">هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش</p>
             
-            <!-- الخط الفاصل النظيف (_______________________________) -->
+            <!-- الخط الفاصل الصريح المستمر (–––––) -->
             <div class="simple-divider"></div>
         </header>
 
@@ -673,7 +675,37 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // إظهار الأقسام التي بها محتوى فقط
+            // دالة التحقق وإخفاء/إظهار أسهم التمرير عند الأطراف
+            function updateScrollButtons(container) {
+                if (!container) return;
+                const wrapper = container.closest('.reels-wrapper');
+                if (!wrapper) return;
+
+                const rightBtn = wrapper.querySelector('.right-btn');
+                const leftBtn = wrapper.querySelector('.left-btn');
+
+                const maxScroll = container.scrollWidth - container.clientWidth;
+                const scrollPos = Math.abs(container.scrollLeft);
+                const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+
+                if (maxScroll <= 10) {
+                    if (rightBtn) rightBtn.style.display = 'none';
+                    if (leftBtn) leftBtn.style.display = 'none';
+                    return;
+                }
+
+                if (isRTL) {
+                    // في وضع RTL (العربية): اليمين هو البداية (scrollPos ≈ 0)، واليسار هو النهاية
+                    if (rightBtn) rightBtn.style.display = scrollPos <= 10 ? 'none' : 'flex';
+                    if (leftBtn) leftBtn.style.display = (maxScroll - scrollPos) <= 10 ? 'none' : 'flex';
+                } else {
+                    // في وضع LTR (الإنجليزية/الإسبانية): اليسار هو البداية (scrollPos ≈ 0)، واليمين هو النهاية
+                    if (leftBtn) leftBtn.style.display = scrollPos <= 10 ? 'none' : 'flex';
+                    if (rightBtn) rightBtn.style.display = (maxScroll - scrollPos) <= 10 ? 'none' : 'flex';
+                }
+            }
+
+            // إظهار الأقسام التي بها محتوى وإعداد المستمعين للتمرير
             async function loadSectionContent(fileUrl, containerId) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -686,6 +718,10 @@
                         if (html.trim().length > 0 && html.includes('reel-card')) {
                             container.innerHTML = html;
                             if (section) section.style.display = 'block';
+
+                            // تحديث حالة الأسهم وإضافة مستمع لحركة التمرير
+                            setTimeout(() => updateScrollButtons(container), 100);
+                            container.addEventListener('scroll', () => updateScrollButtons(container));
                         } else {
                             if (section) section.style.display = 'none';
                         }
@@ -778,15 +814,21 @@
                 searchInput.blur();
             });
 
-            // زر تبديل الوضع (Dark / Light)
+            // زر تبديل الوضع (Dark / Light) وتحديث لون الـ Statusbar / Toolbar متوافقاً
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
+            const themeColorMeta = document.getElementById('theme-color-meta');
             
             themeToggle.addEventListener('click', () => {
                 const currentTheme = document.documentElement.getAttribute('data-theme');
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 document.documentElement.setAttribute('data-theme', newTheme);
                 themeIcon.className = newTheme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+                
+                // تحديث theme-color ليتوافق مع شريط المتصفح/النظام المضيء أو الداكن
+                if (themeColorMeta) {
+                    themeColorMeta.setAttribute('content', newTheme === 'light' ? '#f8fafc' : '#0b1329');
+                }
             });
 
             // التحكم بالترجمة
@@ -838,7 +880,7 @@
                 },
                 en: {
                     search: "Search content...",
-                    name: "Faris Ash-Shiref",
+                    name: "Faris Al-Shareef",
                     title: "Poet / Content Creator",
                     bio: "Here you will find all the works of poet Faris Muhammad Dahesh.",
                     quranshorts: "Selected Recitations",
@@ -861,7 +903,7 @@
                 },
                 es: {
                     search: "Ingrese texto...",
-                    name: "Faris Ash-Shiref",
+                    name: "Faris Al-Shareef",
                     title: "Poeta / Creador de Contenido",
                     bio: "Aquí encontrarás todas las obras del poeta Faris Muhammad Dahesh.",
                     quranshorts: "Recitaciones Seleccionadas",
@@ -911,7 +953,15 @@
                 document.getElementById('btn-facebook').innerText = i18n[lang].facebook;
                 document.getElementById('btn-youtube').innerText = i18n[lang].youtube;
                 document.getElementById('txt-footer').innerText = i18n[lang].footer;
+
+                // إعادت ضبط وإعادة فحص حالة الأسهم بعد تغيير الاتجاه RTL/LTR
+                document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
             }
+
+            // اعادة ضبط الأسهم عند تغيير حجم الشاشة
+            window.addEventListener('resize', () => {
+                document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
+            });
         });
     </script>
 </body>
