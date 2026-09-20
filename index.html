@@ -4,37 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- الوسم المسئول عن تغيير لون شريط المتصفح والـ Statusbar أعلى وأسفل الموبايل -->
+    <!-- الوسم المسئول عن تغيير لون شريط المتصفح والـ Statusbar -->
     <meta name="theme-color" id="theme-color-meta" content="#121b35">
     
     <title>فَارِس الشِريـف</title>
     
-    <!-- استدعاء خط تجوال بأوزان Regular (400) و Medium (500) و Bold (700) -->
+    <!-- خط تجوال ومكتبة الأيقونات -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- مكتبة الأيقونات 2D (FontAwesome) للوجوهات التطبيقات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         /* المتغيرات الأساسية للوضع المظلم (Dark Theme) */
         :root {
-            --bg-color: #121b35;          /* خلفية الموقع الأساسية */
-            --card-bg: rgba(26, 38, 74, 0.65); /* خلفية بلورية زجاجية */
-            --text-color: #ffffff;         /* لون الخط الرئيسي */
-            --text-muted: #cbd5e1;         /* لون الخط الثانوي */
-            --accent-color: #d4af37;       /* اللون الذهبي */
-            --accent-hover: #f3c63f;       /* ذهبي أفتح عند اللمس */
-            --border-color: rgba(212, 175, 55, 0.25); /* لون الحدود الذهبي الخفيف */
+            --bg-color: #121b35;          
+            --card-bg: rgba(26, 38, 74, 0.65); 
+            --text-color: #ffffff;         
+            --text-muted: #cbd5e1;         
+            --accent-color: #d4af37;       
+            --accent-hover: #f3c63f;       
+            --border-color: rgba(212, 175, 55, 0.25); 
             --input-bg: rgba(15, 23, 42, 0.6);
-            --blob-1: rgba(212, 175, 55, 0.12); /* ضوء ذهبي خفيف */
-            --blob-2: rgba(56, 189, 248, 0.10); /* ضوء أزرق سماوي خفيف */
+            --blob-1: rgba(212, 175, 55, 0.12); 
+            --blob-2: rgba(56, 189, 248, 0.10); 
             --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
         /* المتغيرات للوضع المضيء (Light Theme) */
         [data-theme="light"] {
             --bg-color: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.80);
+            --card-bg: rgba(255, 255, 255, 0.85);
             --text-color: #0f172a;
             --text-muted: #475569;
             --accent-color: #b8860b;
@@ -69,7 +67,7 @@
             overflow-x: hidden;
         }
 
-        /* خلفية بلورية فريدة (Mesh Gradient Blur) */
+        /* الخلفية البلورية */
         .bg-blobs {
             position: fixed;
             top: 0;
@@ -111,42 +109,81 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
         }
 
-        /* زر تبديل المظهر (Dark / Light) */
-        .theme-toggle-btn {
+        /* عناصر التحكم العلوية (زر البحث وزر الثيم) */
+        .top-controls {
             position: fixed;
             top: 20px;
             left: 20px;
-            z-index: 100;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            padding: 4px 12px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-color);
+            font-size: 0.88rem;
+            width: 130px;
+            padding: 5px;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .theme-toggle-btn {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--accent-color);
-            width: 46px;
-            height: 46px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             cursor: pointer;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .theme-toggle-btn:hover {
             transform: scale(1.08);
-            border-color: var(--accent-color);
         }
 
-        /* الهيدر والنبذة الشخصية */
+        /* الهيدر والنبذة */
         header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 60px 20px 30px;
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -158,11 +195,6 @@
             border: 3px solid var(--accent-color);
             margin-bottom: 15px;
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
-            transition: transform 0.4s ease;
-        }
-
-        .profile-img:hover {
-            transform: scale(1.05) rotate(2deg);
         }
 
         h1 {
@@ -184,12 +216,11 @@
             max-width: 600px;
             margin: 0 auto;
             font-size: 1rem;
-            font-weight: 400;
         }
 
-        /* قسم المهارات */
+        /* المهارات */
         .skills-section {
-            padding: 30px 0;
+            padding: 25px 0;
             text-align: center;
         }
 
@@ -198,7 +229,6 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 15px;
         }
 
         .skill-tag {
@@ -208,94 +238,207 @@
             border-radius: 20px;
             font-size: 0.95rem;
             border: 1px solid var(--border-color);
-            font-weight: 500;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
-            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .skill-tag:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-color);
-        }
-
-        /* شبكة المشاريع */
-        .projects-section {
-            padding: 40px 0;
+        /* قسم (من أجلك أنت) - الريلز */
+        .reels-section {
+            padding: 35px 0;
         }
 
         .section-title {
             font-size: 1.6rem;
             color: var(--text-color);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border-right: 4px solid var(--accent-color);
             padding-right: 12px;
             font-weight: 500;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 22px;
+        .reels-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
 
-        .project-card {
-            background-color: var(--card-bg);
+        .reels-container {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px 5px 20px;
+            width: 100%;
+            scrollbar-width: none; /* إخفاء السكرول في فايرفوكس */
+        }
+
+        .reels-container::-webkit-scrollbar {
+            display: none; /* إخفاء السكرول في كروم وسفاري */
+        }
+
+        /* تصميم كارت الريلز */
+        .reel-card {
+            position: relative;
+            min-width: 210px;
+            max-width: 210px;
+            height: 370px;
             border-radius: 16px;
             overflow: hidden;
+            cursor: pointer;
             border: 1px solid var(--border-color);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            flex-shrink: 0;
+            background-color: #000;
         }
 
-        .project-card:hover {
-            transform: translateY(-7px);
+        .reel-card:hover {
+            transform: translateY(-6px);
             border-color: var(--accent-color);
         }
 
-        .project-img {
+        .reel-card img {
             width: 100%;
-            height: 180px;
+            height: 100%;
             object-fit: cover;
-            background-color: rgba(0, 0, 0, 0.2);
         }
 
-        .project-info {
-            padding: 20px;
-        }
-
-        .project-title {
-            font-size: 1.2rem;
-            color: var(--text-color);
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .project-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.55);
             color: var(--accent-color);
-            text-decoration: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            backdrop-filter: blur(4px);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .reel-card:hover .play-icon {
+            transform: translate(-50%, -50%) scale(1.12);
+            background: var(--accent-color);
+            color: #121b35;
+        }
+
+        /* التدرج الظلي أسفل الكارت */
+        .reel-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 55%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 14px;
+        }
+
+        .reel-title {
+            color: #ffffff;
+            font-size: 0.92rem;
             font-weight: 500;
-            transition: color 0.2s;
+            line-height: 1.4;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
-        .project-link:hover {
-            color: var(--accent-hover);
+        /* أزرار السحب للجنب */
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--card-bg);
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1rem;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
         }
 
-        /* نموذج التواصل (Contact Form) */
+        .scroll-btn:hover {
+            background: var(--accent-color);
+            color: #121b35;
+        }
+
+        .left-btn { left: -12px; }
+        .right-btn { right: -12px; }
+
+        /* المربع المنبثق (Modal) */
+        .reel-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .reel-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 380px;
+            height: 80vh;
+            max-height: 670px;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            border: none;
+            font-size: 1.5rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* نموذج التواصل */
         .contact-section {
             padding: 20px 0 40px;
         }
@@ -326,7 +469,6 @@
             color: var(--text-color);
             font-size: 0.95rem;
             outline: none;
-            transition: border-color 0.3s ease;
         }
 
         .form-group input:focus, 
@@ -347,27 +489,24 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: background-color 0.2s ease, transform 0.2s ease;
         }
 
         .submit-btn:hover {
             background: var(--accent-hover);
-            transform: translateY(-2px);
         }
 
-        /* الفوتر وأزرار التواصل 2D */
+        /* الفوتر */
         footer {
             text-align: center;
-            padding: 40px 0 20px;
+            padding: 30px 0 20px;
             border-top: 1px solid var(--border-color);
-            margin-top: 20px;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
             gap: 12px;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
 
@@ -375,29 +514,23 @@
             color: var(--text-color);
             text-decoration: none;
             background-color: var(--card-bg);
-            padding: 10px 20px;
+            padding: 10px 18px;
             border-radius: 10px;
             border: 1px solid var(--border-color);
             font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
         }
 
         .social-btn i {
-            font-size: 1.15rem;
             color: var(--accent-color);
-            transition: color 0.3s ease;
         }
 
         .social-btn:hover {
             background-color: var(--accent-color);
             color: #121b35;
-            border-color: var(--accent-color);
-            transform: translateY(-3px);
         }
 
         .social-btn:hover i {
@@ -407,10 +540,8 @@
         .copyright {
             color: var(--text-muted);
             font-size: 0.85rem;
-            font-weight: 400;
         }
 
-        /* أنيميشن الظهور التدريجي عند التمرير (Scroll Reveal) */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -425,16 +556,24 @@
 </head>
 <body>
 
-    <!-- الإضاءات البلورية المتحركة في الخلفية -->
+    <!-- الإضاءة البلورية في الخلفية -->
     <div class="bg-blobs">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
     </div>
 
-    <!-- زر تبديل المظهر (Dark/Light) -->
-    <button class="theme-toggle-btn" id="themeToggle" aria-label="تغيير المظهر">
-        <i class="fa-solid fa-sun" id="themeIcon"></i>
-    </button>
+    <!-- عناصر التحكم العلوية (مربع البحث + زر الثيم) -->
+    <div class="top-controls">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="ابحث عن مقطع..." onkeyup="filterReels()">
+            <button class="search-btn" title="بحث">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="تغيير المظهر">
+            <i class="fa-solid fa-sun" id="themeIcon"></i>
+        </button>
+    </div>
 
     <div class="container">
         
@@ -457,48 +596,91 @@
             </div>
         </section>
 
-        <!-- قسم المشاريع -->
-        <section class="projects-section reveal">
-            <h2 class="section-title">معرض الأعمال</h2>
+        <!-- قسم (من أجلك أنت) - بديل معرض الأعمال -->
+        <section class="reels-section reveal">
+            <h2 class="section-title">من أجلك أنت</h2>
             
-            <div class="projects-grid">
-                <!-- كارت مشروع 1 -->
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/400x200" alt="مشروع 1" class="project-img">
-                    <div class="project-info">
-                        <h3 class="project-title">اسم المشروع الأول</h3>
-                        <p class="project-desc">وصف قصير للمشروع والخدمة التي قمت بتقديمها أو الأدوات التي استخدمتها.</p>
-                        <a href="#" class="project-link" target="_blank">معاينة المشروع <i class="fa-solid fa-arrow-left"></i></a>
+            <div class="reels-wrapper">
+                <button class="scroll-btn right-btn" onclick="scrollReels(260)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                
+                <div class="reels-container" id="reelsContainer">
+                    <!-- فيديو 1 -->
+                    <div class="reel-card" data-title="قد تراها عادية! وهي الكاشفة" onclick="openReelModal('oAqSOo46ShM')">
+                        <img src="https://img.youtube.com/vi/oAqSOo46ShM/hqdefault.jpg" alt="قد تراها عادية! وهي الكاشفة" loading="lazy">
+                        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+                        <div class="reel-overlay">
+                            <h3 class="reel-title">قد تراها عادية! وهي الكاشفة</h3>
+                        </div>
+                    </div>
+
+                    <!-- فيديو 2 -->
+                    <div class="reel-card" data-title="لعلّك تُدرِك قبل أن تُدرَك" onclick="openReelModal('2w08Z_2g084')">
+                        <img src="https://img.youtube.com/vi/2w08Z_2g084/hqdefault.jpg" alt="لعلّك تُدرِك قبل أن تُدرَك" loading="lazy">
+                        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+                        <div class="reel-overlay">
+                            <h3 class="reel-title">لعلّك تُدرِك قبل أن تُدرَك</h3>
+                        </div>
+                    </div>
+
+                    <!-- فيديو 3 -->
+                    <div class="reel-card" data-title="إقترابك.. خطواتك … هل هم بداية؟!" onclick="openReelModal('ysm-n6Qu08A')">
+                        <img src="https://img.youtube.com/vi/ysm-n6Qu08A/hqdefault.jpg" alt="إقترابك.. خطواتك … هل هم بداية؟!" loading="lazy">
+                        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+                        <div class="reel-overlay">
+                            <h3 class="reel-title">إقترابك.. خطواتك … هل هم بداية؟!</h3>
+                        </div>
+                    </div>
+
+                    <!-- فيديو 4 -->
+                    <div class="reel-card" data-title="فبأي قلبٍ تعبده" onclick="openReelModal('3vYQ1GikYaM')">
+                        <img src="https://img.youtube.com/vi/3vYQ1GikYaM/hqdefault.jpg" alt="فبأي قلبٍ تعبده" loading="lazy">
+                        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+                        <div class="reel-overlay">
+                            <h3 class="reel-title">فبأي قلبٍ تعبده</h3>
+                        </div>
+                    </div>
+
+                    <!-- فيديو 5 -->
+                    <div class="reel-card" data-title="إزاي عند الله أحسن منّي" onclick="openReelModal('NTe5gGu0Xjo')">
+                        <img src="https://img.youtube.com/vi/NTe5gGu0Xjo/hqdefault.jpg" alt="إزاي عند الله أحسن منّي" loading="lazy">
+                        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+                        <div class="reel-overlay">
+                            <h3 class="reel-title">إزاي عند الله أحسن منّي</h3>
+                        </div>
+                    </div>
+
+                    <!-- فيديو 6 -->
+                    <div class="reel-card" data-title="إبحث عن شبيه وكفاية ترجمة" onclick="openReelModal('onAkcwdcmgo')">
+                        <img src="https://img.youtube.com/vi/onAkcwdcmgo/hqdefault.jpg" alt="إبحث عن شبيه وكفاية ترجمة" loading="lazy">
+                        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+                        <div class="reel-overlay">
+                            <h3 class="reel-title">إبحث عن شبيه وكفاية ترجمة</h3>
+                        </div>
                     </div>
                 </div>
 
-                <!-- كارت مشروع 2 -->
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/400x200" alt="مشروع 2" class="project-img">
-                    <div class="project-info">
-                        <h3 class="project-title">اسم المشروع الثاني</h3>
-                        <p class="project-desc">وصف قصير للمشروع والخدمة التي قمت بتقديمها أو الأدوات التي استخدمتها.</p>
-                        <a href="#" class="project-link" target="_blank">معاينة المشروع <i class="fa-solid fa-arrow-left"></i></a>
-                    </div>
-                </div>
-
-                <!-- كارت مشروع 3 -->
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/400x200" alt="مشروع 3" class="project-img">
-                    <div class="project-info">
-                        <h3 class="project-title">اسم المشروع الثالث</h3>
-                        <p class="project-desc">وصف قصير للمشروع والخدمة التي قمت بتقديمها أو الأدوات التي استخدمتها.</p>
-                        <a href="#" class="project-link" target="_blank">معاينة المشروع <i class="fa-solid fa-arrow-left"></i></a>
-                    </div>
-                </div>
+                <button class="scroll-btn left-btn" onclick="scrollReels(-260)">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
             </div>
         </section>
 
-        <!-- قسم نموذج التواصل المتكامل (Contact Form) -->
+        <!-- النافذة المنبثقة (Modal) لمشاهدة الفيديو -->
+        <div class="reel-modal" id="reelModal" onclick="closeReelModal(event)">
+            <div class="modal-content">
+                <button class="close-modal" onclick="closeReelModal(event)">&times;</button>
+                <div class="video-container">
+                    <iframe id="modalIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- نموذج التواصل -->
         <section class="contact-section reveal">
             <h2 class="section-title">تواصل معي</h2>
             <div class="contact-card">
-                <!-- خدمة FormSubmit جاهزة ومربوطة بإيميلك مباشره -->
                 <form action="https://formsubmit.co/faris.dahesh@gmail.com" method="POST" class="contact-form">
                     <div class="form-group">
                         <input type="text" name="name" placeholder="الاسم الكريم" required>
@@ -516,7 +698,7 @@
             </div>
         </section>
 
-        <!-- الفوتر وروابط التواصل 2D -->
+        <!-- الفوتر -->
         <footer>
             <div class="social-links reveal">
                 <a href="mailto:faris.dahesh@gmail.com" class="social-btn">
@@ -537,9 +719,9 @@
 
     </div>
 
-    <!-- السكريبتات الديناميكية -->
+    <!-- السكريبتات البرمجية -->
     <script>
-        // 1. التحكم في الوضع المظلم/المضيء وتغيير theme-color للمتصفح تلقائياً
+        // 1. التحكم في الوضع المظلم والمضيء
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const themeMeta = document.getElementById('theme-color-meta');
@@ -551,14 +733,13 @@
 
             if (theme === 'light') {
                 themeIcon.className = 'fa-solid fa-moon';
-                themeMeta.setAttribute('content', '#f8fafc'); // تغيير لون شريط المتصفح للوضع المضيء
+                themeMeta.setAttribute('content', '#f8fafc');
             } else {
                 themeIcon.className = 'fa-solid fa-sun';
-                themeMeta.setAttribute('content', '#121b35'); // تغيير لون شريط المتصفح للوضع المظلم
+                themeMeta.setAttribute('content', '#121b35');
             }
         }
 
-        // استرجاع المظهر المحفوظ أو استخدام الوضع المظلم كافتراضي
         const savedTheme = localStorage.getItem('faris-portfolio-theme') || 'dark';
         setTheme(savedTheme);
 
@@ -567,7 +748,50 @@
             setTheme(currentTheme === 'dark' ? 'light' : 'dark');
         });
 
-        // 2. حركة ظهور العناصر عند التمرير (Scroll Reveal)
+        // 2. فتح وإغلاق النافذة المنبثقة لمشاهدة الريلز
+        function openReelModal(videoId) {
+            const modal = document.getElementById('reelModal');
+            const iframe = document.getElementById('modalIframe');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReelModal(event) {
+            if (event.target.classList.contains('reel-modal') || event.target.classList.contains('close-modal')) {
+                const modal = document.getElementById('reelModal');
+                const iframe = document.getElementById('modalIframe');
+                iframe.src = '';
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // 3. السحب الأفقي للريلز بالأسهم
+        function scrollReels(direction) {
+            const container = document.getElementById('reelsContainer');
+            container.scrollBy({
+                left: -direction, // بالسالب للتوافق مع الاتجاه العربي RTL
+                behavior: 'smooth'
+            });
+        }
+
+        // 4. البحث والفلترة في الريلز
+        function filterReels() {
+            const input = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.reel-card');
+
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                if (title.includes(input)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 5. حركة الظهور التدريجي عند التمرير
         function revealOnScroll() {
             const reveals = document.querySelectorAll('.reveal');
             const windowHeight = window.innerHeight;
