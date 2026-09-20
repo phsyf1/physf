@@ -27,25 +27,25 @@
             --text-muted: #cbd5e1;         
             --accent-color: #d4af37;       
             --border-color: rgba(212, 175, 55, 0.3); 
-            --line-color: rgba(255, 255, 255, 0.15);
-            --input-bg: rgba(21, 32, 62, 0.75);
+            --line-color: rgba(255, 255, 255, 0.15); 
+            --input-bg: rgba(21, 32, 62, 0.85);
             --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
             --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         [data-theme="light"] {
-            --bg-color: #f8fafc;
-            --bg-gradient: radial-gradient(circle at top right, rgba(212, 175, 55, 0.15), transparent 45%), 
-                            radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.1), transparent 45%), 
-                            #f8fafc;
-            --card-bg-glass: rgba(255, 255, 255, 0.7);
-            --nav-bg-glass: rgba(248, 250, 252, 0.75);
+            --bg-color: #f1f5f9;
+            --bg-gradient: radial-gradient(circle at top right, rgba(212, 175, 55, 0.18), transparent 50%), 
+                            radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.12), transparent 50%), 
+                            #f1f5f9;
+            --card-bg-glass: rgba(255, 255, 255, 0.72);
+            --nav-bg-glass: rgba(255, 255, 255, 0.8);
             --text-color: #0f172a;
-            --text-muted: #475569;
+            --text-muted: #334155;
             --accent-color: #b8860b;
-            --border-color: rgba(212, 175, 55, 0.35);
+            --border-color: rgba(212, 175, 55, 0.4);
             --line-color: rgba(0, 0, 0, 0.12);
-            --input-bg: rgba(255, 255, 255, 0.75);
+            --input-bg: rgba(255, 255, 255, 0.8);
             --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
@@ -55,7 +55,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Tajawal', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         body {
@@ -66,12 +66,6 @@
             padding: 12px 15px 30px;
             min-height: 100vh;
             overflow-x: hidden;
-            animation: fadeInPage 0.8s ease-out;
-        }
-
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .container {
@@ -104,15 +98,9 @@
             padding: 2px 14px;
             flex: 1;
             box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(14px) saturate(180%);
-            -webkit-backdrop-filter: blur(14px) saturate(180%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             height: 42px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .search-box:focus-within {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
         }
 
         .search-box input {
@@ -134,8 +122,8 @@
             transition: transform 0.2s ease;
         }
 
-        .search-btn:active {
-            transform: scale(0.9);
+        .search-btn:hover {
+            transform: scale(1.15);
         }
 
         .control-btn {
@@ -152,9 +140,8 @@
             justify-content: center;
             flex-shrink: 0;
             box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(14px) saturate(180%);
-            -webkit-backdrop-filter: blur(14px) saturate(180%);
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .control-btn:hover {
@@ -172,8 +159,8 @@
             top: 50px;
             left: 0;
             background: var(--input-bg);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             box-shadow: var(--shadow);
@@ -181,12 +168,7 @@
             flex-direction: column;
             min-width: 140px;
             overflow: hidden;
-            animation: dropDownAnim 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes dropDownAnim {
-            from { opacity: 0; transform: translateY(-8px); }
-            to { opacity: 1; transform: translateY(0); }
+            animation: fadeIn 0.2s ease;
         }
 
         html[dir="ltr"] .lang-dropdown {
@@ -216,7 +198,7 @@
             color: var(--accent-color);
         }
 
-        /* الهيدر والصورة الشخصية (بدون طفو للحفاظ على الهيبة) */
+        /* الهيدر والصورة الشخصية */
         header {
             text-align: center;
             padding: 5px 10px 10px;
@@ -230,14 +212,9 @@
             box-shadow: var(--shadow-sm);
             margin-bottom: 12px;
             cursor: pointer;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
         }
 
-        .profile-img-wrapper:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
-        }
-
+        /* الصورة مستقرة وتحافظ على هيبتها بدون طفو */
         .profile-img {
             width: 120px;
             height: 120px;
@@ -266,7 +243,6 @@
             font-size: 0.9rem; 
         }
 
-        /* الخط الفاصل */
         .simple-divider {
             width: 100%;
             height: 1px;
@@ -275,7 +251,6 @@
             border: none;
         }
 
-        /* الشارات الملونة */
         .role-badges {
             display: flex;
             justify-content: center;
@@ -297,15 +272,14 @@
             align-items: center;
             gap: 8px;
             box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(14px) saturate(180%);
-            -webkit-backdrop-filter: blur(14px) saturate(180%);
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.25s ease, border-color 0.25s ease;
         }
 
         .role-badge:hover {
             transform: translateY(-3px);
             border-color: var(--accent-color);
-            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.2);
         }
 
         .role-badge i {
@@ -313,7 +287,6 @@
             color: var(--accent-color);
         }
 
-        /* عناوين الأقسام */
         .section-title {
             font-size: 1.3rem;
             color: var(--text-color);
@@ -330,15 +303,9 @@
             padding-left: 10px;
         }
 
-        /* الأقسام الديناميكية */
         .dynamic-reel-section {
             display: none;
-            animation: fadeInSec 0.5s ease-out;
-        }
-
-        @keyframes fadeInSec {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+            animation: fadeIn 0.4s ease;
         }
 
         .reels-wrapper {
@@ -371,13 +338,12 @@
             box-shadow: var(--shadow);
             flex-shrink: 0;
             background-color: #000;
-            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
         }
 
         .reel-card:hover {
             transform: translateY(-5px) scale(1.02);
             border-color: var(--accent-color);
-            box-shadow: 0 12px 28px rgba(212, 175, 55, 0.25);
         }
 
         .reel-card img { width: 100%; height: 100%; object-fit: cover; }
@@ -405,14 +371,13 @@
             color: #0b1329;
         }
 
-        /* أسهم التمرير */
         .scroll-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             background: var(--input-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: var(--accent-color);
             border: 1px solid var(--border-color);
             width: 36px;
@@ -434,20 +399,14 @@
         .left-btn { left: -8px; }
         .right-btn { right: -8px; }
 
-        /* نبذة تعريفية ونموذج التواصل */
         .about-box, .contact-card {
             background: var(--card-bg-glass);
-            backdrop-filter: blur(14px) saturate(180%);
-            -webkit-backdrop-filter: blur(14px) saturate(180%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 20px;
             box-shadow: var(--shadow);
-            transition: border-color 0.3s ease;
-        }
-
-        .about-box:hover, .contact-card:hover {
-            border-color: rgba(212, 175, 55, 0.5);
         }
 
         .about-box p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; }
@@ -458,20 +417,16 @@
             width: 100%;
             padding: 12px 15px;
             background: var(--input-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             border-radius: 10px;
             color: var(--text-color);
             font-size: 0.9rem;
             outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        .form-group input:focus, .form-group textarea:focus { 
-            border-color: var(--accent-color); 
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
-        }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-color); }
 
         .submit-btn {
             background: var(--accent-color);
@@ -486,15 +441,14 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
-        /* فاصل شرفنا بمتابعتك */
         .divider-with-text {
             display: flex;
             align-items: center;
@@ -526,8 +480,8 @@
             color: var(--text-color);
             text-decoration: none;
             background: var(--card-bg-glass);
-            backdrop-filter: blur(12px) saturate(180%);
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 9px 16px;
             border-radius: 12px;
             border: 1px solid var(--border-color);
@@ -538,7 +492,7 @@
             gap: 8px;
             font-size: 0.88rem;
             box-shadow: var(--shadow-sm);
-            transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+            transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
         }
 
         .social-btn i {
@@ -555,8 +509,8 @@
 
         .social-btn:hover i { color: #0b1329; }
 
-        /* أزرار FAB عائمة في أسفل الزاوية (50dp * 50dp) */
-        .fab-subscribe {
+        /* أزرار الاشتراك الدائرية المتنقلة FAB (50px * 50px) */
+        .fab-sub {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -569,43 +523,38 @@
             align-items: center;
             justify-content: center;
             font-size: 1.3rem;
-            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
             z-index: 999;
             text-decoration: none;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
         }
 
-        html[dir="ltr"] .fab-subscribe {
+        .fab-sub:hover {
+            transform: scale(1.12);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
+            color: #ffffff;
+        }
+
+        html[dir="ltr"] .fab-sub {
             right: auto;
             left: 20px;
         }
 
-        .fab-subscribe:hover {
-            transform: scale(1.12);
-            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
-            color: #ffffff;
-        }
-
         /* النوافذ المنبثقة */
-        .reel-modal, .image-modal {
+        .reel-modal, .image-modal, .search-modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.88);
+            background: rgba(0, 0, 0, 0.85);
             z-index: 9999;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            animation: modalFade 0.3s ease;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s ease;
         }
 
-        @keyframes modalFade {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .reel-modal.active, .image-modal.active { display: flex; }
+        .reel-modal.active, .image-modal.active, .search-modal.active { display: flex; }
 
         .modal-content {
             position: relative;
@@ -648,14 +597,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s ease, transform 0.2s ease;
+            transition: background 0.2s ease;
         }
 
-        .close-modal:hover {
-            background: var(--accent-color);
-            color: #0b1329;
-            transform: scale(1.08);
-        }
+        .close-modal:hover { background: rgba(255, 0, 0, 0.7); }
 
         .image-modal-content {
             position: relative;
@@ -672,48 +617,56 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
-        /* نافذة تنبيه البحث */
+        /* نافذة عدم توفر النتائج */
         .search-modal-content {
             background: var(--card-bg-glass);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border: 1px solid var(--border-color);
-            border-radius: 18px;
             padding: 25px 20px;
-            width: 90%;
-            max-width: 380px;
+            border-radius: 20px;
             text-align: center;
+            max-width: 380px;
+            width: 90%;
             box-shadow: var(--shadow);
-            animation: modalFade 0.3s ease;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .search-modal-content .modal-icon {
-            font-size: 2.2rem;
+        .search-modal-content i {
+            font-size: 2.5rem;
             color: var(--accent-color);
             margin-bottom: 12px;
         }
 
         .search-modal-content p {
-            font-size: 0.95rem;
             color: var(--text-color);
+            font-size: 0.95rem;
             margin-bottom: 20px;
             line-height: 1.6;
         }
 
-        .alert-close-btn {
+        .search-modal-btn {
             background: var(--accent-color);
             color: #0b1329;
             border: none;
-            padding: 8px 24px;
-            border-radius: 10px;
+            padding: 9px 26px;
+            border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
             font-size: 0.9rem;
             transition: transform 0.2s ease;
         }
 
-        .alert-close-btn:hover {
-            transform: scale(1.05);
+        .search-modal-btn:hover { transform: scale(1.05); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         footer { text-align: center; padding: 10px 0 20px; color: var(--text-muted); font-size: 0.85rem; }
@@ -726,7 +679,7 @@
         <div class="toolbar" id="mainToolbar">
             <form class="search-box" id="searchForm">
                 <input type="text" id="searchInput" placeholder="ادخل نص البحث">
-                <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
 
             <div class="lang-wrapper">
@@ -737,8 +690,8 @@
                     <button type="button" class="lang-option" data-lang="ar">العربية</button>
                     <button type="button" class="lang-option" data-lang="en">English</button>
                     <button type="button" class="lang-option" data-lang="es">Español</button>
-                    <button type="button" class="lang-option" data-lang="id">Bahasa Indonesia</button>
                     <button type="button" class="lang-option" data-lang="fr">Français</button>
+                    <button type="button" class="lang-option" data-lang="id">Bahasa Indonesia</button>
                     <button type="button" class="lang-option" data-lang="ur">اردو</button>
                 </div>
             </div>
@@ -757,10 +710,8 @@
             <div class="subtitle" id="txt-title">شاعر / صانع محتوى</div>
             <p class="bio" id="txt-bio">هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش</p>
             
-            <!-- الخط الفاصل بطول الشاشة -->
             <hr class="simple-divider">
 
-            <!-- المربعات أسفل الخط الفاصل -->
             <div class="role-badges">
                 <span class="role-badge"><i class="fa-solid fa-book-quran"></i> <span id="badge-quran">قارئ قرآن</span></span>
                 <span class="role-badge"><i class="fa-solid fa-pen-nib"></i> <span id="badge-poet">شاعر</span></span>
@@ -858,8 +809,8 @@
         </footer>
     </div>
 
-    <!-- زر اشترك في القناة عائم (FAB) -->
-    <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="fab-subscribe" id="fabSubscribe" title="اشترك في القناة">
+    <!-- زر FAB للاشتراك في القناة 50px * 50px -->
+    <a href="https://youtube.com/@phsyf1?sub_confirmation=1" target="_blank" class="fab-sub" id="fabSubscribe" title="اشترك في القناة">
         <i class="fa-brands fa-youtube"></i>
     </a>
 
@@ -881,21 +832,18 @@
         </div>
     </div>
 
-    <!-- نافذة عدم توفر نتائج البحث -->
-    <div class="reel-modal" id="searchAlertModal">
+    <!-- نافذة تنبيه عدم توفر محتوى البحث -->
+    <div class="search-modal" id="searchModal">
         <div class="search-modal-content">
-            <div class="modal-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
-            <p id="search-alert-text">للأسف المحتوى الذي بحثت عنه غير متوفر حالياً، ويسعدنا جداً اهتمامك بمحتوانا!</p>
-            <button class="alert-close-btn" id="closeSearchAlertBtn">حسناً</button>
+            <i class="fa-solid fa-heart-crack"></i>
+            <p id="txt-no-results">للأسف، المحتوى الذي بحثت عنه غير متوفر حالياً. نحن سعداء جداً باهتمامك بمحتوانا!</p>
+            <button class="search-modal-btn" id="closeSearchModalBtn">حسناً</button>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            let currentLang = 'ar';
-
-            // دالة التحقق وإخفاء/إظهار أسهم التمرير عند الأطراف
             function updateScrollButtons(container) {
                 if (!container) return;
                 const wrapper = container.closest('.reels-wrapper');
@@ -923,7 +871,6 @@
                 }
             }
 
-            // إظهار الأقسام التي بها محتوى
             async function loadSectionContent(fileUrl, containerId) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -955,7 +902,6 @@
             loadSectionContent('foryou.html', 'foryou-container');
             loadSectionContent('poems.html', 'poems-container');
 
-            // التمرير الأفقي
             window.scrollSection = function(containerId, direction) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -970,7 +916,6 @@
                 }
             };
 
-            // تشغيل الفيديو
             window.openReelModal = function(videoUrl) {
                 const modal = document.getElementById('reelModal');
                 const iframe = document.getElementById('modalIframe');
@@ -997,7 +942,6 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // عرض الصورة الشخصية
             const profileWrapper = document.getElementById('profileImgWrapper');
             const profileImg = document.getElementById('profileImg');
             const imageModal = document.getElementById('imageModal');
@@ -1016,30 +960,22 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // نافذة عدم توفر النتائج
-            const searchAlertModal = document.getElementById('searchAlertModal');
-            const closeSearchAlertBtn = document.getElementById('closeSearchAlertBtn');
+            /* منطق البحث عند الضغط فقط مع نافذة التنبيه عند عدم توفر المحتوى */
+            const searchForm = document.getElementById('searchForm');
+            const searchInput = document.getElementById('searchInput');
+            const searchModal = document.getElementById('searchModal');
+            const closeSearchModalBtn = document.getElementById('closeSearchModalBtn');
 
-            closeSearchAlertBtn.addEventListener('click', () => {
-                searchAlertModal.classList.remove('active');
-            });
-            searchAlertModal.addEventListener('click', (e) => {
-                if (e.target === searchAlertModal) searchAlertModal.classList.remove('active');
-            });
-
-            function performSearch() {
-                const searchInput = document.getElementById('searchInput');
+            searchForm.addEventListener('submit', (e) => {
+                e.preventDefault();
                 const val = searchInput.value.toLowerCase().trim();
                 
-                if (!val) {
-                    document.querySelectorAll('.reel-card').forEach(card => card.style.display = '');
-                    return;
-                }
+                if (!val) return;
 
+                const cards = document.querySelectorAll('.reel-card');
                 let foundCount = 0;
-                const allCards = document.querySelectorAll('.reel-card');
 
-                allCards.forEach(card => {
+                cards.forEach(card => {
                     const title = (card.getAttribute('data-title') || '').toLowerCase();
                     if (title.includes(val)) {
                         card.style.display = '';
@@ -1049,30 +985,22 @@
                     }
                 });
 
-                if (foundCount === 0 && allCards.length > 0) {
+                if (foundCount === 0) {
+                    // مسح نص البحث
                     searchInput.value = '';
-                    allCards.forEach(card => card.style.display = '');
-                    searchAlertModal.classList.add('active');
+                    // إظهار كافة البطاقات مجدداً
+                    cards.forEach(card => card.style.display = '');
+                    // إظهار النافذة المنبثقة
+                    searchModal.classList.add('active');
                 }
-            }
 
-            // فلترة البحث المباشر
-            const searchInput = document.getElementById('searchInput');
-            searchInput.addEventListener('input', () => {
-                const val = searchInput.value.toLowerCase().trim();
-                document.querySelectorAll('.reel-card').forEach(card => {
-                    const title = (card.getAttribute('data-title') || '').toLowerCase();
-                    card.style.display = title.includes(val) ? '' : 'none';
-                });
-            });
-
-            document.getElementById('searchForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                performSearch();
                 searchInput.blur();
             });
 
-            // زر تبديل الوضع (Dark / Light)
+            closeSearchModalBtn.addEventListener('click', () => searchModal.classList.remove('active'));
+            searchModal.addEventListener('click', (e) => { if (e.target === searchModal) searchModal.classList.remove('active'); });
+
+            // تبديل الوضع (Dark / Light)
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             const themeColorMeta = document.getElementById('theme-color-meta');
@@ -1084,11 +1012,11 @@
                 themeIcon.className = newTheme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
                 
                 if (themeColorMeta) {
-                    themeColorMeta.setAttribute('content', newTheme === 'light' ? '#f8fafc' : '#0b1329');
+                    themeColorMeta.setAttribute('content', newTheme === 'light' ? '#f1f5f9' : '#0b1329');
                 }
             });
 
-            // التحكم بالترجمة
+            // التحكم بالترجمة واللغات
             const langBtn = document.getElementById('langBtn');
             const langDropdown = document.getElementById('langDropdown');
 
@@ -1115,7 +1043,7 @@
                 ar: {
                     search: "ادخل نص البحث",
                     name: "فَارِس الشِريـف",
-                    title: "شاعر / صانع محتوى",
+                    title: "شاعر / صانع محتوى مرئي",
                     bio: "هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش",
                     badgeQuran: "قارئ قرآن",
                     badgePoet: "شاعر",
@@ -1124,7 +1052,7 @@
                     quranfull: "تلاوات عطرة",
                     foryou: "من أجلك أنت",
                     poems: "قصائدي",
-                    aboutTitle: "نبذة تعريفية عني",
+                    aboutTitle: "نبذة تعريفية عنه",
                     aboutDesc: "فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. يسعى في مسيرة حياته إلى ترك أثر نافع بين الناس، سواء بتلاواته أو قصائده الشعرية أو محتواه المرئي على مواقع التواصل الاجتماعي.",
                     contactTitle: "تواصل معي",
                     namePlaceholder: "اسم الكريم",
@@ -1137,9 +1065,9 @@
                     facebook: "فيسبوك",
                     youtube: "يوتيوب",
                     footer: "© 2026 - جميع الحقوق محفوظة",
-                    fabTitle: "اشترك في القناة",
-                    noResultMsg: "للأسف المحتوى الذي بحثت عنه غير متوفر حالياً، ويسعدنا جداً اهتمامك بمحتوانا!",
-                    alertOk: "حسناً"
+                    noResults: "للأسف، المحتوى الذي بحثت عنه غير متوفر حالياً. نحن سعداء جداً باهتمامك بمحتوانا!",
+                    closeBtn: "حسناً",
+                    fabTitle: "اشترك في القناة"
                 },
                 en: {
                     search: "Search content...",
@@ -1166,9 +1094,9 @@
                     facebook: "Facebook",
                     youtube: "YouTube",
                     footer: "© 2026 - All Rights Reserved",
-                    fabTitle: "Subscribe to Channel",
-                    noResultMsg: "Unfortunately, the content you searched for is currently unavailable, and we are very happy about your interest in our content!",
-                    alertOk: "OK"
+                    noResults: "Unfortunately, the content you searched for is currently unavailable. We are glad you are interested in our content!",
+                    closeBtn: "OK",
+                    fabTitle: "Subscribe to Channel"
                 },
                 es: {
                     search: "Ingrese texto...",
@@ -1195,56 +1123,27 @@
                     facebook: "Facebook",
                     youtube: "YouTube",
                     footer: "© 2026 - Todos los derechos reservados",
-                    fabTitle: "Suscribirse al canal",
-                    noResultMsg: "Lamentablemente, el contenido que buscaste no está disponible actualmente. ¡Estamos muy contentos de tu interés!",
-                    alertOk: "Aceptar"
-                },
-                id: {
-                    search: "Cari konten...",
-                    name: "Faris Ash-Shiref",
-                    title: "Penyair / Pembuat Konten",
-                    bio: "Di sini Anda akan menemukan semua karya penyair Faris Muhammad Dahesh.",
-                    badgeQuran: "Qori Al-Qur'an",
-                    badgePoet: "Penyair",
-                    badgeCreator: "Pembuat Konten",
-                    quranshorts: "Tilawah Pilihan",
-                    quranfull: "Tilawah Indah",
-                    foryou: "Untuk Anda",
-                    poems: "Puisi Saya",
-                    aboutTitle: "Tentang Saya",
-                    aboutDesc: "Faris Muhammad Dahesh.. Penyair dan pembuat konten dari Mesir, lahir 3 Juli 2003 di Asyut, Mesir. Berusaha memberikan dampak positif melalui tilawah Al-Qur'an, puisi, dan konten media sosial.",
-                    contactTitle: "Hubungi Saya",
-                    namePlaceholder: "Nama Anda",
-                    emailPlaceholder: "Email Anda",
-                    msgPlaceholder: "Tulis pesan Anda di sini...",
-                    submitBtn: "Kirim Pesan",
-                    honor: "Terima kasih telah mengikuti",
-                    telegram: "Telegram",
-                    tiktok: "TikTok",
-                    facebook: "Facebook",
-                    youtube: "YouTube",
-                    footer: "© 2026 - Hak Cipta Dilindungi",
-                    fabTitle: "Berlangganan Kanal",
-                    noResultMsg: "Maaf, konten yang Anda cari tidak tersedia saat ini. Kami sangat senang atas ketertarikan Anda pada konten kami!",
-                    alertOk: "Mengerti"
+                    noResults: "Lamentablemente, el contenido que buscó no está disponible actualmente. ¡Nos alegra su interés en nuestro contenido!",
+                    closeBtn: "Aceptar",
+                    fabTitle: "Suscribirse al canal"
                 },
                 fr: {
-                    search: "Rechercher...",
+                    search: "Rechercher du contenu...",
                     name: "Faris Ash-Shiref",
-                    title: "Poète / Créateur de Contenu",
-                    bio: "Ici vous trouverez toutes les œuvres du poète Faris Muhammad Dahesh.",
+                    title: "Poète / Créateur de contenu",
+                    bio: "Vous trouverez ici toutes les œuvres du poète Faris Muhammad Dahesh.",
                     badgeQuran: "Récitateur du Coran",
                     badgePoet: "Poète",
-                    badgeCreator: "Créateur de Contenu",
-                    quranshorts: "Récitations Sélectionnées",
-                    quranfull: "Récitations Parfumées",
-                    foryou: "Pour Vous",
-                    poems: "Mes Poèmes",
+                    badgeCreator: "Créateur de contenu",
+                    quranshorts: "Récitations choisies",
+                    quranfull: "Récitations parfumées",
+                    foryou: "Pour vous",
+                    poems: "Mes poèmes",
                     aboutTitle: "À propos de moi",
-                    aboutDesc: "Faris Muhammad Dahesh.. Poète et créateur de contenu égyptien, né le 3 juillet 2003 à Assiout, Égypte. Il s'efforce de laisser un impact positif à travers ses récitations du Coran et ses poèmes.",
+                    aboutDesc: "Faris Muhammad Dahesh.. Poète et créateur de contenu égyptien, né le 3 juillet 2003 à Assiout, Égypte. Il s'efforce de laisser un impact positif à travers le Coran, la poésie et les réseaux sociaux.",
                     contactTitle: "Contactez-moi",
-                    namePlaceholder: "Votre Nom",
-                    emailPlaceholder: "Votre E-mail",
+                    namePlaceholder: "Votre nom",
+                    emailPlaceholder: "Votre e-mail",
                     msgPlaceholder: "Écrivez votre message ici...",
                     submitBtn: "Envoyer le message",
                     honor: "Honoré par votre suivi",
@@ -1253,12 +1152,41 @@
                     facebook: "Facebook",
                     youtube: "YouTube",
                     footer: "© 2026 - Tous droits réservés",
-                    fabTitle: "S'abonner à la chaîne",
-                    noResultMsg: "Malheureusement, le contenu que vous recherchez n'est pas disponible pour le moment, et nous sommes très heureux de votre intérêt pour notre contenu!",
-                    alertOk: "D'accord"
+                    noResults: "Malheureusement, le contenu que vous avez recherché n'est pas disponible. Nous sommes ravis de votre intérêt pour notre contenu !",
+                    closeBtn: "D'accord",
+                    fabTitle: "S'abonner à la chaîne"
+                },
+                id: {
+                    search: "Cari konten...",
+                    name: "Faris Ash-Shiref",
+                    title: "Penyair / Pembuat Konten",
+                    bio: "Di sini Anda akan menemukan semua karya penyair Faris Muhammad Dahesh.",
+                    badgeQuran: "Lantunan Al-Qur'an",
+                    badgePoet: "Penyair",
+                    badgeCreator: "Pembuat Konten",
+                    quranshorts: "Lantunan Pilihan",
+                    quranfull: "Lantunan Indah",
+                    foryou: "Untuk Anda",
+                    poems: "Puisi Saya",
+                    aboutTitle: "Tentang Saya",
+                    aboutDesc: "Faris Muhammad Dahesh.. Penyair dan pembuat konten asal Mesir, lahir pada 3 Juli 2003 di Asyut, Mesir. Ia berusaha memberikan dampak positif melalui lantunan Al-Qur'an, puisi, dan media sosial.",
+                    contactTitle: "Hubungi Saya",
+                    namePlaceholder: "Nama Anda",
+                    emailPlaceholder: "Email Anda",
+                    msgPlaceholder: "Tulis pesan Anda di sini...",
+                    submitBtn: "Kirim Pesan",
+                    honor: "Suatu kehormatan atas dukungan Anda",
+                    telegram: "Telegram",
+                    tiktok: "TikTok",
+                    facebook: "Facebook",
+                    youtube: "YouTube",
+                    footer: "© 2026 - Hak Cipta Dilindungi",
+                    noResults: "Maaf, konten yang Anda cari saat ini tidak tersedia. Kami sangat senang atas ketertarikan Anda pada konten kami!",
+                    closeBtn: "Baik",
+                    fabTitle: "Berlangganan saluran"
                 },
                 ur: {
-                    search: "تلاش کریں...",
+                    search: "مواد تلاش کریں...",
                     name: "فارس الشريف",
                     title: "شاعر / مواد تخلیق کار",
                     bio: "یہاں آپ کو شاعر فارس محمد داہش کا تمام کام ملے گا۔",
@@ -1266,32 +1194,31 @@
                     badgePoet: "شاعر",
                     badgeCreator: "مواد تخلیق کار",
                     quranshorts: "منتخب تلاوتیں",
-                    quranfull: "خوشگوار تلاوتیں",
-                    foryou: "آپ کے لیے",
-                    poems: "میری نظمیں",
-                    aboutTitle: "میرے بارے میں",
-                    aboutDesc: "فارس محمد داہش.. مصری شاعر اور مواد تخلیق کار، پیدائش 3 جولائی 2003ء اسیوط، مصر میں۔ وہ قرآن کی تلاوت، شاعری اور سوشل میڈیا مواد کے ذریعے مثبت اثر چھوڑنے کی کوشش کرتے ہیں۔",
-                    contactTitle: "مجھ سے رابطہ کریں",
+                    quranfull: "معطر تلاوتیں",
+                    foryou: "خاص آپ کے لیے",
+                    poems: "میری شاعری",
+                    aboutTitle: "میرا تعارف",
+                    aboutDesc: "فارس محمد داہش.. مصری شاعر اور مواد تخلیق کار، پیدائش 3 جولائی 2003ء اسیوط، مصر میں۔ وہ تلاوتِ قرآن، شاعری اور سوشل میڈیا کے ذریعے مثبت اثر چھوڑنے کی کوشش کرتے ہیں۔",
+                    contactTitle: "رابطہ کریں",
                     namePlaceholder: "آپ کا نام",
                     emailPlaceholder: "آپ کا ای میل",
                     msgPlaceholder: "اپنا پیغام یہاں لکھیں...",
                     submitBtn: "پیغام بھیجیں",
-                    honor: "ہماری پیروی کرنے کا شکریہ",
-                    telegram: "ٹیلیگرام",
+                    honor: "آپ کی فالو کرنے پر ممنون ہیں",
+                    telegram: "ٹیلی گرام",
                     tiktok: "ٹک ٹاک",
                     facebook: "فیس بک",
                     youtube: "یوٹیوب",
                     footer: "© 2026 - جملہ حقوق محفوظ ہیں",
-                    fabTitle: "چینل سبسکرائب کریں",
-                    noResultMsg: "افسوس، آپ کا مطلوبہ مواد اس وقت دستیاب نہیں ہے، اور ہمیں خوشی ہے کہ آپ ہمارے مواد میں دلچسپی رکھتے ہیں!",
-                    alertOk: "ٹھیک ہے"
+                    noResults: "افسوس، آپ کا تلاش کردہ مواد فی الحال دستیاب نہیں ہے۔ ہمیں خوشی ہے کہ آپ ہمارے مواد میں دلچسپی رکھتے ہیں!",
+                    closeBtn: "ٹھیک ہے",
+                    fabTitle: "چینل سبسکرائب کریں"
                 }
             };
 
             function changeLanguage(lang) {
-                currentLang = lang;
-                const isRtl = (lang === 'ar' || lang === 'ur');
-                document.documentElement.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
+                const isRTL = (lang === 'ar' || lang === 'ur');
+                document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
                 document.documentElement.setAttribute('lang', lang);
                 
                 document.getElementById('searchInput').placeholder = i18n[lang].search;
@@ -1323,9 +1250,9 @@
                 document.getElementById('btn-youtube').innerText = i18n[lang].youtube;
                 document.getElementById('txt-footer').innerText = i18n[lang].footer;
 
+                document.getElementById('txt-no-results').innerText = i18n[lang].noResults;
+                document.getElementById('closeSearchModalBtn').innerText = i18n[lang].closeBtn;
                 document.getElementById('fabSubscribe').title = i18n[lang].fabTitle;
-                document.getElementById('search-alert-text').innerText = i18n[lang].noResultMsg;
-                document.getElementById('closeSearchAlertBtn').innerText = i18n[lang].alertOk;
 
                 document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
             }
