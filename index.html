@@ -1,25 +1,53 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- الوسم المسئول عن تغيير لون شريط المتصفح أعلى الشاشة -->
-    <meta name="theme-color" content="#121b35">
+    <!-- الوسم المسئول عن تغيير لون شريط المتصفح والـ Statusbar أعلى وأسفل الموبايل -->
+    <meta name="theme-color" id="theme-color-meta" content="#121b35">
     
     <title>فَارِس الشِريـف</title>
-    <!-- استدعاء خط تجوال بأوزان Regular (400) و Medium (500) -->
+    
+    <!-- استدعاء خط تجوال بأوزان Regular (400) و Medium (500) و Bold (700) -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     
+    <!-- مكتبة الأيقونات 2D (FontAwesome) للوجوهات التطبيقات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
+        /* المتغيرات الأساسية للوضع المظلم (Dark Theme) */
         :root {
-            --bg-color: #121b35;       /* خلفية الموقع الأساسية */
-            --card-bg: #1a264a;         /* خلفية الكروت والأزرار */
-            --text-color: #ffffff;      /* لون الخط الرئيسي (أبيض) */
-            --text-muted: #cbd5e1;      /* لون الخط الثانوي (رمادي فاتح) */
-            --accent-color: #d4af37;    /* اللون الذهبي */
-            --accent-hover: #f3c63f;    /* ذهبي أفتح عند اللمس */
-            --border-color: #273763;    /* لون الحدود الفاصلة */
+            --bg-color: #121b35;          /* خلفية الموقع الأساسية */
+            --card-bg: rgba(26, 38, 74, 0.65); /* خلفية بلورية زجاجية */
+            --text-color: #ffffff;         /* لون الخط الرئيسي */
+            --text-muted: #cbd5e1;         /* لون الخط الثانوي */
+            --accent-color: #d4af37;       /* اللون الذهبي */
+            --accent-hover: #f3c63f;       /* ذهبي أفتح عند اللمس */
+            --border-color: rgba(212, 175, 55, 0.25); /* لون الحدود الذهبي الخفيف */
+            --input-bg: rgba(15, 23, 42, 0.6);
+            --blob-1: rgba(212, 175, 55, 0.12); /* ضوء ذهبي خفيف للداخل */
+            --blob-2: rgba(56, 189, 248, 0.10); /* ضوء أزرق سماوي خفيف */
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        /* المتغيرات للوضع المضيء (Light Theme) */
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.80);
+            --text-color: #0f172a;
+            --text-muted: #475569;
+            --accent-color: #b8860b;
+            --accent-hover: #d4af37;
+            --border-color: rgba(212, 175, 55, 0.35);
+            --input-bg: rgba(255, 255, 255, 0.95);
+            --blob-1: rgba(212, 175, 55, 0.18);
+            --blob-2: rgba(99, 102, 241, 0.12);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         * {
@@ -27,6 +55,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Tajawal', sans-serif;
+            transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         body {
@@ -34,12 +63,84 @@
             color: var(--text-color);
             line-height: 1.6;
             padding: 20px;
-            font-weight: 400; /* تجوال ريجيولار كخط أساسي للنصوص */
+            font-weight: 400;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* خلفية بلورية فريدة (Mesh Gradient Blur) */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            animation: floatBlob 14s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            width: 350px;
+            height: 350px;
+            background: var(--blob-1);
+            top: -50px;
+            right: -50px;
+        }
+
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--blob-2);
+            bottom: -80px;
+            left: -80px;
+            animation-delay: -7s;
+        }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 60px) scale(1.1); }
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        /* زر تبديل المظهر (Dark / Light) */
+        .theme-toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--accent-color);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.08);
+            border-color: var(--accent-color);
         }
 
         /* الهيدر والنبذة الشخصية */
@@ -50,26 +151,31 @@
         }
 
         .profile-img {
-            width: 120px;
-            height: 120px;
+            width: 125px;
+            height: 125px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--accent-color);
             margin-bottom: 15px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+            transition: transform 0.4s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(2deg);
         }
 
         h1 {
             font-size: 2.2rem;
             color: var(--text-color);
             margin-bottom: 8px;
-            font-weight: 500; /* تجوال ميديم للعناوين */
+            font-weight: 500;
         }
 
         .subtitle {
             color: var(--accent-color);
-            font-size: 1.1rem;
-            font-weight: 500; /* تجوال ميديم للمسمى الوظيفي */
+            font-size: 1.10rem;
+            font-weight: 500;
             margin-bottom: 15px;
         }
 
@@ -78,7 +184,7 @@
             max-width: 600px;
             margin: 0 auto;
             font-size: 1rem;
-            font-weight: 400; /* تجوال ريجيولار */
+            font-weight: 400;
         }
 
         /* قسم المهارات */
@@ -91,18 +197,27 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
             margin-top: 15px;
         }
 
         .skill-tag {
             background-color: var(--card-bg);
             color: var(--accent-color);
-            padding: 8px 18px;
+            padding: 8px 20px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             border: 1px solid var(--border-color);
-            font-weight: 500; /* تجوال ميديم للمهارات */
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
         }
 
         /* شبكة المشاريع */
@@ -116,34 +231,36 @@
             margin-bottom: 25px;
             border-right: 4px solid var(--accent-color);
             padding-right: 12px;
-            font-weight: 500; /* تجوال ميديم للعناوين الرئيسية */
+            font-weight: 500;
         }
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 22px;
         }
 
         .project-card {
             background-color: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--border-color);
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-7px);
             border-color: var(--accent-color);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .project-img {
             width: 100%;
             height: 180px;
             object-fit: cover;
-            background-color: #0d1326;
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
         .project-info {
@@ -154,21 +271,23 @@
             font-size: 1.2rem;
             color: var(--text-color);
             margin-bottom: 10px;
-            font-weight: 500; /* تجوال ميديم اسم المشروع */
+            font-weight: 500;
         }
 
         .project-desc {
             color: var(--text-muted);
             font-size: 0.95rem;
             margin-bottom: 15px;
-            font-weight: 400; /* تجوال ريجيولار وصف المشروع */
+            font-weight: 400;
         }
 
         .project-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             color: var(--accent-color);
             text-decoration: none;
-            font-weight: 500; /* تجوال ميديم لرابط المعاينة */
+            font-weight: 500;
             transition: color 0.2s;
         }
 
@@ -176,19 +295,79 @@
             color: var(--accent-hover);
         }
 
-        /* التواصل والفوتر */
+        /* نموذج التواصل (Contact Form) */
+        .contact-section {
+            padding: 20px 0 40px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 16px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        .submit-btn {
+            background: var(--accent-color);
+            color: #121b35;
+            border: none;
+            padding: 13px 26px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* الفوتر وأزرار التواصل 2D */
         footer {
             text-align: center;
             padding: 40px 0 20px;
             border-top: 1px solid var(--border-color);
-            margin-top: 40px;
+            margin-top: 20px;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 22px;
             flex-wrap: wrap;
         }
 
@@ -196,41 +375,81 @@
             color: var(--text-color);
             text-decoration: none;
             background-color: var(--card-bg);
-            padding: 10px 22px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
             border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
-            font-weight: 500; /* تجوال ميديم للأزرار */
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+
+        .social-btn i {
+            font-size: 1.15rem;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
         }
 
         .social-btn:hover {
             background-color: var(--accent-color);
             color: #121b35;
             border-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .social-btn:hover i {
+            color: #121b35;
         }
 
         .copyright {
             color: var(--text-muted);
             font-size: 0.85rem;
-            font-weight: 400; /* تجوال ريجيولار للحقوق */
+            font-weight: 400;
+        }
+
+        /* أنيميشن الظهور التدريجي عند التمرير (Scroll Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
+    <!-- الإضاءات البلورية المتحركة في الخلفية -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <!-- زر تبديل المظهر (Dark/Light) -->
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="تغيير المظهر">
+        <i class="fa-solid fa-sun" id="themeIcon"></i>
+    </button>
+
     <div class="container">
+        
         <!-- الهيدر والتعريف -->
-        <header>
-            <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/profile.jpg" alt="الصورة الشخصية" class="profile-img">
+        <header class="reveal">
+            <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/profile.jpg" alt="فَارِس الشِريـف" class="profile-img">
             <h1>فَارِس الشِريـف</h1>
             <div class="subtitle">شاعر / صانع محتوي ديني</div>
             <p class="bio">
-            السلام عليكم.. أنا فارس شاب صعيدي أسعي إلي ترك أثر صالح بعد وفاتي
+                السلام عليكم.. أنا فارس شاب صعيدي أسعي إلي ترك أثر صالح بعد وفاتي
             </p>
         </header>
 
         <!-- قسم المهارات -->
-        <section class="skills-section">
+        <section class="skills-section reveal">
             <div class="skills-container">
                 <span class="skill-tag">قاريء قرآن</span>
                 <span class="skill-tag">شاعر</span>
@@ -239,7 +458,7 @@
         </section>
 
         <!-- قسم المشاريع -->
-        <section class="projects-section">
+        <section class="projects-section reveal">
             <h2 class="section-title">معرض الأعمال</h2>
             
             <div class="projects-grid">
@@ -249,7 +468,7 @@
                     <div class="project-info">
                         <h3 class="project-title">اسم المشروع الأول</h3>
                         <p class="project-desc">وصف قصير للمشروع والخدمة التي قمت بتقديمها أو الأدوات التي استخدمتها.</p>
-                        <a href="#" class="project-link" target="_blank">معاينة المشروع ←</a>
+                        <a href="#" class="project-link" target="_blank">معاينة المشروع <i class="fa-solid fa-arrow-left"></i></a>
                     </div>
                 </div>
 
@@ -259,7 +478,7 @@
                     <div class="project-info">
                         <h3 class="project-title">اسم المشروع الثاني</h3>
                         <p class="project-desc">وصف قصير للمشروع والخدمة التي قمت بتقديمها أو الأدوات التي استخدمتها.</p>
-                        <a href="#" class="project-link" target="_blank">معاينة المشروع ←</a>
+                        <a href="#" class="project-link" target="_blank">معاينة المشروع <i class="fa-solid fa-arrow-left"></i></a>
                     </div>
                 </div>
 
@@ -269,23 +488,100 @@
                     <div class="project-info">
                         <h3 class="project-title">اسم المشروع الثالث</h3>
                         <p class="project-desc">وصف قصير للمشروع والخدمة التي قمت بتقديمها أو الأدوات التي استخدمتها.</p>
-                        <a href="#" class="project-link" target="_blank">معاينة المشروع ←</a>
+                        <a href="#" class="project-link" target="_blank">معاينة المشروع <i class="fa-solid fa-arrow-left"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- الفوتر وروابط التواصل -->
+        <!-- قسم نموذج التواصل المتكامل (Contact Form) -->
+        <section class="contact-section reveal">
+            <h2 class="section-title">تواصل معي</h2>
+            <div class="contact-card">
+                <!-- النموذج مجاني ومعد لاستقبال الرسائل مباشرة عبر إيميلك -->
+                <form action="https://formspree.io/f/faris.dahesh@gmail.com" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="الاسم الكريم" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="بريدك الإلكتروني" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="4" placeholder="اكتب رسالتك هنا..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        إرسال الرسالة <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- الفوتر وروابط التواصل 2D -->
         <footer>
-            <div class="social-links">
-                <a href="mailto:faris.dahesh@gmail.com" class="social-btn">البريد الإلكتروني</a>
-                <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" class="social-btn">قناة التيك توك</a>
-                <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-btn">صفحة الفيسبوك</a>
-                <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-btn">قناة اليوتيوب</a>
+            <div class="social-links reveal">
+                <a href="mailto:faris.dahesh@gmail.com" class="social-btn">
+                    <i class="fa-solid fa-envelope"></i> البريد الإلكتروني
+                </a>
+                <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="social-btn">
+                    <i class="fa-brands fa-tiktok"></i> قناة التيك توك
+                </a>
+                <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-btn">
+                    <i class="fa-brands fa-facebook-f"></i> صفحة الفيسبوك
+                </a>
+                <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-btn">
+                    <i class="fa-brands fa-youtube"></i> قناة اليوتيوب
+                </a>
             </div>
             <p class="copyright">جميع الحقوق محفوظة © 2026</p>
         </footer>
+
     </div>
 
+    <!-- السكريبتات الديناميكية -->
+    <script>
+        // 1. التحكم في الوضع المظلم/المضيء وتغيير theme-color للمتصفح تلقائياً
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeMeta = document.getElementById('theme-color-meta');
+        const html = document.documentElement;
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('faris-portfolio-theme', theme);
+
+            if (theme === 'light') {
+                themeIcon.className = 'fa-solid fa-moon';
+                themeMeta.setAttribute('content', '#f8fafc'); // تغيير لون شريط المتصفح للوضع المضيء
+            } else {
+                themeIcon.className = 'fa-solid fa-sun';
+                themeMeta.setAttribute('content', '#121b35'); // تغيير لون شريط المتصفح للوضع المظلم
+            }
+        }
+
+        // استرجاع المظهر المحفوظ أو استخدام الوضع المظلم كافتراضي
+        const savedTheme = localStorage.getItem('faris-portfolio-theme') || 'dark';
+        setTheme(savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        // 2. حركة ظهور العناصر عند التمرير (Scroll Reveal)
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            
+            reveals.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
 </body>
 </html>
