@@ -55,7 +55,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Tajawal', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         body {
@@ -71,6 +71,7 @@
         .container {
             max-width: 950px;
             margin: 0 auto;
+            animation: fadeInPage 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         /* شريط الـ Toolbar العلوي */
@@ -87,6 +88,7 @@
             border: none;
             box-shadow: none;
             padding: 0;
+            animation: slideDown 0.6s ease-out;
         }
 
         .search-box {
@@ -101,6 +103,13 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             height: 42px;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+            transform: translateY(-2px);
         }
 
         .search-box input {
@@ -119,6 +128,11 @@
             color: var(--accent-color);
             font-size: 1rem;
             cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .search-btn:hover {
+            transform: scale(1.15);
         }
 
         .control-btn {
@@ -137,10 +151,13 @@
             box-shadow: var(--shadow-sm);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
         .control-btn:hover {
             border-color: var(--accent-color);
+            transform: translateY(-2px) rotate(8deg);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
         }
 
         .lang-wrapper {
@@ -162,6 +179,9 @@
             flex-direction: column;
             min-width: 120px;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         html[dir="ltr"] .lang-dropdown {
@@ -171,6 +191,8 @@
 
         .lang-dropdown.show {
             display: flex !important;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .lang-option {
@@ -183,6 +205,7 @@
             font-size: 0.9rem;
             font-weight: 500;
             width: 100%;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
 
         .lang-option:hover {
@@ -194,6 +217,7 @@
         header {
             text-align: center;
             padding: 5px 10px 10px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         .profile-img-wrapper {
@@ -204,11 +228,13 @@
             box-shadow: var(--shadow-sm);
             margin-bottom: 12px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            animation: floatProfile 4s ease-in-out infinite;
         }
 
         .profile-img-wrapper:hover {
-            transform: scale(1.03);
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
         }
 
         .profile-img {
@@ -272,17 +298,23 @@
             box-shadow: var(--shadow-sm);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .role-badge:hover {
-            transform: translateY(-2px);
+            transform: translateY(-4px) scale(1.03);
             border-color: var(--accent-color);
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
         }
 
         .role-badge i {
             font-size: 0.9rem;
             color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .role-badge:hover i {
+            transform: scale(1.2);
         }
 
         /* عناوين الأقسام */
@@ -305,6 +337,7 @@
         /* الأقسام الديناميكية */
         .dynamic-reel-section {
             display: none;
+            animation: fadeInUp 0.7s ease-out;
         }
 
         .reels-wrapper {
@@ -337,15 +370,17 @@
             box-shadow: var(--shadow);
             flex-shrink: 0;
             background-color: #000;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .reel-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px) scale(1.02);
             border-color: var(--accent-color);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
         }
 
-        .reel-card img { width: 100%; height: 100%; object-fit: cover; }
+        .reel-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .reel-card:hover img { transform: scale(1.08); }
 
         .play-icon {
             position: absolute;
@@ -361,6 +396,13 @@
             align-items: center;
             justify-content: center;
             font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .reel-card:hover .play-icon {
+            background: var(--accent-color);
+            color: #0b1329;
+            transform: translate(-50%, -50%) scale(1.15);
         }
 
         /* أسهم التمرير */
@@ -381,7 +423,13 @@
             align-items: center;
             justify-content: center;
             box-shadow: var(--shadow-sm);
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-btn:hover {
+            background: var(--accent-color);
+            color: #0b1329;
+            transform: translateY(-50%) scale(1.1);
         }
 
         .left-btn { left: -8px; }
@@ -396,6 +444,11 @@
             border-radius: 16px;
             padding: 20px;
             box-shadow: var(--shadow);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .about-box:hover, .contact-card:hover {
+            border-color: rgba(212, 175, 55, 0.5);
         }
 
         .about-box p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; }
@@ -411,9 +464,13 @@
             color: var(--text-color);
             font-size: 0.9rem;
             outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-color); }
+        .form-group input:focus, .form-group textarea:focus { 
+            border-color: var(--accent-color); 
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+        }
 
         .submit-btn {
             background: var(--accent-color);
@@ -428,6 +485,12 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.3);
         }
 
         /* فاصل شرفنا بمتابعتك */
@@ -474,19 +537,67 @@
             gap: 8px;
             font-size: 0.88rem;
             box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .social-btn i {
             color: var(--accent-color);
             font-size: 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .social-btn:hover { 
             background: var(--accent-color); 
             color: #0b1329; 
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(212, 175, 55, 0.3);
         }
 
-        .social-btn:hover i { color: #0b1329; }
+        .social-btn:hover i { 
+            color: #0b1329; 
+            transform: scale(1.15);
+        }
+
+        /* ===== زر FAB التفاعلي للاشتراك في القناة ===== */
+        .fab-subscribe {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            z-index: 999;
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.92rem;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pulseFab 2.5s infinite;
+        }
+
+        html[dir="ltr"] .fab-subscribe {
+            left: auto;
+            right: 25px;
+        }
+
+        .fab-subscribe i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .fab-subscribe:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(255, 0, 0, 0.6);
+            color: #ffffff;
+        }
+
+        .fab-subscribe:hover i {
+            transform: scale(1.2);
+        }
 
         /* النوافذ المنبثقة */
         .reel-modal, .image-modal {
@@ -498,9 +609,14 @@
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .reel-modal.active, .image-modal.active { display: flex; }
+        .reel-modal.active, .image-modal.active { 
+            display: flex; 
+            opacity: 1;
+        }
 
         .modal-content {
             position: relative;
@@ -513,6 +629,12 @@
             overflow: hidden;
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reel-modal.active .modal-content {
+            transform: scale(1);
         }
 
         .video-container {
@@ -543,12 +665,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 0, 0, 0.8);
+            transform: rotate(90deg);
         }
 
         .image-modal-content {
             position: relative;
             max-width: 90vw;
             max-height: 85vh;
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .image-modal.active .image-modal-content {
+            transform: scale(1);
         }
 
         .image-modal-content img {
@@ -561,6 +695,33 @@
         }
 
         footer { text-align: center; padding: 10px 0 20px; color: var(--text-muted); font-size: 0.85rem; }
+
+        /* Animation Keyframes */
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatProfile {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+
+        @keyframes pulseFab {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5); }
+            70% { box-shadow: 0 0 0 16px rgba(255, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
     </style>
 </head>
 <body>
@@ -698,6 +859,12 @@
             <p id="txt-footer">© 2026 - جميع الحقوق محفوظة</p>
         </footer>
     </div>
+
+    <!-- زر FAB العائم للاشتراك في القناة -->
+    <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="fab-subscribe" id="fabSubscribeBtn" title="اشترك في القناة">
+        <i class="fa-brands fa-youtube"></i>
+        <span id="txt-fab">اشترك في القناة</span>
+    </a>
 
     <!-- نافذة عرض الفيديو -->
     <div class="reel-modal" id="reelModal">
@@ -920,6 +1087,7 @@
                     tiktok: "تيك توك",
                     facebook: "فيسبوك",
                     youtube: "يوتيوب",
+                    fabText: "اشترك في القناة",
                     footer: "© 2026 - جميع الحقوق محفوظة"
                 },
                 en: {
@@ -946,6 +1114,7 @@
                     tiktok: "TikTok",
                     facebook: "Facebook",
                     youtube: "YouTube",
+                    fabText: "Subscribe to Channel",
                     footer: "© 2026 - All Rights Reserved"
                 },
                 es: {
@@ -972,6 +1141,7 @@
                     tiktok: "TikTok",
                     facebook: "Facebook",
                     youtube: "YouTube",
+                    fabText: "Suscríbete al canal",
                     footer: "© 2026 - Todos los derechos reservados"
                 }
             };
@@ -1007,6 +1177,7 @@
                 document.getElementById('btn-tiktok').innerText = i18n[lang].tiktok;
                 document.getElementById('btn-facebook').innerText = i18n[lang].facebook;
                 document.getElementById('btn-youtube').innerText = i18n[lang].youtube;
+                document.getElementById('txt-fab').innerText = i18n[lang].fabText;
                 document.getElementById('txt-footer').innerText = i18n[lang].footer;
 
                 document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
