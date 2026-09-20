@@ -42,7 +42,7 @@
             --text-color: #0f172a;
             --text-muted: #475569;
             --accent-color: #b8860b;
-            --border-color: rgba(212, 175, 55, 0.25);
+            --border-color: rgba(212, 175, 55, 0.3);
             --input-bg: #ffffff;
             --shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -71,8 +71,8 @@
             margin: 0 auto;
         }
 
-        /* تعديل شريط التحكم العلوي ليصبح بدون حاوية خلفية (بدون Linear) */
-        .top-nav {
+        /* شريط الـ Toolbar العلوي */
+        .toolbar {
             position: sticky;
             top: 10px;
             z-index: 1000;
@@ -81,7 +81,7 @@
             gap: 10px;
             margin-bottom: 25px;
             width: 100%;
-            background: transparent; /* إلغاء خلفية الشريط العلوية */
+            background: transparent;
             border: none;
             box-shadow: none;
             padding: 0;
@@ -191,7 +191,7 @@
         /* الهيدر والصورة الشخصية */
         header {
             text-align: center;
-            padding: 5px 10px 15px;
+            padding: 5px 10px 10px;
         }
 
         .profile-img-wrapper {
@@ -237,14 +237,14 @@
             font-size: 0.9rem; 
         }
 
-        /* الخط الفاصل الذهبي */
-        .gold-divider {
-            width: 60%;
-            max-width: 300px;
-            height: 1.5px;
-            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-            margin: 20px auto;
-            border-radius: 2px;
+        /* الخط الفاصل الصريح المستمر (–––––) */
+        .simple-divider {
+            width: 80%;
+            max-width: 450px;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 22px auto;
+            border: none;
         }
 
         /* عناوين الأقسام */
@@ -264,7 +264,7 @@
             padding-left: 10px;
         }
 
-        /* الأقسام الديناميكية (تكون مخفية افتراضياً حتى التأكد من وجود فيديوهات بها) */
+        /* الأقسام الديناميكية */
         .dynamic-reel-section {
             display: none;
         }
@@ -390,7 +390,7 @@
             gap: 8px;
         }
 
-        /* كلمة شرفنا بمتابعتك والأزرار */
+        /* فاصل شرفنا بمتابعتك */
         .divider-with-text {
             display: flex;
             align-items: center;
@@ -448,7 +448,7 @@
 
         .social-btn:hover i { color: #0b1329; }
 
-        /* نافذة الفيديو المكبّرة */
+        /* النوافذ المنبثقة */
         .reel-modal, .image-modal {
             display: none;
             position: fixed;
@@ -526,8 +526,8 @@
 <body>
 
     <div class="container">
-        <!-- شريط التحكم بدون حاوية خلفية (مطابق للصورة الأخيرة) -->
-        <div class="top-nav">
+        <!-- Toolbar العلوي للموقع والبحث -->
+        <div class="toolbar" id="mainToolbar">
             <form class="search-box" id="searchForm">
                 <input type="text" id="searchInput" placeholder="ادخل نص البحث">
                 <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -558,10 +558,11 @@
             <div class="subtitle" id="txt-title">شاعر / صانع محتوى</div>
             <p class="bio" id="txt-bio">هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش</p>
             
-            <div class="gold-divider"></div>
+            <!-- الخط الفاصل النظيف (_______________________________) -->
+            <div class="simple-divider"></div>
         </header>
 
-        <!-- الأقسام الديناميكية (مخفية تلقائياً حتى يتم التأكد من وجود فيديوهات حمّلت بداخلها) -->
+        <!-- الأقسام الديناميكية -->
         <section class="dynamic-reel-section" id="sec-quranshorts-wrapper">
             <h2 class="section-title" id="sec-quranshorts">تلاوات اخترناها لك</h2>
             <div class="reels-wrapper">
@@ -598,7 +599,7 @@
             </div>
         </section>
 
-        <!-- نبذة تعريفية عني -->
+        <!-- نبذة تعريفية -->
         <section>
             <h2 class="section-title" id="about-title">نبذة تعريفية عني</h2>
             <div class="about-box">
@@ -627,7 +628,6 @@
             </div>
         </section>
 
-        <!-- فاصل شرفنا بمتابعتك بدون تكرار الخطوط -->
         <div class="divider-with-text">
             <span id="txt-honor">شرفنا بمتابعتك</span>
         </div>
@@ -673,7 +673,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // جلب الأقسام وإظهار القسم فقط إذا احتوى على كروت Reels
+            // إظهار الأقسام التي بها محتوى فقط
             async function loadSectionContent(fileUrl, containerId) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -685,7 +685,7 @@
                         const html = await response.text();
                         if (html.trim().length > 0 && html.includes('reel-card')) {
                             container.innerHTML = html;
-                            if (section) section.style.display = 'block'; // إظهار القسم عند وجود محتوى فقط
+                            if (section) section.style.display = 'block';
                         } else {
                             if (section) section.style.display = 'none';
                         }
@@ -702,7 +702,7 @@
             loadSectionContent('foryou.html', 'foryou-container');
             loadSectionContent('poems.html', 'poems-container');
 
-            // التمرير بالأزرار لليمين واليسار
+            // التمرير الأفقي
             window.scrollSection = function(containerId, direction) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -744,7 +744,7 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // معاينة الصورة الشخصية
+            // عرض الصورة الشخصية
             const profileWrapper = document.getElementById('profileImgWrapper');
             const profileImg = document.getElementById('profileImg');
             const imageModal = document.getElementById('imageModal');
@@ -763,7 +763,7 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // البحث المباشر
+            // فلترة البحث المباشر
             const searchInput = document.getElementById('searchInput');
             searchInput.addEventListener('input', () => {
                 const val = searchInput.value.toLowerCase().trim();
@@ -778,7 +778,7 @@
                 searchInput.blur();
             });
 
-            // تبديل الثيم
+            // زر تبديل الوضع (Dark / Light)
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             
@@ -789,7 +789,7 @@
                 themeIcon.className = newTheme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
             });
 
-            // الترجمة واللغات
+            // التحكم بالترجمة
             const langBtn = document.getElementById('langBtn');
             const langDropdown = document.getElementById('langDropdown');
 
@@ -838,7 +838,7 @@
                 },
                 en: {
                     search: "Search content...",
-                    name: "Faris Al-Shareef",
+                    name: "Faris Ash-Shiref",
                     title: "Poet / Content Creator",
                     bio: "Here you will find all the works of poet Faris Muhammad Dahesh.",
                     quranshorts: "Selected Recitations",
@@ -861,7 +861,7 @@
                 },
                 es: {
                     search: "Ingrese texto...",
-                    name: "Faris Al-Shareef",
+                    name: "Faris Ash-Shiref",
                     title: "Poeta / Creador de Contenido",
                     bio: "Aquí encontrarás todas las obras del poeta Faris Muhammad Dahesh.",
                     quranshorts: "Recitaciones Seleccionadas",
