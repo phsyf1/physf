@@ -87,8 +87,14 @@
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-15px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(-15px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
 
         .container {
@@ -96,7 +102,7 @@
             margin: 0 auto;
         }
 
-        /* شريط الـ Toolbar العلوي */
+        /* Toolbar العلوي */
         .toolbar {
             position: sticky;
             top: 10px;
@@ -146,7 +152,9 @@
             transition: transform 0.2s ease;
         }
 
-        .search-btn:active { transform: scale(0.9); }
+        .search-btn:active {
+            transform: scale(0.9);
+        }
 
         .control-btn {
             background: var(--input-bg);
@@ -166,9 +174,13 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
-        .control-btn:hover { border-color: var(--accent-color); }
+        .control-btn:hover {
+            border-color: var(--accent-color);
+        }
 
-        .lang-wrapper { position: relative; }
+        .lang-wrapper {
+            position: relative;
+        }
 
         .lang-dropdown {
             display: none;
@@ -188,8 +200,14 @@
             animation: fadeInDown 0.4s ease;
         }
 
-        html[dir="ltr"] .lang-dropdown { left: auto; right: 0; }
-        .lang-dropdown.show { display: flex !important; }
+        html[dir="ltr"] .lang-dropdown {
+            left: auto;
+            right: 0;
+        }
+
+        .lang-dropdown.show {
+            display: flex !important;
+        }
 
         .lang-option {
             padding: 10px 15px;
@@ -209,7 +227,7 @@
             color: var(--accent-color);
         }
 
-        /* الهيدر وصورة البروفايل */
+        /* الهيدر */
         header {
             text-align: center;
             padding: 5px 10px 10px;
@@ -227,7 +245,9 @@
             transition: transform 0.4s ease;
         }
 
-        .profile-img-wrapper:hover { transform: scale(1.03); }
+        .profile-img-wrapper:hover {
+            transform: scale(1.03);
+        }
 
         .profile-img {
             width: 120px;
@@ -237,9 +257,25 @@
             display: block;
         }
 
-        h1 { font-size: 1.9rem; font-weight: 500; margin-bottom: 4px; }
-        .subtitle { color: var(--accent-color); font-size: 0.95rem; margin-bottom: 8px; font-weight: 500; }
-        .bio { color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 0.9rem; }
+        h1 { 
+            font-size: 1.9rem; 
+            font-weight: 500; 
+            margin-bottom: 4px;
+        }
+
+        .subtitle { 
+            color: var(--accent-color); 
+            font-size: 0.95rem; 
+            margin-bottom: 8px; 
+            font-weight: 500; 
+        }
+
+        .bio { 
+            color: var(--text-muted); 
+            max-width: 600px; 
+            margin: 0 auto; 
+            font-size: 0.9rem; 
+        }
 
         .simple-divider {
             width: 100%;
@@ -275,7 +311,15 @@
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .role-badge:hover { transform: translateY(-2px); border-color: var(--accent-color); }
+        .role-badge:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+
+        .role-badge i {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
 
         .section-title {
             font-size: 1.3rem;
@@ -293,7 +337,9 @@
             padding-left: 10px;
         }
 
-        .dynamic-reel-section { display: none; }
+        .dynamic-reel-section {
+            display: none;
+        }
 
         .reels-wrapper {
             position: relative;
@@ -328,8 +374,28 @@
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .reel-card:hover { transform: translateY(-4px); border-color: var(--accent-color); }
+        .reel-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
+        }
+
         .reel-card img { width: 100%; height: 100%; object-fit: cover; }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.65);
+            color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
 
         .scroll-btn {
             position: absolute;
@@ -352,7 +418,10 @@
             transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
         }
 
-        .scroll-btn:active { transform: translateY(-50%) scale(0.9); }
+        .scroll-btn:active {
+            transform: translateY(-50%) scale(0.9);
+        }
+
         .left-btn { left: -8px; }
         .right-btn { right: -8px; }
 
@@ -368,7 +437,7 @@
 
         .about-box p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; }
 
-        .contact-section { padding: 10px 0 15px; }
+        .contact-section { padding: 10px 0 10px; }
         .contact-form { display: flex; flex-direction: column; gap: 12px; }
         .form-group input, .form-group textarea {
             width: 100%;
@@ -401,83 +470,62 @@
             transition: transform 0.2s ease, opacity 0.2s ease;
         }
 
-        .submit-btn:hover { opacity: 0.95; transform: translateY(-1px); }
-
-        /* ١. تصميم خانة عدد الزوار النشطة الانسيابية */
-        .visitor-section {
-            margin: 20px 0 10px;
-            display: flex;
-            justify-content: center;
+        .submit-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
         }
 
-        .visitor-box {
+        /* 1. عداد الزوار */
+        .visitor-card {
             background: var(--card-bg-glass);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 12px 22px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
+            padding: 16px;
+            text-align: center;
+            margin-top: 18px;
             box-shadow: var(--shadow-sm);
-            width: 100%;
-            max-width: 400px;
-            height: 52px;
-            position: relative;
-            overflow: hidden;
         }
 
-        .visitor-box i {
-            color: var(--accent-color);
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        .visitor-text-wrapper {
-            position: relative;
-            height: 24px;
-            width: 100%;
-            overflow: hidden;
+        .visitor-title {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
         }
 
-        .visitor-slide {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            font-size: 0.93rem;
-            font-weight: 500;
-            color: var(--text-color);
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            white-space: nowrap;
-        }
-
-        .visitor-slide.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .visitor-slide strong {
+        .visitor-count-box {
+            font-size: 1.25rem;
+            font-weight: 700;
             color: var(--accent-color);
-            font-size: 1.05rem;
-            margin: 0 4px;
+            min-height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
-        /* ٢. تصميم شبكة أعداد المتابعين (4 مربعات متناسقة) */
+        .visitor-count-box.animating {
+            opacity: 0;
+            transform: translateY(-6px);
+        }
+
+        /* 2. و 6. أزرار المتابعة الاحترافية المتناسقة للهاتف والشاشات */
+        .followers-section {
+            margin: 25px 0 20px;
+        }
+
         .followers-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            margin: 15px 0 20px;
         }
 
-        @media (min-width: 640px) {
+        @media (min-width: 768px) {
             .followers-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
@@ -488,119 +536,76 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 12px 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            border-radius: 16px;
+            padding: 16px 12px;
             text-decoration: none;
             color: var(--text-color);
-            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow-sm);
         }
 
         .follower-card:hover {
             transform: translateY(-3px);
-            border-color: var(--accent-color);
             box-shadow: var(--shadow);
         }
 
-        .follower-card .f-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: #ffffff;
-            flex-shrink: 0;
+        .follower-card i {
+            font-size: 1.8rem;
         }
 
-        .follower-card.youtube .f-icon { background: #ff0000; }
-        .follower-card.tiktok .f-icon { background: #000000; border: 1px solid rgba(255,255,255,0.2); }
-        .follower-card.facebook .f-icon { background: #1877f2; }
-        .follower-card.telegram .f-icon { background: #0088cc; }
+        .follower-card.youtube { border-color: rgba(255, 0, 0, 0.35); }
+        .follower-card.youtube i { color: #ff0000; }
+        .follower-card.youtube:hover { border-color: #ff0000; }
 
-        .follower-info {
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
+        .follower-card.tiktok { border-color: rgba(0, 242, 254, 0.35); }
+        .follower-card.tiktok i { color: #00f2fe; }
+        .follower-card.tiktok:hover { border-color: #00f2fe; }
+
+        .follower-card.telegram { border-color: rgba(34, 158, 217, 0.35); }
+        .follower-card.telegram i { color: #229ed9; }
+        .follower-card.telegram:hover { border-color: #229ed9; }
+
+        .follower-card.facebook { border-color: rgba(24, 119, 242, 0.35); }
+        .follower-card.facebook i { color: #1877f2; }
+        .follower-card.facebook:hover { border-color: #1877f2; }
 
         .follower-count {
-            font-size: 1.05rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            color: var(--text-color);
-            line-height: 1.2;
+            line-height: 1;
         }
 
-        .follower-platform {
-            font-size: 0.78rem;
+        .follower-label {
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
 
-        /* ٦. أزرار المتابعة السفلية (2x2 Grid) احترافية ومتناسقة */
-        .social-links {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 15px 0 20px;
-            width: 100%;
-        }
-
-        .social-btn {
-            color: var(--text-color);
-            text-decoration: none;
-            background: var(--card-bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 12px 16px;
-            border-radius: 14px;
-            border: 1px solid var(--border-color);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.2s ease, background 0.3s ease, border-color 0.3s ease;
-            width: 100%;
-        }
-
-        .social-btn i { color: var(--accent-color); font-size: 1.1rem; }
-
-        .social-btn:hover { 
-            background: var(--accent-color); 
-            color: #0b1329; 
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        .social-btn:hover i { color: #0b1329; }
-
-        /* ٣. زر FAB المتمدد والمكرر للـ YouTube */
+        /* 3. زر FAB التمددي للمتابعة على يوتيوب */
         .fab-subscribe {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            height: 48px;
-            min-width: 48px;
-            padding: 0 14px;
-            border-radius: 24px;
+            height: 50px;
+            min-width: 50px;
+            border-radius: 25px;
             background: #ff0000;
             color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0 14px;
             gap: 8px;
             box-shadow: 0 4px 16px rgba(255, 0, 0, 0.45);
             z-index: 999;
             text-decoration: none;
             font-size: 1.2rem;
-            overflow: hidden;
             white-space: nowrap;
+            overflow: hidden;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -615,7 +620,7 @@
             max-width: 0;
             opacity: 0;
             transition: max-width 0.5s ease, opacity 0.3s ease;
-            display: inline-block;
+            overflow: hidden;
         }
 
         .fab-subscribe.expanded {
@@ -623,16 +628,16 @@
         }
 
         .fab-subscribe.expanded .fab-text {
-            max-width: 110px;
+            max-width: 100px;
             opacity: 1;
         }
 
         .fab-subscribe:hover {
-            transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(255, 0, 0, 0.65);
             color: #ffffff;
         }
 
+        /* Modals */
         .reel-modal, .image-modal {
             display: none;
             position: fixed;
@@ -659,8 +664,17 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
-        .video-container { width: 100%; height: 100%; position: relative; }
-        .video-container iframe { width: 100%; height: 100%; border: none; }
+        .video-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
         .close-modal {
             position: absolute;
@@ -681,9 +695,16 @@
             transition: transform 0.2s ease;
         }
 
-        .close-modal:hover { transform: scale(1.1); }
+        .close-modal:hover {
+            transform: scale(1.1);
+        }
 
-        .image-modal-content { position: relative; max-width: 90vw; max-height: 85vh; }
+        .image-modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 85vh;
+        }
+
         .image-modal-content img {
             width: 270px;
             height: 270px;
@@ -708,17 +729,31 @@
             animation: fadeInDown 0.4s ease;
         }
 
-        .search-modal-box i { font-size: 2.8rem; color: var(--accent-color); margin-bottom: 12px; }
-        .search-modal-box h3 { font-size: 1.25rem; margin-bottom: 8px; color: var(--text-color); }
-        .search-modal-box p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+        .search-modal-box i {
+            font-size: 2.8rem;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+        }
 
-        footer { text-align: center; padding: 10px 0 20px; color: var(--text-muted); font-size: 0.85rem; }
+        .search-modal-box h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .search-modal-box p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        footer { text-align: center; padding: 15px 0 20px; color: var(--text-muted); font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Toolbar العلوي للموقع والبحث -->
+        <!-- Toolbar العلوي -->
         <div class="toolbar" id="mainToolbar">
             <form class="search-box" id="searchForm">
                 <input type="text" id="searchInput" placeholder="ادخل نص البحث">
@@ -825,81 +860,51 @@
                         إرسال الرسالة <i class="fa-solid fa-paper-plane"></i>
                     </button>
                 </form>
-            </div>
 
-            <!-- ١. خانة عدد الزوار تظهر تحت قسم تواصل معي وتتغير بأنيميشن كل ٣ ثوانٍ -->
-            <div class="visitor-section">
-                <div class="visitor-box">
-                    <i class="fa-solid fa-users-viewfinder"></i>
-                    <div class="visitor-text-wrapper">
-                        <span class="visitor-slide active" id="visitorSlide1">أهلاً بك في موقعنا الرسمـي</span>
-                        <span class="visitor-slide" id="visitorSlide2">ضيفنا الكريم رقم <strong id="visitorCountVal">1,250</strong></span>
+                <!-- 1. عداد الزوار التفاعلي -->
+                <div class="visitor-card">
+                    <div class="visitor-title">
+                        <i class="fa-solid fa-eye"></i> <span id="txt-visitor-title">عدد زوار الموقع</span>
+                    </div>
+                    <div class="visitor-count-box" id="visitorCountBox">
+                        1,421
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ٢. شبكة المتابعين على المنصات الأربع -->
-        <section class="reveal">
-            <h2 class="section-title" id="followers-title">مجتمعنا عبر المنصات</h2>
+        <!-- 2 & 6 & 8 & 9. مربعات المتابعة بدلاً من الأزرار القديمة -->
+        <section class="followers-section reveal">
             <div class="followers-grid">
                 <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="follower-card youtube">
-                    <div class="f-icon"><i class="fa-brands fa-youtube"></i></div>
-                    <div class="follower-info">
-                        <span class="follower-count">10K+</span>
-                        <span class="follower-platform" id="f-yt">يوتيوب</span>
-                    </div>
+                    <i class="fa-brands fa-youtube"></i>
+                    <div class="follower-count">+60</div>
+                    <div class="follower-label" id="lbl-yt">يوتيوب</div>
                 </a>
                 <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="follower-card tiktok">
-                    <div class="f-icon"><i class="fa-brands fa-tiktok"></i></div>
-                    <div class="follower-info">
-                        <span class="follower-count">25K+</span>
-                        <span class="follower-platform" id="f-tt">تيك توك</span>
-                    </div>
-                </a>
-                <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="follower-card facebook">
-                    <div class="f-icon"><i class="fa-brands fa-facebook-f"></i></div>
-                    <div class="follower-info">
-                        <span class="follower-count">15K+</span>
-                        <span class="follower-platform" id="f-fb">فيسبوك</span>
-                    </div>
+                    <i class="fa-brands fa-tiktok"></i>
+                    <div class="follower-count">+400</div>
+                    <div class="follower-label" id="lbl-tt">تيك توك</div>
                 </a>
                 <a href="https://t.me/phsyf1" target="_blank" class="follower-card telegram">
-                    <div class="f-icon"><i class="fa-brands fa-telegram"></i></div>
-                    <div class="follower-info">
-                        <span class="follower-count">5K+</span>
-                        <span class="follower-platform" id="f-tg">تيليجرام</span>
-                    </div>
+                    <i class="fa-brands fa-telegram"></i>
+                    <div class="follower-count">±2</div>
+                    <div class="follower-label" id="lbl-tg">تيليجرام</div>
+                </a>
+                <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="follower-card facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <div class="follower-count">+1.4 ألف</div>
+                    <div class="follower-label" id="lbl-fb">فيسبوك</div>
                 </a>
             </div>
         </section>
-
-        <div class="divider-with-text reveal">
-            <span id="txt-honor">شرفنا بمتابعتك</span>
-        </div>
-
-        <!-- ٦. أزرار المتابعة السفلية (2x2 Grid) متناسقة تماماً -->
-        <div class="social-links reveal">
-            <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-btn">
-                <i class="fa-brands fa-youtube"></i> <span id="btn-youtube">يوتيوب</span>
-            </a>
-            <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="social-btn">
-                <i class="fa-brands fa-tiktok"></i> <span id="btn-tiktok">تيك توك</span>
-            </a>
-            <a href="https://t.me/phsyf1" target="_blank" class="social-btn">
-                <i class="fa-brands fa-telegram"></i> <span id="btn-telegram">تيليجرام</span>
-            </a>
-            <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-btn">
-                <i class="fa-brands fa-facebook-f"></i> <span id="btn-facebook">فيسبوك</span>
-            </a>
-        </div>
 
         <footer>
             <p id="txt-footer">© 2026 - جميع الحقوق محفوظة</p>
         </footer>
     </div>
 
-    <!-- ٣. زر الاشتراك العائم (FAB) المتمدد تلقائياً كل ٣ ثوانٍ -->
+    <!-- 3. زر الاشتراك العائم (FAB) المتمدد -->
     <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="fab-subscribe" id="fabBtn" title="اشترك في القناة" aria-label="Subscribe on YouTube">
         <i class="fa-brands fa-youtube"></i>
         <span class="fab-text" id="fabText">اشترك الآن</span>
@@ -923,7 +928,7 @@
         </div>
     </div>
 
-    <!-- نافذة نتائج البحث غير المتوفرة -->
+    <!-- نافذة حوار نتائج البحث غير المتوفرة -->
     <div class="reel-modal" id="searchModal">
         <div class="search-modal-box">
             <button class="close-modal" id="closeSearchModalBtn">&times;</button>
@@ -938,31 +943,320 @@
 
             let currentLang = 'ar';
 
-            // ٤ & ٥. دالة تحديد اللغة المبدئية من جهاز الزائر أو الـ LocalStorage
-            function getInitialLanguage() {
-                const savedLang = localStorage.getItem('site_lang');
-                if (savedLang) return savedLang;
+            // قاموس الترجمة المحدث مع التواريخ الهجرية للنص التعريفى
+            const i18n = {
+                ar: {
+                    search: "ادخل نص البحث",
+                    name: "فَارِس الشِريـف",
+                    title: "شاعر / صانع محتوى مرئي",
+                    bio: "هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش",
+                    badgeQuran: "قارئ قرآن",
+                    badgePoet: "شاعر",
+                    badgeCreator: "صانع محتوى",
+                    quranshorts: "تلاوات اخترناها لك",
+                    quranfull: "تلاوات عطرة",
+                    foryou: "من أجلك أنت",
+                    poems: "قصائدي",
+                    aboutTitle: "نبذة تعريفية عني",
+                    aboutDesc: "فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. يسعى في مسيرة حياته إلى ترك أثر نافع بين الناس، سواء بتلاواته أو قصائده الشعرية أو محتواه المرئي على مواقع التواصل الاجتماعي.",
+                    contactTitle: "تواصل معي",
+                    namePlaceholder: "اسم الكريم",
+                    emailPlaceholder: "بريدك الإلكتروني",
+                    msgPlaceholder: "اكتب رسالتك هنا...",
+                    submitBtn: "إرسال الرسالة",
+                    visitorTitle: "عدد زوار الموقع",
+                    visitorTextLabel: "ضيفنا الكريم رقم",
+                    ytLabel: "يوتيوب",
+                    ttLabel: "تيك توك",
+                    tgLabel: "تيليجرام",
+                    fbLabel: "فيسبوك",
+                    subscribeNow: "اشترك الآن",
+                    fbCount: "+1.4 ألف",
+                    footer: "© 2026 - جميع الحقوق محفوظة",
+                    notFoundTitle: "عذراً.. المحتوى غير متوفر",
+                    notFoundMsg: "للأسف المحتوى الذي بحثت عنه غير متوفر حالياً. يسعدنا جداً اهتمامك بمحتوانا وشغفك بمتابعته!"
+                },
+                en: {
+                    search: "Search content...",
+                    name: "Faris Ash-Shiref",
+                    title: "Poet / Content Creator",
+                    bio: "Here you will find all the works of poet Faris Muhammad Dahesh.",
+                    badgeQuran: "Quran Reciter",
+                    badgePoet: "Poet",
+                    badgeCreator: "Content Creator",
+                    quranshorts: "Selected Recitations",
+                    quranfull: "Fragrant Recitations",
+                    foryou: "For You",
+                    poems: "My Poems",
+                    aboutTitle: "About Me",
+                    aboutDesc: "Faris Muhammad Dahesh.. Egyptian poet and content creator, born July 3, 2003 AD (3 Jumada al-Ula 1424 AH) in Asyut, Egypt. He strives to leave a meaningful impact through Quran recitations, poetry, and media content.",
+                    contactTitle: "Contact Me",
+                    namePlaceholder: "Your Name",
+                    emailPlaceholder: "Your Email",
+                    msgPlaceholder: "Write your message here...",
+                    submitBtn: "Send Message",
+                    visitorTitle: "Website Visitors",
+                    visitorTextLabel: "Honored Guest #",
+                    ytLabel: "YouTube",
+                    ttLabel: "TikTok",
+                    tgLabel: "Telegram",
+                    fbLabel: "Facebook",
+                    subscribeNow: "Subscribe",
+                    fbCount: "+1.4K",
+                    footer: "© 2026 - All Rights Reserved",
+                    notFoundTitle: "Content Unavailable",
+                    notFoundMsg: "Unfortunately, the content you searched for is currently unavailable. We are delighted by your interest!"
+                },
+                es: {
+                    search: "Ingrese texto...",
+                    name: "Faris Ash-Shiref",
+                    title: "Poeta / Creador de Contenido",
+                    bio: "Aquí encontrarás todas las obras del poeta Faris Muhammad Dahesh.",
+                    badgeQuran: "Recitador del Corán",
+                    badgePoet: "Poeta",
+                    badgeCreator: "Creador de Contenido",
+                    quranshorts: "Recitaciones Seleccionadas",
+                    quranfull: "Recitaciones Fragantes",
+                    foryou: "Para Ti",
+                    poems: "Mis Poemas",
+                    aboutTitle: "Sobre Mí",
+                    aboutDesc: "Faris Muhammad Dahesh.. Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 d.C. (3 de Jumada al-Ula de 1424 AH) en Asiut, Egipto. Busca dejar un impacto positivo a través de recitaciones del Corán, poesía y medios sociales.",
+                    contactTitle: "Contáctame",
+                    namePlaceholder: "Tu Nombre",
+                    emailPlaceholder: "Tu Correo Electrónico",
+                    msgPlaceholder: "Escribe tu mensaje aquí...",
+                    submitBtn: "Enviar Mensaje",
+                    visitorTitle: "Visitantes del sitio",
+                    visitorTextLabel: "Invitado de honor #",
+                    ytLabel: "YouTube",
+                    ttLabel: "TikTok",
+                    tgLabel: "Telegram",
+                    fbLabel: "Facebook",
+                    subscribeNow: "Suscribirse",
+                    fbCount: "+1.4K",
+                    footer: "© 2026 - Todos los derechos reservados",
+                    notFoundTitle: "Contenido no disponible",
+                    notFoundMsg: "Lamentablemente, el contenido que buscaste no está disponible actualmente."
+                },
+                fr: {
+                    search: "Rechercher un contenu...",
+                    name: "Faris Ash-Shiref",
+                    title: "Poète / Créateur de Contenu",
+                    bio: "Vous trouverez ici toutes les œuvres du poète Faris Muhammad Dahesh.",
+                    badgeQuran: "Récitateur du Coran",
+                    badgePoet: "Poète",
+                    badgeCreator: "Créateur de Contenu",
+                    quranshorts: "Récitations Sélectionnées",
+                    quranfull: "Récitations Parfumées",
+                    foryou: "Pour Vous",
+                    poems: "Mes Poèmes",
+                    aboutTitle: "À Propos de Moi",
+                    aboutDesc: "Faris Muhammad Dahesh.. Poète et créateur de contenu égyptien, né le 3 juillet 2003 ap. J.-C. (3 Joumada al-Oula 1424 AH) à Assiout, Égypte. Il s'efforce de laisser un impact positif à travers les récitations du Coran, la poésie et les vidéos.",
+                    contactTitle: "Contactez-moi",
+                    namePlaceholder: "Votre Nom",
+                    emailPlaceholder: "Votre E-mail",
+                    msgPlaceholder: "Écrivez votre message ici...",
+                    submitBtn: "Envoyer le Message",
+                    visitorTitle: "Visiteurs du site",
+                    visitorTextLabel: "Invité d'honneur N°",
+                    ytLabel: "YouTube",
+                    ttLabel: "TikTok",
+                    tgLabel: "Telegram",
+                    fbLabel: "Facebook",
+                    subscribeNow: "S'abonner",
+                    fbCount: "+1.4K",
+                    footer: "© 2026 - Tous droits réservés",
+                    notFoundTitle: "Contenu indisponible",
+                    notFoundMsg: "Malheureusement, le contenu que vous avez recherché n'est pas disponible pour le moment."
+                },
+                id: {
+                    search: "Cari konten...",
+                    name: "Faris Ash-Shiref",
+                    title: "Penyair / Pembuat Konten",
+                    bio: "Di sini Anda akan menemukan semua karya penyair Faris Muhammad Dahesh.",
+                    badgeQuran: "Lantunan Al-Qur'an",
+                    badgePoet: "Penyair",
+                    badgeCreator: "Pembuat Konten",
+                    quranshorts: "Tilawah Pilihan",
+                    quranfull: "Tilawah Indah",
+                    foryou: "Untuk Anda",
+                    poems: "Puisi Saya",
+                    aboutTitle: "Tentang Saya",
+                    aboutDesc: "Faris Muhammad Dahesh.. Penyair dan pembuat konten asal Mesir, lahir 3 Juli 2003 M (3 Jumadil Ula 1424 H) di Asyut, Mesir. Berusaha memberikan dampak positif melalui lantunan Al-Qur'an, puisi, dan konten media sosial.",
+                    contactTitle: "Hubungi Saya",
+                    namePlaceholder: "Nama Anda",
+                    emailPlaceholder: "Email Anda",
+                    msgPlaceholder: "Tulis pesan Anda di sini...",
+                    submitBtn: "Kirim Pesan",
+                    visitorTitle: "Pengunjung Situs",
+                    visitorTextLabel: "Tamu Kehormatan #",
+                    ytLabel: "YouTube",
+                    ttLabel: "TikTok",
+                    tgLabel: "Telegram",
+                    fbLabel: "Facebook",
+                    subscribeNow: "Subskrip",
+                    fbCount: "+1.4K",
+                    footer: "© 2026 - Hak Cipta Dilindungi",
+                    notFoundTitle: "Konten Tidak Tersedia",
+                    notFoundMsg: "Maaf, konten yang Anda cari saat ini tidak tersedia."
+                },
+                ur: {
+                    search: "مواد تلاش کریں...",
+                    name: "فَارِس الشِريـف",
+                    title: "شاعر / مواد تخلیق کار",
+                    bio: "یہاں آپ کو شاعر فارس محمد داہش کے تمام کام ملیں گے۔",
+                    badgeQuran: "قاری قرآن",
+                    badgePoet: "شاعر",
+                    badgeCreator: "کنٹینٹ کریئیٹر",
+                    quranshorts: "منتخب تلاوتیں",
+                    quranfull: "مبارک تلاوتیں",
+                    foryou: "آپ کے لیے",
+                    poems: "میری شاعری",
+                    aboutTitle: "میرا تعارف",
+                    aboutDesc: "فارس محمد داہش.. مصری شاعر اور مواد تخلیق کار، پیدائش 3 جولائی 2003ء بمطابق 3 جمادی الأولى 1424ھ اسیوط، مصر۔ وہ اپنی تلاوت، شاعری اور ویڈیو مواد کے ذریعے لوگوں کے دلوں پر مثبت اثر چھوڑنے کی کوشش کرتے ہیں۔",
+                    contactTitle: "رابطہ کریں",
+                    namePlaceholder: "آپ کا نام",
+                    emailPlaceholder: "آپ کا ای میل",
+                    msgPlaceholder: "اپنا پیغام یہاں لکھیں...",
+                    submitBtn: "پیغام بھیجیں",
+                    visitorTitle: "سائٹ کے زائرین",
+                    visitorTextLabel: "محترم مہمان نمبر",
+                    ytLabel: "یوٹیوب",
+                    ttLabel: "ٹک ٹاک",
+                    tgLabel: "ٹیلیگرام",
+                    fbLabel: "فیس بک",
+                    subscribeNow: "سبسکرائب کریں",
+                    fbCount: "+1.4 ہزار",
+                    footer: "© 2026 - جملہ حقوق محفوظ ہیں",
+                    notFoundTitle: "مواد دستیاب نہیں ہے",
+                    notFoundMsg: "افسوس کہ جو مواد آپ نے تلاش کیا ہے وہ فی الحال دستیاب نہیں ہے۔"
+                }
+            };
 
-                const userLang = (navigator.language || navigator.userLanguage || '').toLowerCase().split('-')[0];
-                const supportedLangs = ['ar', 'en', 'es', 'fr', 'id', 'ur'];
-
-                return supportedLangs.includes(userLang) ? userLang : 'ar';
-            }
-
-            // دالة تحديد الثيم المبدئي من الـ LocalStorage
-            function getInitialTheme() {
-                return localStorage.getItem('site_theme') || 'dark';
-            }
-
-            // تطبيق الثيم المبدئي
-            const savedTheme = getInitialTheme();
+            // 4. حفظ الثيم في LocalStorage وتطبيقه
+            const savedTheme = localStorage.getItem('site_theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
+            const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             const themeColorMeta = document.getElementById('theme-color-meta');
-            if (themeIcon) themeIcon.className = savedTheme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-            if (themeColorMeta) themeColorMeta.setAttribute('content', savedTheme === 'light' ? '#f8fafc' : '#0b1329');
 
-            // تفعيل حركات الظهور عند السحب (Scroll Reveal)
+            if (themeIcon) {
+                themeIcon.className = savedTheme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+            }
+            if (themeColorMeta) {
+                themeColorMeta.setAttribute('content', savedTheme === 'light' ? '#f8fafc' : '#0b1329');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('site_theme', newTheme);
+                
+                themeIcon.className = newTheme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+                if (themeColorMeta) {
+                    themeColorMeta.setAttribute('content', newTheme === 'light' ? '#f8fafc' : '#0b1329');
+                }
+            });
+
+            // 4 & 5. لغة الجهاز وحفظ الترجمة في LocalStorage
+            function detectLanguage() {
+                const savedLang = localStorage.getItem('site_lang');
+                if (savedLang && i18n[savedLang]) {
+                    return savedLang;
+                }
+                const deviceLang = (navigator.language || navigator.userLanguage || '').substring(0, 2).toLowerCase();
+                if (i18n[deviceLang]) {
+                    return deviceLang;
+                }
+                return 'ar'; // اللغة الافتراضية
+            }
+
+            function changeLanguage(lang) {
+                if (!i18n[lang]) lang = 'ar';
+                currentLang = lang;
+                localStorage.setItem('site_lang', lang);
+
+                const isRTL = (lang === 'ar' || lang === 'ur');
+                document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+                document.documentElement.setAttribute('lang', lang);
+                
+                document.getElementById('searchInput').placeholder = i18n[lang].search;
+                document.getElementById('txt-name').innerText = i18n[lang].name;
+                document.getElementById('txt-title').innerText = i18n[lang].title;
+                document.getElementById('txt-bio').innerText = i18n[lang].bio;
+
+                document.getElementById('badge-quran').innerText = i18n[lang].badgeQuran;
+                document.getElementById('badge-poet').innerText = i18n[lang].badgePoet;
+                document.getElementById('badge-creator').innerText = i18n[lang].badgeCreator;
+
+                document.getElementById('sec-quranshorts').innerText = i18n[lang].quranshorts;
+                document.getElementById('sec-quranfull').innerText = i18n[lang].quranfull;
+                document.getElementById('sec-foryou').innerText = i18n[lang].foryou;
+                document.getElementById('sec-poems').innerText = i18n[lang].poems;
+                document.getElementById('about-title').innerText = i18n[lang].aboutTitle;
+                document.getElementById('about-desc').innerText = i18n[lang].aboutDesc;
+                
+                document.getElementById('contact-title').innerText = i18n[lang].contactTitle;
+                document.getElementById('input-name').placeholder = i18n[lang].namePlaceholder;
+                document.getElementById('input-email').placeholder = i18n[lang].emailPlaceholder;
+                document.getElementById('input-msg').placeholder = i18n[lang].msgPlaceholder;
+                document.getElementById('btn-submit').innerHTML = `${i18n[lang].submitBtn} <i class="fa-solid fa-paper-plane"></i>`;
+
+                document.getElementById('txt-visitor-title').innerText = i18n[lang].visitorTitle;
+                document.getElementById('lbl-yt').innerText = i18n[lang].ytLabel;
+                document.getElementById('lbl-tt').innerText = i18n[lang].ttLabel;
+                document.getElementById('lbl-tg').innerText = i18n[lang].tgLabel;
+                document.getElementById('lbl-fb').innerText = i18n[lang].fbLabel;
+                document.querySelector('.follower-card.facebook .follower-count').innerText = i18n[lang].fbCount;
+                document.getElementById('fabText').innerText = i18n[lang].subscribeNow;
+
+                document.getElementById('txt-footer').innerText = i18n[lang].footer;
+
+                document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
+            }
+
+            // تطبيق اللغة المحددة عند بدء التشغيل
+            changeLanguage(detectLanguage());
+
+            // 1. منطق عداد الزوار وانيميشن التغير كل 3 ثوانٍ
+            let visitorCount = parseInt(localStorage.getItem('site_visit_counter') || '1420');
+            visitorCount++;
+            localStorage.setItem('site_visit_counter', visitorCount.toString());
+
+            const visitorBox = document.getElementById('visitorCountBox');
+            let showVisitText = false;
+
+            if (visitorBox) {
+                visitorBox.innerText = visitorCount.toLocaleString();
+
+                setInterval(() => {
+                    visitorBox.classList.add('animating');
+                    setTimeout(() => {
+                        showVisitText = !showVisitText;
+                        if (showVisitText) {
+                            const label = i18n[currentLang]?.visitorTextLabel || "ضيفنا الكريم رقم";
+                            visitorBox.innerText = `${label} ${visitorCount}`;
+                        } else {
+                            visitorBox.innerText = visitorCount.toLocaleString();
+                        }
+                        visitorBox.classList.remove('animating');
+                    }, 400);
+                }, 3000);
+            }
+
+            // 3. منطق تمدد زر FAB الخاص بيوتيوب كل 3 ثوانٍ
+            const fabBtn = document.getElementById('fabBtn');
+            if (fabBtn) {
+                setInterval(() => {
+                    fabBtn.classList.add('expanded');
+                    setTimeout(() => {
+                        fabBtn.classList.remove('expanded');
+                    }, 1800);
+                }, 3600);
+            }
+
+            // حركات الظهور (Reveal)
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -973,7 +1267,7 @@
 
             document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-            // دالة التحكم بأسهم التمرير الأفقي
+            // تحديث أسهم التمرير
             function updateScrollButtons(container) {
                 if (!container) return;
                 const wrapper = container.closest('.reels-wrapper');
@@ -1001,7 +1295,6 @@
                 }
             }
 
-            // تحميل أقسام الفيديوهات
             async function loadSectionContent(fileUrl, containerId) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -1033,7 +1326,6 @@
             loadSectionContent('foryou.html', 'foryou-container');
             loadSectionContent('poems.html', 'poems-container');
 
-            // التمرير الأفقي
             window.scrollSection = function(containerId, direction) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -1048,7 +1340,6 @@
                 }
             };
 
-            // تشغيل الفيديو
             window.openReelModal = function(videoUrl) {
                 const modal = document.getElementById('reelModal');
                 const iframe = document.getElementById('modalIframe');
@@ -1075,7 +1366,6 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // عرض الصورة الشخصية
             const profileWrapper = document.getElementById('profileImgWrapper');
             const profileImg = document.getElementById('profileImg');
             const imageModal = document.getElementById('imageModal');
@@ -1094,7 +1384,6 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // نافذة نتائج البحث
             const searchForm = document.getElementById('searchForm');
             const searchInput = document.getElementById('searchInput');
             const searchModal = document.getElementById('searchModal');
@@ -1155,22 +1444,6 @@
                 searchInput.blur();
             });
 
-            // ٤. زر تبديل الوضع وحفظه في LocalStorage
-            const themeToggle = document.getElementById('themeToggle');
-            
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('site_theme', newTheme);
-                
-                themeIcon.className = newTheme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-                
-                if (themeColorMeta) {
-                    themeColorMeta.setAttribute('content', newTheme === 'light' ? '#f8fafc' : '#0b1329');
-                }
-            });
-
             // قائمة اللغة
             const langBtn = document.getElementById('langBtn');
             const langDropdown = document.getElementById('langDropdown');
@@ -1193,296 +1466,6 @@
                     langDropdown.classList.remove('show');
                 });
             });
-
-            // ١. إحصائيات عدد الزوار والتغيير الحركة كل ٣ ثوانٍ
-            function initVisitorCounter() {
-                let visits = parseInt(localStorage.getItem('site_visit_counter') || '1250', 10);
-                if (!sessionStorage.getItem('visited_this_session')) {
-                    visits += 1;
-                    localStorage.setItem('site_visit_counter', visits);
-                    sessionStorage.setItem('visited_this_session', 'true');
-                }
-
-                const countEl = document.getElementById('visitorCountVal');
-                if (countEl) countEl.innerText = visits.toLocaleString(currentLang === 'ar' || currentLang === 'ur' ? 'ar-EG' : 'en-US');
-
-                const slide1 = document.getElementById('visitorSlide1');
-                const slide2 = document.getElementById('visitorSlide2');
-                let isSlide2 = false;
-
-                setInterval(() => {
-                    if (isSlide2) {
-                        slide2.classList.remove('active');
-                        slide1.classList.add('active');
-                    } else {
-                        slide1.classList.remove('active');
-                        slide2.classList.add('active');
-                    }
-                    isSlide2 = !isSlide2;
-                }, 3000);
-            }
-
-            // ٣. حركية تمدد وانكماش زر FAB لليوتيوب كل ٣ ثوانٍ
-            function initFabAnimation() {
-                const fabBtn = document.getElementById('fabBtn');
-                if (!fabBtn) return;
-                setInterval(() => {
-                    fabBtn.classList.toggle('expanded');
-                }, 3000);
-            }
-
-            // قاموس اللغات والترجمة
-            const i18n = {
-                ar: {
-                    search: "ادخل نص البحث",
-                    name: "فَارِس الشِريـف",
-                    title: "شاعر / صانع محتوى مرئي",
-                    bio: "هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش",
-                    badgeQuran: "قارئ قرآن",
-                    badgePoet: "شاعر",
-                    badgeCreator: "صانع محتوى",
-                    quranshorts: "تلاوات اخترناها لك",
-                    quranfull: "تلاوات عطرة",
-                    foryou: "من أجلك أنت",
-                    poems: "قصائدي",
-                    aboutTitle: "نبذة تعريفية عنه",
-                    aboutDesc: "فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. يسعى في مسيرة حياته إلى ترك أثر نافع بين الناس، سواء بتلاواته أو قصائده الشعرية أو محتواه المرئي على مواقع التواصل الاجتماعي.",
-                    contactTitle: "تواصل معي",
-                    namePlaceholder: "اسم الكريم",
-                    emailPlaceholder: "بريدك الإلكتروني",
-                    msgPlaceholder: "اكتب رسالتك هنا...",
-                    submitBtn: "إرسال الرسالة",
-                    visitorWelcome: "أهلاً بك في موقعنا الرسمـي",
-                    visitorPrefix: "ضيفنا الكريم رقم",
-                    followersTitle: "مجتمعنا عبر المنصات",
-                    honor: "شرفنا بمتابعتك",
-                    telegram: "تيليجرام",
-                    tiktok: "تيك توك",
-                    facebook: "فيسبوك",
-                    youtube: "يوتيوب",
-                    fabSubscribe: "اشترك الآن",
-                    footer: "© 2026 - جميع الحقوق محفوظة",
-                    notFoundTitle: "عذراً.. المحتوى غير متوفر",
-                    notFoundMsg: "للأسف المحتوى الذي بحثت عنه غير متوفر حالياً. يسعدنا جداً اهتمامك بمحتوانا وشغفك بمتابعته!"
-                },
-                en: {
-                    search: "Search content...",
-                    name: "Faris Ash-Shiref",
-                    title: "Poet / Content Creator",
-                    bio: "Here you will find all the works of poet Faris Muhammad Dahesh.",
-                    badgeQuran: "Quran Reciter",
-                    badgePoet: "Poet",
-                    badgeCreator: "Content Creator",
-                    quranshorts: "Selected Recitations",
-                    quranfull: "Fragrant Recitations",
-                    foryou: "For You",
-                    poems: "My Poems",
-                    aboutTitle: "About Me",
-                    aboutDesc: "Faris Muhammad Dahesh.. Egyptian poet and content creator, born July 3, 2003 in Asyut, Egypt. He strives to leave a meaningful impact through Quran recitations, poetry, and video content.",
-                    contactTitle: "Contact Me",
-                    namePlaceholder: "Your Name",
-                    emailPlaceholder: "Your Email",
-                    msgPlaceholder: "Write your message here...",
-                    submitBtn: "Send Message",
-                    visitorWelcome: "Welcome to our official website",
-                    visitorPrefix: "Honored Guest #",
-                    followersTitle: "Our Community Across Platforms",
-                    honor: "Honored by your follow",
-                    telegram: "Telegram",
-                    tiktok: "TikTok",
-                    facebook: "Facebook",
-                    youtube: "YouTube",
-                    fabSubscribe: "Subscribe Now",
-                    footer: "© 2026 - All Rights Reserved",
-                    notFoundTitle: "Content Unavailable",
-                    notFoundMsg: "Unfortunately, the content you searched for is currently unavailable. We are truly delighted by your interest in our content!"
-                },
-                es: {
-                    search: "Ingrese texto...",
-                    name: "Faris Ash-Shiref",
-                    title: "Poeta / Creador de Contenido",
-                    bio: "Aquí encontrarás todas las obras del poeta Faris Muhammad Dahesh.",
-                    badgeQuran: "Recitador del Corán",
-                    badgePoet: "Poeta",
-                    badgeCreator: "Creador de Contenido",
-                    quranshorts: "Recitaciones Seleccionadas",
-                    quranfull: "Recitaciones Fragantes",
-                    foryou: "Para Ti",
-                    poems: "Mis Poemas",
-                    aboutTitle: "Sobre Mí",
-                    aboutDesc: "Faris Muhammad Dahesh.. Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 en Asiut, Egipto. Busca dejar un impacto positivo a través de recitaciones del Corán, poesía y redes sociales.",
-                    contactTitle: "Contáctame",
-                    namePlaceholder: "Tu Nombre",
-                    emailPlaceholder: "Tu Correo Electrónico",
-                    msgPlaceholder: "Escribe tu mensaje aquí...",
-                    submitBtn: "Enviar Mensaje",
-                    visitorWelcome: "Bienvenido a nuestro sitio oficial",
-                    visitorPrefix: "Estimado Invitado #",
-                    followersTitle: "Nuestra Comunidad en Redes",
-                    honor: "Honrados con tu seguimiento",
-                    telegram: "Telegram",
-                    tiktok: "TikTok",
-                    facebook: "Facebook",
-                    youtube: "YouTube",
-                    fabSubscribe: "Suscríbete",
-                    footer: "© 2026 - Todos los derechos reservados",
-                    notFoundTitle: "Contenido no disponible",
-                    notFoundMsg: "Lamentablemente, el contenido que buscaste no está disponible actualmente. ¡Estamos muy felices de que estés interesado en nuestro contenido!"
-                },
-                fr: {
-                    search: "Rechercher un contenu...",
-                    name: "Faris Ash-Shiref",
-                    title: "Poète / Créateur de Contenu",
-                    bio: "Vous trouverez ici toutes les œuvres du poète Faris Muhammad Dahesh.",
-                    badgeQuran: "Récitateur du Coran",
-                    badgePoet: "Poète",
-                    badgeCreator: "Créateur de Contenu",
-                    quranshorts: "Récitations Sélectionnées",
-                    quranfull: "Récitations Parfumées",
-                    foryou: "Pour Vous",
-                    poems: "Mes Poèmes",
-                    aboutTitle: "À Propos de Moi",
-                    aboutDesc: "Faris Muhammad Dahesh.. Poète et créateur de contenu égyptien, né le 3 juillet 2003 à Assiout, Égypte. Il s'efforce de laisser un impact positif à travers les récitations du Corán, la poésie et les vidéos.",
-                    contactTitle: "Contactez-moi",
-                    namePlaceholder: "Votre Nom",
-                    emailPlaceholder: "Votre E-mail",
-                    msgPlaceholder: "Écrivez votre message ici...",
-                    submitBtn: "Envoyer le Message",
-                    visitorWelcome: "Bienvenue sur notre site officiel",
-                    visitorPrefix: "Cher Visiteur n°",
-                    followersTitle: "Notre Communauté sur les Réseaux",
-                    honor: "Honoré par votre suivi",
-                    telegram: "Telegram",
-                    tiktok: "TikTok",
-                    facebook: "Facebook",
-                    youtube: "YouTube",
-                    fabSubscribe: "S'abonner",
-                    footer: "© 2026 - Tous droits réservés",
-                    notFoundTitle: "Contenu indisponible",
-                    notFoundMsg: "Malheureusement, le contenu que vous avez recherché n'est pas disponible pour le moment. Nous sommes ravis de votre intérêt pour notre contenu!"
-                },
-                id: {
-                    search: "Cari konten...",
-                    name: "Faris Ash-Shiref",
-                    title: "Penyair / Pembuat Konten",
-                    bio: "Di sini Anda akan menemukan semua karya penyair Faris Muhammad Dahesh.",
-                    badgeQuran: "Lantunan Al-Qur'an",
-                    badgePoet: "Penyair",
-                    badgeCreator: "Pembuat Konten",
-                    quranshorts: "Tilawah Pilihan",
-                    quranfull: "Tilawah Indah",
-                    foryou: "Untuk Anda",
-                    poems: "Puisi Saya",
-                    aboutTitle: "Tentang Saya",
-                    aboutDesc: "Faris Muhammad Dahesh.. Penyair dan pembuat konten asal Mesir, lahir 3 Juli 2003 di Asyut, Mesir. Berusaha memberikan dampak positif melalui lantunan Al-Qur'an, puisi, dan konten media sosial.",
-                    contactTitle: "Hubungi Saya",
-                    namePlaceholder: "Nama Anda",
-                    emailPlaceholder: "Email Anda",
-                    msgPlaceholder: "Tulis pesan Anda di sini...",
-                    submitBtn: "Kirim Pesan",
-                    visitorWelcome: "Selamat datang di situs resmi kami",
-                    visitorPrefix: "Tamu Terhormat #",
-                    followersTitle: "Komunitas Kami di Media Sosial",
-                    honor: "Kehormatan atas dukungan Anda",
-                    telegram: "Telegram",
-                    tiktok: "TikTok",
-                    facebook: "Facebook",
-                    youtube: "YouTube",
-                    fabSubscribe: "Subskrip",
-                    footer: "© 2026 - Hak Cipta Dilindungi",
-                    notFoundTitle: "Konten Tidak Tersedia",
-                    notFoundMsg: "Maaf, konten yang Anda cari saat ini tidak tersedia. Kami sangat senang atas ketertarikan Anda pada konten kami!"
-                },
-                ur: {
-                    search: "مواد تلاش کریں...",
-                    name: "فَارِس الشِريـف",
-                    title: "شاعر / مواد تخلیق کار",
-                    bio: "یہاں آپ کو شاعر فارس محمد داہش کے تمام کام ملیں گے۔",
-                    badgeQuran: "قاری قرآن",
-                    badgePoet: "شاعر",
-                    badgeCreator: "کنٹینٹ کریئیٹر",
-                    quranshorts: "منتخب تلاوتیں",
-                    quranfull: "مبارک تلاوتیں",
-                    foryou: "آپ کے لیے",
-                    poems: "میری شاعری",
-                    aboutTitle: "میرا تعارف",
-                    aboutDesc: "فارس محمد داہش.. مصری شاعر اور مواد تخلیق کار، پیدائش 3 جولائی 2003 اسیوط، مصر۔ وہ اپنی تلاوت، شاعری اور ویڈیو مواد کے ذریعے لوگوں کے دلوں پر مثبت اثر چھوڑنے کی کوشش کرتے ہیں۔",
-                    contactTitle: "رابطہ کریں",
-                    namePlaceholder: "آپ کا نام",
-                    emailPlaceholder: "آپ کا ای میل",
-                    msgPlaceholder: "اپنا پیغام یہاں لکھیں...",
-                    submitBtn: "پیغام بھیجیں",
-                    visitorWelcome: "ہماری آفیشل ویب سائٹ پر خوش آمدید",
-                    visitorPrefix: "مہمان گرامی نمبر",
-                    followersTitle: "سوشل میڈیا پر ہماری کمیونٹی",
-                    honor: "آپ کے فالو کرنے کا شکریہ",
-                    telegram: "ٹیلیگرام",
-                    tiktok: "ٹک ٹاک",
-                    facebook: "فیس بک",
-                    youtube: "یوٹیوب",
-                    fabSubscribe: "سبسکرائب کریں",
-                    footer: "© 2026 - جملہ حقوق محفوظ ہیں",
-                    notFoundTitle: "مواد دستیاب نہیں ہے",
-                    notFoundMsg: "افسوس کہ جو مواد آپ نے تلاش کیا ہے وہ فی الحال دستیاب نہیں ہے۔ ہمیں خوشی ہے کہ آپ ہمارے مواد میں دلچسپی رکھتے ہیں!"
-                }
-            };
-
-            function changeLanguage(lang) {
-                currentLang = lang;
-                localStorage.setItem('site_lang', lang);
-                const isRTL = (lang === 'ar' || lang === 'ur');
-
-                document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
-                document.documentElement.setAttribute('lang', lang);
-                
-                document.getElementById('searchInput').placeholder = i18n[lang].search;
-                document.getElementById('txt-name').innerText = i18n[lang].name;
-                document.getElementById('txt-title').innerText = i18n[lang].title;
-                document.getElementById('txt-bio').innerText = i18n[lang].bio;
-
-                document.getElementById('badge-quran').innerText = i18n[lang].badgeQuran;
-                document.getElementById('badge-poet').innerText = i18n[lang].badgePoet;
-                document.getElementById('badge-creator').innerText = i18n[lang].badgeCreator;
-
-                document.getElementById('sec-quranshorts').innerText = i18n[lang].quranshorts;
-                document.getElementById('sec-quranfull').innerText = i18n[lang].quranfull;
-                document.getElementById('sec-foryou').innerText = i18n[lang].foryou;
-                document.getElementById('sec-poems').innerText = i18n[lang].poems;
-                document.getElementById('about-title').innerText = i18n[lang].aboutTitle;
-                document.getElementById('about-desc').innerText = i18n[lang].aboutDesc;
-                
-                document.getElementById('contact-title').innerText = i18n[lang].contactTitle;
-                document.getElementById('input-name').placeholder = i18n[lang].namePlaceholder;
-                document.getElementById('input-email').placeholder = i18n[lang].emailPlaceholder;
-                document.getElementById('input-msg').placeholder = i18n[lang].msgPlaceholder;
-                document.getElementById('btn-submit').innerHTML = `${i18n[lang].submitBtn} <i class="fa-solid fa-paper-plane"></i>`;
-
-                document.getElementById('visitorSlide1').innerText = i18n[lang].visitorWelcome;
-                const visits = parseInt(localStorage.getItem('site_visit_counter') || '1250', 10);
-                document.getElementById('visitorSlide2').innerHTML = `${i18n[lang].visitorPrefix} <strong id="visitorCountVal">${visits.toLocaleString(isRTL ? 'ar-EG' : 'en-US')}</strong>`;
-                document.getElementById('followers-title').innerText = i18n[lang].followersTitle;
-
-                document.getElementById('f-yt').innerText = i18n[lang].youtube;
-                document.getElementById('f-tt').innerText = i18n[lang].tiktok;
-                document.getElementById('f-fb').innerText = i18n[lang].facebook;
-                document.getElementById('f-tg').innerText = i18n[lang].telegram;
-
-                document.getElementById('txt-honor').innerText = i18n[lang].honor;
-                document.getElementById('btn-telegram').innerText = i18n[lang].telegram;
-                document.getElementById('btn-tiktok').innerText = i18n[lang].tiktok;
-                document.getElementById('btn-facebook').innerText = i18n[lang].facebook;
-                document.getElementById('btn-youtube').innerText = i18n[lang].youtube;
-                
-                document.getElementById('fabText').innerText = i18n[lang].fabSubscribe;
-                document.getElementById('txt-footer').innerText = i18n[lang].footer;
-
-                document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
-            }
-
-            // تشغيل وظائف اللغة التلقائية والانيميشن والعداد
-            changeLanguage(getInitialLanguage());
-            initVisitorCounter();
-            initFabAnimation();
 
             window.addEventListener('resize', () => {
                 document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
