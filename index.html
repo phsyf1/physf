@@ -403,6 +403,7 @@
 
         .submit-btn:hover { opacity: 0.95; transform: translateY(-1px); }
 
+        /* الإصلاح الخاص بكارت عدد الزوار */
         .visitor-section {
             margin: 20px 0 10px;
             text-align: center;
@@ -489,6 +490,7 @@
 
         .divider-with-text span { padding: 0 12px; font-weight: 500; }
 
+        /* أزرار المتابعة */
         .social-links {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -533,6 +535,7 @@
 
         .social-btn:hover i { color: #0b1329; }
 
+        /* زر الاشتراك العائم (FAB) */
         .fab-subscribe {
             position: fixed;
             bottom: 20px;
@@ -584,11 +587,12 @@
             color: #ffffff;
         }
 
+        /* النوافذ المنبثقة العامة (Modals & Dialogs) مع خلفية بلورية مشبعة */
         .reel-modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.55);
             z-index: 9999;
             align-items: center;
             justify-content: center;
@@ -617,11 +621,11 @@
 
         .close-modal {
             position: absolute;
-            top: 14px;
-            left: 14px;
-            background: var(--input-bg);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
             font-size: 1.2rem;
             width: 32px;
             height: 32px;
@@ -634,36 +638,31 @@
             transition: transform 0.2s ease, background 0.2s ease;
         }
 
-        html[dir="ltr"] .close-modal { left: auto; right: 14px; }
-        .close-modal:hover { transform: scale(1.1); border-color: var(--accent-color); }
+        html[dir="ltr"] .close-modal { left: auto; right: 12px; }
+        .close-modal:hover { transform: scale(1.1); background: rgba(0, 0, 0, 0.8); }
 
-        /* تصميم كارت الصورة الشخصية بلون الثيم ومربع بحواف منحنية وبتباعد أنيق */
+        /* تصميم كارت الصورة الشخصية (مربع أبيض أنيق مع حواف منحنية وبدون علامة توثيق) */
         .profile-card-modal {
             position: relative;
             width: 100%;
             max-width: 380px;
-            background: var(--card-bg-glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            color: var(--text-color);
+            background: #ffffff;
+            color: #0f172a;
             border-radius: 28px;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
             animation: fadeInDown 0.4s ease;
             display: flex;
             flex-direction: column;
-            border: 1px solid var(--border-color);
-            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .profile-card-img-box {
             width: 100%;
-            aspect-ratio: 1 / 1; /* صورة مربعة */
-            border-radius: 30px;  /* حواف الصورة بمقدار 30 */
+            aspect-ratio: 1 / 1;
+            background: #000;
             overflow: hidden;
             position: relative;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
         }
 
         .profile-card-img-box img {
@@ -672,11 +671,10 @@
             object-fit: cover;
             object-position: center;
             display: block;
-            border-radius: 30px;
         }
 
         .profile-card-body {
-            padding: 16px 4px 4px;
+            padding: 20px 22px 24px;
             text-align: right;
         }
 
@@ -692,11 +690,11 @@
         .profile-card-header h2 {
             font-size: 1.35rem;
             font-weight: 700;
-            color: var(--text-color);
+            color: #0f172a;
         }
 
         .profile-card-bio {
-            color: var(--text-muted);
+            color: #475569;
             font-size: 0.9rem;
             line-height: 1.7;
             margin-bottom: 20px;
@@ -704,9 +702,9 @@
 
         .follow-now-btn {
             width: 100%;
-            background: var(--accent-color);
-            color: #0b1329;
-            border: none;
+            background: #f1f5f9;
+            color: #0f172a;
+            border: 1px solid #e2e8f0;
             padding: 12px;
             border-radius: 25px;
             font-size: 0.95rem;
@@ -716,10 +714,10 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: transform 0.2s ease, opacity 0.2s ease;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
 
-        .follow-now-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .follow-now-btn:hover { background: #e2e8f0; transform: translateY(-2px); }
 
         /* الديالوجات البلورية الموحدة */
         .glass-dialog-box {
@@ -784,16 +782,77 @@
             color: var(--accent-color);
         }
 
-        /* حاوية جلب ملف التقييمات الخارجي RatingPublish.html */
+        /* تصميم حوار التقييمات */
         .reviews-list-container {
-            min-height: 120px;
-            max-height: 60vh;
+            max-height: 200px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
             gap: 10px;
             padding-right: 4px;
+            margin-bottom: 12px;
         }
+
+        .review-item {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 10px 12px;
+            font-size: 0.88rem;
+        }
+
+        .review-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .review-author {
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .review-stars {
+            color: #f39c12;
+            font-size: 0.8rem;
+        }
+
+        .review-comment {
+            color: var(--text-color);
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .star-rating-picker {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1.5rem;
+            color: #777;
+            cursor: pointer;
+            direction: ltr;
+        }
+
+        .star-rating-picker .star.active { color: #f39c12; }
+
+        .delete-review-btn {
+            background: #e74c3c;
+            color: #ffffff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.2s ease;
+            margin-top: 5px;
+        }
+
+        .delete-review-btn:hover { opacity: 0.9; }
 
         .search-modal-box {
             position: relative;
@@ -820,22 +879,24 @@
 <body>
 
     <div class="container">
-        <!-- Toolbar العلوي -->
+        <!-- Toolbar العلوي للتحكم والمشاركة والتقييم واللغة والوضع -->
         <div class="toolbar" id="mainToolbar">
             <form class="search-box" id="searchForm">
                 <input type="text" id="searchInput" placeholder="ادخل نص البحث">
                 <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
 
+            <!-- زر مشاركة الموقع -->
             <button class="control-btn" id="shareBtn" type="button" title="مشاركة الموقع" aria-label="Share Site">
                 <i class="fa-solid fa-share-nodes"></i>
             </button>
 
-            <!-- زر فتح التقييمات يجلب ملف RatingPublish.html -->
+            <!-- زر فتح التقييمات -->
             <button class="control-btn" id="reviewsBtn" type="button" title="تقييمات وآراء الزوار" aria-label="Reviews">
                 <i class="fa-solid fa-star"></i>
             </button>
 
+            <!-- قائمة اللغات -->
             <div class="lang-wrapper">
                 <button class="control-btn" id="langBtn" type="button" aria-label="Language Menu">
                     <i class="fa-solid fa-globe"></i>
@@ -848,6 +909,7 @@
                 </div>
             </div>
 
+            <!-- تبديل الوضع (Dark/Light) -->
             <button class="control-btn" id="themeToggle" type="button" aria-label="Toggle Theme">
                 <i class="fa-solid fa-moon" id="themeIcon"></i>
             </button>
@@ -937,7 +999,7 @@
             </div>
         </section>
 
-        <!-- عدد الزوار -->
+        <!-- خانة عدد الزوار الثابتة الحجم بدون اهتزاز -->
         <section class="visitor-section reveal">
             <div class="visitor-card">
                 <i class="fa-solid fa-eye visitor-icon"></i>
@@ -952,6 +1014,7 @@
             <span id="txt-honor">شرفنا بمتابعتك</span>
         </div>
 
+        <!-- أزرار المتابعة مقسمة بشكل احترافي -->
         <div class="social-links reveal">
             <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-btn">
                 <i class="fa-brands fa-youtube"></i> <span id="btn-youtube">يوتيوب</span>
@@ -988,7 +1051,7 @@
         </div>
     </div>
 
-    <!-- 2. نافذة كارت الشاعر المنبثقة (مربعة بحواف 30 وتباعد وتصميم يتماشى مع الثيم) -->
+    <!-- 2. نافذة كارت الشاعر المنبثقة (مربعة بإنحناءات بدون توثيق وبخلفية بيضاء وخلفية بلورية) -->
     <div class="reel-modal" id="imageModal">
         <div class="profile-card-modal">
             <button class="close-modal" id="closeImageBtn">&times;</button>
@@ -1035,14 +1098,47 @@
         </div>
     </div>
 
-    <!-- 4. ديالوج تقييمات وآراء المستخدمين (يجلب RatingPublish.html مباشرة بدون ثقل في الكود) -->
+    <!-- 4. ديالوج تقييمات وآراء المستخدمين احترافي وبلوري -->
     <div class="reel-modal" id="reviewsModal">
         <div class="glass-dialog-box">
             <button class="close-modal" id="closeReviewsBtn">&times;</button>
             <h3 class="dialog-title"><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> <span id="reviewsTitle">تقييمات وآراء الزوار</span></h3>
             
             <div class="reviews-list-container" id="reviewsList">
-                <!-- يتم التحميل التلقائي من RatingPublish.html -->
+                <!-- يتم التحميل بالسوفت وير -->
+            </div>
+
+            <hr class="simple-divider" style="margin: 12px 0;">
+
+            <!-- نموذج إضافة تعليق إذا لم يكن علق سابقاً -->
+            <div id="reviewFormSection">
+                <h4 style="margin-bottom: 10px; font-size: 0.95rem; text-align: center;" id="addReviewHeader">أضف تقييمك ورأيك</h4>
+                <form id="reviewForm">
+                    <div class="star-rating-picker" id="starPicker">
+                        <i class="fa-solid fa-star star active" data-value="1"></i>
+                        <i class="fa-solid fa-star star active" data-value="2"></i>
+                        <i class="fa-solid fa-star star active" data-value="3"></i>
+                        <i class="fa-solid fa-star star active" data-value="4"></i>
+                        <i class="fa-solid fa-star star active" data-value="5"></i>
+                    </div>
+                    <div class="form-group" style="margin-top: 10px;">
+                        <input type="text" id="reviewAuthor" placeholder="اسم الكريم" required maxlength="30">
+                    </div>
+                    <div class="form-group" style="margin-top: 8px;">
+                        <textarea id="reviewComment" placeholder="بماذا تقيّم محتواي وهل تقترح علي أشياء أخري.. " rows="2" required maxlength="250"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" style="width: 100%; margin-top: 10px;" id="btnSubmitReview">
+                        نشر التقييم
+                    </button>
+                </form>
+            </div>
+
+            <!-- الرسالة وتسهيل الخيار عند إضافة تقييم سابقاً -->
+            <div id="alreadyReviewedSection" style="display: none; text-align: center; margin-top: 10px;">
+                <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 8px;" id="alreadyReviewedMsg">لقد قمت بإضافة تقييمك سابقاً من هذا الجهاز.</p>
+                <button type="button" id="btnDeleteMyReview" class="delete-review-btn">
+                    <i class="fa-solid fa-trash-can"></i> <span id="txtDeleteReview">مسح تقييمي</span>
+                </button>
             </div>
         </div>
     </div>
@@ -1095,11 +1191,17 @@
                     followNow: "متابعة الآن",
                     socialDialogTitle: "اختر المنصة للمتابعة",
                     reviewsTitle: "تقييمات وآراء الزوار",
+                    addReviewHeader: "أضف تقييمك ورأيك",
+                    authorPlaceholder: "اسمك الكريم",
+                    commentPlaceholder: "اكتب تعليقك هنا...",
+                    submitReviewBtn: "نشر التقييم",
+                    alreadyReviewed: "لقد قمت بإضافة تقييمك سابقاً من هذا الجهاز.",
+                    deleteReview: "مسح تقييمي",
                     shareSuccess: "تم نسخ رابط الموقع بنجاح!"
                 },
                 en: {
                     search: "Search content...",
-                    name: "Faris Mohammed Dahesh Ash-Shiref",
+                    name: "Faris Ash-Shiref",
                     title: "Poet / Content Creator",
                     bio: "Here you will find all the works of poet Faris Mohammed Dahesh Ash-Shiref.",
                     badgeQuran: "Quran Reciter",
@@ -1110,8 +1212,8 @@
                     foryou: "For You",
                     poems: "My Poems",
                     aboutTitle: "About Me",
-                    aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Egyptian poet and content creator, born July 3, 2003 AD (3 Jumada al-Oula 1424 AH) in Asyut Governorate, specifically Al-Ghanayem city.. He strives in his journey to leave a beneficial impact among people.",
-                    modalBio: "Egyptian poet and content creator, born July 3, 2003 AD (3 Jumada al-Oula 1424 AH) in Asyut Governorate, specifically Al-Ghanayem city.. I strive in my life journey to leave a beneficial impact among people.",
+                    aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Egyptian poet and content creator, born July 3, 2003 AD (3 Jumada al-Oula 1424 AH) in Asyut Governorate, specifically Al-Ghanayem city.. He strives in his journey to leave a beneficial impact among people, whether through recitations, poetry, or social media content.",
+                    modalBio: "Egyptian poet and content creator, born July 3, 2003 AD (3 Jumada al-Oula 1424 AH) in Asyut Governorate, specifically Al-Ghanayem city.. I strive in my life journey to leave a beneficial impact among people, whether through my recitations, poetry, or social media content.",
                     contactTitle: "Contact Me",
                     namePlaceholder: "Your Name",
                     emailPlaceholder: "Your Email",
@@ -1127,15 +1229,21 @@
                     fabText: "Subscribe",
                     footer: "© 2026 - All Rights Reserved",
                     notFoundTitle: "Content Unavailable",
-                    notFoundMsg: "Unfortunately, the content you searched for is currently unavailable.",
+                    notFoundMsg: "Unfortunately, the content you searched for is currently unavailable. We are truly delighted by your interest in our content!",
                     followNow: "Follow Now",
                     socialDialogTitle: "Select Platform to Follow",
                     reviewsTitle: "Visitor Reviews & Ratings",
+                    addReviewHeader: "Add Your Review",
+                    authorPlaceholder: "Your Name",
+                    commentPlaceholder: "Write your comment here...",
+                    submitReviewBtn: "Submit Review",
+                    alreadyReviewed: "You have already submitted a review from this device.",
+                    deleteReview: "Delete My Review",
                     shareSuccess: "Site link copied successfully!"
                 },
                 es: {
                     search: "Ingrese texto...",
-                    name: "Faris Mohammed Dahesh Ash-Shiref",
+                    name: "Faris Ash-Shiref",
                     title: "Poeta / Creador de Contenido",
                     bio: "Aquí encontrarás todas las obras del poeta Faris Mohammed Dahesh Ash-Shiref.",
                     badgeQuran: "Recitador del Corán",
@@ -1146,8 +1254,8 @@
                     foryou: "Para Ti",
                     poems: "Mis Poemas",
                     aboutTitle: "Sobre Mí",
-                    aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Poeta y creador de contenido egipcio.",
-                    modalBio: "Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 d.C.",
+                    aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 d.C. (3 de Yumada al-Ula de 1424 h.) en la gobernación de Asiut, específicamente en Al-Ghanayem.. Busca dejar un impacto positivo entre la gente a través de sus recitaciones, poesía y contenido.",
+                    modalBio: "Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 d.C. (3 de Yumada al-Ula de 1424 h.) en la gobernación de Asiut, específicamente en Al-Ghanayem.. Busco dejar un impacto positivo entre la gente a través de mis recitaciones, poesía y contenido.",
                     contactTitle: "Contáctame",
                     namePlaceholder: "Tu Nombre",
                     emailPlaceholder: "Tu Correo Electrónico",
@@ -1167,11 +1275,17 @@
                     followNow: "Seguir Ahora",
                     socialDialogTitle: "Seleccionar Plataforma",
                     reviewsTitle: "Reseñas de Visitantes",
+                    addReviewHeader: "Añade tu Reseña",
+                    authorPlaceholder: "Tu Nombre",
+                    commentPlaceholder: "Escribe tu reseña aquí...",
+                    submitReviewBtn: "Publicar Reseña",
+                    alreadyReviewed: "Ya has publicado una reseña desde este dispositivo.",
+                    deleteReview: "Eliminar mi Reseña",
                     shareSuccess: "¡Enlace copiado con éxito!"
                 },
                 fr: {
                     search: "Rechercher un contenu...",
-                    name: "Faris Mohammed Dahesh Ash-Shiref",
+                    name: "Faris Ash-Shiref",
                     title: "Poète / Créateur de Contenu",
                     bio: "Vous trouverez ici toutes les œuvres du poète Faris Mohammed Dahesh Ash-Shiref.",
                     badgeQuran: "Récitateur du Coran",
@@ -1182,8 +1296,8 @@
                     foryou: "Pour Vous",
                     poems: "Mes Poèmes",
                     aboutTitle: "À Propos de Moi",
-                    aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Poète et créateur de contenu égyptien.",
-                    modalBio: "Poète et créateur de contenu égyptien, né le 3 juillet 2003 apr. J.-C.",
+                    aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Poète et créateur de contenu égyptien, né le 3 juillet 2003 apr. J.-C. (3 Joumada al-Oula 1424 H) dans le gouvernorat d'Assiout, plus précisément à Al-Ghanayem.. Il s'efforce de laisser un impact bénéfique à travers ses récitations, sa poésie et son contenu.",
+                    modalBio: "Poète et créateur de contenu égyptien, né le 3 juillet 2003 apr. J.-C. (3 Joumada al-Oula 1424 H) dans le gouvernorat d'Assiout, plus précisément à Al-Ghanayem.. Je m'efforce de laisser un impact bénéfique à travers mes récitations, ma poésie et mon contenu.",
                     contactTitle: "Contactez-moi",
                     namePlaceholder: "Votre Nom",
                     emailPlaceholder: "Votre E-mail",
@@ -1199,10 +1313,16 @@
                     fabText: "S'abonner",
                     footer: "© 2026 - Tous droits réservés",
                     notFoundTitle: "Contenu indisponible",
-                    notFoundMsg: "Malheureusement, le contenu que vous avez recherché n'est pas disponible.",
+                    notFoundMsg: "Malheureusement, le contenu que vous avez recherché n'est pas disponible pour le moment.",
                     followNow: "S'abonner Maintenant",
                     socialDialogTitle: "Sélectionner la Plateforme",
                     reviewsTitle: "Avis des Visiteurs",
+                    addReviewHeader: "Ajoutez votre Avis",
+                    authorPlaceholder: "Votre Nom",
+                    commentPlaceholder: "Écrivez votre avis ici...",
+                    submitReviewBtn: "Publier l'Avis",
+                    alreadyReviewed: "Vous avez déjà soumis un avis depuis cet appareil.",
+                    deleteReview: "Supprimer mon Avis",
                     shareSuccess: "Lien copié avec succès!"
                 }
             };
@@ -1265,7 +1385,7 @@
                 });
             }
 
-            // 2. حساب عدد الزوار
+            // 2. حساب عدد الزوار وانيميشن الترحيب
             let visitCount = parseInt(localStorage.getItem('faris_visit_count') || '1284');
             if (!sessionStorage.getItem('visited_this_session')) {
                 visitCount += 1;
@@ -1293,28 +1413,130 @@
                 }, 300);
             }, 2000);
 
-            // 3. جلب ملف التقييمات الخارجي RatingPublish.html تخفيفاً للأحمال
-            async function loadRatingPublish() {
+            // 3. نظام تقييمات وآراء الزوار (تم تفريغ القائمة الافتراضية ليبدأ المستخدمون بالتصويت الحقيقي)
+            const DEFAULT_REVIEWS = [];
+
+            function getStoredReviews() {
+                const raw = localStorage.getItem('faris_site_reviews');
+                if (!raw) {
+                    localStorage.setItem('faris_site_reviews', JSON.stringify(DEFAULT_REVIEWS));
+                    return DEFAULT_REVIEWS;
+                }
+                try { return JSON.parse(raw); } catch(e) { return DEFAULT_REVIEWS; }
+            }
+
+            function escapeHtml(str) {
+                return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            }
+
+            function renderReviews() {
+                const reviews = getStoredReviews();
                 const container = document.getElementById('reviewsList');
                 if (!container) return;
-                
-                container.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; padding: 20px 0;"><i class="fa-solid fa-spinner fa-spin"></i> جاري تحميل التقييمات...</p>`;
 
-                try {
-                    const response = await fetch('RatingPublish.html');
-                    if (response.ok) {
-                        const html = await response.text();
-                        if (html.trim().length > 0) {
-                            container.innerHTML = html;
-                        } else {
-                            container.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; padding: 20px 0;">لا توجد تقييمات منشورة حالياً.</p>`;
+                container.innerHTML = '';
+                if (reviews.length === 0) {
+                    container.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; padding: 10px 0;">لا توجد تقييمات مضافة بعد، كن أول من يضيف تقييمه!</p>`;
+                } else {
+                    reviews.forEach(r => {
+                        let starsHtml = '';
+                        for (let i = 1; i <= 5; i++) {
+                            starsHtml += `<i class="${i <= r.stars ? 'fa-solid' : 'fa-regular'} fa-star"></i>`;
                         }
-                    } else {
-                        container.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; padding: 20px 0;">تعذر تحميل التقييمات حالياً.</p>`;
-                    }
-                } catch (e) {
-                    container.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; padding: 20px 0;">لا توجد تقييمات مضافة بعد.</p>`;
+                        const div = document.createElement('div');
+                        div.className = 'review-item';
+                        div.innerHTML = `
+                            <div class="review-item-header">
+                                <span class="review-author">${escapeHtml(r.name)}</span>
+                                <span class="review-stars">${starsHtml}</span>
+                            </div>
+                            <div class="review-comment">${escapeHtml(r.comment)}</div>
+                        `;
+                        container.appendChild(div);
+                    });
                 }
+
+                const myReviewId = localStorage.getItem('faris_my_review_id');
+                const formSec = document.getElementById('reviewFormSection');
+                const alreadySec = document.getElementById('alreadyReviewedSection');
+
+                if (myReviewId) {
+                    if (formSec) formSec.style.display = 'none';
+                    if (alreadySec) alreadySec.style.display = 'block';
+                } else {
+                    if (formSec) formSec.style.display = 'block';
+                    if (alreadySec) alreadySec.style.display = 'none';
+                }
+            }
+
+            // نظام النجوم التفاعلي
+            let selectedRating = 5;
+            const starPicker = document.getElementById('starPicker');
+            if (starPicker) {
+                starPicker.querySelectorAll('.star').forEach(star => {
+                    star.addEventListener('click', () => {
+                        selectedRating = parseInt(star.getAttribute('data-value'));
+                        starPicker.querySelectorAll('.star').forEach(s => {
+                            const val = parseInt(s.getAttribute('data-value'));
+                            if (val <= selectedRating) {
+                                s.classList.add('active');
+                                s.classList.replace('fa-regular', 'fa-solid');
+                            } else {
+                                s.classList.remove('active');
+                                s.classList.replace('fa-solid', 'fa-regular');
+                            }
+                        });
+                    });
+                });
+            }
+
+            // نموذج إضافة التقييم
+            const reviewForm = document.getElementById('reviewForm');
+            if (reviewForm) {
+                reviewForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const nameInput = document.getElementById('reviewAuthor');
+                    const commentInput = document.getElementById('reviewComment');
+
+                    const name = nameInput.value.trim();
+                    const comment = commentInput.value.trim();
+
+                    if (!name || !comment) return;
+
+                    const reviews = getStoredReviews();
+                    const newId = Date.now().toString();
+
+                    const newReview = {
+                        id: newId,
+                        name: name,
+                        stars: selectedRating,
+                        comment: comment
+                    };
+
+                    reviews.unshift(newReview);
+                    localStorage.setItem('faris_site_reviews', JSON.stringify(reviews));
+                    localStorage.setItem('faris_my_review_id', newId);
+
+                    nameInput.value = '';
+                    commentInput.value = '';
+
+                    renderReviews();
+                });
+            }
+
+            // مسح تقييم المستخدم
+            const btnDeleteMyReview = document.getElementById('btnDeleteMyReview');
+            if (btnDeleteMyReview) {
+                btnDeleteMyReview.addEventListener('click', () => {
+                    const myReviewId = localStorage.getItem('faris_my_review_id');
+                    if (myReviewId) {
+                        let reviews = getStoredReviews();
+                        reviews = reviews.filter(r => String(r.id) !== String(myReviewId));
+                        localStorage.setItem('faris_site_reviews', JSON.stringify(reviews));
+                        localStorage.removeItem('faris_my_review_id');
+                        renderReviews();
+                    }
+                });
             }
 
             // فتح وإغلاق ديالوج التقييمات
@@ -1324,7 +1546,7 @@
 
             if (reviewsBtn) {
                 reviewsBtn.addEventListener('click', () => {
-                    loadRatingPublish();
+                    renderReviews();
                     reviewsModal.classList.add('active');
                     document.body.style.overflow = 'hidden';
                 });
@@ -1346,7 +1568,7 @@
                 });
             }
 
-            // أسهم التمرير وتحميل الأقسام
+            // أسهم التمرير
             function updateScrollButtons(container) {
                 if (!container) return;
                 const wrapper = container.closest('.reels-wrapper');
@@ -1628,6 +1850,12 @@
                 document.getElementById('socialModalTitle').innerHTML = `<i class="fa-solid fa-heart" style="color:var(--accent-color);"></i> ${i18n[lang].socialDialogTitle}`;
 
                 document.getElementById('reviewsTitle').innerText = i18n[lang].reviewsTitle;
+                document.getElementById('addReviewHeader').innerText = i18n[lang].addReviewHeader;
+                document.getElementById('reviewAuthor').placeholder = i18n[lang].authorPlaceholder;
+                document.getElementById('reviewComment').placeholder = i18n[lang].commentPlaceholder;
+                document.getElementById('btnSubmitReview').innerText = i18n[lang].submitReviewBtn;
+                document.getElementById('alreadyReviewedMsg').innerText = i18n[lang].alreadyReviewed;
+                document.getElementById('txtDeleteReview').innerText = i18n[lang].deleteReview;
 
                 document.getElementById('contact-title').innerText = i18n[lang].contactTitle;
                 document.getElementById('input-name').placeholder = i18n[lang].namePlaceholder;
