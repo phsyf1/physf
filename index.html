@@ -74,7 +74,6 @@
             overflow-x: hidden;
         }
 
-        /* تعديل أنيميشن الظهور ليصبح أهدى وأكثر انسيابية */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -88,14 +87,8 @@
         }
 
         @keyframes fadeInDown {
-            from { 
-                opacity: 0; 
-                transform: translateY(-15px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .container {
@@ -103,7 +96,7 @@
             margin: 0 auto;
         }
 
-        /* شريط الـ Toolbar العلوي */
+        /* Toolbar العلوي */
         .toolbar {
             position: sticky;
             top: 10px;
@@ -153,9 +146,7 @@
             transition: transform 0.2s ease;
         }
 
-        .search-btn:active {
-            transform: scale(0.9);
-        }
+        .search-btn:active { transform: scale(0.9); }
 
         .control-btn {
             background: var(--input-bg);
@@ -175,13 +166,9 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
-        .control-btn:hover {
-            border-color: var(--accent-color);
-        }
+        .control-btn:hover { border-color: var(--accent-color); }
 
-        .lang-wrapper {
-            position: relative;
-        }
+        .lang-wrapper { position: relative; }
 
         .lang-dropdown {
             display: none;
@@ -201,14 +188,8 @@
             animation: fadeInDown 0.4s ease;
         }
 
-        html[dir="ltr"] .lang-dropdown {
-            left: auto;
-            right: 0;
-        }
-
-        .lang-dropdown.show {
-            display: flex !important;
-        }
+        html[dir="ltr"] .lang-dropdown { left: auto; right: 0; }
+        .lang-dropdown.show { display: flex !important; }
 
         .lang-option {
             padding: 10px 15px;
@@ -223,17 +204,10 @@
             transition: background 0.2s ease;
         }
 
-        .lang-option:hover {
-            background: var(--border-color);
-            color: var(--accent-color);
-        }
+        .lang-option:hover { background: var(--border-color); color: var(--accent-color); }
 
-        /* الهيدر وصورة البروفايل بأقواس دخول أهدى */
-        header {
-            text-align: center;
-            padding: 5px 10px 10px;
-            animation: fadeInDown 1.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+        /* الهيدر */
+        header { text-align: center; padding: 5px 10px 10px; animation: fadeInDown 1.3s cubic-bezier(0.25, 1, 0.5, 1); }
 
         .profile-img-wrapper {
             display: inline-block;
@@ -246,9 +220,7 @@
             transition: transform 0.4s ease;
         }
 
-        .profile-img-wrapper:hover {
-            transform: scale(1.03);
-        }
+        .profile-img-wrapper:hover { transform: scale(1.03); }
 
         .profile-img {
             width: 120px;
@@ -258,24 +230,39 @@
             display: block;
         }
 
-        h1 { 
-            font-size: 1.9rem; 
-            font-weight: 500; 
-            margin-bottom: 4px;
+        h1 { font-size: 1.9rem; font-weight: 500; margin-bottom: 4px; }
+        .subtitle { color: var(--accent-color); font-size: 0.95rem; margin-bottom: 8px; font-weight: 500; }
+        .bio { color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 0.9rem; }
+
+        /* عداد الزوار الخفيف والمحتسَب (طلب 1) */
+        .visitor-counter-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--card-bg-glass);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 20px;
+            margin: 14px auto 0;
+            font-size: 0.88rem;
+            color: var(--accent-color);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            min-width: 220px;
+            height: 38px;
         }
 
-        .subtitle { 
-            color: var(--accent-color); 
-            font-size: 0.95rem; 
-            margin-bottom: 8px; 
-            font-weight: 500; 
+        .visitor-counter-text {
+            display: inline-block;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-weight: bold;
         }
 
-        .bio { 
-            color: var(--text-muted); 
-            max-width: 600px; 
-            margin: 0 auto; 
-            font-size: 0.9rem; 
+        .visitor-counter-text.fade-out {
+            opacity: 0;
+            transform: translateY(-8px);
         }
 
         .simple-divider {
@@ -312,15 +299,7 @@
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .role-badge:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-color);
-        }
-
-        .role-badge i {
-            font-size: 0.9rem;
-            color: var(--accent-color);
-        }
+        .role-badge:hover { transform: translateY(-2px); border-color: var(--accent-color); }
 
         .section-title {
             font-size: 1.3rem;
@@ -338,9 +317,68 @@
             padding-left: 10px;
         }
 
-        .dynamic-reel-section {
-            display: none;
+        /* شبكة أزرار/كروت المتابعين المتناسقة 2x2 (طلب 2 + 6) */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0 25px;
+            width: 100%;
         }
+
+        .social-card {
+            background: var(--card-bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 14px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-color);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-color);
+        }
+
+        .social-card i {
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-card:hover i { transform: scale(1.15); }
+
+        /* ألوان خاصة بالمنصات */
+        .social-card.youtube i { color: #ff0000; }
+        .social-card.tiktok i { color: #00f2fe; }
+        .social-card.facebook i { color: #1877f2; }
+        .social-card.telegram i { color: #2aabee; }
+
+        .social-card .count {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+            line-height: 1.2;
+        }
+
+        .social-card .platform-name {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        .dynamic-reel-section { display: none; }
 
         .reels-wrapper {
             position: relative;
@@ -375,11 +413,7 @@
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .reel-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-color);
-        }
-
+        .reel-card:hover { transform: translateY(-4px); border-color: var(--accent-color); }
         .reel-card img { width: 100%; height: 100%; object-fit: cover; }
 
         .play-icon {
@@ -416,13 +450,10 @@
             align-items: center;
             justify-content: center;
             box-shadow: var(--shadow-sm);
-            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
+            transition: transform 0.2s ease;
         }
 
-        .scroll-btn:active {
-            transform: translateY(-50%) scale(0.9);
-        }
-
+        .scroll-btn:active { transform: translateY(-50%) scale(0.9); }
         .left-btn { left: -8px; }
         .right-btn { right: -8px; }
 
@@ -471,10 +502,7 @@
             transition: transform 0.2s ease, opacity 0.2s ease;
         }
 
-        .submit-btn:hover {
-            opacity: 0.95;
-            transform: translateY(-1px);
-        }
+        .submit-btn:hover { opacity: 0.95; transform: translateY(-1px); }
 
         .divider-with-text {
             display: flex;
@@ -493,55 +521,14 @@
 
         .divider-with-text span { padding: 0 12px; font-weight: 500; }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin: 15px 0 20px;
-            width: 100%;
-        }
-
-        .social-btn {
-            color: var(--text-color);
-            text-decoration: none;
-            background: var(--card-bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 9px 16px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 0.88rem;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.2s ease, background 0.3s ease;
-        }
-
-        .social-btn i {
-            color: var(--accent-color);
-            font-size: 1rem;
-        }
-
-        .social-btn:hover { 
-            background: var(--accent-color); 
-            color: #0b1329; 
-            transform: translateY(-2px);
-        }
-
-        .social-btn:hover i { color: #0b1329; }
-
+        /* زر يوتيوب FAB المتمدد بنمط ناعم كل 3 ثوانٍ (طلب 3) */
         .fab-subscribe {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 50px;
             height: 50px;
-            border-radius: 50%;
+            width: 50px;
+            border-radius: 25px;
             background: #ff0000;
             color: #ffffff;
             display: flex;
@@ -550,21 +537,45 @@
             box-shadow: 0 4px 16px rgba(255, 0, 0, 0.45);
             z-index: 999;
             text-decoration: none;
-            font-size: 1.35rem;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.5s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 0;
         }
 
-        html[dir="ltr"] .fab-subscribe {
-            right: auto;
-            left: 20px;
+        html[dir="ltr"] .fab-subscribe { right: auto; left: 20px; }
+
+        .fab-subscribe i { font-size: 1.35rem; flex-shrink: 0; }
+
+        .fab-subscribe .fab-text {
+            max-width: 0;
+            opacity: 0;
+            font-size: 0.88rem;
+            font-weight: 700;
+            transition: max-width 0.5s ease, opacity 0.3s ease, margin 0.5s ease;
+            overflow: hidden;
+        }
+
+        /* حالة التمدد */
+        .fab-subscribe.expanded {
+            width: 140px;
+            padding: 0 16px;
+            border-radius: 25px;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .fab-subscribe.expanded .fab-text {
+            max-width: 85px;
+            opacity: 1;
         }
 
         .fab-subscribe:hover {
-            transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(255, 0, 0, 0.65);
             color: #ffffff;
         }
 
+        /* Modal windows */
         .reel-modal, .image-modal {
             display: none;
             position: fixed;
@@ -591,17 +602,8 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
-        .video-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        .video-container { width: 100%; height: 100%; position: relative; }
+        .video-container iframe { width: 100%; height: 100%; border: none; }
 
         .close-modal {
             position: absolute;
@@ -622,16 +624,9 @@
             transition: transform 0.2s ease;
         }
 
-        .close-modal:hover {
-            transform: scale(1.1);
-        }
+        .close-modal:hover { transform: scale(1.1); }
 
-        .image-modal-content {
-            position: relative;
-            max-width: 90vw;
-            max-height: 85vh;
-        }
-
+        .image-modal-content { position: relative; max-width: 90vw; max-height: 85vh; }
         .image-modal-content img {
             width: 270px;
             height: 270px;
@@ -656,23 +651,9 @@
             animation: fadeInDown 0.4s ease;
         }
 
-        .search-modal-box i {
-            font-size: 2.8rem;
-            color: var(--accent-color);
-            margin-bottom: 12px;
-        }
-
-        .search-modal-box h3 {
-            font-size: 1.25rem;
-            margin-bottom: 8px;
-            color: var(--text-color);
-        }
-
-        .search-modal-box p {
-            font-size: 0.92rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
+        .search-modal-box i { font-size: 2.8rem; color: var(--accent-color); margin-bottom: 12px; }
+        .search-modal-box h3 { font-size: 1.25rem; margin-bottom: 8px; color: var(--text-color); }
+        .search-modal-box p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
 
         footer { text-align: center; padding: 10px 0 20px; color: var(--text-muted); font-size: 0.85rem; }
     </style>
@@ -714,6 +695,12 @@
             <h1 id="txt-name">فَارِس الشِريـف</h1>
             <div class="subtitle" id="txt-title">شاعر / صانع محتوى</div>
             <p class="bio" id="txt-bio">هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش</p>
+
+            <!-- خانة عداد الزوار (طلب 1) -->
+            <div class="visitor-counter-box" id="visitorCounterBox">
+                <i class="fa-solid fa-eye"></i>
+                <span class="visitor-counter-text" id="visitorText">...</span>
+            </div>
             
             <hr class="simple-divider">
 
@@ -794,18 +781,27 @@
             <span id="txt-honor">شرفنا بمتابعتك</span>
         </div>
 
-        <div class="social-links reveal">
-            <a href="https://t.me/phsyf1" target="_blank" class="social-btn">
-                <i class="fa-brands fa-telegram"></i> <span id="btn-telegram">تيليجرام</span>
+        <!-- مربعات المتابعين المتناسقة 2x2 (طلب 2 و 6) -->
+        <div class="social-grid reveal">
+            <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-card youtube">
+                <i class="fa-brands fa-youtube"></i>
+                <span class="count">+10K</span>
+                <span class="platform-name" id="card-yt">يوتيوب</span>
             </a>
-            <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="social-btn">
-                <i class="fa-brands fa-tiktok"></i> <span id="btn-tiktok">تيك توك</span>
+            <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="social-card tiktok">
+                <i class="fa-brands fa-tiktok"></i>
+                <span class="count">+25K</span>
+                <span class="platform-name" id="card-tt">تيك توك</span>
             </a>
-            <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-btn">
-                <i class="fa-brands fa-facebook-f"></i> <span id="btn-facebook">فيسبوك</span>
+            <a href="https://t.me/phsyf1" target="_blank" class="social-card telegram">
+                <i class="fa-brands fa-telegram"></i>
+                <span class="count">+5K</span>
+                <span class="platform-name" id="card-tg">تيليجرام</span>
             </a>
-            <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-btn">
-                <i class="fa-brands fa-youtube"></i> <span id="btn-youtube">يوتيوب</span>
+            <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-card facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+                <span class="count">+15K</span>
+                <span class="platform-name" id="card-fb">فيسبوك</span>
             </a>
         </div>
 
@@ -814,9 +810,10 @@
         </footer>
     </div>
 
-    <!-- زر الاشتراك العائم (FAB) -->
+    <!-- زر الاشتراك العائم المتمدد (FAB) (طلب 3) -->
     <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="fab-subscribe" id="fabBtn" title="اشترك في القناة" aria-label="Subscribe on YouTube">
         <i class="fa-brands fa-youtube"></i>
+        <span class="fab-text" id="fab-text">اشترك الآن</span>
     </a>
 
     <!-- نافذة عرض الفيديو -->
@@ -837,7 +834,7 @@
         </div>
     </div>
 
-    <!-- نافذة حوار نتائج البحث غير المتوفرة -->
+    <!-- نافذة نتائج البحث -->
     <div class="reel-modal" id="searchModal">
         <div class="search-modal-box">
             <button class="close-modal" id="closeSearchModalBtn">&times;</button>
@@ -852,7 +849,48 @@
 
             let currentLang = 'ar';
 
-            // تفعيل حركات الظهور عند السحب (Scroll Reveal)
+            // 1. حساب وتحكم عداد الزوار المحتسب (طلب 1)
+            let visitCount = localStorage.getItem('site_visits_count');
+            if (!visitCount) {
+                visitCount = 1482; // رقم افتراضي أولي للموقع
+            } else {
+                visitCount = parseInt(visitCount);
+            }
+            visitCount += 1;
+            localStorage.setItem('site_visits_count', visitCount);
+
+            const visitorTextEl = document.getElementById('visitorText');
+            let isGreetingState = true;
+
+            setInterval(() => {
+                if (!visitorTextEl) return;
+                
+                // أنيميشن تغيير النص كل 3 ثوانٍ
+                visitorTextEl.classList.add('fade-out');
+
+                setTimeout(() => {
+                    if (isGreetingState) {
+                        visitorTextEl.innerText = `${i18n[currentLang].visitorPrefix || 'ضيفنا الكريم رقم'} ${visitCount}`;
+                    } else {
+                        visitorTextEl.innerText = `${visitCount} ${i18n[currentLang].visitorSuffix || 'زيارة متميزة'}`;
+                    }
+                    isGreetingState = !isGreetingState;
+                    visitorTextEl.classList.remove('fade-out');
+                }, 300);
+
+            }, 3000);
+
+
+            // 2. تكرار تمدد زر يوتيوب العائم كل 3 ثوانٍ (طلب 3)
+            const fabBtn = document.getElementById('fabBtn');
+            if (fabBtn) {
+                setInterval(() => {
+                    fabBtn.classList.toggle('expanded');
+                }, 3000);
+            }
+
+
+            // 3. تفعيل حركات الظهور عند السحب (Scroll Reveal)
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -863,7 +901,7 @@
 
             document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-            // دالة التحقق وإخفاء/إظهار أسهم التمرير عند الأطراف
+            // دالة التمرير وإخفاء الأزرار
             function updateScrollButtons(container) {
                 if (!container) return;
                 const wrapper = container.closest('.reels-wrapper');
@@ -891,7 +929,7 @@
                 }
             }
 
-            // إظهار الأقسام التي بها محتوى
+            // تحميل المحتوى
             async function loadSectionContent(fileUrl, containerId) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -923,7 +961,6 @@
             loadSectionContent('foryou.html', 'foryou-container');
             loadSectionContent('poems.html', 'poems-container');
 
-            // التمرير الأفقي
             window.scrollSection = function(containerId, direction) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -965,7 +1002,7 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // عرض الصورة الشخصية
+            // البروفايل والصورة
             const profileWrapper = document.getElementById('profileImgWrapper');
             const profileImg = document.getElementById('profileImg');
             const imageModal = document.getElementById('imageModal');
@@ -984,7 +1021,7 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // نافذة نتائج البحث والمحتوى غير المتوفر
+            // البحث
             const searchForm = document.getElementById('searchForm');
             const searchInput = document.getElementById('searchInput');
             const searchModal = document.getElementById('searchModal');
@@ -1045,23 +1082,31 @@
                 searchInput.blur();
             });
 
-            // زر تبديل الوضع (Dark / Light)
+            // 4. الثيم مع حفظ الخيار بالـ Refresh (طلب 4)
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             const themeColorMeta = document.getElementById('theme-color-meta');
             
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                themeIcon.className = theme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+                if (themeColorMeta) {
+                    themeColorMeta.setAttribute('content', theme === 'light' ? '#f8fafc' : '#0b1329');
+                }
+                localStorage.setItem('preferred_theme', theme);
+            }
+
+            // تحميل الثيم المحفوظ أو افتراضي Dark
+            const savedTheme = localStorage.getItem('preferred_theme') || 'dark';
+            applyTheme(savedTheme);
+
             themeToggle.addEventListener('click', () => {
                 const currentTheme = document.documentElement.getAttribute('data-theme');
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                document.documentElement.setAttribute('data-theme', newTheme);
-                themeIcon.className = newTheme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
-                
-                if (themeColorMeta) {
-                    themeColorMeta.setAttribute('content', newTheme === 'light' ? '#f8fafc' : '#0b1329');
-                }
+                applyTheme(newTheme);
             });
 
-            // التحكم بالترجمة
+            // 5. الترجمة وحفظ الخيار واكتشاف لغة الجهاز تلقائياً (طلب 4 و 5)
             const langBtn = document.getElementById('langBtn');
             const langDropdown = document.getElementById('langDropdown');
 
@@ -1079,7 +1124,7 @@
             document.querySelectorAll('.lang-option').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const lang = btn.getAttribute('data-lang');
-                    changeLanguage(lang);
+                    changeLanguage(lang, true); // true تعني أن المستخدم اختارها بنفسه
                     langDropdown.classList.remove('show');
                 });
             });
@@ -1111,7 +1156,10 @@
                     youtube: "يوتيوب",
                     footer: "© 2026 - جميع الحقوق محفوظة",
                     notFoundTitle: "عذراً.. المحتوى غير متوفر",
-                    notFoundMsg: "للأسف المحتوى الذي بحثت عنه غير متوفر حالياً. يسعدنا جداً اهتمامك بمحتوانا وشغفك بمتابعته!"
+                    notFoundMsg: "للأسف المحتوى الذي بحثت عنه غير متوفر حالياً. يسعدنا جداً اهتمامك بمحتوانا وشغفك بمتابعته!",
+                    visitorPrefix: "ضيفنا الكريم رقم",
+                    visitorSuffix: "زيارة متميزة",
+                    fabText: "اشترك الآن"
                 },
                 en: {
                     search: "Search content...",
@@ -1139,7 +1187,10 @@
                     youtube: "YouTube",
                     footer: "© 2026 - All Rights Reserved",
                     notFoundTitle: "Content Unavailable",
-                    notFoundMsg: "Unfortunately, the content you searched for is currently unavailable. We are truly delighted by your interest in our content!"
+                    notFoundMsg: "Unfortunately, the content you searched for is currently unavailable. We are truly delighted by your interest in our content!",
+                    visitorPrefix: "Honored Visitor No.",
+                    visitorSuffix: "Unique Visits",
+                    fabText: "Subscribe"
                 },
                 es: {
                     search: "Ingrese texto...",
@@ -1167,7 +1218,10 @@
                     youtube: "YouTube",
                     footer: "© 2026 - Todos los derechos reservados",
                     notFoundTitle: "Contenido no disponible",
-                    notFoundMsg: "Lamentablemente, el contenido que buscaste no está disponible actualmente. ¡Estamos muy felices de que estés interesado en nuestro contenido!"
+                    notFoundMsg: "Lamentablemente, el contenido que buscaste no está disponible actualmente. ¡Estamos muy felices de que estés interesado en nuestro contenido!",
+                    visitorPrefix: "Invitado de honor Nº",
+                    visitorSuffix: "Visitas Únicas",
+                    fabText: "Suscribirse"
                 },
                 fr: {
                     search: "Rechercher un contenu...",
@@ -1195,7 +1249,10 @@
                     youtube: "YouTube",
                     footer: "© 2026 - Tous droits réservés",
                     notFoundTitle: "Contenu indisponible",
-                    notFoundMsg: "Malheureusement, le contenu que vous avez recherché n'est pas disponible pour le moment. Nous sommes ravis de votre intérêt pour notre contenu!"
+                    notFoundMsg: "Malheureusement, le contenu que vous avez recherché n'est pas disponible pour le moment. Nous sommes ravis de votre intérêt pour notre contenu!",
+                    visitorPrefix: "Invité d'honneur N°",
+                    visitorSuffix: "Visites Uniques",
+                    fabText: "S'abonner"
                 },
                 id: {
                     search: "Cari konten...",
@@ -1223,7 +1280,10 @@
                     youtube: "YouTube",
                     footer: "© 2026 - Hak Cipta Dilindungi",
                     notFoundTitle: "Konten Tidak Tersedia",
-                    notFoundMsg: "Maaf, konten yang Anda cari saat ini tidak tersedia. Kami sangat senang atas ketertarikan Anda pada konten kami!"
+                    notFoundMsg: "Maaf, konten yang Anda cari saat ini tidak tersedia. Kami sangat senang atas ketertarikan Anda pada konten kami!",
+                    visitorPrefix: "Tamu Kehormatan No.",
+                    visitorSuffix: "Kunjungan Unik",
+                    fabText: "Berlangganan"
                 },
                 ur: {
                     search: "مواد تلاش کریں...",
@@ -1241,7 +1301,7 @@
                     aboutDesc: "فارس محمد داہش.. مصری شاعر اور مواد تخلیق کار، پیدائش 3 جولائی 2003 اسیوط، مصر۔ وہ اپنی تلاوت، شاعری اور ویڈیو مواد کے ذریعے لوگوں کے دلوں پر مثبت اثر چھوڑنے کی کوشش کرتے ہیں۔",
                     contactTitle: "رابطہ کریں",
                     namePlaceholder: "آپ کا نام",
-                    emailPlaceholder: "آپ کا ای میل",
+                    emailPlaceholder: "اپنا پیغام یہاں لکھیں...",
                     msgPlaceholder: "اپنا پیغام یہاں لکھیں...",
                     submitBtn: "پیغام بھیجیں",
                     honor: "آپ کے فالو کرنے کا شکریہ",
@@ -1251,13 +1311,22 @@
                     youtube: "یوٹیوب",
                     footer: "© 2026 - جملہ حقوق محفوظ ہیں",
                     notFoundTitle: "مواد دستیاب نہیں ہے",
-                    notFoundMsg: "افسوس کہ جو مواد آپ نے تلاش کیا ہے وہ فی الحال دستیاب نہیں ہے۔ ہمیں خوشی ہے کہ آپ ہمارے مواد میں دلچسپی رکھتے ہیں!"
+                    notFoundMsg: "افسوس کہ جو مواد آپ نے تلاش کیا ہے وہ فی الحال دستیاب نہیں ہے۔ ہمیں خوشی ہے کہ آپ ہمارے مواد میں دلچسپی رکھتے ہیں!",
+                    visitorPrefix: "معزز مہمان نمبر",
+                    visitorSuffix: "منفرد دورے",
+                    fabText: "سبسکرائب کریں"
                 }
             };
 
-            function changeLanguage(lang) {
+            function changeLanguage(lang, userSelected = false) {
+                if (!i18n[lang]) lang = 'ar'; // افتراضي إذا كانت غير موجودة
+
                 currentLang = lang;
                 const isRTL = (lang === 'ar' || lang === 'ur');
+
+                if (userSelected) {
+                    localStorage.setItem('preferred_lang', lang);
+                }
 
                 document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
                 document.documentElement.setAttribute('lang', lang);
@@ -1285,14 +1354,36 @@
                 document.getElementById('btn-submit').innerHTML = `${i18n[lang].submitBtn} <i class="fa-solid fa-paper-plane"></i>`;
 
                 document.getElementById('txt-honor').innerText = i18n[lang].honor;
-                document.getElementById('btn-telegram').innerText = i18n[lang].telegram;
-                document.getElementById('btn-tiktok').innerText = i18n[lang].tiktok;
-                document.getElementById('btn-facebook').innerText = i18n[lang].facebook;
-                document.getElementById('btn-youtube').innerText = i18n[lang].youtube;
+                document.getElementById('card-tg').innerText = i18n[lang].telegram;
+                document.getElementById('card-tt').innerText = i18n[lang].tiktok;
+                document.getElementById('card-fb').innerText = i18n[lang].facebook;
+                document.getElementById('card-yt').innerText = i18n[lang].youtube;
                 document.getElementById('txt-footer').innerText = i18n[lang].footer;
+                
+                document.getElementById('fab-text').innerText = i18n[lang].fabText;
 
                 document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
             }
+
+            // فحص واكتشاف لغة الجهاز تلقائياً (طلب 5)
+            function initLanguage() {
+                const savedLang = localStorage.getItem('preferred_lang');
+                if (savedLang) {
+                    changeLanguage(savedLang);
+                    return;
+                }
+
+                // قراءة لغة المتصفح/الجهاز
+                const deviceLang = (navigator.language || navigator.userLanguage || 'ar').substring(0, 2).toLowerCase();
+                
+                if (i18n[deviceLang]) {
+                    changeLanguage(deviceLang);
+                } else {
+                    changeLanguage('ar'); // العودة للغة العربية إذا لم تكن لغة الجهاز متوفرة
+                }
+            }
+
+            initLanguage();
 
             window.addEventListener('resize', () => {
                 document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
