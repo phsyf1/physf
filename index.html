@@ -403,7 +403,7 @@
 
         .submit-btn:hover { opacity: 0.95; transform: translateY(-1px); }
 
-        /* الإصلاح الخاص بكارت عدد الزوار ليكون ثابتاً في العرض والأبعاد بدون تمدد وانكماش */
+        /* الإصلاح الخاص بكارت عدد الزوار */
         .visitor-section {
             margin: 20px 0 10px;
             text-align: center;
@@ -422,7 +422,7 @@
             gap: 12px;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease;
-            min-width: 320px; /* العرض الثابت لمنع التمدد والانكماش مع النصوص */
+            min-width: 320px;
             max-width: 92vw;
         }
 
@@ -445,7 +445,7 @@
             gap: 8px;
             font-size: 0.95rem;
             font-weight: 500;
-            min-width: 220px; /* مساحة ثابتة للكلمات المتغيرة */
+            min-width: 220px;
             text-align: center;
         }
 
@@ -587,17 +587,17 @@
             color: #ffffff;
         }
 
-        /* النوافذ المنبثقة العامة (Modals & Dialogs) */
+        /* النوافذ المنبثقة العامة (Modals & Dialogs) مع خلفية بلورية مشبعة */
         .reel-modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.55);
             z-index: 9999;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             padding: 15px;
         }
 
@@ -623,44 +623,43 @@
             position: absolute;
             top: 12px;
             left: 12px;
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.5);
             color: #fff;
             border: 1px solid rgba(255,255,255,0.2);
-            font-size: 1.3rem;
-            width: 36px;
-            height: 36px;
+            font-size: 1.2rem;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             cursor: pointer;
             z-index: 20;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
 
         html[dir="ltr"] .close-modal { left: auto; right: 12px; }
-        .close-modal:hover { transform: scale(1.1); }
+        .close-modal:hover { transform: scale(1.1); background: rgba(0, 0, 0, 0.8); }
 
-        /* تصميم ديالوج كارت الصورة الشخصية (مطابق تماماً لتصميم الصورة المرفقة) */
+        /* تصميم كارت الصورة الشخصية (مربع أبيض أنيق مع حواف منحنية وبدون علامة توثيق) */
         .profile-card-modal {
             position: relative;
             width: 100%;
             max-width: 380px;
-            background: var(--card-bg-glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
+            background: #ffffff;
+            color: #0f172a;
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
             animation: fadeInDown 0.4s ease;
             display: flex;
             flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .profile-card-img-box {
             width: 100%;
-            height: 260px;
+            aspect-ratio: 1 / 1;
             background: #000;
             overflow: hidden;
             position: relative;
@@ -670,11 +669,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top;
+            object-position: center;
+            display: block;
         }
 
         .profile-card-body {
-            padding: 18px 20px 22px;
+            padding: 20px 22px 24px;
             text-align: right;
         }
 
@@ -690,26 +690,21 @@
         .profile-card-header h2 {
             font-size: 1.35rem;
             font-weight: 700;
-            color: var(--text-color);
-        }
-
-        .verified-badge {
-            color: #1da1f2;
-            font-size: 1.15rem;
+            color: #0f172a;
         }
 
         .profile-card-bio {
-            color: var(--text-muted);
-            font-size: 0.88rem;
+            color: #475569;
+            font-size: 0.9rem;
             line-height: 1.7;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .follow-now-btn {
             width: 100%;
-            background: var(--text-color);
-            color: var(--bg-color);
-            border: none;
+            background: #f1f5f9;
+            color: #0f172a;
+            border: 1px solid #e2e8f0;
             padding: 12px;
             border-radius: 25px;
             font-size: 0.95rem;
@@ -719,10 +714,10 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: transform 0.2s ease, opacity 0.2s ease;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
 
-        .follow-now-btn:hover { opacity: 0.92; transform: translateY(-2px); }
+        .follow-now-btn:hover { background: #e2e8f0; transform: translateY(-2px); }
 
         /* الديالوجات البلورية الموحدة */
         .glass-dialog-box {
@@ -1056,7 +1051,7 @@
         </div>
     </div>
 
-    <!-- 2. نافذة كارت الشاعر المنبثقة (مصممة تماماً حسب الصورة المرفقة) -->
+    <!-- 2. نافذة كارت الشاعر المنبثقة (مربعة بإنحناءات بدون توثيق وبخلفية بيضاء وخلفية بلورية) -->
     <div class="reel-modal" id="imageModal">
         <div class="profile-card-modal">
             <button class="close-modal" id="closeImageBtn">&times;</button>
@@ -1066,7 +1061,6 @@
             <div class="profile-card-body">
                 <div class="profile-card-header">
                     <h2 id="modalProfileName">فَارِس محمد داهِش</h2>
-                    <i class="fa-solid fa-circle-check verified-badge" title="توثيق الحساب"></i>
                 </div>
                 <p class="profile-card-bio" id="modalProfileBio">
                     شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. بسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.
@@ -1207,9 +1201,9 @@
                 },
                 en: {
                     search: "Search content...",
-                    name: "Faris Muhammad Dahesh",
+                    name: "Faris Mohammed Dahesh Ash-Shiref",
                     title: "Poet / Content Creator",
-                    bio: "Here you will find all the works of poet Faris Muhammad Dahesh.",
+                    bio: "Here you will find all the works of poet Faris Mohammed Dahesh Ash-Shiref.",
                     badgeQuran: "Quran Reciter",
                     badgePoet: "Poet",
                     badgeCreator: "Content Creator",
@@ -1218,7 +1212,7 @@
                     foryou: "For You",
                     poems: "My Poems",
                     aboutTitle: "About Me",
-                    aboutDesc: "Faris Muhammad Dahesh.. Egyptian poet and content creator, born July 3, 2003 AD (3 Jumada al-Oula 1424 AH) in Asyut Governorate, specifically Al-Ghanayem city.. He strives in his journey to leave a beneficial impact among people, whether through recitations, poetry, or social media content.",
+                    aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Egyptian poet and content creator, born July 3, 2003 AD (3 Jumada al-Oula 1424 AH) in Asyut Governorate, specifically Al-Ghanayem city.. He strives in his journey to leave a beneficial impact among people, whether through recitations, poetry, or social media content.",
                     modalBio: "Egyptian poet and content creator, born July 3, 2003 AD (3 Jumada al-Oula 1424 AH) in Asyut Governorate, specifically Al-Ghanayem city.. I strive in my life journey to leave a beneficial impact among people, whether through my recitations, poetry, or social media content.",
                     contactTitle: "Contact Me",
                     namePlaceholder: "Your Name",
@@ -1249,9 +1243,9 @@
                 },
                 es: {
                     search: "Ingrese texto...",
-                    name: "Faris Muhammad Dahesh",
+                    name: "Faris Mohammed Dahesh Ash-Shiref",
                     title: "Poeta / Creador de Contenido",
-                    bio: "Aquí encontrarás todas las obras del poeta Faris Muhammad Dahesh.",
+                    bio: "Aquí encontrarás todas las obras del poeta Faris Mohammed Dahesh Ash-Shiref.",
                     badgeQuran: "Recitador del Corán",
                     badgePoet: "Poeta",
                     badgeCreator: "Creador de Contenido",
@@ -1260,7 +1254,7 @@
                     foryou: "Para Ti",
                     poems: "Mis Poemas",
                     aboutTitle: "Sobre Mí",
-                    aboutDesc: "Faris Muhammad Dahesh.. Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 d.C. (3 de Yumada al-Ula de 1424 h.) en la gobernación de Asiut, específicamente en Al-Ghanayem.. Busca dejar un impacto positivo entre la gente a través de sus recitaciones, poesía y contenido.",
+                    aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 d.C. (3 de Yumada al-Ula de 1424 h.) en la gobernación de Asiut, específicamente en Al-Ghanayem.. Busca dejar un impacto positivo entre la gente a través de sus recitaciones, poesía y contenido.",
                     modalBio: "Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 d.C. (3 de Yumada al-Ula de 1424 h.) en la gobernación de Asiut, específicamente en Al-Ghanayem.. Busco dejar un impacto positivo entre la gente a través de mis recitaciones, poesía y contenido.",
                     contactTitle: "Contáctame",
                     namePlaceholder: "Tu Nombre",
@@ -1291,9 +1285,9 @@
                 },
                 fr: {
                     search: "Rechercher un contenu...",
-                    name: "Faris Muhammad Dahesh",
+                    name: "Faris Mohammed Dahesh Ash-Shiref",
                     title: "Poète / Créateur de Contenu",
-                    bio: "Vous trouverez ici toutes les œuvres du poète Faris Muhammad Dahesh.",
+                    bio: "Vous trouverez ici toutes les œuvres du poète Faris Mohammed Dahesh Ash-Shiref.",
                     badgeQuran: "Récitateur du Coran",
                     badgePoet: "Poète",
                     badgeCreator: "Créateur de Contenu",
@@ -1302,7 +1296,7 @@
                     foryou: "Pour Vous",
                     poems: "Mes Poèmes",
                     aboutTitle: "À Propos de Moi",
-                    aboutDesc: "Faris Muhammad Dahesh.. Poète et créateur de contenu égyptien, né le 3 juillet 2003 apr. J.-C. (3 Joumada al-Oula 1424 H) dans le gouvernorat d'Assiout, plus précisément à Al-Ghanayem.. Il s'efforce de laisser un impact bénéfique à travers ses récitations, sa poésie et son contenu.",
+                    aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Poète et créateur de contenu égyptien, né le 3 juillet 2003 apr. J.-C. (3 Joumada al-Oula 1424 H) dans le gouvernorat d'Assiout, plus précisément à Al-Ghanayem.. Il s'efforce de laisser un impact bénéfique à travers ses récitations, sa poésie et son contenu.",
                     modalBio: "Poète et créateur de contenu égyptien, né le 3 juillet 2003 apr. J.-C. (3 Joumada al-Oula 1424 H) dans le gouvernorat d'Assiout, plus précisément à Al-Ghanayem.. Je m'efforce de laisser un impact bénéfique à travers mes récitations, ma poésie et mon contenu.",
                     contactTitle: "Contactez-moi",
                     namePlaceholder: "Votre Nom",
@@ -1419,12 +1413,8 @@
                 }, 300);
             }, 2000);
 
-            // 3. نظام تقييمات وآراء الزوار
-            const DEFAULT_REVIEWS = [
-                { id: 1, name: "أحمد محمود", stars: 5, comment: "ما شاء الله، صوت شجي وطرح راقي جداً بالتوفيق دائماً فارس." },
-                { id: 2, name: "عمر خالد", stars: 5, comment: "قصائد رائعة وتلاوات تلمس القلب مباشرة، بارك الله فيك." },
-                { id: 3, name: "مريم علي", stars: 5, comment: "موقع زاهي ومحتوى هادف يستحق المتابعة والإشادة." }
-            ];
+            // 3. نظام تقييمات وآراء الزوار (تم تفريغ القائمة الافتراضية ليبدأ المستخدمون بالتصويت الحقيقي)
+            const DEFAULT_REVIEWS = [];
 
             function getStoredReviews() {
                 const raw = localStorage.getItem('faris_site_reviews');
@@ -1445,22 +1435,26 @@
                 if (!container) return;
 
                 container.innerHTML = '';
-                reviews.forEach(r => {
-                    let starsHtml = '';
-                    for (let i = 1; i <= 5; i++) {
-                        starsHtml += `<i class="${i <= r.stars ? 'fa-solid' : 'fa-regular'} fa-star"></i>`;
-                    }
-                    const div = document.createElement('div');
-                    div.className = 'review-item';
-                    div.innerHTML = `
-                        <div class="review-item-header">
-                            <span class="review-author">${escapeHtml(r.name)}</span>
-                            <span class="review-stars">${starsHtml}</span>
-                        </div>
-                        <div class="review-comment">${escapeHtml(r.comment)}</div>
-                    `;
-                    container.appendChild(div);
-                });
+                if (reviews.length === 0) {
+                    container.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; padding: 10px 0;">لا توجد تقييمات مضافة بعد، كن أول من يضيف تقييمه!</p>`;
+                } else {
+                    reviews.forEach(r => {
+                        let starsHtml = '';
+                        for (let i = 1; i <= 5; i++) {
+                            starsHtml += `<i class="${i <= r.stars ? 'fa-solid' : 'fa-regular'} fa-star"></i>`;
+                        }
+                        const div = document.createElement('div');
+                        div.className = 'review-item';
+                        div.innerHTML = `
+                            <div class="review-item-header">
+                                <span class="review-author">${escapeHtml(r.name)}</span>
+                                <span class="review-stars">${starsHtml}</span>
+                            </div>
+                            <div class="review-comment">${escapeHtml(r.comment)}</div>
+                        `;
+                        container.appendChild(div);
+                    });
+                }
 
                 const myReviewId = localStorage.getItem('faris_my_review_id');
                 const formSec = document.getElementById('reviewFormSection');
