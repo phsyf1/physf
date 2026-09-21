@@ -14,7 +14,7 @@
     <!-- صورة الموقع المصغرة وأيقونة Favicon -->
     <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/phsyf1/physf/2ccd041d150f5287836b20ac1438098802778c3e/UploadIconSeleting/fde.svg">
     <meta property="og:image" content="https://raw.githubusercontent.com/phsyf1/physf/2ccd041d150f5287836b20ac1438098802778c3e/UploadIconSeleting/fde.svg">
-    <meta property="og:title" content="فَارِس الشِريـف | الشاعر وصانع المحتوى">
+    <meta property="og:title" content="فَارِس الشِريـف | شاعر وصانع المحتوى">
     <meta property="og:description" content="الموقع الرسمي للشاعر وصانع المحتوى فارس محمد داهش.">
 
     <!-- الخطوط والأيقونات -->
@@ -33,7 +33,7 @@
             --text-muted: #cbd5e1;         
             --accent-color: #d4af37;       
             --border-color: rgba(212, 175, 55, 0.3); 
-            --line-color: rgba(255, 255, 255, 0.15); /* لون رمادي ناعم للخط الفاصل */
+            --line-color: rgba(255, 255, 255, 0.15);
             --input-bg: rgba(21, 32, 62, 0.85);
             --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
             --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -50,7 +50,7 @@
             --text-muted: #475569;
             --accent-color: #b8860b;
             --border-color: rgba(212, 175, 55, 0.35);
-            --line-color: rgba(0, 0, 0, 0.12); /* لون رمادي خفيف للوضع المضيء */
+            --line-color: rgba(0, 0, 0, 0.12);
             --input-bg: rgba(255, 255, 255, 0.75);
             --shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -61,7 +61,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Tajawal', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
         }
 
         body {
@@ -74,11 +74,12 @@
             overflow-x: hidden;
         }
 
-        /* تأثيرات الظهور عند السحب وفتح الصفحة */
+        /* تعديل أنيميشن الظهور ليصبح أهدى وأكثر انسيابية */
         .reveal {
             opacity: 0;
-            transform: translateY(25px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px);
+            will-change: opacity, transform;
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .reveal.active {
@@ -87,8 +88,14 @@
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(-15px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
 
         .container {
@@ -110,7 +117,7 @@
             border: none;
             box-shadow: none;
             padding: 0;
-            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: fadeInDown 1.1s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .search-box {
@@ -191,7 +198,7 @@
             flex-direction: column;
             min-width: 130px;
             overflow: hidden;
-            animation: fadeInDown 0.3s ease;
+            animation: fadeInDown 0.4s ease;
         }
 
         html[dir="ltr"] .lang-dropdown {
@@ -221,11 +228,11 @@
             color: var(--accent-color);
         }
 
-        /* الهيدر والصورة الشخصية */
+        /* الهيدر وصورة البروفايل بأقواس دخول أهدى */
         header {
             text-align: center;
             padding: 5px 10px 10px;
-            animation: fadeInDown 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: fadeInDown 1.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .profile-img-wrapper {
@@ -236,7 +243,7 @@
             box-shadow: var(--shadow-sm);
             margin-bottom: 12px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
         .profile-img-wrapper:hover {
@@ -271,7 +278,6 @@
             font-size: 0.9rem; 
         }
 
-        /* الخط الفاصل بطول الشاشة بلون رمادي متناسق */
         .simple-divider {
             width: 100%;
             height: 1px;
@@ -280,7 +286,6 @@
             border: none;
         }
 
-        /* المربعات الزخرفية أسفل الخط الفاصل */
         .role-badges {
             display: flex;
             justify-content: center;
@@ -304,7 +309,7 @@
             box-shadow: var(--shadow-sm);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .role-badge:hover {
@@ -317,7 +322,6 @@
             color: var(--accent-color);
         }
 
-        /* عناوين الأقسام */
         .section-title {
             font-size: 1.3rem;
             color: var(--text-color);
@@ -334,7 +338,6 @@
             padding-left: 10px;
         }
 
-        /* الأقسام الديناميكية */
         .dynamic-reel-section {
             display: none;
         }
@@ -395,7 +398,6 @@
             font-size: 1rem;
         }
 
-        /* أسهم التمرير */
         .scroll-btn {
             position: absolute;
             top: 50%;
@@ -424,7 +426,6 @@
         .left-btn { left: -8px; }
         .right-btn { right: -8px; }
 
-        /* نبذة تعريفية ونموذج التواصل */
         .about-box, .contact-card {
             background: var(--card-bg-glass);
             backdrop-filter: blur(12px);
@@ -475,7 +476,6 @@
             transform: translateY(-1px);
         }
 
-        /* فاصل شرفنا بمتابعتك */
         .divider-with-text {
             display: flex;
             align-items: center;
@@ -535,7 +535,6 @@
 
         .social-btn:hover i { color: #0b1329; }
 
-        /* زر الاشتراك العائم (FAB) */
         .fab-subscribe {
             position: fixed;
             bottom: 20px;
@@ -566,7 +565,6 @@
             color: #ffffff;
         }
 
-        /* النوافذ المنبثقة */
         .reel-modal, .image-modal {
             display: none;
             position: fixed;
@@ -643,7 +641,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
-        /* نافذة حوار نتائج البحث */
         .search-modal-box {
             position: relative;
             width: 90%;
@@ -656,7 +653,7 @@
             padding: 30px 20px;
             text-align: center;
             box-shadow: var(--shadow);
-            animation: fadeInDown 0.3s ease;
+            animation: fadeInDown 0.4s ease;
         }
 
         .search-modal-box i {
@@ -718,10 +715,8 @@
             <div class="subtitle" id="txt-title">شاعر / صانع محتوى</div>
             <p class="bio" id="txt-bio">هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش</p>
             
-            <!-- الخط الفاصل بطول الشاشة -->
             <hr class="simple-divider">
 
-            <!-- المربعات أسفل الخط الفاصل -->
             <div class="role-badges">
                 <span class="role-badge"><i class="fa-solid fa-book-quran"></i> <span id="badge-quran">قارئ قرآن</span></span>
                 <span class="role-badge"><i class="fa-solid fa-pen-nib"></i> <span id="badge-poet">شاعر</span></span>
@@ -1016,14 +1011,12 @@
                 }
             });
 
-            // إجراء البحث فقط عند الضغط على زر البحث أو زر Enter
             searchForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const val = searchInput.value.trim().toLowerCase();
                 
                 if (!val) return;
 
-                // البحث متوفر بالعربية فقط، في حال لغات أخرى أو عدم وجود نتائج يظهر المربع
                 if (currentLang !== 'ar') {
                     searchInput.value = '';
                     showSearchAlert();
