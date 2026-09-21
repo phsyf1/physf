@@ -87,14 +87,8 @@
         }
 
         @keyframes fadeInDown {
-            from { 
-                opacity: 0; 
-                transform: translateY(-15px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .container {
@@ -102,7 +96,6 @@
             margin: 0 auto;
         }
 
-        /* شريط الـ Toolbar العلوي */
         .toolbar {
             position: sticky;
             top: 10px;
@@ -152,9 +145,7 @@
             transition: transform 0.2s ease;
         }
 
-        .search-btn:active {
-            transform: scale(0.9);
-        }
+        .search-btn:active { transform: scale(0.9); }
 
         .control-btn {
             background: var(--input-bg);
@@ -174,13 +165,9 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
-        .control-btn:hover {
-            border-color: var(--accent-color);
-        }
+        .control-btn:hover { border-color: var(--accent-color); }
 
-        .lang-wrapper {
-            position: relative;
-        }
+        .lang-wrapper { position: relative; }
 
         .lang-dropdown {
             display: none;
@@ -200,14 +187,8 @@
             animation: fadeInDown 0.4s ease;
         }
 
-        html[dir="ltr"] .lang-dropdown {
-            left: auto;
-            right: 0;
-        }
-
-        .lang-dropdown.show {
-            display: flex !important;
-        }
+        html[dir="ltr"] .lang-dropdown { left: auto; right: 0; }
+        .lang-dropdown.show { display: flex !important; }
 
         .lang-option {
             padding: 10px 15px;
@@ -227,7 +208,6 @@
             color: var(--accent-color);
         }
 
-        /* الهيدر */
         header {
             text-align: center;
             padding: 5px 10px 10px;
@@ -245,9 +225,7 @@
             transition: transform 0.4s ease;
         }
 
-        .profile-img-wrapper:hover {
-            transform: scale(1.03);
-        }
+        .profile-img-wrapper:hover { transform: scale(1.03); }
 
         .profile-img {
             width: 120px;
@@ -257,57 +235,9 @@
             display: block;
         }
 
-        h1 { 
-            font-size: 1.9rem; 
-            font-weight: 500; 
-            margin-bottom: 4px;
-        }
-
-        .subtitle { 
-            color: var(--accent-color); 
-            font-size: 0.95rem; 
-            margin-bottom: 8px; 
-            font-weight: 500; 
-        }
-
-        .bio { 
-            color: var(--text-muted); 
-            max-width: 600px; 
-            margin: 0 auto; 
-            font-size: 0.9rem; 
-        }
-
-        /* عداد الزوار التفاعلي */
-        .visitor-counter-box {
-            background: var(--card-bg-glass);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 6px 18px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 0.88rem;
-            color: var(--accent-color);
-            box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            margin-top: 12px;
-            height: 38px;
-            min-width: 180px;
-            overflow: hidden;
-        }
-
-        .visitor-text {
-            display: inline-block;
-            font-weight: 600;
-            transition: transform 0.4s ease, opacity 0.4s ease;
-        }
-
-        .visitor-text.fade-out {
-            opacity: 0;
-            transform: translateY(-8px);
-        }
+        h1 { font-size: 1.9rem; font-weight: 500; margin-bottom: 4px; }
+        .subtitle { color: var(--accent-color); font-size: 0.95rem; margin-bottom: 8px; font-weight: 500; }
+        .bio { color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 0.9rem; }
 
         .simple-divider {
             width: 100%;
@@ -343,15 +273,8 @@
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .role-badge:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-color);
-        }
-
-        .role-badge i {
-            font-size: 0.9rem;
-            color: var(--accent-color);
-        }
+        .role-badge:hover { transform: translateY(-2px); border-color: var(--accent-color); }
+        .role-badge i { font-size: 0.9rem; color: var(--accent-color); }
 
         .section-title {
             font-size: 1.3rem;
@@ -369,9 +292,7 @@
             padding-left: 10px;
         }
 
-        .dynamic-reel-section {
-            display: none;
-        }
+        .dynamic-reel-section { display: none; }
 
         .reels-wrapper {
             position: relative;
@@ -406,12 +327,24 @@
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .reel-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-color);
-        }
-
+        .reel-card:hover { transform: translateY(-4px); border-color: var(--accent-color); }
         .reel-card img { width: 100%; height: 100%; object-fit: cover; }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.65);
+            color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
 
         .scroll-btn {
             position: absolute;
@@ -434,10 +367,7 @@
             transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
         }
 
-        .scroll-btn:active {
-            transform: translateY(-50%) scale(0.9);
-        }
-
+        .scroll-btn:active { transform: translateY(-50%) scale(0.9); }
         .left-btn { left: -8px; }
         .right-btn { right: -8px; }
 
@@ -452,9 +382,9 @@
         }
 
         .about-box p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; }
-
         .contact-section { padding: 10px 0 15px; }
         .contact-form { display: flex; flex-direction: column; gap: 12px; }
+
         .form-group input, .form-group textarea {
             width: 100%;
             padding: 12px 15px;
@@ -486,9 +416,68 @@
             transition: transform 0.2s ease, opacity 0.2s ease;
         }
 
-        .submit-btn:hover {
-            opacity: 0.95;
-            transform: translateY(-1px);
+        .submit-btn:hover { opacity: 0.95; transform: translateY(-1px); }
+
+        /* تصميم كارت عدد الزوار الاحترافي */
+        .visitor-section {
+            margin: 20px 0 10px;
+            text-align: center;
+        }
+
+        .visitor-card {
+            background: var(--card-bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .visitor-icon {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            animation: pulseIcon 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseIcon {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+        }
+
+        .visitor-text-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .visitor-label {
+            color: var(--text-color);
+            display: inline-block;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .visitor-label.fade-out {
+            opacity: 0;
+            transform: translateY(-6px);
+        }
+
+        .visitor-num {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: rgba(212, 175, 55, 0.15);
+            padding: 2px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            letter-spacing: 0.5px;
         }
 
         .divider-with-text {
@@ -508,14 +497,14 @@
 
         .divider-with-text span { padding: 0 12px; font-weight: 500; }
 
-        /* تنسيق أزرار التواصل المتناسقة (شبكة متناسقة في الهاتف) */
+        /* تصميم أزرار المتابعة المتناسقة (شبكة 2x2 للهواتف) */
         .social-links {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            max-width: 450px;
             margin: 15px auto 20px;
             width: 100%;
+            max-width: 500px;
         }
 
         .social-btn {
@@ -532,9 +521,9 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             box-shadow: var(--shadow-sm);
-            transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease;
+            transition: transform 0.2s ease, background 0.3s ease, border-color 0.3s ease;
             width: 100%;
         }
 
@@ -548,18 +537,18 @@
             background: var(--accent-color); 
             color: #0b1329; 
             transform: translateY(-2px);
+            border-color: var(--accent-color);
         }
 
         .social-btn:hover i { color: #0b1329; }
 
-        /* زر FAB يوتيوب المطوّر مع التمدد */
+        /* زر الاشتراك المتمدد (FAB) مع انيميشن تمدد وتليين كل ثانيتين */
         .fab-subscribe {
             position: fixed;
             bottom: 20px;
             right: 20px;
             height: 50px;
-            min-width: 50px;
-            max-width: 50px;
+            width: 50px;
             border-radius: 25px;
             background: #ff0000;
             color: #ffffff;
@@ -569,11 +558,11 @@
             box-shadow: 0 4px 16px rgba(255, 0, 0, 0.45);
             z-index: 999;
             text-decoration: none;
-            font-size: 1.2rem;
-            padding: 0 14px;
             overflow: hidden;
             white-space: nowrap;
-            transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+            padding: 0 14px;
+            animation: fabExpandCycle 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            transition: box-shadow 0.3s ease;
         }
 
         html[dir="ltr"] .fab-subscribe {
@@ -581,28 +570,46 @@
             left: 20px;
         }
 
-        .fab-subscribe .fab-text {
-            opacity: 0;
-            max-width: 0;
-            font-size: 0.88rem;
+        .fab-subscribe i {
+            font-size: 1.35rem;
+            flex-shrink: 0;
+        }
+
+        .fab-text {
+            font-size: 0.85rem;
             font-weight: bold;
-            transition: opacity 0.3s ease, max-width 0.5s ease, margin 0.3s ease;
-            display: inline-block;
-        }
-
-        .fab-subscribe.expanded {
-            max-width: 160px;
-        }
-
-        .fab-subscribe.expanded .fab-text {
-            opacity: 1;
-            max-width: 90px;
             margin-right: 8px;
+            display: inline-block;
+            animation: fabTextFadeCycle 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        html[dir="ltr"] .fab-subscribe.expanded .fab-text {
+        html[dir="ltr"] .fab-text {
             margin-right: 0;
             margin-left: 8px;
+        }
+
+        @keyframes fabExpandCycle {
+            0%, 45%, 100% {
+                width: 50px;
+                border-radius: 25px;
+            }
+            50%, 95% {
+                width: 135px;
+                border-radius: 25px;
+            }
+        }
+
+        @keyframes fabTextFadeCycle {
+            0%, 48%, 100% {
+                opacity: 0;
+                max-width: 0;
+                visibility: hidden;
+            }
+            52%, 92% {
+                opacity: 1;
+                max-width: 80px;
+                visibility: visible;
+            }
         }
 
         .fab-subscribe:hover {
@@ -667,9 +674,7 @@
             transition: transform 0.2s ease;
         }
 
-        .close-modal:hover {
-            transform: scale(1.1);
-        }
+        .close-modal:hover { transform: scale(1.1); }
 
         .image-modal-content {
             position: relative;
@@ -707,17 +712,8 @@
             margin-bottom: 12px;
         }
 
-        .search-modal-box h3 {
-            font-size: 1.25rem;
-            margin-bottom: 8px;
-            color: var(--text-color);
-        }
-
-        .search-modal-box p {
-            font-size: 0.92rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
+        .search-modal-box h3 { font-size: 1.25rem; margin-bottom: 8px; color: var(--text-color); }
+        .search-modal-box p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
 
         footer { text-align: center; padding: 10px 0 20px; color: var(--text-muted); font-size: 0.85rem; }
     </style>
@@ -725,7 +721,7 @@
 <body>
 
     <div class="container">
-        <!-- Toolbar العلوي -->
+        <!-- Toolbar العلوي للموقع والبحث -->
         <div class="toolbar" id="mainToolbar">
             <form class="search-box" id="searchForm">
                 <input type="text" id="searchInput" placeholder="ادخل نص البحث">
@@ -741,8 +737,6 @@
                     <button type="button" class="lang-option" data-lang="en">English</button>
                     <button type="button" class="lang-option" data-lang="es">Español</button>
                     <button type="button" class="lang-option" data-lang="fr">Français</button>
-                    <button type="button" class="lang-option" data-lang="id">Indonesian</button>
-                    <button type="button" class="lang-option" data-lang="ur">اردو</button>
                 </div>
             </div>
 
@@ -760,12 +754,6 @@
             <div class="subtitle" id="txt-title">شاعر / صانع محتوى</div>
             <p class="bio" id="txt-bio">هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش</p>
             
-            <!-- خانة عداد الزوار الانيميشن -->
-            <div class="visitor-counter-box" id="visitorBox">
-                <i class="fa-solid fa-users"></i>
-                <span class="visitor-text" id="visitorText">ضيفنا الكريم رقم</span>
-            </div>
-
             <hr class="simple-divider">
 
             <div class="role-badges">
@@ -841,11 +829,22 @@
             </div>
         </section>
 
+        <!-- خانة عدد الزوار -->
+        <section class="visitor-section reveal">
+            <div class="visitor-card">
+                <i class="fa-solid fa-eye visitor-icon"></i>
+                <div class="visitor-text-wrapper">
+                    <span id="visitorLabel" class="visitor-label">ضيفنا الكريم رقم</span>
+                    <span id="visitorNum" class="visitor-num">1</span>
+                </div>
+            </div>
+        </section>
+
         <div class="divider-with-text reveal">
             <span id="txt-honor">شرفنا بمتابعتك</span>
         </div>
 
-        <!-- أزرار التواصل المقسمة بترتيب متناسق (يوتيوب وتيك توك جنب بعض، وتيليجرام وفيسبوك تحتهم) -->
+        <!-- أزرار المتابعة مقسمة بشكل احترافي (2 في كل صف على الهاتف) -->
         <div class="social-links reveal">
             <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-btn">
                 <i class="fa-brands fa-youtube"></i> <span id="btn-youtube">يوتيوب</span>
@@ -866,7 +865,7 @@
         </footer>
     </div>
 
-    <!-- زر الاشتراك العائم (FAB) المتمدد -->
+    <!-- زر الاشتراك العائم (FAB) يمتد ويلين بانتظام -->
     <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="fab-subscribe" id="fabBtn" title="اشترك في القناة" aria-label="Subscribe on YouTube">
         <i class="fa-brands fa-youtube"></i>
         <span class="fab-text" id="fabText">اشترك الآن</span>
@@ -890,7 +889,7 @@
         </div>
     </div>
 
-    <!-- نافذة نتائج البحث غير المتوفرة -->
+    <!-- نافذة حوار نتائج البحث غير المتوفرة -->
     <div class="reel-modal" id="searchModal">
         <div class="search-modal-box">
             <button class="close-modal" id="closeSearchModalBtn">&times;</button>
@@ -903,9 +902,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            let currentLang = 'ar';
-
-            // قاموس اللغات والتراجم
             const i18n = {
                 ar: {
                     search: "ادخل نص البحث",
@@ -915,8 +911,6 @@
                     badgeQuran: "قارئ قرآن",
                     badgePoet: "شاعر",
                     badgeCreator: "صانع محتوى",
-                    visitorPrefix: "ضيفنا الكريم رقم",
-                    subscribeNow: "اشترك الآن",
                     quranshorts: "تلاوات اخترناها لك",
                     quranfull: "تلاوات عطرة",
                     foryou: "من أجلك أنت",
@@ -928,11 +922,14 @@
                     emailPlaceholder: "بريدك الإلكتروني",
                     msgPlaceholder: "اكتب رسالتك هنا...",
                     submitBtn: "إرسال الرسالة",
+                    visitorText1: "ضيفنا الكريم رقم",
+                    visitorText2: "أهلاً بك، أنت الزائر رقم",
                     honor: "شرفنا بمتابعتك",
                     telegram: "تيليجرام",
                     tiktok: "تيك توك",
                     facebook: "فيسبوك",
                     youtube: "يوتيوب",
+                    fabText: "اشترك الآن",
                     footer: "© 2026 - جميع الحقوق محفوظة",
                     notFoundTitle: "عذراً.. المحتوى غير متوفر",
                     notFoundMsg: "للأسف المحتوى الذي بحثت عنه غير متوفر حالياً. يسعدنا جداً اهتمامك بمحتوانا وشغفك بمتابعته!"
@@ -945,8 +942,6 @@
                     badgeQuran: "Quran Reciter",
                     badgePoet: "Poet",
                     badgeCreator: "Content Creator",
-                    visitorPrefix: "Honored Guest No.",
-                    subscribeNow: "Subscribe Now",
                     quranshorts: "Selected Recitations",
                     quranfull: "Fragrant Recitations",
                     foryou: "For You",
@@ -958,11 +953,14 @@
                     emailPlaceholder: "Your Email",
                     msgPlaceholder: "Write your message here...",
                     submitBtn: "Send Message",
+                    visitorText1: "Honored Guest No.",
+                    visitorText2: "Welcome, Visitor No.",
                     honor: "Honored by your follow",
                     telegram: "Telegram",
                     tiktok: "TikTok",
                     facebook: "Facebook",
                     youtube: "YouTube",
+                    fabText: "Subscribe",
                     footer: "© 2026 - All Rights Reserved",
                     notFoundTitle: "Content Unavailable",
                     notFoundMsg: "Unfortunately, the content you searched for is currently unavailable. We are truly delighted by your interest in our content!"
@@ -975,8 +973,6 @@
                     badgeQuran: "Recitador del Corán",
                     badgePoet: "Poeta",
                     badgeCreator: "Creador de Contenido",
-                    visitorPrefix: "Estimado Invitado Nº",
-                    subscribeNow: "Suscríbete",
                     quranshorts: "Recitaciones Seleccionadas",
                     quranfull: "Recitaciones Fragantes",
                     foryou: "Para Ti",
@@ -988,11 +984,14 @@
                     emailPlaceholder: "Tu Correo Electrónico",
                     msgPlaceholder: "Escribe tu mensaje aquí...",
                     submitBtn: "Enviar Mensaje",
+                    visitorText1: "Estimado Visitante No.",
+                    visitorText2: "Bienvenido, Visitante No.",
                     honor: "Honrados con tu seguimiento",
                     telegram: "Telegram",
                     tiktok: "TikTok",
                     facebook: "Facebook",
                     youtube: "YouTube",
+                    fabText: "Suscríbete",
                     footer: "© 2026 - Todos los derechos reservados",
                     notFoundTitle: "Contenido no disponible",
                     notFoundMsg: "Lamentablemente, el contenido que buscaste no está disponible actualmente. ¡Estamos muy felices de que estés interesado en nuestro contenido!"
@@ -1005,8 +1004,6 @@
                     badgeQuran: "Récitateur du Coran",
                     badgePoet: "Poète",
                     badgeCreator: "Créateur de Contenu",
-                    visitorPrefix: "Cher Invité N°",
-                    subscribeNow: "S'abonner",
                     quranshorts: "Récitations Sélectionnées",
                     quranfull: "Récitations Parfumées",
                     foryou: "Pour Vous",
@@ -1018,194 +1015,52 @@
                     emailPlaceholder: "Votre E-mail",
                     msgPlaceholder: "Écrivez votre message ici...",
                     submitBtn: "Envoyer le Message",
+                    visitorText1: "Cher Visiteur No.",
+                    visitorText2: "Bienvenue, Visiteur No.",
                     honor: "Honoré par votre suivi",
                     telegram: "Telegram",
                     tiktok: "TikTok",
                     facebook: "Facebook",
                     youtube: "YouTube",
+                    fabText: "S'abonner",
                     footer: "© 2026 - Tous droits réservés",
                     notFoundTitle: "Contenu indisponible",
                     notFoundMsg: "Malheureusement, le contenu que vous avez recherché n'est pas disponible pour le moment. Nous sommes ravis de votre intérêt pour notre contenu!"
-                },
-                id: {
-                    search: "Cari konten...",
-                    name: "Faris Ash-Shiref",
-                    title: "Penyair / Pembuat Konten",
-                    bio: "Di sini Anda akan menemukan semua karya penyair Faris Muhammad Dahesh.",
-                    badgeQuran: "Lantunan Al-Qur'an",
-                    badgePoet: "Penyair",
-                    badgeCreator: "Pembuat Konten",
-                    visitorPrefix: "Tamu Ke-",
-                    subscribeNow: "Berlangganan",
-                    quranshorts: "Tilawah Pilihan",
-                    quranfull: "Tilawah Indah",
-                    foryou: "Untuk Anda",
-                    poems: "Puisi Saya",
-                    aboutTitle: "Tentang Saya",
-                    aboutDesc: "Faris Muhammad Dahesh.. Penyair dan pembuat konten asal Mesir, lahir 3 Juli 2003 di Asyut, Mesir. Berusaha memberikan dampak positif melalui lantunan Al-Qur'an, puisi, dan konten media sosial.",
-                    contactTitle: "Hubungi Saya",
-                    namePlaceholder: "Nama Anda",
-                    emailPlaceholder: "Email Anda",
-                    msgPlaceholder: "Tulis pesan Anda di sini...",
-                    submitBtn: "Kirim Pesan",
-                    honor: "Kehormatan atas dukungan Anda",
-                    telegram: "Telegram",
-                    tiktok: "TikTok",
-                    facebook: "Facebook",
-                    youtube: "YouTube",
-                    footer: "© 2026 - Hak Cipta Dilindungi",
-                    notFoundTitle: "Konten Tidak Tersedia",
-                    notFoundMsg: "Maaf, konten yang Anda cari saat ini tidak tersedia. Kami sangat senang atas ketertarikan Anda pada konten kami!"
-                },
-                ur: {
-                    search: "مواد تلاش کریں...",
-                    name: "فَارِس الشِريـف",
-                    title: "شاعر / مواد تخلیق کار",
-                    bio: "یہاں آپ کو شاعر فارس محمد داہش کے تمام کام ملیں گے۔",
-                    badgeQuran: "قاری قرآن",
-                    badgePoet: "شاعر",
-                    badgeCreator: "کنٹینٹ کریئیٹر",
-                    visitorPrefix: "معزز مہمان نمبر",
-                    subscribeNow: "سبسکرائب کریں",
-                    quranshorts: "منتخب تلاوتیں",
-                    quranfull: "مبارک تلاوتیں",
-                    foryou: "آپ کے لیے",
-                    poems: "میری شاعری",
-                    aboutTitle: "میرا تعارف",
-                    aboutDesc: "فارس محمد داہش.. مصری شاعر اور مواد تخلیق کار، پیدائش 3 جولائی 2003 اسیوط، مصر۔ وہ اپنی تلاوت، شاعری اور ویڈیو مواد کے ذریعے لوگوں کے دلوں پر مثبت اثر چھوڑنے کی کوشش کرتے ہیں۔",
-                    contactTitle: "رابطہ کریں",
-                    namePlaceholder: "آپ کا نام",
-                    emailPlaceholder: "آپ کا ای میل",
-                    msgPlaceholder: "اپنا پیغام یہاں لکھیں...",
-                    submitBtn: "پیغام بھیجیں",
-                    honor: "آپ کے فالو کرنے کا شکریہ",
-                    telegram: "ٹیلیگرام",
-                    tiktok: "ٹک ٹاک",
-                    facebook: "فیس بک",
-                    youtube: "یوٹیوب",
-                    footer: "© 2026 - جملہ حقوق محفوظ ہیں",
-                    notFoundTitle: "مواد دستیاب نہیں ہے",
-                    notFoundMsg: "افسوس کہ جو مواد آپ نے تلاش کیا ہے وہ فی الحال دستیاب نہیں ہے۔ ہمیں خوشی ہے کہ آپ ہمارے مواد میں دلچسپی رکھتے ہیں!"
                 }
             };
 
-            // 1. إدارة عداد الزوار وحفظ عدد الزيارات
-            let visitCount = parseInt(localStorage.getItem('site_visits') || '1280', 10);
-            if (!sessionStorage.getItem('visited_session')) {
-                visitCount++;
-                localStorage.setItem('site_visits', visitCount);
-                sessionStorage.setItem('visited_session', 'true');
-            }
-
-            const visitorText = document.getElementById('visitorText');
-            let isShowingNumber = false;
-
-            setInterval(() => {
-                visitorText.classList.add('fade-out');
-                setTimeout(() => {
-                    isShowingNumber = !isShowingNumber;
-                    if (isShowingNumber) {
-                        visitorText.innerText = visitCount.toLocaleString();
-                    } else {
-                        visitorText.innerText = i18n[currentLang].visitorPrefix;
-                    }
-                    visitorText.classList.remove('fade-out');
-                }, 400);
-            }, 2000);
-
-            // 2. حركة زر الـ FAB للتمدد كل 2 ثواني
-            const fabBtn = document.getElementById('fabBtn');
-            setInterval(() => {
-                fabBtn.classList.toggle('expanded');
-            }, 2000);
-
-            // 3 + 4. حفظ واسترجاع الثيم واللغة والتعرف على لغة الجهاز
-            const themeToggle = document.getElementById('themeToggle');
-            const themeIcon = document.getElementById('themeIcon');
-            const themeColorMeta = document.getElementById('theme-color-meta');
-
-            function applyTheme(theme) {
-                document.documentElement.setAttribute('data-theme', theme);
-                themeIcon.className = theme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-                if (themeColorMeta) {
-                    themeColorMeta.setAttribute('content', theme === 'light' ? '#f8fafc' : '#0b1329');
-                }
-                localStorage.setItem('user_theme', theme);
-            }
-
-            // تحميل الثيم المخزن أو الافتراضي الداكن
-            const savedTheme = localStorage.getItem('user_theme') || 'dark';
-            applyTheme(savedTheme);
-
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
-            });
-
-            // كشف لغة الجهاز وإمكانية الحفظ
-            function detectDeviceLanguage() {
-                const savedLang = localStorage.getItem('user_lang');
+            // 3 & 4. حفظ بيانات الثيم والترجمة + اكتشاف لغة الجهاز تلقائياً عند أول فتح
+            function getInitialLanguage() {
+                const savedLang = localStorage.getItem('faris_site_lang');
                 if (savedLang && i18n[savedLang]) {
                     return savedLang;
                 }
-
-                // كشف لغة النظام / المتصفح
-                const browserLang = (navigator.language || navigator.userLanguage || 'ar').split('-')[0].toLowerCase();
                 
-                // إذا كانت لغة الجهاز مدمجة في القاموس نستخدمها، وإلا فالعربية هي البديل الافتراضي
-                return i18n[browserLang] ? browserLang : 'ar';
-            }
-
-            function changeLanguage(lang) {
-                currentLang = lang;
-                localStorage.setItem('user_lang', lang);
-                const isRTL = (lang === 'ar' || lang === 'ur');
-
-                document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
-                document.documentElement.setAttribute('lang', lang);
-                
-                document.getElementById('searchInput').placeholder = i18n[lang].search;
-                document.getElementById('txt-name').innerText = i18n[lang].name;
-                document.getElementById('txt-title').innerText = i18n[lang].title;
-                document.getElementById('txt-bio').innerText = i18n[lang].bio;
-
-                document.getElementById('badge-quran').innerText = i18n[lang].badgeQuran;
-                document.getElementById('badge-poet').innerText = i18n[lang].badgePoet;
-                document.getElementById('badge-creator').innerText = i18n[lang].badgeCreator;
-
-                document.getElementById('fabText').innerText = i18n[lang].subscribeNow;
-
-                document.getElementById('sec-quranshorts').innerText = i18n[lang].quranshorts;
-                document.getElementById('sec-quranfull').innerText = i18n[lang].quranfull;
-                document.getElementById('sec-foryou').innerText = i18n[lang].foryou;
-                document.getElementById('sec-poems').innerText = i18n[lang].poems;
-                document.getElementById('about-title').innerText = i18n[lang].aboutTitle;
-                document.getElementById('about-desc').innerText = i18n[lang].aboutDesc;
-                
-                document.getElementById('contact-title').innerText = i18n[lang].contactTitle;
-                document.getElementById('input-name').placeholder = i18n[lang].namePlaceholder;
-                document.getElementById('input-email').placeholder = i18n[lang].emailPlaceholder;
-                document.getElementById('input-msg').placeholder = i18n[lang].msgPlaceholder;
-                document.getElementById('btn-submit').innerHTML = `${i18n[lang].submitBtn} <i class="fa-solid fa-paper-plane"></i>`;
-
-                document.getElementById('txt-honor').innerText = i18n[lang].honor;
-                document.getElementById('btn-telegram').innerText = i18n[lang].telegram;
-                document.getElementById('btn-tiktok').innerText = i18n[lang].tiktok;
-                document.getElementById('btn-facebook').innerText = i18n[lang].facebook;
-                document.getElementById('btn-youtube').innerText = i18n[lang].youtube;
-                document.getElementById('txt-footer').innerText = i18n[lang].footer;
-
-                if (!isShowingNumber) {
-                    visitorText.innerText = i18n[lang].visitorPrefix;
+                // لغة الجهاز
+                const userNavLang = (navigator.language || navigator.userLanguage || '').toLowerCase().substring(0, 2);
+                if (i18n[userNavLang]) {
+                    return userNavLang;
                 }
-
-                document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
+                
+                return 'ar'; // اللغة الافتراضية
             }
 
-            // تفعيل اللغة المخزنة أو لغة الجهاز تلقائياً عند الدخول
-            changeLanguage(detectDeviceLanguage());
+            let currentLang = getInitialLanguage();
 
-            // تفعيل حركات الظهور عند السحب (Scroll Reveal)
+            // تطبيق الثيم المحفوظ
+            const savedTheme = localStorage.getItem('faris_site_theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const themeIcon = document.getElementById('themeIcon');
+            const themeColorMeta = document.getElementById('theme-color-meta');
+            
+            if (themeIcon) {
+                themeIcon.className = savedTheme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+            }
+            if (themeColorMeta) {
+                themeColorMeta.setAttribute('content', savedTheme === 'light' ? '#f8fafc' : '#0b1329');
+            }
+
+            // تفعيل حركة الظهور عند التمرير
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1216,7 +1071,35 @@
 
             document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-            // دالة التحكم بأسهم التمرير
+            // 1. حساب عدد الزوار وتنشيط الانيميشن كل ثانيتين
+            let visitCount = parseInt(localStorage.getItem('faris_visit_count') || '1284');
+            if (!sessionStorage.getItem('visited_this_session')) {
+                visitCount += 1;
+                localStorage.setItem('faris_visit_count', visitCount);
+                sessionStorage.setItem('visited_this_session', 'true');
+            }
+
+            const visitorNum = document.getElementById('visitorNum');
+            const visitorLabel = document.getElementById('visitorLabel');
+            if (visitorNum) visitorNum.innerText = visitCount.toLocaleString();
+
+            let isTextAlt = false;
+            setInterval(() => {
+                if (!visitorLabel) return;
+                visitorLabel.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    if (isTextAlt) {
+                        visitorLabel.innerText = i18n[currentLang]?.visitorText1 || "ضيفنا الكريم رقم";
+                    } else {
+                        visitorLabel.innerText = i18n[currentLang]?.visitorText2 || "أهلاً بك، أنت الزائر رقم";
+                    }
+                    isTextAlt = !isTextAlt;
+                    visitorLabel.classList.remove('fade-out');
+                }, 300);
+            }, 2000);
+
+            // التحقق وإخفاء/إظهار أسهم التمرير عند الأطراف
             function updateScrollButtons(container) {
                 if (!container) return;
                 const wrapper = container.closest('.reels-wrapper');
@@ -1244,7 +1127,7 @@
                 }
             }
 
-            // إظهار الأقسام التي بها محتوى
+            // تحميل المحتوى الديناميكي للأقسام
             async function loadSectionContent(fileUrl, containerId) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -1337,7 +1220,7 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // البحث والمحتوى غير المتوفر
+            // نتائج البحث
             const searchForm = document.getElementById('searchForm');
             const searchInput = document.getElementById('searchInput');
             const searchModal = document.getElementById('searchModal');
@@ -1398,7 +1281,23 @@
                 searchInput.blur();
             });
 
-            // التحكم بالترجمة
+            // تبديل الوضع (Dark / Light) وتخزينه
+            const themeToggle = document.getElementById('themeToggle');
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('faris_site_theme', newTheme);
+                
+                themeIcon.className = newTheme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+                if (themeColorMeta) {
+                    themeColorMeta.setAttribute('content', newTheme === 'light' ? '#f8fafc' : '#0b1329');
+                }
+            });
+
+            // قائمة التبديل بين اللغات
             const langBtn = document.getElementById('langBtn');
             const langDropdown = document.getElementById('langDropdown');
 
@@ -1420,6 +1319,52 @@
                     langDropdown.classList.remove('show');
                 });
             });
+
+            function changeLanguage(lang) {
+                currentLang = lang;
+                localStorage.setItem('faris_site_lang', lang);
+
+                const isRTL = (lang === 'ar');
+
+                document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+                document.documentElement.setAttribute('lang', lang);
+                
+                document.getElementById('searchInput').placeholder = i18n[lang].search;
+                document.getElementById('txt-name').innerText = i18n[lang].name;
+                document.getElementById('txt-title').innerText = i18n[lang].title;
+                document.getElementById('txt-bio').innerText = i18n[lang].bio;
+
+                document.getElementById('badge-quran').innerText = i18n[lang].badgeQuran;
+                document.getElementById('badge-poet').innerText = i18n[lang].badgePoet;
+                document.getElementById('badge-creator').innerText = i18n[lang].badgeCreator;
+
+                document.getElementById('sec-quranshorts').innerText = i18n[lang].quranshorts;
+                document.getElementById('sec-quranfull').innerText = i18n[lang].quranfull;
+                document.getElementById('sec-foryou').innerText = i18n[lang].foryou;
+                document.getElementById('sec-poems').innerText = i18n[lang].poems;
+                document.getElementById('about-title').innerText = i18n[lang].aboutTitle;
+                document.getElementById('about-desc').innerText = i18n[lang].aboutDesc;
+                
+                document.getElementById('contact-title').innerText = i18n[lang].contactTitle;
+                document.getElementById('input-name').placeholder = i18n[lang].namePlaceholder;
+                document.getElementById('input-email').placeholder = i18n[lang].emailPlaceholder;
+                document.getElementById('input-msg').placeholder = i18n[lang].msgPlaceholder;
+                document.getElementById('btn-submit').innerHTML = `${i18n[lang].submitBtn} <i class="fa-solid fa-paper-plane"></i>`;
+
+                document.getElementById('visitorLabel').innerText = i18n[lang].visitorText1;
+                document.getElementById('txt-honor').innerText = i18n[lang].honor;
+                document.getElementById('btn-telegram').innerText = i18n[lang].telegram;
+                document.getElementById('btn-tiktok').innerText = i18n[lang].tiktok;
+                document.getElementById('btn-facebook').innerText = i18n[lang].facebook;
+                document.getElementById('btn-youtube').innerText = i18n[lang].youtube;
+                document.getElementById('fabText').innerText = i18n[lang].fabText;
+                document.getElementById('txt-footer').innerText = i18n[lang].footer;
+
+                document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
+            }
+
+            // تطبيق اللغة الابتدائية
+            changeLanguage(currentLang);
 
             window.addEventListener('resize', () => {
                 document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
