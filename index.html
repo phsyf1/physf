@@ -641,7 +641,7 @@
         html[dir="ltr"] .close-modal { left: auto; right: 12px; }
         .close-modal:hover { transform: scale(1.1); background: rgba(0, 0, 0, 0.8); }
 
-        /* تصميم كارت الصورة الشخصية (مربع أبيض أنيق مع حواف منحنية وبدون علامة توثيق) */
+        /* تصميم كارت الصورة الشخصية */
         .profile-card-modal {
             position: relative;
             width: 100%;
@@ -782,78 +782,6 @@
             color: var(--accent-color);
         }
 
-        /* تصميم حوار التقييمات */
-        .reviews-list-container {
-            max-height: 200px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding-right: 4px;
-            margin-bottom: 12px;
-        }
-
-        .review-item {
-            background: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 10px 12px;
-            font-size: 0.88rem;
-        }
-
-        .review-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 4px;
-        }
-
-        .review-author {
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-
-        .review-stars {
-            color: #f39c12;
-            font-size: 0.8rem;
-        }
-
-        .review-comment {
-            color: var(--text-color);
-            line-height: 1.4;
-            word-break: break-word;
-        }
-
-        .star-rating-picker {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            font-size: 1.5rem;
-            color: #777;
-            cursor: pointer;
-            direction: ltr;
-        }
-
-        .star-rating-picker .star.active { color: #f39c12; }
-
-        .delete-review-btn {
-            background: #e74c3c;
-            color: #ffffff;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.88rem;
-            cursor: pointer;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: opacity 0.2s ease;
-            margin-top: 5px;
-        }
-
-        .delete-review-btn:hover { opacity: 0.9; }
-
         .search-modal-box {
             position: relative;
             width: 90%;
@@ -879,7 +807,7 @@
 <body>
 
     <div class="container">
-        <!-- Toolbar العلوي للتحكم والمشاركة والتقييم واللغة والوضع -->
+        <!-- Toolbar العلوي للتحكم والمشاركة واللغة والوضع -->
         <div class="toolbar" id="mainToolbar">
             <form class="search-box" id="searchForm">
                 <input type="text" id="searchInput" placeholder="ادخل نص البحث">
@@ -889,11 +817,6 @@
             <!-- زر مشاركة الموقع -->
             <button class="control-btn" id="shareBtn" type="button" title="مشاركة الموقع" aria-label="Share Site">
                 <i class="fa-solid fa-share-nodes"></i>
-            </button>
-
-            <!-- زر فتح التقييمات -->
-            <button class="control-btn" id="reviewsBtn" type="button" title="تقييمات وآراء الزوار" aria-label="Reviews">
-                <i class="fa-solid fa-star"></i>
             </button>
 
             <!-- قائمة اللغات -->
@@ -1051,7 +974,7 @@
         </div>
     </div>
 
-    <!-- 2. نافذة كارت الشاعر المنبثقة (مربعة بإنحناءات بدون توثيق وبخلفية بيضاء وخلفية بلورية) -->
+    <!-- 2. نافذة كارت الشاعر المنبثقة -->
     <div class="reel-modal" id="imageModal">
         <div class="profile-card-modal">
             <button class="close-modal" id="closeImageBtn">&times;</button>
@@ -1098,52 +1021,7 @@
         </div>
     </div>
 
-    <!-- 4. ديالوج تقييمات وآراء المستخدمين احترافي وبلوري -->
-    <div class="reel-modal" id="reviewsModal">
-        <div class="glass-dialog-box">
-            <button class="close-modal" id="closeReviewsBtn">&times;</button>
-            <h3 class="dialog-title"><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> <span id="reviewsTitle">تقييمات وآراء الزوار</span></h3>
-            
-            <div class="reviews-list-container" id="reviewsList">
-                <!-- يتم التحميل بالسوفت وير -->
-            </div>
-
-            <hr class="simple-divider" style="margin: 12px 0;">
-
-            <!-- نموذج إضافة تعليق إذا لم يكن علق سابقاً -->
-            <div id="reviewFormSection">
-                <h4 style="margin-bottom: 10px; font-size: 0.95rem; text-align: center;" id="addReviewHeader">أضف تقييمك ورأيك</h4>
-                <form id="reviewForm">
-                    <div class="star-rating-picker" id="starPicker">
-                        <i class="fa-solid fa-star star active" data-value="1"></i>
-                        <i class="fa-solid fa-star star active" data-value="2"></i>
-                        <i class="fa-solid fa-star star active" data-value="3"></i>
-                        <i class="fa-solid fa-star star active" data-value="4"></i>
-                        <i class="fa-solid fa-star star active" data-value="5"></i>
-                    </div>
-                    <div class="form-group" style="margin-top: 10px;">
-                        <input type="text" id="reviewAuthor" placeholder="اسم الكريم" required maxlength="30">
-                    </div>
-                    <div class="form-group" style="margin-top: 8px;">
-                        <textarea id="reviewComment" placeholder="بماذا تقيّم محتواي وهل تقترح علي أشياء أخري.. " rows="2" required maxlength="250"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn" style="width: 100%; margin-top: 10px;" id="btnSubmitReview">
-                        نشر التقييم
-                    </button>
-                </form>
-            </div>
-
-            <!-- الرسالة وتسهيل الخيار عند إضافة تقييم سابقاً -->
-            <div id="alreadyReviewedSection" style="display: none; text-align: center; margin-top: 10px;">
-                <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 8px;" id="alreadyReviewedMsg">لقد قمت بإضافة تقييمك سابقاً من هذا الجهاز.</p>
-                <button type="button" id="btnDeleteMyReview" class="delete-review-btn">
-                    <i class="fa-solid fa-trash-can"></i> <span id="txtDeleteReview">مسح تقييمي</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 5. نافذة نتائج البحث غير المتوفرة -->
+    <!-- 4. نافذة نتائج البحث غير المتوفرة -->
     <div class="reel-modal" id="searchModal">
         <div class="search-modal-box">
             <button class="close-modal" id="closeSearchModalBtn">&times;</button>
@@ -1190,13 +1068,6 @@
                     notFoundMsg: "للأسف المحتوى الذي بحثت عنه غير متوفر حالياً. يسعدنا جداً اهتمامك بمحتوانا وشغفك بمتابعته!",
                     followNow: "متابعة الآن",
                     socialDialogTitle: "اختر المنصة للمتابعة",
-                    reviewsTitle: "تقييمات وآراء الزوار",
-                    addReviewHeader: "أضف تقييمك ورأيك",
-                    authorPlaceholder: "اسمك الكريم",
-                    commentPlaceholder: "اكتب تعليقك هنا...",
-                    submitReviewBtn: "نشر التقييم",
-                    alreadyReviewed: "لقد قمت بإضافة تقييمك سابقاً من هذا الجهاز.",
-                    deleteReview: "مسح تقييمي",
                     shareSuccess: "تم نسخ رابط الموقع بنجاح!"
                 },
                 en: {
@@ -1232,13 +1103,6 @@
                     notFoundMsg: "Unfortunately, the content you searched for is currently unavailable. We are truly delighted by your interest in our content!",
                     followNow: "Follow Now",
                     socialDialogTitle: "Select Platform to Follow",
-                    reviewsTitle: "Visitor Reviews & Ratings",
-                    addReviewHeader: "Add Your Review",
-                    authorPlaceholder: "Your Name",
-                    commentPlaceholder: "Write your comment here...",
-                    submitReviewBtn: "Submit Review",
-                    alreadyReviewed: "You have already submitted a review from this device.",
-                    deleteReview: "Delete My Review",
                     shareSuccess: "Site link copied successfully!"
                 },
                 es: {
@@ -1274,13 +1138,6 @@
                     notFoundMsg: "Lamentablemente, el contenido que buscaste no está disponible actualmente.",
                     followNow: "Seguir Ahora",
                     socialDialogTitle: "Seleccionar Plataforma",
-                    reviewsTitle: "Reseñas de Visitantes",
-                    addReviewHeader: "Añade tu Reseña",
-                    authorPlaceholder: "Tu Nombre",
-                    commentPlaceholder: "Escribe tu reseña aquí...",
-                    submitReviewBtn: "Publicar Reseña",
-                    alreadyReviewed: "Ya has publicado una reseña desde este dispositivo.",
-                    deleteReview: "Eliminar mi Reseña",
                     shareSuccess: "¡Enlace copiado con éxito!"
                 },
                 fr: {
@@ -1316,13 +1173,6 @@
                     notFoundMsg: "Malheureusement, le contenu que vous avez recherché n'est pas disponible pour le moment.",
                     followNow: "S'abonner Maintenant",
                     socialDialogTitle: "Sélectionner la Plateforme",
-                    reviewsTitle: "Avis des Visiteurs",
-                    addReviewHeader: "Ajoutez votre Avis",
-                    authorPlaceholder: "Votre Nom",
-                    commentPlaceholder: "Écrivez votre avis ici...",
-                    submitReviewBtn: "Publier l'Avis",
-                    alreadyReviewed: "Vous avez déjà soumis un avis depuis cet appareil.",
-                    deleteReview: "Supprimer mon Avis",
                     shareSuccess: "Lien copié avec succès!"
                 }
             };
@@ -1412,161 +1262,6 @@
                     visitorLabel.classList.remove('fade-out');
                 }, 300);
             }, 2000);
-
-            // 3. نظام تقييمات وآراء الزوار (تم تفريغ القائمة الافتراضية ليبدأ المستخدمون بالتصويت الحقيقي)
-            const DEFAULT_REVIEWS = [];
-
-            function getStoredReviews() {
-                const raw = localStorage.getItem('faris_site_reviews');
-                if (!raw) {
-                    localStorage.setItem('faris_site_reviews', JSON.stringify(DEFAULT_REVIEWS));
-                    return DEFAULT_REVIEWS;
-                }
-                try { return JSON.parse(raw); } catch(e) { return DEFAULT_REVIEWS; }
-            }
-
-            function escapeHtml(str) {
-                return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-            }
-
-            function renderReviews() {
-                const reviews = getStoredReviews();
-                const container = document.getElementById('reviewsList');
-                if (!container) return;
-
-                container.innerHTML = '';
-                if (reviews.length === 0) {
-                    container.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; padding: 10px 0;">لا توجد تقييمات مضافة بعد، كن أول من يضيف تقييمه!</p>`;
-                } else {
-                    reviews.forEach(r => {
-                        let starsHtml = '';
-                        for (let i = 1; i <= 5; i++) {
-                            starsHtml += `<i class="${i <= r.stars ? 'fa-solid' : 'fa-regular'} fa-star"></i>`;
-                        }
-                        const div = document.createElement('div');
-                        div.className = 'review-item';
-                        div.innerHTML = `
-                            <div class="review-item-header">
-                                <span class="review-author">${escapeHtml(r.name)}</span>
-                                <span class="review-stars">${starsHtml}</span>
-                            </div>
-                            <div class="review-comment">${escapeHtml(r.comment)}</div>
-                        `;
-                        container.appendChild(div);
-                    });
-                }
-
-                const myReviewId = localStorage.getItem('faris_my_review_id');
-                const formSec = document.getElementById('reviewFormSection');
-                const alreadySec = document.getElementById('alreadyReviewedSection');
-
-                if (myReviewId) {
-                    if (formSec) formSec.style.display = 'none';
-                    if (alreadySec) alreadySec.style.display = 'block';
-                } else {
-                    if (formSec) formSec.style.display = 'block';
-                    if (alreadySec) alreadySec.style.display = 'none';
-                }
-            }
-
-            // نظام النجوم التفاعلي
-            let selectedRating = 5;
-            const starPicker = document.getElementById('starPicker');
-            if (starPicker) {
-                starPicker.querySelectorAll('.star').forEach(star => {
-                    star.addEventListener('click', () => {
-                        selectedRating = parseInt(star.getAttribute('data-value'));
-                        starPicker.querySelectorAll('.star').forEach(s => {
-                            const val = parseInt(s.getAttribute('data-value'));
-                            if (val <= selectedRating) {
-                                s.classList.add('active');
-                                s.classList.replace('fa-regular', 'fa-solid');
-                            } else {
-                                s.classList.remove('active');
-                                s.classList.replace('fa-solid', 'fa-regular');
-                            }
-                        });
-                    });
-                });
-            }
-
-            // نموذج إضافة التقييم
-            const reviewForm = document.getElementById('reviewForm');
-            if (reviewForm) {
-                reviewForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const nameInput = document.getElementById('reviewAuthor');
-                    const commentInput = document.getElementById('reviewComment');
-
-                    const name = nameInput.value.trim();
-                    const comment = commentInput.value.trim();
-
-                    if (!name || !comment) return;
-
-                    const reviews = getStoredReviews();
-                    const newId = Date.now().toString();
-
-                    const newReview = {
-                        id: newId,
-                        name: name,
-                        stars: selectedRating,
-                        comment: comment
-                    };
-
-                    reviews.unshift(newReview);
-                    localStorage.setItem('faris_site_reviews', JSON.stringify(reviews));
-                    localStorage.setItem('faris_my_review_id', newId);
-
-                    nameInput.value = '';
-                    commentInput.value = '';
-
-                    renderReviews();
-                });
-            }
-
-            // مسح تقييم المستخدم
-            const btnDeleteMyReview = document.getElementById('btnDeleteMyReview');
-            if (btnDeleteMyReview) {
-                btnDeleteMyReview.addEventListener('click', () => {
-                    const myReviewId = localStorage.getItem('faris_my_review_id');
-                    if (myReviewId) {
-                        let reviews = getStoredReviews();
-                        reviews = reviews.filter(r => String(r.id) !== String(myReviewId));
-                        localStorage.setItem('faris_site_reviews', JSON.stringify(reviews));
-                        localStorage.removeItem('faris_my_review_id');
-                        renderReviews();
-                    }
-                });
-            }
-
-            // فتح وإغلاق ديالوج التقييمات
-            const reviewsModal = document.getElementById('reviewsModal');
-            const reviewsBtn = document.getElementById('reviewsBtn');
-            const closeReviewsBtn = document.getElementById('closeReviewsBtn');
-
-            if (reviewsBtn) {
-                reviewsBtn.addEventListener('click', () => {
-                    renderReviews();
-                    reviewsModal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-            }
-
-            if (closeReviewsBtn) {
-                closeReviewsBtn.addEventListener('click', () => {
-                    reviewsModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            }
-
-            if (reviewsModal) {
-                reviewsModal.addEventListener('click', (e) => {
-                    if (e.target === reviewsModal) {
-                        reviewsModal.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-            }
 
             // أسهم التمرير
             function updateScrollButtons(container) {
@@ -1667,7 +1362,7 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // 4. تحكم كارت صورة الشاعر وديلوج المتابعة
+            // 3. تحكم كارت صورة الشاعر وديلوج المتابعة
             const profileWrapper = document.getElementById('profileImgWrapper');
             const imageModal = document.getElementById('imageModal');
             const closeImageBtn = document.getElementById('closeImageBtn');
@@ -1848,14 +1543,6 @@
                 document.getElementById('modalProfileBio').innerText = i18n[lang].modalBio;
                 document.getElementById('txt-follow-btn').innerText = i18n[lang].followNow;
                 document.getElementById('socialModalTitle').innerHTML = `<i class="fa-solid fa-heart" style="color:var(--accent-color);"></i> ${i18n[lang].socialDialogTitle}`;
-
-                document.getElementById('reviewsTitle').innerText = i18n[lang].reviewsTitle;
-                document.getElementById('addReviewHeader').innerText = i18n[lang].addReviewHeader;
-                document.getElementById('reviewAuthor').placeholder = i18n[lang].authorPlaceholder;
-                document.getElementById('reviewComment').placeholder = i18n[lang].commentPlaceholder;
-                document.getElementById('btnSubmitReview').innerText = i18n[lang].submitReviewBtn;
-                document.getElementById('alreadyReviewedMsg').innerText = i18n[lang].alreadyReviewed;
-                document.getElementById('txtDeleteReview').innerText = i18n[lang].deleteReview;
 
                 document.getElementById('contact-title').innerText = i18n[lang].contactTitle;
                 document.getElementById('input-name').placeholder = i18n[lang].namePlaceholder;
