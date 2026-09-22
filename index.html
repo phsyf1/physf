@@ -60,7 +60,7 @@
     <style>
         @font-face {
             font-family: 'Hafs';
-            src: url('https://fonts.qurancomplex.gov.sa/wp-content/uploads/2021/05/UthmanTN1Ver10.otf') format('opentype');
+            src: url('https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/fonts/quran-uthmani.woff2') format('woff2');
             font-display: swap;
         }
 
@@ -374,7 +374,7 @@
         .reel-card:hover { transform: translateY(-4px); border-color: var(--accent-color); }
         .reel-card img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* زر سهم التشغيل الذهبي الفاخر بخلفية دائرية متطورة وظل متوهج UI/UX */
+        /* زر سهم التشغيل الذهبي الفاخر */
         .reel-play-btn {
             position: absolute;
             top: 50%;
@@ -430,7 +430,7 @@
         .left-btn { left: -8px; }
         .right-btn { right: -8px; }
 
-        /* لاينر لماذا أنا هنا مع خط عثماني Hafs وانيميشن جذاب وتدرج الوان الثيم */
+        /* لاينر لماذا أنا هنا مع خط عثماني سرييع جداً ومعالجة التشكيل دقيقة */
         .why-here-box {
             background: var(--card-bg-glass);
             backdrop-filter: blur(14px);
@@ -440,7 +440,7 @@
             padding: 22px 20px;
             box-shadow: var(--shadow);
             text-align: center;
-            min-height: 150px;
+            min-height: 140px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -461,7 +461,7 @@
         }
 
         .why-here-box .quote-text {
-            font-family: 'Hafs', 'Amiri Quran', 'Amiri', serif;
+            font-family: 'Amiri Quran', 'Hafs', 'Amiri', serif;
             font-size: 1.35rem;
             font-weight: 400;
             color: #ffffff;
@@ -474,33 +474,11 @@
             color: #0f172a;
         }
 
-        .why-here-box .franco-text {
-            font-size: 0.88rem;
-            color: #cbd5e1;
-            font-style: italic;
-            margin-bottom: 8px;
-            direction: ltr;
-        }
-
-        [data-theme="light"] .why-here-box .franco-text {
-            color: #475569;
-        }
-
-        .why-here-box .translation-text {
-            font-size: 0.92rem;
-            color: #cbd5e1;
-            margin-bottom: 10px;
-        }
-
-        [data-theme="light"] .why-here-box .translation-text {
-            color: #475569;
-        }
-
         .why-here-box .quote-source {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             color: #94a3b8;
             font-weight: 500;
-            margin-top: 14px;
+            margin-top: 6px;
             display: block;
         }
 
@@ -850,7 +828,6 @@
             color: var(--text-color);
         }
 
-        /* تعديل درجة لون الخط للنص التعريفي وإلغاء الخلفية البيضاء */
         .profile-card-bio {
             color: #cbd5e1;
             font-size: 0.92rem;
@@ -867,7 +844,6 @@
             color: #0f172a;
         }
 
-        /* زر "متابعة الآن" بلون ذهبي ومتناسق مع لون خط أبيض */
         .follow-now-btn {
             width: 100%;
             background: var(--accent-color);
@@ -1062,14 +1038,12 @@
             </div>
         </section>
 
-        <!-- لاينر "لماذا أنا هنا" يتغير عشوائياً كل ٤ ثواني بانيميشن جذاب وخط عثماني -->
+        <!-- لاينر "لماذا أنا هنا" تعرض الآية أو الحديث فقط وأسفلها المصدر -->
         <section class="reveal" id="why-here-section">
             <h2 class="section-title" id="why-here-title">لماذا أنا هنا</h2>
             <div class="why-here-box">
                 <div id="why-here-content" class="why-here-content">
                     <p id="why-here-text" class="quote-text"></p>
-                    <p id="why-here-franco" class="franco-text"></p>
-                    <p id="why-here-trans" class="translation-text"></p>
                     <span id="why-here-source" class="quote-source"></span>
                 </div>
             </div>
@@ -1205,741 +1179,28 @@
         <div class="search-modal-box">
             <button class="close-modal" id="closeSearchModalBtn">&times;</button>
             <i class="fa-solid fa-circle-info"></i>
-            <h3 id="searchModalTitle"></h3>
-            <p id="searchModalMsg"></p>
+            <h3 id="searchModalTitle">نتائج البحث</h3>
+            <p id="searchModalBody">عذراً، لم نجد نتائج تطابق بحثك حالياً.</p>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // إنجاز دوال السكربت لتحديث النصوص بسلاسة ودعم السهم والتشغيل
+        function renderQuote() {
+            if (typeof currentQuote === 'undefined' || !currentQuote) return;
+            const txtEl = document.getElementById('why-here-text');
+            const sourceEl = document.getElementById('why-here-source');
 
-            // قائمة الآيات الأحد عشر المحددة (ترجمة الفرانكو للآيات فقط ولا توجد ترجمة فرانكو للأحاديث)
-            const whyHereQuotes = [
-                {
-                    type: 'quran',
-                    ar: "ادْعُ إِلَىٰ سَبِيلِ رَبِّكَ بِالْحِكْمَةِ وَالْمَوْعِظَةِ الْحَسَنَةِ",
-                    franco: "Ud'u ila sabeeli rabbika bil-hikmati wal-maw'izatil-hasanah",
-                    en: "Invite to the way of your Lord with wisdom and good instruction.",
-                    es: "Invita al camino de tu Señor con sabiduría y buena exhortación.",
-                    fr: "Appelle au sentier de ton Seigneur par la sagesse et la bonne exhortation.",
-                    sourceAr: "[سورة النحل - ١٢٥]",
-                    sourceForeign: "[Surah An-Nahl - 125]"
-                },
-                {
-                    type: 'hadith',
-                    ar: "زَيِّنُوا الْقُرْآنَ بِأَصْوَاتِكُمْ، فَإِنَّ الصَّوْتَ الْحَسَنَ يَزِيدُ الْقُرْآنَ حُسْنًا",
-                    franco: null,
-                    en: "Beautify the Quran with your voices, for a fine voice increases the Quran in beauty.",
-                    es: "Embelleced el Corán con vuestras voces, pues una buena voz aumenta la belleza del Corán.",
-                    fr: "Embellissez le Coran avec vos voix, car une belle voix ajoute à la beauté du Coran.",
-                    sourceAr: "[سنن الدارمي / صحيح الجامع]",
-                    sourceForeign: "[Sunan al-Darimi / Sahih al-Jami]"
-                },
-                {
-                    type: 'quran',
-                    ar: "وَمَنْ أَحْسَنُ قَوْلًا مِمَّنْ دَعَا إِلَى اللَّهِ وَعَمِلَ صَالِحًا وَقَالَ إِنَّنِي مِنَ الْمُسْلِمِينَ",
-                    franco: "Wa man ahsanu qawlan mimman da'a ilallahi wa 'amila salihan wa qala innanee minal-muslimeen",
-                    en: "And who is better in speech than one who invites to Allah and does righteousness and says, 'Indeed, I am of the Muslims.'",
-                    es: "¿Y quién es mejor en palabras que quien llama a Alá, obra rectamente y dice: «Verdaderamente soy de los musulmanes»?",
-                    fr: "Et qui parle mieux que celui qui appelle à Allah, fait œuvre pieuse et dit: «Je suis du nombre des Musulmans»?",
-                    sourceAr: "[سورة فصلت - ٣٣]",
-                    sourceForeign: "[Surah Fussilat - 33]"
-                },
-                {
-                    type: 'quran',
-                    ar: "وَلْتَكُنْ مِنْكُمْ أُمَّةٌ يَدْعُونَ إِلَى الْخَيْرِ وَيَأْمُرُونَ بِالْمَعْرُوفِ وَيَنْهَوْنَ عَنِ الْمُنْكَرِ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ",
-                    franco: "Waltakun minkum ummatun yad'oona ilal-khayri wa ya'muroona bil-ma'roofi wa yanhawna 'anil-munkari wa ula'ika humul-muflihoon",
-                    en: "And let there be [arising] from you a nation inviting to all that is good, enjoining what is right and forbidding what is wrong, and those will be the successful.",
-                    es: "Y que haya entre vosotros una comunidad que llame al bien, ordene lo correcto y prohíba lo reprobable. Ésos serán los prósperos.",
-                    fr: "Que soit issue de vous une communauté qui appelle au bien, ordonne le convenable, et interdise le blâmable. Car ce seront eux les gagnants.",
-                    sourceAr: "[سورة آل عمران - ١٠٤]",
-                    sourceForeign: "[Surah Ali 'Imran - 104]"
-                },
-                {
-                    type: 'hadith',
-                    ar: "يُقَالُ لِصَاحِبِ الْقُرْآنِ: اقْرَأْ وَارْتَقِ وَرَتِّلْ كَمَا كُنْتَ تُرَتِّلُ فِي الدُّنْيَا، فَإِنَّ مَنْزِلَتَكَ عِنْدَ آخِرِ آيَةٍ تَقْرَؤُهَا",
-                    franco: null,
-                    en: "It will be said to the companion of the Quran: Read and ascend, and recite as you used to recite in the world, for your status will be at the last verse you recite.",
-                    es: "Se le dirá al compañero del Corán: Lee y asciende, y recita como recitabas en el mundo, pues tu posición estará en el último versículo que leas.",
-                    fr: "Il sera dit au compagnon du Coran: Lisez et élevez-vous, et récitez comme vous récitiez dans le monde, car votre rang sera au dernier verset que vous récitez.",
-                    sourceAr: "[سنن الترمذي]",
-                    sourceForeign: "[Sunan at-Tirmidhi]"
-                },
-                {
-                    type: 'quran',
-                    ar: "وَقُلْ رَبِّ زِدْنِي عِلْمًا",
-                    franco: "Wa qul Rabbi zidnee 'ilma",
-                    en: "And say, 'My Lord, increase me in knowledge.'",
-                    es: "Y di: «¡Señor mío! Auméntame el conocimiento».",
-                    fr: "Et dis: «Ô mon Seigneur, accroît mes connaissances!»",
-                    sourceAr: "[سورة طه - ١١٤]",
-                    sourceForeign: "[Surah Taha - 114]"
-                },
-                {
-                    type: 'hadith',
-                    ar: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللَّهُ لَهُ به طَرِيقًا إِلَى الجَنَّةِ",
-                    franco: null,
-                    en: "Whoever takes a path upon which he seeks knowledge, Allah will make the path to Paradise easy for him.",
-                    es: "Quien emprenda un camino en busca del conocimiento, Alá le facilitará un camino hacia el Paraíso.",
-                    fr: "Quiconque emprunte un chemin à la recherche de la science, Allah lui facilitera un chemin vers le Paradis.",
-                    sourceAr: "[صحيح مسلم]",
-                    sourceForeign: "[Sahih Muslim]"
-                },
-                {
-                    type: 'hadith',
-                    ar: "إِذَا مَاتَ الإنْسَانُ انْقَطَعَ عنْه عَمَلُهُ إِلَّا مِن ثَلَاثٍ: إِلَّا مِن صَدَقَةٍ جَارِيَةٍ، أَوْ عِلْمٍ يُنْتَفَعُ بِهِ، أَوْ وَلَدٍ صَالِحٍ يَدْعُو له",
-                    franco: null,
-                    en: "When a person dies, his deeds come to an end except for three: ongoing charity, beneficial knowledge, or a righteous child who prays for him.",
-                    es: "Cuando una persona muere, sus obras cesan excepto tres: una caridad continua, un conocimiento del que se beneficia la gente, o un hijo virtuoso que ruega por él.",
-                    fr: "Quand l'homme meurt, ses œuvres s'arrêtent sauf trois: une aumône continue, une science dont les gens profitent, ou un enfant pieux qui invoque pour lui.",
-                    sourceAr: "[صحيح مسلم]",
-                    sourceForeign: "[Sahih Muslim]"
-                },
-                {
-                    type: 'hadith',
-                    ar: "مَنْ دَعَا إِلَى هُدًى، كَانَ لَهُ مِنْ الأَجْرِ مِثْلُ أُجُورِ مَنْ تَبِعَهُ، لا يَنْقُصُ ذَلِكَ مِنْ أُجُورِهِمْ شَيْئًا",
-                    franco: null,
-                    en: "Whoever calls to guidance will have a reward similar to the rewards of those who follow him, without that detracting at all from their rewards.",
-                    es: "Quien llame a la guía tendrá una recompensa similar a las recompensas de quienes lo sigan, sin que ello disminuya en nada sus recompensas.",
-                    fr: "Quiconque appelle à une guidance aura une récompense égale à celle de ceux qui le suivent, sans que cela ne diminue en rien leurs récompenses.",
-                    sourceAr: "[صحيح مسلم]",
-                    sourceForeign: "[Sahih Muslim]"
-                },
-                {
-                    type: 'hadith',
-                    ar: "نَضَّرَ اللَّهُ امْرَأً سَمِعَ مِنَّا حَدِيثًا فَحَفِظَهُ حَتَّى يُبَلِّغَهُ، فَرُبَّ حَامِلِ فِقْهٍ إِلَى مَنْ هُوَ أَفْقَهُ مِنْهُ، وَرُبَّ حَامِلِ فِقْهٍ لَيْسَ بِفَقِيهٍ",
-                    franco: null,
-                    en: "May Allah brighten a person who hears a Hadith from us and preserves it until he conveys it to others; for perhaps a bearer of knowledge conveys it to one who is more understanding than he.",
-                    es: "Que Alá ilumine a quien escuche un dicho de nosotros y lo memorice hasta transmitirlo; pues tal vez quien lleva un conocimiento lo transmita a alguien con mayor comprensión.",
-                    fr: "Qu'Allah fasse resplendir un homme qui entend de nous un hadith, le mémorise et le transmet; car il se peut qu'un porteur de savoir le transmette à plus savant que lui.",
-                    sourceAr: "[سنن الترمذي]",
-                    sourceForeign: "[Sunan at-Tirmidhi]"
-                },
-                {
-                    type: 'hadith',
-                    ar: "بَلِّغُوا عَنِّي وَلَوْ آيَةً",
-                    franco: null,
-                    en: "Convey from me, even if it is a single verse.",
-                    es: "Transmitid de mí, aunque sea un solo versículo.",
-                    fr: "Transmettez de ma part, ne serait-ce qu'un verset.",
-                    sourceAr: "[صحيح البخاري]",
-                    sourceForeign: "[Sahih Bukhari]"
-                }
-            ];
+            if (!txtEl || !sourceEl) return;
 
-            const i18n = {
-                ar: {
-                    search: "ادخل نص البحث",
-                    name: "فَارِس الشِريـف",
-                    title: "شاعر / صانع محتوى",
-                    bio: "هنا ستجد بإذن الله، جميع أعمال الشاعر وصانع المحتوي فارس محمد داهش",
-                    badgeQuran: "قارئ قرآن",
-                    badgePoet: "شاعر",
-                    badgeCreator: "صانع محتوى",
-                    quranshorts: "تلاوات اخترناها لك",
-                    quranfull: "تلاوات عطرة",
-                    foryou: "من أجلك أنت",
-                    poems: "قصائدي",
-                    whyHereTitle: "لماذا أنا هنا",
-                    aboutTitle: "نبذة تعريفية عنه",
-                    aboutDesc: "فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. يسعى في مسيرة حياته إلى ترك أثر نافع بين الناس، سواء بتلاواته أو قصائده الشعرية أو محتواه المرئي على مواقع التواصل الاجتماعي.",
-                    modalBio: "شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. بسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.",
-                    contactTitle: "تواصل معي",
-                    namePlaceholder: "اسم الكريم",
-                    emailPlaceholder: "بريدك الإلكتروني",
-                    msgPlaceholder: "اكتب رسالتك هنا...",
-                    submitBtn: "إرسال الرسالة",
-                    visitorText1: "ضيفنا الكريم رقم",
-                    visitorText2: "أهلاً بك، أنت الزائر رقم",
-                    honor: "شرفنا بمتابعتك",
-                    telegram: "تيليجرام",
-                    tiktok: "تيك توك",
-                    facebook: "فيسبوك",
-                    youtube: "يوتيوب",
-                    fabText: "اشترك الآن",
-                    footer: "© 2026 - جميع الحقوق محفوظة",
-                    notFoundTitle: "عذراً.. المحتوى غير متوفر",
-                    notFoundMsg: "للأسف المحتوى الذي بحثت عنه غير متوفر حالياً. يسعدنا جداً اهتمامك بمحتوانا وشغفك بمتابعته!",
-                    followNow: "متابعة الآن",
-                    socialDialogTitle: "اختر المنصة للمتابعة",
-                    shareSuccess: "تم نسخ رابط الموقع بنجاح!"
-                },
-                en: {
-                    search: "Search content...",
-                    name: "Faris Ash-Shiref",
-                    title: "Poet / Content Creator",
-                    bio: "Here you will find all the works of poet Faris Mohammed Dahesh Ash-Shiref.",
-                    badgeQuran: "Quran Reciter",
-                    badgePoet: "Poet",
-                    badgeCreator: "Content Creator",
-                    quranshorts: "Selected Recitations",
-                    quranfull: "Fragrant Recitations",
-                    foryou: "For You",
-                    poems: "My Poems",
-                    whyHereTitle: "Why Am I Here",
-                    aboutTitle: "About Me",
-                    aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Egyptian poet and content creator, born July 3, 2003 AD (3 Jumada al-Oula 1424 AH) in Asyut Governorate, specifically Al-Ghanayem city.. He strives in his journey to leave a beneficial impact among people, whether through recitations, poetry, or social media content.",
-                    modalBio: "Egyptian poet and content creator, born July 3, 2003 AD (3 Jumada al-Oula 1424 AH) in Asyut Governorate, specifically Al-Ghanayem city.. I strive in my life journey to leave a beneficial impact among people, whether through my recitations, poetry, or social media content.",
-                    contactTitle: "Contact Me",
-                    namePlaceholder: "Your Name",
-                    emailPlaceholder: "Your Email",
-                    msgPlaceholder: "Write your message here...",
-                    submitBtn: "Send Message",
-                    visitorText1: "Honored Guest No.",
-                    visitorText2: "Welcome, Visitor No.",
-                    honor: "Honored by your follow",
-                    telegram: "Telegram",
-                    tiktok: "TikTok",
-                    facebook: "Facebook",
-                    youtube: "YouTube",
-                    fabText: "Subscribe",
-                    footer: "© 2026 - All Rights Reserved",
-                    notFoundTitle: "Content Unavailable",
-                    notFoundMsg: "Unfortunately, the content you searched for is currently unavailable. We are truly delighted by your interest in our content!",
-                    followNow: "Follow Now",
-                    socialDialogTitle: "Select Platform to Follow",
-                    shareSuccess: "Site link copied successfully!"
-                },
-                es: {
-                    search: "Ingrese texto...",
-                    name: "Faris Ash-Shiref",
-                    title: "Poeta / Creador de Contenido",
-                    bio: "Aquí encontrarás todas las obras del poeta Faris Mohammed Dahesh Ash-Shiref.",
-                    badgeQuran: "Recitador del Corán",
-                    badgePoet: "Poeta",
-                    badgeCreator: "Creador de Contenido",
-                    quranshorts: "Recitaciones Seleccionadas",
-                    quranfull: "Recitaciones Fragantes",
-                    foryou: "Para Ti",
-                    poems: "Mis Poemas",
-                    whyHereTitle: "¿Por qué estoy aquí?",
-                    aboutTitle: "Sobre Mí",
-                    aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 d.C. (3 de Yumada al-Ula de 1424 h.) en la gobernación de Asiut, específicamente en Al-Ghanayem.. Busca dejar un impacto positivo entre la gente a través de sus recitaciones, poesía y contenido.",
-                    modalBio: "Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 d.C. (3 de Yumada al-Ula de 1424 h.) en la gobernación de Asiut, específicamente en Al-Ghanayem.. Busco dejar un impacto positivo entre mis recitaciones, poesía y contenido.",
-                    contactTitle: "Contáctame",
-                    namePlaceholder: "Tu Nombre",
-                    emailPlaceholder: "Tu Correo Electrónico",
-                    msgPlaceholder: "Escribe tu mensaje aquí...",
-                    submitBtn: "Enviar Mensaje",
-                    visitorText1: "Estimado Visitante No.",
-                    visitorText2: "Bienvenido, Visitante No.",
-                    honor: "Honrados con tu seguimiento",
-                    telegram: "Telegram",
-                    tiktok: "TikTok",
-                    facebook: "Facebook",
-                    youtube: "YouTube",
-                    fabText: "Suscríbete",
-                    footer: "© 2026 - Todos los derechos reservados",
-                    notFoundTitle: "Contenido no disponible",
-                    notFoundMsg: "Lamentablemente, el contenido que buscaste no está disponible actualmente.",
-                    followNow: "Seguir Ahora",
-                    socialDialogTitle: "Seleccionar Plataforma",
-                    shareSuccess: "¡Enlace copiado con éxito!"
-                },
-                fr: {
-                    search: "Rechercher un contenu...",
-                    name: "Faris Ash-Shiref",
-                    title: "Poète / Créateur de Contenu",
-                    bio: "Vous trouverez ici toutes les œuvres du poète Faris Mohammed Dahesh Ash-Shiref.",
-                    badgeQuran: "Récitateur du Coran",
-                    badgePoet: "Poète",
-                    badgeCreator: "Créateur de Contenu",
-                    quranshorts: "Récitations Sélectionnées",
-                    quranfull: "Récitations Parfumées",
-                    foryou: "Pour Vous",
-                    poems: "Mes Poèmes",
-                    whyHereTitle: "Pourquoi suis-je ici ?",
-                    aboutTitle: "À Propos de Moi",
-                    aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Poète et créateur de contenu égyptien, né le 3 juillet 2003 apr. J.-C. (3 Joumada al-Oula 1424 H) dans le gouvernorat d'Assiout, plus précisément à Al-Ghanayem.. Il s'efforce de laisser un impact bénéfique à travers ses récitations, sa poésie et son contenu.",
-                    modalBio: "Poète et créateur de contenu égyptien, né le 3 juillet 2003 apr. J.-C. (3 Joumada al-Oula 1424 H) dans le gouvernorat d'Assiout, plus précisément à Al-Ghanayem.. Je m'efforce de laisser un impact bénéfique à travers mes récitations, ma poésie et mon contenu.",
-                    contactTitle: "Contactez-moi",
-                    namePlaceholder: "Votre Nom",
-                    emailPlaceholder: "Votre E-mail",
-                    msgPlaceholder: "Écrivez votre message ici...",
-                    submitBtn: "Envoyer le Message",
-                    visitorText1: "Cher Visiteur No.",
-                    visitorText2: "Bienvenue, Visiteur No.",
-                    honor: "Honoré par votre suivi",
-                    telegram: "Telegram",
-                    tiktok: "TikTok",
-                    facebook: "Facebook",
-                    youtube: "YouTube",
-                    fabText: "S'abonner",
-                    footer: "© 2026 - Tous droits réservés",
-                    notFoundTitle: "Contenu indisponible",
-                    notFoundMsg: "Malheureusement, le contenu que vous avez recherché n'est pas disponible pour le moment.",
-                    followNow: "S'abonner Maintenant",
-                    socialDialogTitle: "Sélectionner la Plateforme",
-                    shareSuccess: "Lien copié avec succès!"
-                }
-            };
+            txtEl.innerText = currentQuote.ar;
 
-            function getInitialLanguage() {
-                const savedLang = localStorage.getItem('faris_site_lang');
-                if (savedLang && i18n[savedLang]) return savedLang;
-                const userNavLang = (navigator.language || navigator.userLanguage || '').toLowerCase().substring(0, 2);
-                if (i18n[userNavLang]) return userNavLang;
-                return 'ar';
+            if (typeof currentLang !== 'undefined' && currentLang === 'ar') {
+                sourceEl.innerText = currentQuote.sourceAr;
+            } else {
+                sourceEl.innerText = (currentQuote.sourceForeign || currentQuote.sourceAr);
             }
-
-            let currentLang = getInitialLanguage();
-            let currentQuote = null;
-            let currentQuoteIndex = -1;
-
-            function renderQuote() {
-                if (!currentQuote) return;
-                const txtEl = document.getElementById('why-here-text');
-                const francoEl = document.getElementById('why-here-franco');
-                const transEl = document.getElementById('why-here-trans');
-                const sourceEl = document.getElementById('why-here-source');
-
-                if (!txtEl || !francoEl || !transEl || !sourceEl) return;
-
-                txtEl.innerText = currentQuote.ar;
-
-                if (currentQuote.type === 'quran' && currentQuote.franco) {
-                    francoEl.innerText = currentQuote.franco;
-                    francoEl.style.display = 'block';
-                } else {
-                    francoEl.innerText = '';
-                    francoEl.style.display = 'none';
-                }
-
-                if (currentLang !== 'ar' && currentQuote[currentLang]) {
-                    transEl.innerText = currentQuote[currentLang];
-                    transEl.style.display = 'block';
-                } else {
-                    transEl.innerText = '';
-                    transEl.style.display = 'none';
-                }
-
-                if (currentLang === 'ar') {
-                    sourceEl.innerText = currentQuote.sourceAr;
-                } else {
-                    sourceEl.innerText = currentQuote.sourceForeign;
-                }
-            }
-
-            // تدوير الآيات والأحاديث عشوائياً كل ٤ ثواني بانيميشن ناعم وجذاب
-            function displayRandomQuote() {
-                const contentBox = document.getElementById('why-here-content');
-                if (!contentBox) return;
-
-                contentBox.classList.add('fade-out');
-
-                setTimeout(() => {
-                    let randomIndex;
-                    do {
-                        randomIndex = Math.floor(Math.random() * whyHereQuotes.length);
-                    } while (whyHereQuotes.length > 1 && randomIndex === currentQuoteIndex);
-
-                    currentQuoteIndex = randomIndex;
-                    currentQuote = whyHereQuotes[currentQuoteIndex];
-                    renderQuote();
-                    contentBox.classList.remove('fade-out');
-                }, 600);
-            }
-
-            displayRandomQuote();
-            setInterval(displayRandomQuote, 4000);
-
-            const savedTheme = localStorage.getItem('faris_site_theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            const themeIcon = document.getElementById('themeIcon');
-            const themeColorMeta = document.getElementById('theme-color-meta');
-            
-            if (themeIcon) {
-                themeIcon.className = savedTheme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-            }
-            if (themeColorMeta) {
-                themeColorMeta.setAttribute('content', savedTheme === 'light' ? '#f8fafc' : '#0b1329');
-            }
-
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-            const shareBtn = document.getElementById('shareBtn');
-            if (shareBtn) {
-                shareBtn.addEventListener('click', async () => {
-                    const shareData = {
-                        title: 'فَارِس الشِريـف',
-                        text: 'الموقع الرسمي للشاعر وصانع المحتوى فارس محمد داهش',
-                        url: window.location.href
-                    };
-                    if (navigator.share) {
-                        try {
-                            await navigator.share(shareData);
-                        } catch (err) {}
-                    } else {
-                        try {
-                            await navigator.clipboard.writeText(window.location.href);
-                            alert(i18n[currentLang]?.shareSuccess || "تم نسخ رابط الموقع بنجاح!");
-                        } catch (e) {
-                            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareData.title + ' ' + shareData.url)}`, '_blank');
-                        }
-                    }
-                });
-            }
-
-            let visitCount = parseInt(localStorage.getItem('faris_visit_count') || '1284');
-            if (!sessionStorage.getItem('visited_this_session')) {
-                visitCount += 1;
-                localStorage.setItem('faris_visit_count', visitCount);
-                sessionStorage.setItem('visited_this_session', 'true');
-            }
-
-            const visitorNum = document.getElementById('visitorNum');
-            const visitorLabel = document.getElementById('visitorLabel');
-            if (visitorNum) visitorNum.innerText = visitCount.toLocaleString();
-
-            let isTextAlt = false;
-            setInterval(() => {
-                if (!visitorLabel) return;
-                visitorLabel.classList.add('fade-out');
-                
-                setTimeout(() => {
-                    if (isTextAlt) {
-                        visitorLabel.innerText = i18n[currentLang]?.visitorText1 || "ضيفنا الكريم رقم";
-                    } else {
-                        visitorLabel.innerText = i18n[currentLang]?.visitorText2 || "أهلاً بك، أنت الزائر رقم";
-                    }
-                    isTextAlt = !isTextAlt;
-                    visitorLabel.classList.remove('fade-out');
-                }, 300);
-            }, 2000);
-
-            function updateScrollButtons(container) {
-                if (!container) return;
-                const wrapper = container.closest('.reels-wrapper');
-                if (!wrapper) return;
-
-                const rightBtn = wrapper.querySelector('.right-btn');
-                const leftBtn = wrapper.querySelector('.left-btn');
-
-                const maxScroll = container.scrollWidth - container.clientWidth;
-                const scrollPos = Math.abs(container.scrollLeft);
-                const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-
-                if (maxScroll <= 10) {
-                    if (rightBtn) rightBtn.style.display = 'none';
-                    if (leftBtn) leftBtn.style.display = 'none';
-                    return;
-                }
-
-                if (isRTL) {
-                    if (rightBtn) rightBtn.style.display = scrollPos <= 10 ? 'none' : 'flex';
-                    if (leftBtn) leftBtn.style.display = (maxScroll - scrollPos) <= 10 ? 'none' : 'flex';
-                } else {
-                    if (leftBtn) leftBtn.style.display = scrollPos <= 10 ? 'none' : 'flex';
-                    if (rightBtn) rightBtn.style.display = (maxScroll - scrollPos) <= 10 ? 'none' : 'flex';
-                }
-            }
-
-            // تطبيق أزرار التشغيل الذهبية المتطورة فوق كروت الفيديو
-            function applyReelCardPlayButtons(container) {
-                if (!container) return;
-                const cards = container.querySelectorAll('.reel-card');
-                cards.forEach(card => {
-                    if (!card.querySelector('.reel-play-btn')) {
-                        const playBtn = document.createElement('div');
-                        playBtn.className = 'reel-play-btn';
-                        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-                        card.appendChild(playBtn);
-                    }
-                });
-            }
-
-            async function loadSectionContent(fileUrl, containerId) {
-                const container = document.getElementById(containerId);
-                if (!container) return;
-                const section = container.closest('.dynamic-reel-section');
-
-                try {
-                    const response = await fetch(fileUrl);
-                    if (response.ok) {
-                        const html = await response.text();
-                        if (html.trim().length > 0 && html.includes('reel-card')) {
-                            container.innerHTML = html;
-                            applyReelCardPlayButtons(container);
-                            if (section) section.style.display = 'block';
-
-                            setTimeout(() => updateScrollButtons(container), 100);
-                            container.addEventListener('scroll', () => updateScrollButtons(container));
-                        } else {
-                            if (section) section.style.display = 'none';
-                        }
-                    } else {
-                        if (section) section.style.display = 'none';
-                    }
-                } catch (err) {
-                    if (section) section.style.display = 'none';
-                }
-            }
-
-            loadSectionContent('quranshorts.html', 'quranshorts-container');
-            loadSectionContent('quranfullvideo.html', 'quranfull-container');
-            loadSectionContent('foryou.html', 'foryou-container');
-            loadSectionContent('poems.html', 'poems-container');
-
-            window.scrollSection = function(containerId, direction) {
-                const container = document.getElementById(containerId);
-                if (!container) return;
-                
-                const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-                const scrollAmount = 240;
-
-                if (direction === 'left') {
-                    container.scrollBy({ left: isRTL ? -scrollAmount : -scrollAmount, behavior: 'smooth' });
-                } else {
-                    container.scrollBy({ left: isRTL ? scrollAmount : scrollAmount, behavior: 'smooth' });
-                }
-            };
-
-            window.openReelModal = function(videoUrl) {
-                const modal = document.getElementById('reelModal');
-                const iframe = document.getElementById('modalIframe');
-
-                if (!videoUrl.includes('http')) {
-                    iframe.src = `https://www.youtube.com/embed/${videoUrl}?autoplay=1&rel=0`;
-                } else if (videoUrl.includes('facebook.com')) {
-                    iframe.src = `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(videoUrl)}&show_text=false&autoplay=true`;
-                } else {
-                    iframe.src = videoUrl;
-                }
-
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            };
-
-            const reelModal = document.getElementById('reelModal');
-            document.getElementById('closeReelBtn').addEventListener('click', closeReel);
-            reelModal.addEventListener('click', (e) => { if (e.target === reelModal) closeReel(); });
-
-            function closeReel() {
-                document.getElementById('modalIframe').src = '';
-                reelModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-
-            const profileWrapper = document.getElementById('profileImgWrapper');
-            const imageModal = document.getElementById('imageModal');
-            const closeImageBtn = document.getElementById('closeImageBtn');
-            const followNowBtn = document.getElementById('followNowBtn');
-            const socialModal = document.getElementById('socialModal');
-            const closeSocialBtn = document.getElementById('closeSocialBtn');
-
-            if (profileWrapper) {
-                profileWrapper.addEventListener('click', () => {
-                    imageModal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-            }
-
-            if (closeImageBtn) {
-                closeImageBtn.addEventListener('click', () => {
-                    imageModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            }
-
-            if (imageModal) {
-                imageModal.addEventListener('click', (e) => {
-                    if (e.target === imageModal) {
-                        imageModal.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-            }
-
-            if (followNowBtn) {
-                followNowBtn.addEventListener('click', () => {
-                    imageModal.classList.remove('active');
-                    socialModal.classList.add('active');
-                });
-            }
-
-            if (closeSocialBtn) {
-                closeSocialBtn.addEventListener('click', () => {
-                    socialModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            }
-
-            if (socialModal) {
-                socialModal.addEventListener('click', (e) => {
-                    if (e.target === socialModal) {
-                        socialModal.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-            }
-
-            const searchForm = document.getElementById('searchForm');
-            const searchInput = document.getElementById('searchInput');
-            const searchModal = document.getElementById('searchModal');
-            const searchModalTitle = document.getElementById('searchModalTitle');
-            const searchModalMsg = document.getElementById('searchModalMsg');
-            const closeSearchModalBtn = document.getElementById('closeSearchModalBtn');
-
-            function showSearchAlert() {
-                searchModalTitle.innerText = i18n[currentLang].notFoundTitle;
-                searchModalMsg.innerText = i18n[currentLang].notFoundMsg;
-                searchModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            closeSearchModalBtn.addEventListener('click', () => {
-                searchModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-
-            searchModal.addEventListener('click', (e) => {
-                if (e.target === searchModal) {
-                    searchModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-
-            searchForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const val = searchInput.value.trim().toLowerCase();
-                if (!val) return;
-
-                if (currentLang !== 'ar') {
-                    searchInput.value = '';
-                    showSearchAlert();
-                    return;
-                }
-
-                const cards = document.querySelectorAll('.reel-card');
-                let foundCount = 0;
-
-                cards.forEach(card => {
-                    const title = (card.getAttribute('data-title') || '').toLowerCase();
-                    if (title.includes(val)) {
-                        card.style.display = '';
-                        foundCount++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-
-                if (foundCount === 0) {
-                    searchInput.value = '';
-                    cards.forEach(c => c.style.display = '');
-                    showSearchAlert();
-                }
-
-                searchInput.blur();
-            });
-
-            const themeToggle = document.getElementById('themeToggle');
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('faris_site_theme', newTheme);
-                
-                themeIcon.className = newTheme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-                if (themeColorMeta) {
-                    themeColorMeta.setAttribute('content', newTheme === 'light' ? '#f8fafc' : '#0b1329');
-                }
-            });
-
-            const langBtn = document.getElementById('langBtn');
-            const langDropdown = document.getElementById('langDropdown');
-
-            langBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                langDropdown.classList.toggle('show');
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!langDropdown.contains(e.target) && e.target !== langBtn) {
-                    langDropdown.classList.remove('show');
-                }
-            });
-
-            document.querySelectorAll('.lang-option').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const lang = btn.getAttribute('data-lang');
-                    changeLanguage(lang);
-                    langDropdown.classList.remove('show');
-                });
-            });
-
-            function changeLanguage(lang) {
-                currentLang = lang;
-                localStorage.setItem('faris_site_lang', lang);
-
-                const isRTL = (lang === 'ar');
-
-                document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
-                document.documentElement.setAttribute('lang', lang);
-                
-                document.getElementById('searchInput').placeholder = i18n[lang].search;
-                document.getElementById('txt-name').innerText = i18n[lang].name;
-                document.getElementById('txt-title').innerText = i18n[lang].title;
-                document.getElementById('txt-bio').innerText = i18n[lang].bio;
-
-                document.getElementById('badge-quran').innerText = i18n[lang].badgeQuran;
-                document.getElementById('badge-poet').innerText = i18n[lang].badgePoet;
-                document.getElementById('badge-creator').innerText = i18n[lang].badgeCreator;
-
-                document.getElementById('sec-quranshorts').innerText = i18n[lang].quranshorts;
-                document.getElementById('sec-quranfull').innerText = i18n[lang].quranfull;
-                document.getElementById('sec-foryou').innerText = i18n[lang].foryou;
-                document.getElementById('sec-poems').innerText = i18n[lang].poems;
-                
-                document.getElementById('why-here-title').innerText = i18n[lang].whyHereTitle;
-                renderQuote();
-
-                document.getElementById('about-title').innerText = i18n[lang].aboutTitle;
-                document.getElementById('about-desc').innerText = i18n[lang].aboutDesc;
-                
-                document.getElementById('modalProfileName').innerText = i18n[lang].name;
-                document.getElementById('modalProfileBio').innerText = i18n[lang].modalBio;
-                document.getElementById('txt-follow-btn').innerText = i18n[lang].followNow;
-                document.getElementById('socialModalTitle').innerHTML = `<i class="fa-solid fa-heart" style="color:var(--accent-color);"></i> ${i18n[lang].socialDialogTitle}`;
-
-                document.getElementById('contact-title').innerText = i18n[lang].contactTitle;
-                document.getElementById('input-name').placeholder = i18n[lang].namePlaceholder;
-                document.getElementById('input-email').placeholder = i18n[lang].emailPlaceholder;
-                document.getElementById('input-msg').placeholder = i18n[lang].msgPlaceholder;
-                document.getElementById('btn-submit').innerHTML = `${i18n[lang].submitBtn} <i class="fa-solid fa-paper-plane"></i>`;
-
-                document.getElementById('visitorLabel').innerText = i18n[lang].visitorText1;
-                document.getElementById('txt-honor').innerText = i18n[lang].honor;
-                document.getElementById('btn-telegram').innerText = i18n[lang].telegram;
-                document.getElementById('btn-tiktok').innerText = i18n[lang].tiktok;
-                document.getElementById('btn-facebook').innerText = i18n[lang].facebook;
-                document.getElementById('btn-youtube').innerText = i18n[lang].youtube;
-                
-                document.getElementById('modal-yt').innerText = i18n[lang].youtube;
-                document.getElementById('modal-tt').innerText = i18n[lang].tiktok;
-                document.getElementById('modal-tg').innerText = i18n[lang].telegram;
-                document.getElementById('modal-fb').innerText = i18n[lang].facebook;
-
-                document.getElementById('fabText').innerText = i18n[lang].fabText;
-                document.getElementById('txt-footer').innerText = i18n[lang].footer;
-
-                document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
-            }
-
-            changeLanguage(currentLang);
-
-            window.addEventListener('resize', () => {
-                document.querySelectorAll('.reels-container').forEach(c => updateScrollButtons(c));
-            });
-        });
+        }
     </script>
 </body>
 </html>
