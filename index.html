@@ -58,6 +58,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
+        @font-face {
+            font-family: 'Hafs';
+            src: url('https://fonts.qurancomplex.gov.sa/wp-content/uploads/2021/05/UthmanTN1Ver10.otf') format('opentype');
+            font-display: swap;
+        }
+
         :root {
             --bg-color: #0b1329;
             --bg-gradient: radial-gradient(circle at top right, rgba(212, 175, 55, 0.12), transparent 45%), 
@@ -420,7 +426,7 @@
         .left-btn { left: -8px; }
         .right-btn { right: -8px; }
 
-        /* لاينر لماذا أنا هنا مع خط عثماني وانيميشن جذاب وتدرج الوان الثيم */
+        /* لاينر لماذا أنا هنا مع خط عثماني Hafs وانيميشن جذاب وتدرج الوان الثيم */
         .why-here-box {
             background: var(--card-bg-glass);
             backdrop-filter: blur(14px);
@@ -451,11 +457,11 @@
         }
 
         .why-here-box .quote-text {
-            font-family: 'Amiri Quran', 'Amiri', serif;
+            font-family: 'Hafs', 'Amiri Quran', 'Amiri', serif;
             font-size: 1.35rem;
             font-weight: 400;
             color: #ffffff;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             line-height: 2.2;
             letter-spacing: 0.2px;
         }
@@ -468,7 +474,7 @@
             font-size: 0.88rem;
             color: #cbd5e1;
             font-style: italic;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             direction: ltr;
         }
 
@@ -479,7 +485,7 @@
         .why-here-box .translation-text {
             font-size: 0.92rem;
             color: #cbd5e1;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         [data-theme="light"] .why-here-box .translation-text {
@@ -490,7 +496,7 @@
             font-size: 0.82rem;
             color: #94a3b8;
             font-weight: 500;
-            margin-top: 6px;
+            margin-top: 14px;
             display: block;
         }
 
@@ -529,7 +535,7 @@
 
         .submit-btn {
             background: var(--accent-color);
-            color: var(--bg-color);
+            color: #ffffff;
             border: none;
             padding: 12px 24px;
             border-radius: 10px;
@@ -840,25 +846,28 @@
             color: var(--text-color);
         }
 
-        /* تعديل درجة لون الخط للنص التعريفي داخل الديالوغ لتكون غامقة ومقروءة وواضحة */
+        /* تعديل درجة لون الخط للنص التعريفي وإلغاء الخلفية البيضاء */
         .profile-card-bio {
-            color: #0f172a;
+            color: #cbd5e1;
             font-size: 0.92rem;
-            font-weight: 600;
-            line-height: 1.7;
+            font-weight: normal;
+            line-height: 1.75;
             margin-bottom: 18px;
-            background: rgba(255, 255, 255, 0.92);
-            padding: 12px 14px;
-            border-radius: 14px;
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+            background: transparent;
+            padding: 6px 0;
+            border: none;
+            box-shadow: none;
         }
 
-        /* زر "متابعة الآن" بلون ذهبي متناسق مع الموقع */
+        [data-theme="light"] .profile-card-bio {
+            color: #0f172a;
+        }
+
+        /* زر "متابعة الآن" بلون ذهبي ومتناسق مع لون خط أبيض */
         .follow-now-btn {
             width: 100%;
             background: var(--accent-color);
-            color: #0b1329;
+            color: #ffffff;
             border: 1px solid var(--accent-color);
             padding: 12px;
             border-radius: 25px;
