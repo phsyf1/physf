@@ -1,0 +1,19 @@
+{
+  "short_name": "فارس الشريف",
+  "name": "فَارِس الشِريـف",
+  "description": "الموقع الرسمي للشاعر وصانع المحتوى فارس محمد داهش",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/phsyf1/physf/2ccd041d150f5287836b20ac1438098802778c3e/UploadIconSeleting/fde.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512 192x192"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#0b1329",
+  "theme_color": "#0b1329",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "ar",
+  "dir": "rtl"
+}
