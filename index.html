@@ -6,6 +6,9 @@
     
     <title>فَارِس الشِريـف | الشاعر وصانع المحتوى فارس محمد داهش</title>
     
+    <!-- ربط ملف App Manifest لتثبيت الموقع كتطبيق -->
+    <link rel="manifest" href="manifest.json">
+    
     <!-- تحسينات SEO للظهور بجميع الأسماء واللغات -->
     <meta name="description" content="الموقع الرسمي للشاعر وصانع المحتوى فارس محمد داهش (فارس الشريف / نضيد / Nadeed / phsyf). تلاوات خاشعة، قصائد شعرية، ومحتوى ملهم. Fares Ash-shiref, Fares Dahesh, Fares Alshiref, Faris Dahesh.">
     <meta name="keywords" content="فارس الشريف, فارس محمد داهش, فارس داهش, نضيد, Nadeed, phsyf, Fares Ash-shiref, Fares Dahesh, Fares Mohammed Dahesh, Fares Alshiref, Faris Ash-shiref, Faris Dahesh, Faris Mohammed Dahesh, Faris Alshiref, poet, quran reciter">
@@ -365,6 +368,65 @@
         .reel-card:hover { transform: translateY(-4px); border-color: var(--accent-color); }
         .reel-card img { width: 100%; height: 100%; object-fit: cover; }
 
+        /* أزرار الإجراءات داخل الكروت: زر التشغيل الأصفر وزر السماعة الخفيف */
+        .card-actions-row {
+            position: absolute;
+            bottom: 12px;
+            right: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            z-index: 5;
+        }
+
+        .btn-play-yellow {
+            background: #ffd700;
+            color: #000000;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-play-yellow:hover {
+            transform: scale(1.1);
+            background: #e6c200;
+        }
+
+        .btn-audio-light {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-audio-light:hover {
+            transform: scale(1.1);
+            background: var(--accent-color);
+            color: var(--bg-color);
+            border-color: var(--accent-color);
+        }
+
         .scroll-btn {
             position: absolute;
             top: 50%;
@@ -389,6 +451,54 @@
         .scroll-btn:active { transform: translateY(-50%) scale(0.9); }
         .left-btn { left: -8px; }
         .right-btn { right: -8px; }
+
+        /* لاينر لماذا أنا هنا */
+        .why-here-box {
+            background: var(--card-bg-glass);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 22px 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .why-here-box .quote-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 6px;
+            line-height: 1.8;
+        }
+
+        .why-here-box .franco-text {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 4px;
+            direction: ltr;
+        }
+
+        .why-here-box .translation-text {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
+        .why-here-box .quote-source {
+            font-size: 0.82rem;
+            color: var(--accent-color);
+            opacity: 0.9;
+            font-weight: 500;
+            margin-top: 6px;
+            display: block;
+        }
 
         .about-box, .contact-card {
             background: var(--card-bg-glass);
@@ -619,9 +729,7 @@
             color: #ffffff;
         }
 
-        /* ------------------------------------------------------------- */
-        /* النوافذ المنبثقة العامة (Modals & Dialogs) الشفافة مع الخلفية البلورية */
-        /* ------------------------------------------------------------- */
+        /* النوافذ المنبثقة العامة (Modals & Dialogs) */
         .reel-modal {
             display: none;
             position: fixed;
@@ -677,7 +785,6 @@
         html[dir="ltr"] .close-modal { left: auto; right: 14px; }
         .close-modal:hover { transform: scale(1.1); border-color: var(--accent-color); color: var(--accent-color); }
 
-        /* تصميم كارت الشاعر التعريفي بألوان الثيم المتناسقة مع حواف الصورة بمقاس 30 */
         .profile-card-modal {
             position: relative;
             width: 100%;
@@ -696,7 +803,6 @@
             padding: 18px;
         }
 
-        /* مربعة ومع حواف بمقاس 30 ولاينر متناسق مع الديالوج */
         .profile-card-img-box {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -767,7 +873,6 @@
             transform: translateY(-2px); 
         }
 
-        /* باقي الديالوجات البلورية الموحدة بنفس ألوان الثيم */
         .glass-dialog-box {
             position: relative;
             width: 100%;
@@ -938,6 +1043,17 @@
             </div>
         </section>
 
+        <!-- لاينر "لماذا أنا هنا" يتغير عشوائياً كل ثانيتين -->
+        <section class="reveal" id="why-here-section">
+            <h2 class="section-title" id="why-here-title">لماذا أنا هنا</h2>
+            <div class="why-here-box">
+                <p id="why-here-text" class="quote-text"></p>
+                <p id="why-here-franco" class="franco-text"></p>
+                <p id="why-here-trans" class="translation-text"></p>
+                <span id="why-here-source" class="quote-source"></span>
+            </div>
+        </section>
+
         <!-- نبذة تعريفية -->
         <section class="reveal">
             <h2 class="section-title" id="about-title">نبذة تعريفية عني</h2>
@@ -1016,7 +1132,18 @@
         </div>
     </div>
 
-    <!-- 2. نافذة كارت الشاعر المنبثقة المعدلة لتأخذ ألوان الموقع وحواف الصورة 30 -->
+    <!-- 2. نافذة الاستماع الصوتي الخفيف بدون فتح الفيديو -->
+    <div class="reel-modal" id="audioModal">
+        <div class="glass-dialog-box" style="text-align: center; max-width: 380px;">
+            <button class="close-modal" id="closeAudioBtn">&times;</button>
+            <i class="fa-solid fa-headphones" style="font-size: 2.8rem; color: var(--accent-color); margin-bottom: 12px; display: block;"></i>
+            <h3 id="audioModalTitle" style="font-size: 1.15rem; margin-bottom: 8px; color: var(--text-color);">تشغيل صَوْتي</h3>
+            <p id="audioModalDesc" style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 15px;">استمع إلى المحتوى الآن بدون فتح الفيديو</p>
+            <audio id="mainAudioPlayer" controls style="width: 100%; border-radius: 12px; outline: none;"></audio>
+        </div>
+    </div>
+
+    <!-- 3. نافذة كارت الشاعر المنبثقة -->
     <div class="reel-modal" id="imageModal">
         <div class="profile-card-modal">
             <button class="close-modal" id="closeImageBtn">&times;</button>
@@ -1037,7 +1164,7 @@
         </div>
     </div>
 
-    <!-- 3. ديالوج منصات السوشيال ميديا -->
+    <!-- 4. ديالوج منصات السوشيال ميديا -->
     <div class="reel-modal" id="socialModal">
         <div class="glass-dialog-box">
             <button class="close-modal" id="closeSocialBtn">&times;</button>
@@ -1063,7 +1190,7 @@
         </div>
     </div>
 
-    <!-- 4. نافذة نتائج البحث غير المتوفرة -->
+    <!-- 5. نافذة نتائج البحث غير المتوفرة -->
     <div class="reel-modal" id="searchModal">
         <div class="search-modal-box">
             <button class="close-modal" id="closeSearchModalBtn">&times;</button>
@@ -1075,6 +1202,120 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // قائمة الآيات والأحاديث المحددة
+            const whyHereQuotes = [
+                {
+                    type: 'quran',
+                    ar: "ادْعُ إِلَىٰ سَبِيلِ رَبِّكَ بِالْحِكْمَةِ وَالْمَوْعِظَةِ الْحَسَنَةِ",
+                    franco: "Ud'u ila sabeeli rabbika bil-hikmati wal-maw'izatil-hasanah",
+                    en: "Invite to the way of your Lord with wisdom and good instruction.",
+                    es: "Invita al camino de tu Señor con sabiduría y buena exhortación.",
+                    fr: "Appelle au sentier de ton Seigneur par la sagesse et la bonne exhortation.",
+                    sourceAr: "[سورة النحل - ١٢٥]",
+                    sourceForeign: "[Surah An-Nahl - 125]"
+                },
+                {
+                    type: 'hadith',
+                    ar: "زَيِّنُوا الْقُرْآنَ بِأَصْوَاتِكُمْ، فَإِنَّ الصَّوْتَ الْحَسَنَ يَزِيدُ الْقُرْآنَ حُسْنًا",
+                    franco: null,
+                    en: "Beautify the Quran with your voices, for a fine voice increases the Quran in beauty.",
+                    es: "Embelleced el Corán con vuestras voces, pues una buena voz aumenta la belleza del Corán.",
+                    fr: "Embellissez le Coran avec vos voix, car une belle voix ajoute à la beauté du Coran.",
+                    sourceAr: "[سنن الدارمي / صحيح الجامع]",
+                    sourceForeign: "[Sunan al-Darimi / Sahih al-Jami]"
+                },
+                {
+                    type: 'quran',
+                    ar: "وَمَنْ أَحْسَنُ قَوْلًا مِمَّنْ دَعَا إِلَى اللَّهِ وَعَمِلَ صَالِحًا وَقَالَ إِنَّنِي مِنَ الْمُسْلِمِينَ",
+                    franco: "Wa man ahsanu qawlan mimman da'a ilallahi wa 'amila salihan wa qala innanee minal-muslimeen",
+                    en: "And who is better in speech than one who invites to Allah and does righteousness and says, 'Indeed, I am of the Muslims.'",
+                    es: "¿Y quién es mejor en palabras que quien llama a Alá, obra rectamente y dice: «Verdaderamente soy de los musulmanes»?",
+                    fr: "Et qui parle mieux que celui qui appelle à Allah, fait œuvre pieuse et dit: «Je suis du nombre des Musulmans»?",
+                    sourceAr: "[سورة فصلت - ٣٣]",
+                    sourceForeign: "[Surah Fussilat - 33]"
+                },
+                {
+                    type: 'quran',
+                    ar: "وَلْتَكُنْ مِنْكُمْ أُمَّةٌ يَدْعُونَ إِلَى الْخَيْرِ وَيَأْمُرُونَ بِالْمَعْرُوفِ وَيَنْهَوْنَ عَنِ الْمُنْكَرِ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ",
+                    franco: "Waltakun minkum ummatun yad'oona ilal-khayri wa ya'muroona bil-ma'roofi wa yanhawna 'anil-munkari wa ula'ika humul-muflihoon",
+                    en: "And let there be [arising] from you a nation inviting to all that is good, enjoining what is right and forbidding what is wrong, and those will be the successful.",
+                    es: "Y que haya entre vosotros una comunidad que llame al bien, ordene lo correcto y prohíba lo reprobable. Ésos serán los prósperos.",
+                    fr: "Que soit issue de vous une communauté qui appelle au bien, ordonne le convenable, et interdise le blâmable. Car ce seront eux les gagnants.",
+                    sourceAr: "[سورة آل عمران - ١٠٤]",
+                    sourceForeign: "[Surah Ali 'Imran - 104]"
+                },
+                {
+                    type: 'hadith',
+                    ar: "يُقَالُ لِصَاحِبِ الْقُرْآنِ: اقْرَأْ وَارْتَقِ وَرَتِّلْ كَمَا كُنْتَ تُرَتِّلُ فِي الدُّنْيَا، فَإِنَّ مَنْزِلَتَكَ عِنْدَ آخِرِ آيَةٍ تَقْرَؤُهَا",
+                    franco: null,
+                    en: "It will be said to the companion of the Quran: Read and ascend, and recite as you used to recite in the world, for your status will be at the last verse you recite.",
+                    es: "Se le dirá al compañero del Corán: Lee y asciende, y recita como recitabas en el mundo, pues tu posición estará en el último versículo que leas.",
+                    fr: "Il sera dit au compagnon du Coran: Lisez et élevez-vous, et récitez comme vous récitiez dans le monde, car votre rang sera au dernier verset que vous récitez.",
+                    sourceAr: "[سنن الترمذي]",
+                    sourceForeign: "[Sunan at-Tirmidhi]"
+                },
+                {
+                    type: 'quran',
+                    ar: "وَقُلْ رَبِّ زِدْنِي عِلْمًا",
+                    franco: "Wa qul Rabbi zidnee 'ilma",
+                    en: "And say, 'My Lord, increase me in knowledge.'",
+                    es: "Y di: «¡Señor mío! Auméntame el conocimiento».",
+                    fr: "Et dis: «Ô mon Seigneur, accroît mes connaissances!»",
+                    sourceAr: "[سورة طه - ١١٤]",
+                    sourceForeign: "[Surah Taha - 114]"
+                },
+                {
+                    type: 'hadith',
+                    ar: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللَّهُ لَهُ به طَرِيقًا إِلَى الجَنَّةِ",
+                    franco: null,
+                    en: "Whoever takes a path upon which he seeks knowledge, Allah will make the path to Paradise easy for him.",
+                    es: "Quien emprenda un camino en busca del conocimiento, Alá le facilitará un camino hacia el Paraíso.",
+                    fr: "Quiconque emprunte un chemin à la recherche de la science, Allah lui facilitera un chemin vers le Paradis.",
+                    sourceAr: "[صحيح مسلم]",
+                    sourceForeign: "[Sahih Muslim]"
+                },
+                {
+                    type: 'hadith',
+                    ar: "إِذَا مَاتَ الإنْسَانُ انْقَطَعَ عنْه عَمَلُهُ إِلَّا مِن ثَلَاثٍ: إِلَّا مِن صَدَقَةٍ جَارِيَةٍ، أَوْ عِلْمٍ يُنْتَفَعُ بِهِ، أَوْ وَلَدٍ صَالِحٍ يَدْعُو له",
+                    franco: null,
+                    en: "When a person dies, his deeds come to an end except for three: ongoing charity, beneficial knowledge, or a righteous child who prays for him.",
+                    es: "Cuando una persona muere, sus obras cesan excepto tres: una caridad continua, un conocimiento del que se beneficia la gente, o un hijo virtuoso que ruega por él.",
+                    fr: "Quand l'homme meurt, ses œuvres s'arrêtent sauf trois: une aumône continue, une science dont les gens profitent, ou un enfant pieux qui invoque pour lui.",
+                    sourceAr: "[صحيح مسلم]",
+                    sourceForeign: "[Sahih Muslim]"
+                },
+                {
+                    type: 'hadith',
+                    ar: "مَنْ دَعَا إِلَى هُدًى، كَانَ لَهُ مِنْ الأَجْرِ مِثْلُ أُجُورِ مَنْ تَبِعَهُ، لا يَنْقُصُ ذَلِكَ مِنْ أُجُورِهِمْ شَيْئًا",
+                    franco: null,
+                    en: "Whoever calls to guidance will have a reward similar to the rewards of those who follow him, without that detracting at all from their rewards.",
+                    es: "Quien llame a la guía tendrá una recompensa similar a las recompensas de quienes lo sigan, sin que ello disminuya en nada sus recompensas.",
+                    fr: "Quiconque appelle à une guidance aura une récompense égale à celle de ceux qui le suivent, sans que cela ne diminue en rien leurs récompenses.",
+                    sourceAr: "[صحيح مسلم]",
+                    sourceForeign: "[Sahih Muslim]"
+                },
+                {
+                    type: 'hadith',
+                    ar: "نَضَّرَ اللَّهُ امْرَأً سَمِعَ مِنَّا حَدِيثًا فَحَفِظَهُ حَتَّى يُبَلِّغَهُ، فَرُبَّ حَامِلِ فِقْهٍ إِلَى مَنْ هُوَ أَفْقَهُ مِنْهُ، وَرُبَّ حَامِلِ فِقْهٍ لَيْسَ بِفَقِيهٍ",
+                    franco: null,
+                    en: "May Allah brighten a person who hears a Hadith from us and preserves it until he conveys it to others; for perhaps a bearer of knowledge conveys it to one who is more understanding than he.",
+                    es: "Que Alá ilumine a quien escuche un dicho de nosotros y lo memorice hasta transmitirlo; pues tal vez quien lleva un conocimiento lo transmita a alguien con mayor comprensión.",
+                    fr: "Qu'Allah fasse resplendir un homme qui entend de nous un hadith, le mémorise et le transmet; car il se peut qu'un porteur de savoir le transmette à plus savant que lui.",
+                    sourceAr: "[سنن الترمذي]",
+                    sourceForeign: "[Sunan at-Tirmidhi]"
+                },
+                {
+                    type: 'hadith',
+                    ar: "بَلِّغُوا عَنِّي وَلَوْ آيَةً",
+                    franco: null,
+                    en: "Convey from me, even if it is a single verse.",
+                    es: "Transmitid de mí, aunque sea un solo versículo.",
+                    fr: "Transmettez de ma part, ne serait-ce qu'un verset.",
+                    sourceAr: "[صحيح البخاري]",
+                    sourceForeign: "[Sahih Bukhari]"
+                }
+            ];
 
             const i18n = {
                 ar: {
@@ -1089,6 +1330,7 @@
                     quranfull: "تلاوات عطرة",
                     foryou: "من أجلك أنت",
                     poems: "قصائدي",
+                    whyHereTitle: "لماذا أنا هنا",
                     aboutTitle: "نبذة تعريفية عنه",
                     aboutDesc: "فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. يسعى في مسيرة حياته إلى ترك أثر نافع بين الناس، سواء بتلاواته أو قصائده الشعرية أو محتواه المرئي على مواقع التواصل الاجتماعي.",
                     modalBio: "شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. بسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.",
@@ -1124,6 +1366,7 @@
                     quranfull: "Fragrant Recitations",
                     foryou: "For You",
                     poems: "My Poems",
+                    whyHereTitle: "Why Am I Here",
                     aboutTitle: "About Me",
                     aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Egyptian poet and content creator, born July 3, 2003 AD (3 Jumada al-Oula 1424 AH) in Asyut Governorate, specifically Al-Ghanayem city.. He strives in his journey to leave a beneficial impact among people, whether through recitations, poetry, or social media content.",
                     modalBio: "Egyptian poet and content creator, born July 3, 2003 AD (3 Jumada al-Oula 1424 AH) in Asyut Governorate, specifically Al-Ghanayem city.. I strive in my life journey to leave a beneficial impact among people, whether through my recitations, poetry, or social media content.",
@@ -1159,6 +1402,7 @@
                     quranfull: "Recitaciones Fragantes",
                     foryou: "Para Ti",
                     poems: "Mis Poemas",
+                    whyHereTitle: "¿Por qué estoy aquí?",
                     aboutTitle: "Sobre Mí",
                     aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 d.C. (3 de Yumada al-Ula de 1424 h.) en la gobernación de Asiut, específicamente en Al-Ghanayem.. Busca dejar un impacto positivo entre la gente a través de sus recitaciones, poesía y contenido.",
                     modalBio: "Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 d.C. (3 de Yumada al-Ula de 1424 h.) en la gobernación de Asiut, específicamente en Al-Ghanayem.. Busco dejar un impacto positivo entre la gente a través de mis recitaciones, poesía y contenido.",
@@ -1194,6 +1438,7 @@
                     quranfull: "Récitations Parfumées",
                     foryou: "Pour Vous",
                     poems: "Mes Poèmes",
+                    whyHereTitle: "Pourquoi suis-je ici ?",
                     aboutTitle: "À Propos de Moi",
                     aboutDesc: "Faris Mohammed Dahesh Ash-Shiref.. Poète et créateur de contenu égyptien, né le 3 juillet 2003 apr. J.-C. (3 Joumada al-Oula 1424 H) dans le gouvernorat d'Assiout, plus précisément à Al-Ghanayem.. Il s'efforce de laisser un impact bénéfique à travers ses récitations, sa poésie et son contenu.",
                     modalBio: "Poète et créateur de contenu égyptien, né le 3 juillet 2003 apr. J.-C. (3 Joumada al-Oula 1424 H) dans le gouvernorat d'Assiout, plus précisément à Al-Ghanayem.. Je m'efforce de laisser un impact bénéfique à travers mes récitations, ma poésie et mon contenu.",
@@ -1228,6 +1473,50 @@
             }
 
             let currentLang = getInitialLanguage();
+            let currentQuote = null;
+
+            function renderQuote() {
+                if (!currentQuote) return;
+                const txtEl = document.getElementById('why-here-text');
+                const francoEl = document.getElementById('why-here-franco');
+                const transEl = document.getElementById('why-here-trans');
+                const sourceEl = document.getElementById('why-here-source');
+
+                if (!txtEl || !francoEl || !transEl || !sourceEl) return;
+
+                txtEl.innerText = currentQuote.ar;
+
+                if (currentQuote.type === 'quran' && currentQuote.franco) {
+                    francoEl.innerText = currentQuote.franco;
+                    francoEl.style.display = 'block';
+                } else {
+                    francoEl.innerText = '';
+                    francoEl.style.display = 'none';
+                }
+
+                if (currentLang !== 'ar' && currentQuote[currentLang]) {
+                    transEl.innerText = currentQuote[currentLang];
+                    transEl.style.display = 'block';
+                } else {
+                    transEl.innerText = '';
+                    transEl.style.display = 'none';
+                }
+
+                if (currentLang === 'ar') {
+                    sourceEl.innerText = currentQuote.sourceAr;
+                } else {
+                    sourceEl.innerText = currentQuote.sourceForeign;
+                }
+            }
+
+            function displayRandomQuote() {
+                const randomIndex = Math.floor(Math.random() * whyHereQuotes.length);
+                currentQuote = whyHereQuotes[randomIndex];
+                renderQuote();
+            }
+
+            displayRandomQuote();
+            setInterval(displayRandomQuote, 2000);
 
             const savedTheme = localStorage.getItem('faris_site_theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
@@ -1255,7 +1544,7 @@
             if (shareBtn) {
                 shareBtn.addEventListener('click', async () => {
                     const shareData = {
-                        title: 'فَارِس الشِريـف - الشاعر وصانع المحتوى',
+                        title: 'فَارِس الشِريـف',
                         text: 'الموقع الرسمي للشاعر وصانع المحتوى فارس محمد داهش',
                         url: window.location.href
                     };
@@ -1389,6 +1678,21 @@
                 document.body.style.overflow = 'hidden';
             };
 
+            // تشغيل المحتوى صوتياً فقط بدون فتح الفيديو
+            window.openAudioOnly = function(audioUrl, title) {
+                const modal = document.getElementById('audioModal');
+                const player = document.getElementById('mainAudioPlayer');
+                const titleEl = document.getElementById('audioModalTitle');
+
+                if (titleEl && title) titleEl.innerText = title;
+                if (player) {
+                    player.src = audioUrl;
+                    player.play();
+                }
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+
             const reelModal = document.getElementById('reelModal');
             document.getElementById('closeReelBtn').addEventListener('click', closeReel);
             reelModal.addEventListener('click', (e) => { if (e.target === reelModal) closeReel(); });
@@ -1396,6 +1700,29 @@
             function closeReel() {
                 document.getElementById('modalIframe').src = '';
                 reelModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            const audioModal = document.getElementById('audioModal');
+            const closeAudioBtn = document.getElementById('closeAudioBtn');
+            const mainAudioPlayer = document.getElementById('mainAudioPlayer');
+
+            if (closeAudioBtn) {
+                closeAudioBtn.addEventListener('click', closeAudioModal);
+            }
+
+            if (audioModal) {
+                audioModal.addEventListener('click', (e) => {
+                    if (e.target === audioModal) closeAudioModal();
+                });
+            }
+
+            function closeAudioModal() {
+                if (mainAudioPlayer) {
+                    mainAudioPlayer.pause();
+                    mainAudioPlayer.src = '';
+                }
+                if (audioModal) audioModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
 
@@ -1569,6 +1896,10 @@
                 document.getElementById('sec-quranfull').innerText = i18n[lang].quranfull;
                 document.getElementById('sec-foryou').innerText = i18n[lang].foryou;
                 document.getElementById('sec-poems').innerText = i18n[lang].poems;
+                
+                document.getElementById('why-here-title').innerText = i18n[lang].whyHereTitle;
+                renderQuote();
+
                 document.getElementById('about-title').innerText = i18n[lang].aboutTitle;
                 document.getElementById('about-desc').innerText = i18n[lang].aboutDesc;
                 
