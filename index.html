@@ -53,8 +53,8 @@
     <meta property="og:title" content="فَارِس الشِريـف">
     <meta property="og:description" content="الموقع الرسمي للشاعر وصانع المحتوى فارس محمد داهش.">
 
-    <!-- الخطوط والأيقونات (إضافة خط Amiri للعثماني) -->
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- الخطوط والأيقونات بما فيها الخط العثماني للآيات والأحاديث -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -354,7 +354,7 @@
             position: relative;
             min-width: 180px;
             max-width: 180px;
-            height: 320px;
+            height: 310px;
             border-radius: 16px;
             overflow: hidden;
             cursor: pointer;
@@ -368,116 +368,31 @@
         .reel-card:hover { transform: translateY(-4px); border-color: var(--accent-color); }
         .reel-card img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* أزرار الإجراءات داخل الكروت: زر التشغيل الرئيسي وزر الاستماع الصوتي الأصغر باللون الأصفر */
-        .card-actions-container {
+        /* زر سهم التشغيل بحواف سوداء مستديرة لتميزه عن ثامنيل الفيديو */
+        .reel-play-btn {
             position: absolute;
-            bottom: 10px;
-            left: 8px;
-            right: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            z-index: 5;
-            align-items: center;
-        }
-
-        .btn-card-action {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            width: 100%;
-            padding: 6px 10px;
-            border-radius: 20px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.35);
-        }
-
-        .btn-watch-now {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
             background: rgba(0, 0, 0, 0.65);
+            border: 2.5px solid #000000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        .btn-watch-now:hover {
-            background: var(--accent-color);
-            color: var(--bg-color);
-            border-color: var(--accent-color);
-            transform: scale(1.03);
-        }
-
-        .btn-listen-audio {
-            background: #ffd700;
-            color: #000000;
-            border: 1px solid #e6c200;
-        }
-
-        .btn-listen-audio:hover {
-            background: #e6c200;
-            transform: scale(1.03);
-        }
-
-        .card-actions-row {
-            position: absolute;
-            bottom: 12px;
-            right: 0;
-            left: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
             z-index: 5;
+            pointer-events: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
-        .btn-play-yellow {
-            background: #ffd700;
-            color: #000000;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-            transition: transform 0.2s ease, background-color 0.2s ease;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .btn-play-yellow:hover {
-            transform: scale(1.05);
-            background: #e6c200;
-        }
-
-        .btn-audio-light {
-            background: #ffd700;
-            color: #000000;
-            border: 1px solid #e6c200;
-            padding: 6px 12px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: transform 0.2s ease, background 0.2s ease;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .btn-audio-light:hover {
-            transform: scale(1.05);
-            background: #e6c200;
+        .reel-card:hover .reel-play-btn {
+            transform: translate(-50%, -50%) scale(1.12);
+            background: rgba(0, 0, 0, 0.85);
         }
 
         .scroll-btn {
@@ -505,7 +420,7 @@
         .left-btn { left: -8px; }
         .right-btn { right: -8px; }
 
-        /* لاينر لماذا أنا هنا مع خط عثماني وأنييميشن سلس */
+        /* لاينر لماذا أنا هنا مع خط عثماني وانيميشن جذاب وتدرج الوان الثيم */
         .why-here-box {
             background: var(--card-bg-glass);
             backdrop-filter: blur(14px);
@@ -515,7 +430,7 @@
             padding: 22px 20px;
             box-shadow: var(--shadow);
             text-align: center;
-            min-height: 140px;
+            min-height: 150px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -523,53 +438,64 @@
             overflow: hidden;
         }
 
-        .why-here-box .quote-text,
-        .why-here-box .franco-text,
-        .why-here-box .translation-text,
-        .why-here-box .quote-source {
-            transition: opacity 0.4s ease, transform 0.4s ease;
+        .why-here-content {
             opacity: 1;
             transform: translateY(0);
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
         }
 
-        .why-here-box.fade-out .quote-text,
-        .why-here-box.fade-out .franco-text,
-        .why-here-box.fade-out .translation-text,
-        .why-here-box.fade-out .quote-source {
+        .why-here-content.fade-out {
             opacity: 0;
-            transform: translateY(8px);
+            transform: translateY(10px);
         }
 
         .why-here-box .quote-text {
-            font-family: 'Amiri', 'Tajawal', serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-bottom: 6px;
-            line-height: 1.9;
+            font-family: 'Amiri Quran', 'Amiri', serif;
+            font-size: 1.35rem;
+            font-weight: 400;
+            color: #ffffff;
+            margin-bottom: 8px;
+            line-height: 2.2;
+            letter-spacing: 0.2px;
+        }
+
+        [data-theme="light"] .why-here-box .quote-text {
+            color: #0f172a;
         }
 
         .why-here-box .franco-text {
             font-size: 0.88rem;
-            color: var(--text-muted);
+            color: #cbd5e1;
             font-style: italic;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             direction: ltr;
         }
 
+        [data-theme="light"] .why-here-box .franco-text {
+            color: #475569;
+        }
+
         .why-here-box .translation-text {
-            font-size: 0.9rem;
-            color: var(--text-color);
+            font-size: 0.92rem;
+            color: #cbd5e1;
             margin-bottom: 8px;
+        }
+
+        [data-theme="light"] .why-here-box .translation-text {
+            color: #475569;
         }
 
         .why-here-box .quote-source {
             font-size: 0.82rem;
-            color: var(--accent-color);
-            opacity: 0.9;
+            color: #94a3b8;
             font-weight: 500;
             margin-top: 6px;
             display: block;
+        }
+
+        [data-theme="light"] .why-here-box .quote-source {
+            color: #64748b;
         }
 
         .about-box, .contact-card {
@@ -914,18 +840,26 @@
             color: var(--text-color);
         }
 
+        /* تعديل درجة لون الخط للنص التعريفي داخل الديالوغ لتكون غامقة ومقروءة وواضحة */
         .profile-card-bio {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            color: #0f172a;
+            font-size: 0.92rem;
+            font-weight: 600;
             line-height: 1.7;
             margin-bottom: 18px;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
+        /* زر "متابعة الآن" بلون ذهبي متناسق مع الموقع */
         .follow-now-btn {
             width: 100%;
-            background: var(--input-bg);
-            color: var(--accent-color);
-            border: 1px solid var(--border-color);
+            background: var(--accent-color);
+            color: #0b1329;
+            border: 1px solid var(--accent-color);
             padding: 12px;
             border-radius: 25px;
             font-size: 0.95rem;
@@ -935,14 +869,14 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+            transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
         }
 
         .follow-now-btn:hover { 
-            background: var(--accent-color); 
-            color: var(--bg-color); 
-            border-color: var(--accent-color);
+            opacity: 0.92;
             transform: translateY(-2px); 
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
         }
 
         .glass-dialog-box {
@@ -1115,14 +1049,16 @@
             </div>
         </section>
 
-        <!-- لاينر "لماذا أنا هنا" يتغير عشوائياً كل ٣ ثوانٍ وبخط عثماني وأنيميشن جذّاب -->
+        <!-- لاينر "لماذا أنا هنا" يتغير عشوائياً كل ٤ ثواني بانيميشن جذاب وخط عثماني -->
         <section class="reveal" id="why-here-section">
             <h2 class="section-title" id="why-here-title">لماذا أنا هنا</h2>
             <div class="why-here-box">
-                <p id="why-here-text" class="quote-text"></p>
-                <p id="why-here-franco" class="franco-text"></p>
-                <p id="why-here-trans" class="translation-text"></p>
-                <span id="why-here-source" class="quote-source"></span>
+                <div id="why-here-content" class="why-here-content">
+                    <p id="why-here-text" class="quote-text"></p>
+                    <p id="why-here-franco" class="franco-text"></p>
+                    <p id="why-here-trans" class="translation-text"></p>
+                    <span id="why-here-source" class="quote-source"></span>
+                </div>
             </div>
         </section>
 
@@ -1204,18 +1140,7 @@
         </div>
     </div>
 
-    <!-- 2. نافذة الاستماع الصوتي الخفيف بدون فتح الفيديو -->
-    <div class="reel-modal" id="audioModal">
-        <div class="glass-dialog-box" style="text-align: center; max-width: 380px;">
-            <button class="close-modal" id="closeAudioBtn">&times;</button>
-            <i class="fa-solid fa-headphones" style="font-size: 2.8rem; color: var(--accent-color); margin-bottom: 12px; display: block;"></i>
-            <h3 id="audioModalTitle" style="font-size: 1.15rem; margin-bottom: 8px; color: var(--text-color);">تشغيل صَوْتي</h3>
-            <p id="audioModalDesc" style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 15px;">استمع إلى المحتوى الآن بدون فتح الفيديو</p>
-            <audio id="mainAudioPlayer" controls style="width: 100%; border-radius: 12px; outline: none;"></audio>
-        </div>
-    </div>
-
-    <!-- 3. نافذة كارت الشاعر المنبثقة -->
+    <!-- 2. نافذة كارت الشاعر المنبثقة -->
     <div class="reel-modal" id="imageModal">
         <div class="profile-card-modal">
             <button class="close-modal" id="closeImageBtn">&times;</button>
@@ -1236,7 +1161,7 @@
         </div>
     </div>
 
-    <!-- 4. ديالوج منصات السوشيال ميديا -->
+    <!-- 3. ديالوج منصات السوشيال ميديا -->
     <div class="reel-modal" id="socialModal">
         <div class="glass-dialog-box">
             <button class="close-modal" id="closeSocialBtn">&times;</button>
@@ -1262,7 +1187,7 @@
         </div>
     </div>
 
-    <!-- 5. نافذة نتائج البحث غير المتوفرة -->
+    <!-- 4. نافذة نتائج البحث غير المتوفرة -->
     <div class="reel-modal" id="searchModal">
         <div class="search-modal-box">
             <button class="close-modal" id="closeSearchModalBtn">&times;</button>
@@ -1275,7 +1200,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // قائمة الـ 11 آية وحديث المحددة بالكامل مع عدم ترجمة الأحاديث لفرانكو
+            // قائمة الآيات الأحد عشر المحددة (ترجمة الفرانكو للآيات فقط ولا توجد ترجمة فرانكو للأحاديث)
             const whyHereQuotes = [
                 {
                     type: 'quran',
@@ -1294,8 +1219,8 @@
                     en: "Beautify the Quran with your voices, for a fine voice increases the Quran in beauty.",
                     es: "Embelleced el Corán con vuestras voces, pues una buena voz aumenta la belleza del Corán.",
                     fr: "Embellissez le Coran avec vos voix, car une belle voix ajoute à la beauté du Coran.",
-                    sourceAr: "[سنن الدارمي / الدرر السنية]",
-                    sourceForeign: "[Sunan al-Darimi / Dorar]"
+                    sourceAr: "[سنن الدارمي / صحيح الجامع]",
+                    sourceForeign: "[Sunan al-Darimi / Sahih al-Jami]"
                 },
                 {
                     type: 'quran',
@@ -1324,7 +1249,7 @@
                     en: "It will be said to the companion of the Quran: Read and ascend, and recite as you used to recite in the world, for your status will be at the last verse you recite.",
                     es: "Se le dirá al compañero del Corán: Lee y asciende, y recita como recitabas en el mundo, pues tu posición estará en el último versículo que leas.",
                     fr: "Il sera dit au compagnon du Coran: Lisez et élevez-vous, et récitez comme vous récitiez dans le monde, car votre rang sera au dernier verset que vous récitez.",
-                    sourceAr: "[سنن الترمذي / الدرر السنية]",
+                    sourceAr: "[سنن الترمذي]",
                     sourceForeign: "[Sunan at-Tirmidhi]"
                 },
                 {
@@ -1344,7 +1269,7 @@
                     en: "Whoever takes a path upon which he seeks knowledge, Allah will make the path to Paradise easy for him.",
                     es: "Quien emprenda un camino en busca del conocimiento, Alá le facilitará un camino hacia el Paraíso.",
                     fr: "Quiconque emprunte un chemin à la recherche de la science, Allah lui facilitera un chemin vers le Paradis.",
-                    sourceAr: "[صحيح مسلم / الدرر السنية]",
+                    sourceAr: "[صحيح مسلم]",
                     sourceForeign: "[Sahih Muslim]"
                 },
                 {
@@ -1354,7 +1279,7 @@
                     en: "When a person dies, his deeds come to an end except for three: ongoing charity, beneficial knowledge, or a righteous child who prays for him.",
                     es: "Cuando una persona muere, sus obras cesan excepto tres: una caridad continua, un conocimiento del que se beneficia la gente, o un hijo virtuoso que ruega por él.",
                     fr: "Quand l'homme meurt, ses œuvres s'arrêtent sauf trois: une aumône continue, une science dont les gens profitent, ou un enfant pieux qui invoque pour lui.",
-                    sourceAr: "[صحيح مسلم / الدرر السنية]",
+                    sourceAr: "[صحيح مسلم]",
                     sourceForeign: "[Sahih Muslim]"
                 },
                 {
@@ -1364,7 +1289,7 @@
                     en: "Whoever calls to guidance will have a reward similar to the rewards of those who follow him, without that detracting at all from their rewards.",
                     es: "Quien llame a la guía tendrá una recompensa similar a las recompensas de quienes lo sigan, sin que ello disminuya en nada sus recompensas.",
                     fr: "Quiconque appelle à une guidance aura une récompense égale à celle de ceux qui le suivent, sans que cela ne diminue en rien leurs récompenses.",
-                    sourceAr: "[صحيح مسلم / الدرر السنية]",
+                    sourceAr: "[صحيح مسلم]",
                     sourceForeign: "[Sahih Muslim]"
                 },
                 {
@@ -1374,7 +1299,7 @@
                     en: "May Allah brighten a person who hears a Hadith from us and preserves it until he conveys it to others; for perhaps a bearer of knowledge conveys it to one who is more understanding than he.",
                     es: "Que Alá ilumine a quien escuche un dicho de nosotros y lo memorice hasta transmitirlo; pues tal vez quien lleva un conocimiento lo transmita a alguien con mayor comprensión.",
                     fr: "Qu'Allah fasse resplendir un homme qui entend de nous un hadith, le mémorise et le transmet; car il se peut qu'un porteur de savoir le transmette à plus savant que lui.",
-                    sourceAr: "[سنن الترمذي / الدرر السنية]",
+                    sourceAr: "[سنن الترمذي]",
                     sourceForeign: "[Sunan at-Tirmidhi]"
                 },
                 {
@@ -1384,7 +1309,7 @@
                     en: "Convey from me, even if it is a single verse.",
                     es: "Transmitid de mí, aunque sea un solo versículo.",
                     fr: "Transmettez de ma part, ne serait-ce qu'un verset.",
-                    sourceAr: "[صحيح البخاري / الدرر السنية]",
+                    sourceAr: "[صحيح البخاري]",
                     sourceForeign: "[Sahih Bukhari]"
                 }
             ];
@@ -1424,9 +1349,7 @@
                     notFoundMsg: "للأسف المحتوى الذي بحثت عنه غير متوفر حالياً. يسعدنا جداً اهتمامك بمحتوانا وشغفك بمتابعته!",
                     followNow: "متابعة الآن",
                     socialDialogTitle: "اختر المنصة للمتابعة",
-                    shareSuccess: "تم نسخ رابط الموقع بنجاح!",
-                    watchNow: "شاهده الآن",
-                    clickToListen: "انقر للإستماع"
+                    shareSuccess: "تم نسخ رابط الموقع بنجاح!"
                 },
                 en: {
                     search: "Search content...",
@@ -1462,9 +1385,7 @@
                     notFoundMsg: "Unfortunately, the content you searched for is currently unavailable. We are truly delighted by your interest in our content!",
                     followNow: "Follow Now",
                     socialDialogTitle: "Select Platform to Follow",
-                    shareSuccess: "Site link copied successfully!",
-                    watchNow: "Watch Now",
-                    clickToListen: "Click to Listen"
+                    shareSuccess: "Site link copied successfully!"
                 },
                 es: {
                     search: "Ingrese texto...",
@@ -1500,9 +1421,7 @@
                     notFoundMsg: "Lamentablemente, el contenido que buscaste no está disponible actualmente.",
                     followNow: "Seguir Ahora",
                     socialDialogTitle: "Seleccionar Plataforma",
-                    shareSuccess: "¡Enlace copiado con éxito!",
-                    watchNow: "Míralo Ahora",
-                    clickToListen: "Haz clic para escuchar"
+                    shareSuccess: "¡Enlace copiado con éxito!"
                 },
                 fr: {
                     search: "Rechercher un contenu...",
@@ -1538,9 +1457,7 @@
                     notFoundMsg: "Malheureusement, le contenu que vous avez recherché n'est pas disponible pour le moment.",
                     followNow: "S'abonner Maintenant",
                     socialDialogTitle: "Sélectionner la Plateforme",
-                    shareSuccess: "Lien copié avec succès!",
-                    watchNow: "Regarder maintenant",
-                    clickToListen: "Cliquer pour écouter"
+                    shareSuccess: "Lien copié avec succès!"
                 }
             };
 
@@ -1590,31 +1507,28 @@
                 }
             }
 
-            // التبديل العشوائي للآيات والأحاديث كل ٣ ثوانٍ مع أنيميشن جذاب
+            // تدوير الآيات والأحاديث عشوائياً كل ٤ ثواني بانيميشن ناعم وجذاب
             function displayRandomQuote() {
-                const box = document.querySelector('.why-here-box');
-                if (box) {
-                    box.classList.add('fade-out');
-                    setTimeout(() => {
-                        let randomIndex;
-                        do {
-                            randomIndex = Math.floor(Math.random() * whyHereQuotes.length);
-                        } while (whyHereQuotes.length > 1 && randomIndex === currentQuoteIndex);
+                const contentBox = document.getElementById('why-here-content');
+                if (!contentBox) return;
 
-                        currentQuoteIndex = randomIndex;
-                        currentQuote = whyHereQuotes[randomIndex];
-                        renderQuote();
-                        box.classList.remove('fade-out');
-                    }, 400);
-                } else {
-                    const randomIndex = Math.floor(Math.random() * whyHereQuotes.length);
-                    currentQuote = whyHereQuotes[randomIndex];
+                contentBox.classList.add('fade-out');
+
+                setTimeout(() => {
+                    let randomIndex;
+                    do {
+                        randomIndex = Math.floor(Math.random() * whyHereQuotes.length);
+                    } while (whyHereQuotes.length > 1 && randomIndex === currentQuoteIndex);
+
+                    currentQuoteIndex = randomIndex;
+                    currentQuote = whyHereQuotes[currentQuoteIndex];
                     renderQuote();
-                }
+                    contentBox.classList.remove('fade-out');
+                }, 600);
             }
 
             displayRandomQuote();
-            setInterval(displayRandomQuote, 3000);
+            setInterval(displayRandomQuote, 4000);
 
             const savedTheme = localStorage.getItem('faris_site_theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
@@ -1715,6 +1629,20 @@
                 }
             }
 
+            // تطبيق تحسين أزرار التشغيل ذات الحواف السوداء فوق كروت الفيديو
+            function applyReelCardPlayButtons(container) {
+                if (!container) return;
+                const cards = container.querySelectorAll('.reel-card');
+                cards.forEach(card => {
+                    if (!card.querySelector('.reel-play-btn')) {
+                        const playBtn = document.createElement('div');
+                        playBtn.className = 'reel-play-btn';
+                        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                        card.appendChild(playBtn);
+                    }
+                });
+            }
+
             async function loadSectionContent(fileUrl, containerId) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -1726,6 +1654,7 @@
                         const html = await response.text();
                         if (html.trim().length > 0 && html.includes('reel-card')) {
                             container.innerHTML = html;
+                            applyReelCardPlayButtons(container);
                             if (section) section.style.display = 'block';
 
                             setTimeout(() => updateScrollButtons(container), 100);
@@ -1776,21 +1705,6 @@
                 document.body.style.overflow = 'hidden';
             };
 
-            // تشغيل المحتوى صوتياً فقط بدون فتح الفيديو
-            window.openAudioOnly = function(audioUrl, title) {
-                const modal = document.getElementById('audioModal');
-                const player = document.getElementById('mainAudioPlayer');
-                const titleEl = document.getElementById('audioModalTitle');
-
-                if (titleEl && title) titleEl.innerText = title;
-                if (player) {
-                    player.src = audioUrl;
-                    player.play();
-                }
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            };
-
             const reelModal = document.getElementById('reelModal');
             document.getElementById('closeReelBtn').addEventListener('click', closeReel);
             reelModal.addEventListener('click', (e) => { if (e.target === reelModal) closeReel(); });
@@ -1798,29 +1712,6 @@
             function closeReel() {
                 document.getElementById('modalIframe').src = '';
                 reelModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-
-            const audioModal = document.getElementById('audioModal');
-            const closeAudioBtn = document.getElementById('closeAudioBtn');
-            const mainAudioPlayer = document.getElementById('mainAudioPlayer');
-
-            if (closeAudioBtn) {
-                closeAudioBtn.addEventListener('click', closeAudioModal);
-            }
-
-            if (audioModal) {
-                audioModal.addEventListener('click', (e) => {
-                    if (e.target === audioModal) closeAudioModal();
-                });
-            }
-
-            function closeAudioModal() {
-                if (mainAudioPlayer) {
-                    mainAudioPlayer.pause();
-                    mainAudioPlayer.src = '';
-                }
-                if (audioModal) audioModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
 
