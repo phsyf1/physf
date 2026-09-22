@@ -4,11 +4,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" id="theme-color-meta" content="#0b1329">
     
-    <title>فَارِس الشِريـف</title>
+    <title>فَارِس الشِريـف | الشاعر وصانع المحتوى فارس محمد داهش</title>
     
-    <meta name="description" content="الموقع الرسمي للشاعر وصانع المحتوى فارس محمد داهش. تلاوات خاشعة، قصائد شعرية، ومحتوى ملهم.">
-    <meta name="keywords" content="فارس الشريف, فارس محمد داهش, شاعر مصري, تلاوات عطرة, من أجلك أنت, قصائد شعرية">
+    <!-- تحسينات SEO للظهور بجميع الأسماء واللغات -->
+    <meta name="description" content="الموقع الرسمي للشاعر وصانع المحتوى فارس محمد داهش (فارس الشريف / نضيد / Nadeed / phsyf). تلاوات خاشعة، قصائد شعرية، ومحتوى ملهم. Fares Ash-shiref, Fares Dahesh, Fares Alshiref, Faris Dahesh.">
+    <meta name="keywords" content="فارس الشريف, فارس محمد داهش, فارس داهش, نضيد, Nadeed, phsyf, Fares Ash-shiref, Fares Dahesh, Fares Mohammed Dahesh, Fares Alshiref, Faris Ash-shiref, Faris Dahesh, Faris Mohammed Dahesh, Faris Alshiref, poet, quran reciter">
     <meta name="robots" content="index, follow">
+
+    <!-- Structured Data (Schema.org) لمحركات البحث -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "فارس الشريف",
+      "alternateName": [
+        "فارس محمد داهش",
+        "فارس داهش",
+        "نضيد",
+        "Nadeed",
+        "phsyf",
+        "phsyf1",
+        "Fares Ash-shiref",
+        "Fares Dahesh",
+        "Fares Mohammed Dahesh",
+        "Fares Alshiref",
+        "Faris Ash-shiref",
+        "Faris Dahesh",
+        "Faris Mohammed Dahesh",
+        "Faris Alshiref"
+      ],
+      "url": "https://phsyf1.github.io/physf/",
+      "jobTitle": "شاعر وصانع محتوى",
+      "sameAs": [
+        "https://youtube.com/@phsyf1",
+        "https://www.tiktok.com/@phsyf1",
+        "https://t.me/phsyf1",
+        "https://www.facebook.com/share/1DSeWq9K93/"
+      ]
+    }
+    </script>
 
     <!-- صورة الموقع المصغرة وأيقونة Favicon -->
     <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/phsyf1/physf/2ccd041d150f5287836b20ac1438098802778c3e/UploadIconSeleting/fde.svg">
@@ -43,7 +77,7 @@
             --bg-gradient: radial-gradient(circle at top right, rgba(212, 175, 55, 0.18), transparent 50%), 
                             radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.12), transparent 50%), 
                             #f8fafc;
-            --card-bg-glass: rgba(255, 255, 255, 0.75);
+            --card-bg-glass: rgba(255, 255, 255, 0.82);
             --nav-bg-glass: rgba(248, 250, 252, 0.85);
             --text-color: #0f172a;
             --text-muted: #475569;
@@ -387,7 +421,7 @@
 
         .submit-btn {
             background: var(--accent-color);
-            color: #0b1329;
+            color: var(--bg-color);
             border: none;
             padding: 12px 24px;
             border-radius: 10px;
@@ -403,7 +437,6 @@
 
         .submit-btn:hover { opacity: 0.95; transform: translateY(-1px); }
 
-        /* الإصلاح الخاص بكارت عدد الزوار */
         .visitor-section {
             margin: 20px 0 10px;
             text-align: center;
@@ -490,7 +523,6 @@
 
         .divider-with-text span { padding: 0 12px; font-weight: 500; }
 
-        /* أزرار المتابعة */
         .social-links {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -528,12 +560,12 @@
 
         .social-btn:hover { 
             background: var(--accent-color); 
-            color: #0b1329; 
+            color: var(--bg-color); 
             transform: translateY(-2px);
             border-color: var(--accent-color);
         }
 
-        .social-btn:hover i { color: #0b1329; }
+        .social-btn:hover i { color: var(--bg-color); }
 
         /* زر الاشتراك العائم (FAB) */
         .fab-subscribe {
@@ -587,17 +619,19 @@
             color: #ffffff;
         }
 
-        /* النوافذ المنبثقة العامة (Modals & Dialogs) مع خلفية بلورية مشبعة */
+        /* ------------------------------------------------------------- */
+        /* النوافذ المنبثقة العامة (Modals & Dialogs) الشفافة مع الخلفية البلورية */
+        /* ------------------------------------------------------------- */
         .reel-modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(0, 0, 0, 0.45);
             z-index: 9999;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             padding: 15px;
         }
 
@@ -610,10 +644,10 @@
             height: 85vh;
             max-height: 750px;
             background: #000;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
             border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            box-shadow: var(--shadow);
         }
 
         .video-container { width: 100%; height: 100%; position: relative; }
@@ -621,46 +655,54 @@
 
         .close-modal {
             position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.2);
-            font-size: 1.2rem;
-            width: 32px;
-            height: 32px;
+            top: 14px;
+            left: 14px;
+            background: var(--input-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            font-size: 1.1rem;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             cursor: pointer;
             z-index: 20;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s ease, background 0.2s ease;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
         }
 
-        html[dir="ltr"] .close-modal { left: auto; right: 12px; }
-        .close-modal:hover { transform: scale(1.1); background: rgba(0, 0, 0, 0.8); }
+        html[dir="ltr"] .close-modal { left: auto; right: 14px; }
+        .close-modal:hover { transform: scale(1.1); border-color: var(--accent-color); color: var(--accent-color); }
 
-        /* تصميم كارت الصورة الشخصية */
+        /* تصميم كارت الشاعر التعريفي بألوان الثيم المتناسقة مع حواف الصورة بمقاس 30 */
         .profile-card-modal {
             position: relative;
             width: 100%;
             max-width: 380px;
-            background: #ffffff;
-            color: #0f172a;
+            background: var(--card-bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            color: var(--text-color);
             border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            box-shadow: var(--shadow);
             animation: fadeInDown 0.4s ease;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--border-color);
+            padding: 18px;
         }
 
+        /* مربعة ومع حواف بمقاس 30 ولاينر متناسق مع الديالوج */
         .profile-card-img-box {
             width: 100%;
             aspect-ratio: 1 / 1;
-            background: #000;
+            background: var(--input-bg);
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
             overflow: hidden;
             position: relative;
         }
@@ -671,10 +713,11 @@
             object-fit: cover;
             object-position: center;
             display: block;
+            border-radius: 30px;
         }
 
         .profile-card-body {
-            padding: 20px 22px 24px;
+            padding: 16px 6px 6px;
             text-align: right;
         }
 
@@ -690,21 +733,21 @@
         .profile-card-header h2 {
             font-size: 1.35rem;
             font-weight: 700;
-            color: #0f172a;
+            color: var(--text-color);
         }
 
         .profile-card-bio {
-            color: #475569;
+            color: var(--text-muted);
             font-size: 0.9rem;
             line-height: 1.7;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .follow-now-btn {
             width: 100%;
-            background: #f1f5f9;
-            color: #0f172a;
-            border: 1px solid #e2e8f0;
+            background: var(--input-bg);
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
             padding: 12px;
             border-radius: 25px;
             font-size: 0.95rem;
@@ -714,12 +757,17 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: transform 0.2s ease, background 0.2s ease;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
         }
 
-        .follow-now-btn:hover { background: #e2e8f0; transform: translateY(-2px); }
+        .follow-now-btn:hover { 
+            background: var(--accent-color); 
+            color: var(--bg-color); 
+            border-color: var(--accent-color);
+            transform: translateY(-2px); 
+        }
 
-        /* الديالوجات البلورية الموحدة */
+        /* باقي الديالوجات البلورية الموحدة بنفس ألوان الثيم */
         .glass-dialog-box {
             position: relative;
             width: 100%;
@@ -729,7 +777,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 24px 20px;
             box-shadow: var(--shadow);
             color: var(--text-color);
@@ -787,10 +835,10 @@
             width: 90%;
             max-width: 380px;
             background: var(--card-bg-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 30px 20px;
             text-align: center;
             box-shadow: var(--shadow);
@@ -814,12 +862,10 @@
                 <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
 
-            <!-- زر مشاركة الموقع -->
             <button class="control-btn" id="shareBtn" type="button" title="مشاركة الموقع" aria-label="Share Site">
                 <i class="fa-solid fa-share-nodes"></i>
             </button>
 
-            <!-- قائمة اللغات -->
             <div class="lang-wrapper">
                 <button class="control-btn" id="langBtn" type="button" aria-label="Language Menu">
                     <i class="fa-solid fa-globe"></i>
@@ -832,7 +878,6 @@
                 </div>
             </div>
 
-            <!-- تبديل الوضع (Dark/Light) -->
             <button class="control-btn" id="themeToggle" type="button" aria-label="Toggle Theme">
                 <i class="fa-solid fa-moon" id="themeIcon"></i>
             </button>
@@ -922,7 +967,6 @@
             </div>
         </section>
 
-        <!-- خانة عدد الزوار الثابتة الحجم بدون اهتزاز -->
         <section class="visitor-section reveal">
             <div class="visitor-card">
                 <i class="fa-solid fa-eye visitor-icon"></i>
@@ -937,7 +981,6 @@
             <span id="txt-honor">شرفنا بمتابعتك</span>
         </div>
 
-        <!-- أزرار المتابعة مقسمة بشكل احترافي -->
         <div class="social-links reveal">
             <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-btn">
                 <i class="fa-brands fa-youtube"></i> <span id="btn-youtube">يوتيوب</span>
@@ -958,7 +1001,6 @@
         </footer>
     </div>
 
-    <!-- زر الاشتراك العائم (FAB) -->
     <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="fab-subscribe" id="fabBtn" title="اشترك في القناة" aria-label="Subscribe on YouTube">
         <i class="fa-brands fa-youtube"></i>
         <span class="fab-text" id="fabText">اشترك الآن</span>
@@ -974,7 +1016,7 @@
         </div>
     </div>
 
-    <!-- 2. نافذة كارت الشاعر المنبثقة -->
+    <!-- 2. نافذة كارت الشاعر المنبثقة المعدلة لتأخذ ألوان الموقع وحواف الصورة 30 -->
     <div class="reel-modal" id="imageModal">
         <div class="profile-card-modal">
             <button class="close-modal" id="closeImageBtn">&times;</button>
@@ -995,7 +1037,7 @@
         </div>
     </div>
 
-    <!-- 3. ديالوج منصات السوشيال ميديا للزر "متابعة الآن" -->
+    <!-- 3. ديالوج منصات السوشيال ميديا -->
     <div class="reel-modal" id="socialModal">
         <div class="glass-dialog-box">
             <button class="close-modal" id="closeSocialBtn">&times;</button>
@@ -1187,7 +1229,6 @@
 
             let currentLang = getInitialLanguage();
 
-            // تطبيق الثيم المحفوظ
             const savedTheme = localStorage.getItem('faris_site_theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
             const themeIcon = document.getElementById('themeIcon');
@@ -1200,7 +1241,6 @@
                 themeColorMeta.setAttribute('content', savedTheme === 'light' ? '#f8fafc' : '#0b1329');
             }
 
-            // حركة الظهور عند التمرير
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1211,7 +1251,6 @@
 
             document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-            // 1. زر مشاركة الموقع
             const shareBtn = document.getElementById('shareBtn');
             if (shareBtn) {
                 shareBtn.addEventListener('click', async () => {
@@ -1235,7 +1274,6 @@
                 });
             }
 
-            // 2. حساب عدد الزوار وانيميشن الترحيب
             let visitCount = parseInt(localStorage.getItem('faris_visit_count') || '1284');
             if (!sessionStorage.getItem('visited_this_session')) {
                 visitCount += 1;
@@ -1263,7 +1301,6 @@
                 }, 300);
             }, 2000);
 
-            // أسهم التمرير
             function updateScrollButtons(container) {
                 if (!container) return;
                 const wrapper = container.closest('.reels-wrapper');
@@ -1362,7 +1399,6 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // 3. تحكم كارت صورة الشاعر وديلوج المتابعة
             const profileWrapper = document.getElementById('profileImgWrapper');
             const imageModal = document.getElementById('imageModal');
             const closeImageBtn = document.getElementById('closeImageBtn');
@@ -1416,7 +1452,6 @@
                 });
             }
 
-            // نتائج البحث
             const searchForm = document.getElementById('searchForm');
             const searchInput = document.getElementById('searchInput');
             const searchModal = document.getElementById('searchModal');
@@ -1476,7 +1511,6 @@
                 searchInput.blur();
             });
 
-            // تبديل الوضع (Dark / Light)
             const themeToggle = document.getElementById('themeToggle');
             themeToggle.addEventListener('click', () => {
                 const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -1491,7 +1525,6 @@
                 }
             });
 
-            // قائمة اللغات
             const langBtn = document.getElementById('langBtn');
             const langDropdown = document.getElementById('langDropdown');
 
