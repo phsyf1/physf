@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" id="theme-color-meta" content="#0b1329">
     
-    <title>فَارِس الشِريـف | الشاعر وصانع المحتوى فارس محمد داهش</title>
+    <title>فَارِس الشِريـف</title>
     
     <!-- ربط ملف App Manifest لتثبيت الموقع كتطبيق -->
     <link rel="manifest" href="manifest.json">
@@ -53,8 +53,8 @@
     <meta property="og:title" content="فَارِس الشِريـف">
     <meta property="og:description" content="الموقع الرسمي للشاعر وصانع المحتوى فارس محمد داهش.">
 
-    <!-- الخطوط والأيقونات -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- الخطوط والأيقونات (إضافة خط Amiri للعثماني) -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -354,7 +354,7 @@
             position: relative;
             min-width: 180px;
             max-width: 180px;
-            height: 310px;
+            height: 320px;
             border-radius: 16px;
             overflow: hidden;
             cursor: pointer;
@@ -368,7 +368,62 @@
         .reel-card:hover { transform: translateY(-4px); border-color: var(--accent-color); }
         .reel-card img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* أزرار الإجراءات داخل الكروت: زر التشغيل الأصفر وزر السماعة الخفيف */
+        /* أزرار الإجراءات داخل الكروت: زر التشغيل الرئيسي وزر الاستماع الصوتي الأصغر باللون الأصفر */
+        .card-actions-container {
+            position: absolute;
+            bottom: 10px;
+            left: 8px;
+            right: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 5;
+            align-items: center;
+        }
+
+        .btn-card-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+        }
+
+        .btn-watch-now {
+            background: rgba(0, 0, 0, 0.65);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .btn-watch-now:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            border-color: var(--accent-color);
+            transform: scale(1.03);
+        }
+
+        .btn-listen-audio {
+            background: #ffd700;
+            color: #000000;
+            border: 1px solid #e6c200;
+        }
+
+        .btn-listen-audio:hover {
+            background: #e6c200;
+            transform: scale(1.03);
+        }
+
         .card-actions-row {
             position: absolute;
             bottom: 12px;
@@ -377,7 +432,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             z-index: 5;
         }
 
@@ -385,46 +440,44 @@
             background: #ffd700;
             color: #000000;
             border: none;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
+            padding: 6px 12px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 5px;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
             transition: transform 0.2s ease, background-color 0.2s ease;
-            font-size: 0.95rem;
+            font-size: 0.8rem;
+            font-weight: bold;
         }
 
         .btn-play-yellow:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
             background: #e6c200;
         }
 
         .btn-audio-light {
-            background: rgba(255, 255, 255, 0.25);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
+            background: #ffd700;
+            color: #000000;
+            border: 1px solid #e6c200;
+            padding: 6px 12px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 5px;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
-            font-size: 0.95rem;
+            transition: transform 0.2s ease, background 0.2s ease;
+            font-size: 0.8rem;
+            font-weight: bold;
         }
 
         .btn-audio-light:hover {
-            transform: scale(1.1);
-            background: var(--accent-color);
-            color: var(--bg-color);
-            border-color: var(--accent-color);
+            transform: scale(1.05);
+            background: #e6c200;
         }
 
         .scroll-btn {
@@ -452,7 +505,7 @@
         .left-btn { left: -8px; }
         .right-btn { right: -8px; }
 
-        /* لاينر لماذا أنا هنا */
+        /* لاينر لماذا أنا هنا مع خط عثماني وأنييميشن سلس */
         .why-here-box {
             background: var(--card-bg-glass);
             backdrop-filter: blur(14px);
@@ -467,14 +520,33 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
+        }
+
+        .why-here-box .quote-text,
+        .why-here-box .franco-text,
+        .why-here-box .translation-text,
+        .why-here-box .quote-source {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .why-here-box.fade-out .quote-text,
+        .why-here-box.fade-out .franco-text,
+        .why-here-box.fade-out .translation-text,
+        .why-here-box.fade-out .quote-source {
+            opacity: 0;
+            transform: translateY(8px);
         }
 
         .why-here-box .quote-text {
-            font-size: 1.1rem;
+            font-family: 'Amiri', 'Tajawal', serif;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--accent-color);
             margin-bottom: 6px;
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
         .why-here-box .franco-text {
@@ -1043,7 +1115,7 @@
             </div>
         </section>
 
-        <!-- لاينر "لماذا أنا هنا" يتغير عشوائياً كل ثانيتين -->
+        <!-- لاينر "لماذا أنا هنا" يتغير عشوائياً كل ٣ ثوانٍ وبخط عثماني وأنيميشن جذّاب -->
         <section class="reveal" id="why-here-section">
             <h2 class="section-title" id="why-here-title">لماذا أنا هنا</h2>
             <div class="why-here-box">
@@ -1203,7 +1275,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // قائمة الآيات والأحاديث المحددة
+            // قائمة الـ 11 آية وحديث المحددة بالكامل مع عدم ترجمة الأحاديث لفرانكو
             const whyHereQuotes = [
                 {
                     type: 'quran',
@@ -1222,8 +1294,8 @@
                     en: "Beautify the Quran with your voices, for a fine voice increases the Quran in beauty.",
                     es: "Embelleced el Corán con vuestras voces, pues una buena voz aumenta la belleza del Corán.",
                     fr: "Embellissez le Coran avec vos voix, car une belle voix ajoute à la beauté du Coran.",
-                    sourceAr: "[سنن الدارمي / صحيح الجامع]",
-                    sourceForeign: "[Sunan al-Darimi / Sahih al-Jami]"
+                    sourceAr: "[سنن الدارمي / الدرر السنية]",
+                    sourceForeign: "[Sunan al-Darimi / Dorar]"
                 },
                 {
                     type: 'quran',
@@ -1252,7 +1324,7 @@
                     en: "It will be said to the companion of the Quran: Read and ascend, and recite as you used to recite in the world, for your status will be at the last verse you recite.",
                     es: "Se le dirá al compañero del Corán: Lee y asciende, y recita como recitabas en el mundo, pues tu posición estará en el último versículo que leas.",
                     fr: "Il sera dit au compagnon du Coran: Lisez et élevez-vous, et récitez comme vous récitiez dans le monde, car votre rang sera au dernier verset que vous récitez.",
-                    sourceAr: "[سنن الترمذي]",
+                    sourceAr: "[سنن الترمذي / الدرر السنية]",
                     sourceForeign: "[Sunan at-Tirmidhi]"
                 },
                 {
@@ -1272,7 +1344,7 @@
                     en: "Whoever takes a path upon which he seeks knowledge, Allah will make the path to Paradise easy for him.",
                     es: "Quien emprenda un camino en busca del conocimiento, Alá le facilitará un camino hacia el Paraíso.",
                     fr: "Quiconque emprunte un chemin à la recherche de la science, Allah lui facilitera un chemin vers le Paradis.",
-                    sourceAr: "[صحيح مسلم]",
+                    sourceAr: "[صحيح مسلم / الدرر السنية]",
                     sourceForeign: "[Sahih Muslim]"
                 },
                 {
@@ -1282,7 +1354,7 @@
                     en: "When a person dies, his deeds come to an end except for three: ongoing charity, beneficial knowledge, or a righteous child who prays for him.",
                     es: "Cuando una persona muere, sus obras cesan excepto tres: una caridad continua, un conocimiento del que se beneficia la gente, o un hijo virtuoso que ruega por él.",
                     fr: "Quand l'homme meurt, ses œuvres s'arrêtent sauf trois: une aumône continue, une science dont les gens profitent, ou un enfant pieux qui invoque pour lui.",
-                    sourceAr: "[صحيح مسلم]",
+                    sourceAr: "[صحيح مسلم / الدرر السنية]",
                     sourceForeign: "[Sahih Muslim]"
                 },
                 {
@@ -1292,7 +1364,7 @@
                     en: "Whoever calls to guidance will have a reward similar to the rewards of those who follow him, without that detracting at all from their rewards.",
                     es: "Quien llame a la guía tendrá una recompensa similar a las recompensas de quienes lo sigan, sin que ello disminuya en nada sus recompensas.",
                     fr: "Quiconque appelle à une guidance aura une récompense égale à celle de ceux qui le suivent, sans que cela ne diminue en rien leurs récompenses.",
-                    sourceAr: "[صحيح مسلم]",
+                    sourceAr: "[صحيح مسلم / الدرر السنية]",
                     sourceForeign: "[Sahih Muslim]"
                 },
                 {
@@ -1302,7 +1374,7 @@
                     en: "May Allah brighten a person who hears a Hadith from us and preserves it until he conveys it to others; for perhaps a bearer of knowledge conveys it to one who is more understanding than he.",
                     es: "Que Alá ilumine a quien escuche un dicho de nosotros y lo memorice hasta transmitirlo; pues tal vez quien lleva un conocimiento lo transmita a alguien con mayor comprensión.",
                     fr: "Qu'Allah fasse resplendir un homme qui entend de nous un hadith, le mémorise et le transmet; car il se peut qu'un porteur de savoir le transmette à plus savant que lui.",
-                    sourceAr: "[سنن الترمذي]",
+                    sourceAr: "[سنن الترمذي / الدرر السنية]",
                     sourceForeign: "[Sunan at-Tirmidhi]"
                 },
                 {
@@ -1312,7 +1384,7 @@
                     en: "Convey from me, even if it is a single verse.",
                     es: "Transmitid de mí, aunque sea un solo versículo.",
                     fr: "Transmettez de ma part, ne serait-ce qu'un verset.",
-                    sourceAr: "[صحيح البخاري]",
+                    sourceAr: "[صحيح البخاري / الدرر السنية]",
                     sourceForeign: "[Sahih Bukhari]"
                 }
             ];
@@ -1352,7 +1424,9 @@
                     notFoundMsg: "للأسف المحتوى الذي بحثت عنه غير متوفر حالياً. يسعدنا جداً اهتمامك بمحتوانا وشغفك بمتابعته!",
                     followNow: "متابعة الآن",
                     socialDialogTitle: "اختر المنصة للمتابعة",
-                    shareSuccess: "تم نسخ رابط الموقع بنجاح!"
+                    shareSuccess: "تم نسخ رابط الموقع بنجاح!",
+                    watchNow: "شاهده الآن",
+                    clickToListen: "انقر للإستماع"
                 },
                 en: {
                     search: "Search content...",
@@ -1388,7 +1462,9 @@
                     notFoundMsg: "Unfortunately, the content you searched for is currently unavailable. We are truly delighted by your interest in our content!",
                     followNow: "Follow Now",
                     socialDialogTitle: "Select Platform to Follow",
-                    shareSuccess: "Site link copied successfully!"
+                    shareSuccess: "Site link copied successfully!",
+                    watchNow: "Watch Now",
+                    clickToListen: "Click to Listen"
                 },
                 es: {
                     search: "Ingrese texto...",
@@ -1424,7 +1500,9 @@
                     notFoundMsg: "Lamentablemente, el contenido que buscaste no está disponible actualmente.",
                     followNow: "Seguir Ahora",
                     socialDialogTitle: "Seleccionar Plataforma",
-                    shareSuccess: "¡Enlace copiado con éxito!"
+                    shareSuccess: "¡Enlace copiado con éxito!",
+                    watchNow: "Míralo Ahora",
+                    clickToListen: "Haz clic para escuchar"
                 },
                 fr: {
                     search: "Rechercher un contenu...",
@@ -1460,7 +1538,9 @@
                     notFoundMsg: "Malheureusement, le contenu que vous avez recherché n'est pas disponible pour le moment.",
                     followNow: "S'abonner Maintenant",
                     socialDialogTitle: "Sélectionner la Plateforme",
-                    shareSuccess: "Lien copié avec succès!"
+                    shareSuccess: "Lien copié avec succès!",
+                    watchNow: "Regarder maintenant",
+                    clickToListen: "Cliquer pour écouter"
                 }
             };
 
@@ -1474,6 +1554,7 @@
 
             let currentLang = getInitialLanguage();
             let currentQuote = null;
+            let currentQuoteIndex = -1;
 
             function renderQuote() {
                 if (!currentQuote) return;
@@ -1509,14 +1590,31 @@
                 }
             }
 
+            // التبديل العشوائي للآيات والأحاديث كل ٣ ثوانٍ مع أنيميشن جذاب
             function displayRandomQuote() {
-                const randomIndex = Math.floor(Math.random() * whyHereQuotes.length);
-                currentQuote = whyHereQuotes[randomIndex];
-                renderQuote();
+                const box = document.querySelector('.why-here-box');
+                if (box) {
+                    box.classList.add('fade-out');
+                    setTimeout(() => {
+                        let randomIndex;
+                        do {
+                            randomIndex = Math.floor(Math.random() * whyHereQuotes.length);
+                        } while (whyHereQuotes.length > 1 && randomIndex === currentQuoteIndex);
+
+                        currentQuoteIndex = randomIndex;
+                        currentQuote = whyHereQuotes[randomIndex];
+                        renderQuote();
+                        box.classList.remove('fade-out');
+                    }, 400);
+                } else {
+                    const randomIndex = Math.floor(Math.random() * whyHereQuotes.length);
+                    currentQuote = whyHereQuotes[randomIndex];
+                    renderQuote();
+                }
             }
 
             displayRandomQuote();
-            setInterval(displayRandomQuote, 2000);
+            setInterval(displayRandomQuote, 3000);
 
             const savedTheme = localStorage.getItem('faris_site_theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
