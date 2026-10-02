@@ -1,87 +1,35 @@
-<!-- حاوية الفيديوهات -->
-<div id="reels-container" class="dynamic-reel-section">
-    <!-- ستظهر الفيديوهات هنا تلقائياً بالترتيب من أعلى القائمة لأسفلها -->
+<!-- فيديو 6 -->
+<div class="reel-card" data-title="إبحث عن شبيه وكفاية ترجمة" onclick="openReelModal('onAkcwdcmgo')">
+    <img src="https://img.youtube.com/vi/onAkcwdcmgo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/onAkcwdcmgo/hqdefault.jpg'" alt="فيديو: إبحث عن شبيه وكفاية ترجمة" loading="lazy">
+    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
 </div>
 
-<script type="text/plain">
-(async () => {
-    // ======== الإعدادات المجهزة ========
-    const API_KEY      = 'AIzaSyBzK0VIpD-eVMr5rCehWjiHw86GrOtei6c'; 
-    const PLAYLIST_ID  = 'PLOKPeQjAK7WBOeeYrmsMeJNj2ecrV48lx';     
-    const CONTAINER_ID = 'reels-container';                       
-    const SUFFIX       = ' - فارس الشريف';
-    const CACHE_MINUTES = 30;                                     
-    // ===================================
+<!-- فيديو 5 -->
+<div class="reel-card" data-title="إزاي عند الله أحسن منّي" onclick="openReelModal('NTe5gGu0Xjo')">
+    <img src="https://img.youtube.com/vi/NTe5gGu0Xjo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/NTe5gGu0Xjo/hqdefault.jpg'" alt="فيديو: إزاي عند الله أحسن منّي" loading="lazy">
+    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+</div>
 
-    const box = document.getElementById(CONTAINER_ID);
-    if (!box) return;
-    const section = box.closest('.dynamic-reel-section') || box;
-    const CACHE_KEY = 'ytpl_' + PLAYLIST_ID;
+<!-- فيديو 4 -->
+<div class="reel-card" data-title="فبأي قلبٍ تعبده" onclick="openReelModal('3vYQ1GikYaM')">
+    <img src="https://img.youtube.com/vi/3vYQ1GikYaM/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/3vYQ1GikYaM/hqdefault.jpg'" alt="فيديو: فبأي قلبٍ تعبده" loading="lazy">
+    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+</div>
 
-    try {
-        let list = null;
+<!-- فيديو 3 -->
+<div class="reel-card" data-title="إقترابك.. خطواتك … هل هم بداية؟!" onclick="openReelModal('ysm-n6Qu08A')">
+    <img src="https://img.youtube.com/vi/ysm-n6Qu08A/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/ysm-n6Qu08A/hqdefault.jpg'" alt="فيديو: إقترابك.. خطواتك … هل هم بداية؟!" loading="lazy">
+    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+</div>
 
-        // التخزين المؤقت لتسريع التحميل وتوفير الـ API
-        try {
-            const c = JSON.parse(localStorage.getItem(CACHE_KEY));
-            if (c && Date.now() - c.t < CACHE_MINUTES * 60000) list = c.l;
-        } catch (e) {}
+<!-- فيديو 2 -->
+<div class="reel-card" data-title="لعلّك تُدرِك قبل أن تُدرَك" onclick="openReelModal('2w08Z_2g084')">
+    <img src="https://img.youtube.com/vi/2w08Z_2g084/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/2w08Z_2g084/hqdefault.jpg'" alt="فيديو: لعلّك تُدرِك قبل أن تُدرَك" loading="lazy">
+    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+</div>
 
-        if (!list) {
-            let items = [], token = '';
-            do {
-                const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
-                    + '?part=snippet&maxResults=50&playlistId=' + encodeURIComponent(PLAYLIST_ID)
-                    + '&key=' + API_KEY + (token ? '&pageToken=' + token : '');
-                const res = await fetch(url);
-                if (!res.ok) throw new Error('API ' + res.status);
-                const data = await res.json();
-                items = items.concat(data.items || []);
-                token = data.nextPageToken || '';
-            } while (token);
-
-            // جلب وترتيب الفيديوهات بنفس ترتيب القائمة الاصلي
-            list = items
-                .filter(it => it.snippet && it.snippet.title !== 'Private video' && it.snippet.title !== 'Deleted video')
-                .map(it => {
-                    const s = it.snippet, t = s.thumbnails || {};
-                    const th = t.maxres || t.standard || t.high || t.medium || t.default;
-                    return { id: s.resourceId.videoId, title: s.title, thumb: th ? th.url : '' };
-                })
-                .filter(v => v.thumb);
-
-            try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), l: list })); } catch (e) {}
-        }
-
-        if (!list.length) { if (section) section.style.display = 'none'; return; }
-
-        box.innerHTML = '';
-        list.forEach(v => {
-            const card = document.createElement('div');
-            card.className = 'reel-card';
-            card.setAttribute('data-title', v.title);
-            card.onclick = () => openReelModal(v.id);
-
-            const img = document.createElement('img');
-            img.src = v.thumb;
-            img.alt = v.title + SUFFIX;
-            img.loading = 'lazy';
-
-            const play = document.createElement('div');
-            play.className = 'play-icon';
-            play.innerHTML = '<i class="fa-solid fa-play"></i>';
-
-            card.append(img, play);
-            box.appendChild(card);
-        });
-
-        box.dispatchEvent(new Event('scroll'));
-    } catch (err) {
-        console.error('Playlist load failed:', err);
-        if (section) section.style.display = 'none';
-    }
-})();
-</script>
-
-<!-- تشغيل السكربت تلقائياً -->
-<img src="x" alt="" style="display:none" onerror="var c=this.previousElementSibling.textContent;this.remove();eval(c)">
+<!-- فيديو 1 -->
+<div class="reel-card" data-title="قد تراها عادية! وهي الكاشفة" onclick="openReelModal('oAqSOo46ShM')">
+    <img src="https://img.youtube.com/vi/oAqSOo46ShM/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/oAqSOo46ShM/hqdefault.jpg'" alt="فيديو: قد تراها عادية! وهي الكاشفة" loading="lazy">
+    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+</div>
