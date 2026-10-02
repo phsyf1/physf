@@ -1,34 +1,83 @@
-<div class="reel-card" data-title="ألم تر إلى الذين أوتوا نصيباً من الكتاب" onclick="openReelModal('https://www.facebook.com/phsyf1/videos/%D9%88%D9%8E%D8%BA%D9%8E%D8%B1%D9%91%D9%8E%D9%87%D9%8F%D9%85%D9%92-%D9%81%D9%90%D9%89-%D8%AF%D9%90%D9%8A%D9%86%D9%90%D9%87%D9%90%D9%85-%D9%85%D9%91%D9%8E%D8%A7-%D9%83%D9%8E%D8%A7%D9%86%D9%8F%D9%88%D8%A7%DB%9F-%D9%8A%D9%8E%D9%81%D9%92%D8%AA%D9%8E%D8%B1%D9%8F%D9%88%D9%86%D9%8E/28603283909308029/?rdid=H47QWKygZeInQwQM')">
-    <img src="https://raw.githubusercontent.com/phsyf1/physf/9c85c1385cfafecb9aa8a5a2c0457ff36ff6af20/UploadThumbnail/lv_0_20260927005319_exported_1852.jpg" alt="تلاوة: ألم تر إلى الذين أوتوا نصيباً من الكتاب - فارس الشريف" loading="lazy">
-    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-</div>
+<!-- ✏️ عدّل بس الأسطر اللي جوه الكود تحت: API_KEY و PLAYLIST_ID و CONTAINER_ID -->
+<script type="text/plain">
+(async () => {
+    // ======== الإعدادات ========
+    const API_KEY      = 'PUT_YOUR_API_KEY_HERE';       // مفتاح YouTube Data API v3
+    const PLAYLIST_ID  = 'PLK6c_Q6pjUCE';               // اللي بعد list= في رابط القائمة
+    const CONTAINER_ID = 'quranshorts-container';       // quranshorts-container | quranfull-container | foryou-container | poems-container
+    const SUFFIX       = ' - فارس الشريف';
+    const CACHE_MINUTES = 30;                           // الفيديوهات الجديدة بتظهر بعد المدة دي كحد أقصى
+    // ===========================
 
+    const box = document.getElementById(CONTAINER_ID);
+    if (!box) return;
+    const section = box.closest('.dynamic-reel-section');
+    const CACHE_KEY = 'ytpl_' + PLAYLIST_ID;
 
-<div class="reel-card" data-title="بل أكثرهم لا يؤمنون" onclick="openReelModal('https://www.facebook.com/phsyf1/videos/1393112416027175/')">
-    <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/UploadThumbnail/%D8%A8%D9%84%20%D8%A3%D9%83%D8%AB%D8%B1%D9%87%D9%85%20%D9%84%D8%A7%20%D9%8A%D8%A4%D9%85%D9%86%D9%88%D9%86.jpg" alt="تلاوة: بل أكثرهم لا يؤمنون - فارس الشريف" loading="lazy">
-    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-</div>
+    try {
+        let list = null;
 
+        // قراءة من الكاش لتسريع الموقع وتوفير حصة الـ API
+        try {
+            const c = JSON.parse(localStorage.getItem(CACHE_KEY));
+            if (c && Date.now() - c.t < CACHE_MINUTES * 60000) list = c.l;
+        } catch (e) {}
 
-<div class="reel-card" data-title="فاتقوا النار" onclick="openReelModal('https://www.facebook.com/phsyf1/videos/1599725491520301/')">
-    <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/UploadThumbnail/%D9%81%D8%A7%D8%AA%D9%82%D9%88%D8%A7%20%D8%A7%D9%84%D9%86%D8%A7%D8%B1.jpg" alt="تلاوة: فاتقوا النار - فارس الشريف" loading="lazy">
-    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-</div>
+        if (!list) {
+            let items = [], token = '';
+            do {
+                const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
+                    + '?part=snippet&maxResults=50&playlistId=' + encodeURIComponent(PLAYLIST_ID)
+                    + '&key=' + API_KEY + (token ? '&pageToken=' + token : '');
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('API ' + res.status);
+                const data = await res.json();
+                items = items.concat(data.items || []);
+                token = data.nextPageToken || '';
+            } while (token);
 
+            // الترتيب بيفضل زي ترتيب القائمة (الأول من فوق)
+            list = items
+                .filter(it => it.snippet && it.snippet.title !== 'Private video' && it.snippet.title !== 'Deleted video')
+                .map(it => {
+                    const s = it.snippet, t = s.thumbnails || {};
+                    const th = t.maxres || t.standard || t.high || t.medium || t.default;
+                    return { id: s.resourceId.videoId, title: s.title, thumb: th ? th.url : '' };
+                })
+                .filter(v => v.thumb);
 
-<div class="reel-card" data-title="ما يعلمهم إلا قليل" onclick="openReelModal('https://www.facebook.com/phsyf1/videos/1869408104444113/')">
-    <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/UploadThumbnail/%D9%85%D8%A7%20%D9%8A%D8%B9%D9%84%D9%85%D9%87%D9%85%20%D8%A5%D9%84%D8%A7%20%D9%82%D9%84%D9%8A%D9%84.jpg" alt="تلاوة: ما يعلمهم إلا قليل - فارس الشريف" loading="lazy">
-    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-</div>
+            try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), l: list })); } catch (e) {}
+        }
 
+        if (!list.length) { if (section) section.style.display = 'none'; return; }
 
-<div class="reel-card" data-title="وأولئك هم المفلحون" onclick="openReelModal('https://www.facebook.com/phsyf1/videos/1210881072111395/')">
-    <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/UploadThumbnail/%D9%88%D8%A3%D9%88%D9%84%D9%80%D9%B0%D8%A6%D9%83%20%D9%87%D9%85%20%D8%A7%D9%84%D9%85%D9%81%D9%84%D8%AD%D9%88%D9%86.jpg" alt="تلاوة: وأولئك هم المفلحون - فارس الشريف" loading="lazy">
-    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-</div>
+        box.innerHTML = '';
+        list.forEach(v => {
+            const card = document.createElement('div');
+            card.className = 'reel-card';                       // reel-card
+            card.setAttribute('data-title', v.title);
+            card.onclick = () => openReelModal(v.id);
 
+            const img = document.createElement('img');
+            img.src = v.thumb;
+            img.alt = v.title + SUFFIX;
+            img.loading = 'lazy';
 
-<div class="reel-card" data-title="واجعل لي لسان صدق في الآخرين" onclick="openReelModal('https://www.facebook.com/phsyf1/videos/1321350826749198/')">
-    <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/UploadThumbnail/%D9%88%D8%A7%D8%AC%D8%B9%D9%84%20%D9%84%D9%8A%20%D9%84%D8%B3%D8%A7%D9%86%20%D8%B5%D8%AF%D9%82%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A2%D8%AE%D8%B1%D9%8A%D9%86.jpg" alt="تلاوة: واجعل لي لسان صدق في الآخرين - فارس الشريف" loading="lazy">
-    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-</div>
+            const play = document.createElement('div');
+            play.className = 'reel-play-btn';
+            play.innerHTML = '<i class="fa-solid fa-play"></i>';
+
+            card.append(img, play);
+            box.appendChild(card);
+        });
+
+        // تحديث أزرار التمرير
+        box.dispatchEvent(new Event('scroll'));
+    } catch (err) {
+        console.error('Playlist load failed:', err);
+        if (section) section.style.display = 'none';
+    }
+})();
+</script>
+<!-- السطر ده بيشغّل الكود اللي فوق (لأن السكربتات جوه innerHTML مبتشتغلش لوحدها) -->
+<img src="x" alt="" style="display:none" onerror="var c=this.previousElementSibling.textContent;this.remove();eval(c)">
