@@ -1,23 +1,24 @@
-<!-- حاوية قسم القرآن القصير (تأكد أن الـ id بحروف صغيرة) -->
-<div id="quranshorts-container" class="dynamic-reel-section"></div>
-
+<!-- حاوية قسم القرآن القصير -->
 <script>
 (async () => {
     // ======== الإعدادات الخاصة بقسم القرآن القصير ========
     const API_KEY      = 'AIzaSyBzK0VIpD-eVMr5rCehWjiHw86GrOtei6c'; 
     const PLAYLIST_ID  = 'PLK6c_Q6pjUCE';                         // ID قائمة تشغيل القرآن
-    const CONTAINER_ID = 'quranshorts-container';                 // حروف صغيرة بالكامل (Small)
+    const CONTAINER_ID = 'quranshorts-container';                 
     const SUFFIX       = ' - فارس الشريف';
     const CACHE_MINUTES = 60;                                     
     // ====================================================
 
     const box = document.getElementById(CONTAINER_ID);
     if (!box) return;
+    
+    // تحديد العنصر الأب للقسم لإظهاره
     const section = box.closest('.dynamic-reel-section') || box;
     const CACHE_KEY = 'ytpl_' + PLAYLIST_ID;
 
     function renderList(list) {
         if (!list || !list.length) return;
+        
         box.innerHTML = '';
         list.forEach(v => {
             const card = document.createElement('div');
@@ -30,17 +31,22 @@
             img.alt = v.title + SUFFIX;
             img.loading = 'lazy';
 
+            // استخدام reel-play-btn ليتطابق مع الـ CSS في index.html
             const play = document.createElement('div');
-            play.className = 'play-icon';
+            play.className = 'reel-play-btn';
             play.innerHTML = '<i class="fa-solid fa-play"></i>';
 
             card.append(img, play);
             box.appendChild(card);
         });
+
+        // أهم خطوة: إظهار القسم بوضوح على الشاشة
+        if (section) section.style.display = 'block';
+
         box.dispatchEvent(new Event('scroll'));
     }
 
-    // 1. عرض من التخزين المؤقت فوراً
+    // 1. عرض البيانات من الكاش فوراً إن وجدت
     let hasCache = false;
     try {
         const c = JSON.parse(localStorage.getItem(CACHE_KEY));
@@ -51,7 +57,7 @@
         }
     } catch (e) {}
 
-    // 2. تحديث القائمة من YouTube API
+    // 2. تحديث البيانات من YouTube API
     try {
         let items = [], token = '';
         do {
@@ -77,9 +83,12 @@
         if (list.length) {
             renderList(list);
             try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), l: list })); } catch (e) {}
+        } else if (!hasCache && section) {
+            section.style.display = 'none';
         }
     } catch (err) {
         console.error('فشل تحميل القائمة:', err);
+        if (!hasCache && section) section.style.display = 'none';
     }
 })();
 </script>
