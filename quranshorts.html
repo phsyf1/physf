@@ -1,27 +1,21 @@
-<!-- حاوية الفيديوهات -->
-<div id="reels-container" class="dynamic-reel-section">
-    <!-- كروت انتظار رمادية تظهر فوراً قبل جلب البيانات -->
-    <div class="reel-card skeleton-card"></div>
-    <div class="reel-card skeleton-card"></div>
-    <div class="reel-card skeleton-card"></div>
-</div>
+<!-- حاوية قسم القرآن القصير (تأكد أن الـ id بحروف صغيرة) -->
+<div id="quranshorts-container" class="dynamic-reel-section"></div>
 
 <script>
 (async () => {
-    // ======== الإعدادات المجهزة ========
+    // ======== الإعدادات الخاصة بقسم القرآن القصير ========
     const API_KEY      = 'AIzaSyBzK0VIpD-eVMr5rCehWjiHw86GrOtei6c'; 
-    const PLAYLIST_ID  = 'PLK6c_Q6pjUCE';                         
-    const CONTAINER_ID = 'reels-container';                       
+    const PLAYLIST_ID  = 'PLK6c_Q6pjUCE';                         // ID قائمة تشغيل القرآن
+    const CONTAINER_ID = 'quranshorts-container';                 // حروف صغيرة بالكامل (Small)
     const SUFFIX       = ' - فارس الشريف';
-    const CACHE_MINUTES = 60;                                     // تم رفع التخزين لساعة لسرعة أكبر
-    // ===================================
+    const CACHE_MINUTES = 60;                                     
+    // ====================================================
 
     const box = document.getElementById(CONTAINER_ID);
     if (!box) return;
     const section = box.closest('.dynamic-reel-section') || box;
     const CACHE_KEY = 'ytpl_' + PLAYLIST_ID;
 
-    // دالة عرض الكروت في الصفحة
     function renderList(list) {
         if (!list || !list.length) return;
         box.innerHTML = '';
@@ -46,19 +40,18 @@
         box.dispatchEvent(new Event('scroll'));
     }
 
-    // 1. العرض الفوري من الكاش (0 ملي ثانية)
+    // 1. عرض من التخزين المؤقت فوراً
     let hasCache = false;
     try {
         const c = JSON.parse(localStorage.getItem(CACHE_KEY));
         if (c && c.l && c.l.length) {
-            renderList(c.l); // عرض فوراً بدون انتظار شبكة!
+            renderList(c.l);
             hasCache = true;
-            // لو الكاش ما زال حديثاً، نكتفي به ولا نطلب الـ API
             if (Date.now() - c.t < CACHE_MINUTES * 60000) return;
         }
     } catch (e) {}
 
-    // 2. جلب البيانات من الـ API (في الخلفية لو في كاش، أو فوراً لو أول مرة)
+    // 2. تحديث القائمة من YouTube API
     try {
         let items = [], token = '';
         do {
@@ -84,12 +77,9 @@
         if (list.length) {
             renderList(list);
             try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), l: list })); } catch (e) {}
-        } else if (!hasCache && section) {
-            section.style.display = 'none';
         }
     } catch (err) {
-        console.error('Playlist load failed:', err);
-        if (!hasCache && section) section.style.display = 'none';
+        console.error('فشل تحميل القائمة:', err);
     }
 })();
 </script>
