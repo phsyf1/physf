@@ -1,35 +1,49 @@
-<!-- فيديو 6 -->
-<div class="reel-card" data-title="إبحث عن شبيه وكفاية ترجمة" onclick="openReelModal('onAkcwdcmgo')">
-    <img src="https://img.youtube.com/vi/onAkcwdcmgo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/onAkcwdcmgo/hqdefault.jpg'" alt="فيديو: إبحث عن شبيه وكفاية ترجمة" loading="lazy">
-    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+<!-- حاوية الفيديوهات -->
+<div id="reels-container">
+    <!-- هتتحمل الفيديوهات هنا تلقائياً -->
 </div>
 
-<!-- فيديو 5 -->
-<div class="reel-card" data-title="إزاي عند الله أحسن منّي" onclick="openReelModal('NTe5gGu0Xjo')">
-    <img src="https://img.youtube.com/vi/NTe5gGu0Xjo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/NTe5gGu0Xjo/hqdefault.jpg'" alt="فيديو: إزاي عند الله أحسن منّي" loading="lazy">
-    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const playlistId = 'PLOKPeQjAK7WBOeeYrmsMeJNj2ecrV48lx';
+    const container = document.getElementById('reels-container');
 
-<!-- فيديو 4 -->
-<div class="reel-card" data-title="فبأي قلبٍ تعبده" onclick="openReelModal('3vYQ1GikYaM')">
-    <img src="https://img.youtube.com/vi/3vYQ1GikYaM/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/3vYQ1GikYaM/hqdefault.jpg'" alt="فيديو: فبأي قلبٍ تعبده" loading="lazy">
-    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-</div>
+    // رابط RSS المباشر من يوتيوب عبر بروكسي مجاني مفتوح بدون API Key
+    const targetUrl = `https://www.youtube.com/feeds/videos.xml?playlist_id=${playlistId}`;
+    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`;
 
-<!-- فيديو 3 -->
-<div class="reel-card" data-title="إقترابك.. خطواتك … هل هم بداية؟!" onclick="openReelModal('ysm-n6Qu08A')">
-    <img src="https://img.youtube.com/vi/ysm-n6Qu08A/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/ysm-n6Qu08A/hqdefault.jpg'" alt="فيديو: إقترابك.. خطواتك … هل هم بداية؟!" loading="lazy">
-    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-</div>
+    fetch(proxyUrl)
+        .then(response => {
+            if (!response.ok) throw new Error('خطأ في الاتصال');
+            return response.text();
+        })
+        .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+        .then(data => {
+            const entries = data.getElementsByTagName("entry");
+            if (!entries || entries.length === 0) return;
 
-<!-- فيديو 2 -->
-<div class="reel-card" data-title="لعلّك تُدرِك قبل أن تُدرَك" onclick="openReelModal('2w08Z_2g084')">
-    <img src="https://img.youtube.com/vi/2w08Z_2g084/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/2w08Z_2g084/hqdefault.jpg'" alt="فيديو: لعلّك تُدرِك قبل أن تُدرَك" loading="lazy">
-    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-</div>
+            container.innerHTML = ''; // تفريغ الحاوية
 
-<!-- فيديو 1 -->
-<div class="reel-card" data-title="قد تراها عادية! وهي الكاشفة" onclick="openReelModal('oAqSOo46ShM')">
-    <img src="https://img.youtube.com/vi/oAqSOo46ShM/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/oAqSOo46ShM/hqdefault.jpg'" alt="فيديو: قد تراها عادية! وهي الكاشفة" loading="lazy">
-    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-</div>
+            Array.from(entries).forEach(entry => {
+                // استخراج id الفيديو والعنوان
+                const videoId = entry.getElementsByTagName("yt:videoId")[0]?.textContent || 
+                                entry.getElementsByTagName("videoId")[0]?.textContent;
+                const title = entry.getElementsByTagName("title")[0]?.textContent;
+
+                if (videoId && title) {
+                    const cleanTitle = title.replace(/"/g, '&quot;');
+                    const cardHTML = `
+                    <div class="reel-card" data-title="${cleanTitle}" onclick="openReelModal('${videoId}')">
+                        <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" 
+                             onerror="this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg'" 
+                             alt="فيديو: ${cleanTitle}" loading="lazy">
+                        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+                    </div>
+                    `;
+                    container.innerHTML += cardHTML;
+                }
+            });
+        })
+        .catch(err => console.error('حدث خطأ أثناء جلب الفيديوهات:', err));
+});
+</script>
