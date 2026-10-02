@@ -1,16 +1,19 @@
 <!-- حاوية الفيديوهات -->
 <div id="reels-container" class="dynamic-reel-section">
-    <!-- ستظهر الفيديوهات هنا تلقائياً بالترتيب من أعلى القائمة لأسفلها -->
+    <!-- كروت انتظار رمادية تظهر فوراً قبل جلب البيانات -->
+    <div class="reel-card skeleton-card"></div>
+    <div class="reel-card skeleton-card"></div>
+    <div class="reel-card skeleton-card"></div>
 </div>
 
-<script type="text/plain">
+<script>
 (async () => {
     // ======== الإعدادات المجهزة ========
     const API_KEY      = 'AIzaSyBzK0VIpD-eVMr5rCehWjiHw86GrOtei6c'; 
-    const PLAYLIST_ID  = 'PLK6c_Q6pjUCE';                         // قائمة التشغيل الجديدة
-    const CONTAINER_ID = 'reels-container';                       // عدّله لو بتستخدم ID تاني (مثل quranshorts-container أو poems-container)
+    const PLAYLIST_ID  = 'PLK6c_Q6pjUCE';                         
+    const CONTAINER_ID = 'reels-container';                       
     const SUFFIX       = ' - فارس الشريف';
-    const CACHE_MINUTES = 30;                                     
+    const CACHE_MINUTES = 60;                                     // تم رفع التخزين لساعة لسرعة أكبر
     // ===================================
 
     const box = document.getElementById(CONTAINER_ID);
@@ -18,43 +21,9 @@
     const section = box.closest('.dynamic-reel-section') || box;
     const CACHE_KEY = 'ytpl_' + PLAYLIST_ID;
 
-    try {
-        let list = null;
-
-        // التخزين المؤقت لتسريع التحميل وتوفير الـ API
-        try {
-            const c = JSON.parse(localStorage.getItem(CACHE_KEY));
-            if (c && Date.now() - c.t < CACHE_MINUTES * 60000) list = c.l;
-        } catch (e) {}
-
-        if (!list) {
-            let items = [], token = '';
-            do {
-                const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
-                    + '?part=snippet&maxResults=50&playlistId=' + encodeURIComponent(PLAYLIST_ID)
-                    + '&key=' + API_KEY + (token ? '&pageToken=' + token : '');
-                const res = await fetch(url);
-                if (!res.ok) throw new Error('API ' + res.status);
-                const data = await res.json();
-                items = items.concat(data.items || []);
-                token = data.nextPageToken || '';
-            } while (token);
-
-            // جلب وترتيب الفيديوهات بنفس ترتيب القائمة الأصلي (الأعلى يظهر أولاً)
-            list = items
-                .filter(it => it.snippet && it.snippet.title !== 'Private video' && it.snippet.title !== 'Deleted video')
-                .map(it => {
-                    const s = it.snippet, t = s.thumbnails || {};
-                    const th = t.maxres || t.standard || t.high || t.medium || t.default;
-                    return { id: s.resourceId.videoId, title: s.title, thumb: th ? th.url : '' };
-                })
-                .filter(v => v.thumb);
-
-            try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), l: list })); } catch (e) {}
-        }
-
-        if (!list.length) { if (section) section.style.display = 'none'; return; }
-
+    // دالة عرض الكروت في الصفحة
+    function renderList(list) {
+        if (!list || !list.length) return;
         box.innerHTML = '';
         list.forEach(v => {
             const card = document.createElement('div');
@@ -74,14 +43,53 @@
             card.append(img, play);
             box.appendChild(card);
         });
-
         box.dispatchEvent(new Event('scroll'));
+    }
+
+    // 1. العرض الفوري من الكاش (0 ملي ثانية)
+    let hasCache = false;
+    try {
+        const c = JSON.parse(localStorage.getItem(CACHE_KEY));
+        if (c && c.l && c.l.length) {
+            renderList(c.l); // عرض فوراً بدون انتظار شبكة!
+            hasCache = true;
+            // لو الكاش ما زال حديثاً، نكتفي به ولا نطلب الـ API
+            if (Date.now() - c.t < CACHE_MINUTES * 60000) return;
+        }
+    } catch (e) {}
+
+    // 2. جلب البيانات من الـ API (في الخلفية لو في كاش، أو فوراً لو أول مرة)
+    try {
+        let items = [], token = '';
+        do {
+            const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
+                + '?part=snippet&maxResults=50&playlistId=' + encodeURIComponent(PLAYLIST_ID)
+                + '&key=' + API_KEY + (token ? '&pageToken=' + token : '');
+            const res = await fetch(url);
+            if (!res.ok) throw new Error('API ' + res.status);
+            const data = await res.json();
+            items = items.concat(data.items || []);
+            token = data.nextPageToken || '';
+        } while (token);
+
+        const list = items
+            .filter(it => it.snippet && it.snippet.title !== 'Private video' && it.snippet.title !== 'Deleted video')
+            .map(it => {
+                const s = it.snippet, t = s.thumbnails || {};
+                const th = t.maxres || t.standard || t.high || t.medium || t.default;
+                return { id: s.resourceId.videoId, title: s.title, thumb: th ? th.url : '' };
+            })
+            .filter(v => v.thumb);
+
+        if (list.length) {
+            renderList(list);
+            try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), l: list })); } catch (e) {}
+        } else if (!hasCache && section) {
+            section.style.display = 'none';
+        }
     } catch (err) {
         console.error('Playlist load failed:', err);
-        if (section) section.style.display = 'none';
+        if (!hasCache && section) section.style.display = 'none';
     }
 })();
 </script>
-
-<!-- تشغيل السكربت تلقائياً -->
-<img src="x" alt="" style="display:none" onerror="var c=this.previousElementSibling.textContent;this.remove();eval(c)">
