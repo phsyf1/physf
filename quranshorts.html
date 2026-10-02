@@ -1,94 +1,34 @@
-<!-- حاوية قسم القرآن القصير -->
-<script>
-(async () => {
-    // ======== الإعدادات الخاصة بقسم القرآن القصير ========
-    const API_KEY      = 'AIzaSyBzK0VIpD-eVMr5rCehWjiHw86GrOtei6c'; 
-    const PLAYLIST_ID  = 'PLK6c_Q6pjUCE';                         // ID قائمة تشغيل القرآن
-    const CONTAINER_ID = 'quranshorts-container';                 
-    const SUFFIX       = ' - فارس الشريف';
-    const CACHE_MINUTES = 60;                                     
-    // ====================================================
+<div class="reel-card" data-title="ألم تر إلى الذين أوتوا نصيباً من الكتاب" onclick="openReelModal('https://www.facebook.com/phsyf1/videos/%D9%88%D9%8E%D8%BA%D9%8E%D8%B1%D9%91%D9%8E%D9%87%D9%8F%D9%85%D9%92-%D9%81%D9%90%D9%89-%D8%AF%D9%90%D9%8A%D9%86%D9%90%D9%87%D9%90%D9%85-%D9%85%D9%91%D9%8E%D8%A7-%D9%83%D9%8E%D8%A7%D9%86%D9%8F%D9%88%D8%A7%DB%9F-%D9%8A%D9%8E%D9%81%D9%92%D8%AA%D9%8E%D8%B1%D9%8F%D9%88%D9%86%D9%8E/28603283909308029/?rdid=H47QWKygZeInQwQM')">
+    <img src="https://raw.githubusercontent.com/phsyf1/physf/9c85c1385cfafecb9aa8a5a2c0457ff36ff6af20/UploadThumbnail/lv_0_20260927005319_exported_1852.jpg" alt="تلاوة: ألم تر إلى الذين أوتوا نصيباً من الكتاب - فارس الشريف" loading="lazy">
+    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+</div>
 
-    const box = document.getElementById(CONTAINER_ID);
-    if (!box) return;
-    
-    // تحديد العنصر الأب للقسم لإظهاره
-    const section = box.closest('.dynamic-reel-section') || box;
-    const CACHE_KEY = 'ytpl_' + PLAYLIST_ID;
 
-    function renderList(list) {
-        if (!list || !list.length) return;
-        
-        box.innerHTML = '';
-        list.forEach(v => {
-            const card = document.createElement('div');
-            card.className = 'reel-card';
-            card.setAttribute('data-title', v.title);
-            card.onclick = () => openReelModal(v.id);
+<div class="reel-card" data-title="بل أكثرهم لا يؤمنون" onclick="openReelModal('https://www.facebook.com/phsyf1/videos/1393112416027175/')">
+    <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/UploadThumbnail/%D8%A8%D9%84%20%D8%A3%D9%83%D8%AB%D8%B1%D9%87%D9%85%20%D9%84%D8%A7%20%D9%8A%D8%A4%D9%85%D9%86%D9%88%D9%86.jpg" alt="تلاوة: بل أكثرهم لا يؤمنون - فارس الشريف" loading="lazy">
+    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+</div>
 
-            const img = document.createElement('img');
-            img.src = v.thumb;
-            img.alt = v.title + SUFFIX;
-            img.loading = 'lazy';
 
-            // استخدام reel-play-btn ليتطابق مع الـ CSS في index.html
-            const play = document.createElement('div');
-            play.className = 'reel-play-btn';
-            play.innerHTML = '<i class="fa-solid fa-play"></i>';
+<div class="reel-card" data-title="فاتقوا النار" onclick="openReelModal('https://www.facebook.com/phsyf1/videos/1599725491520301/')">
+    <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/UploadThumbnail/%D9%81%D8%A7%D8%AA%D9%82%D9%88%D8%A7%20%D8%A7%D9%84%D9%86%D8%A7%D8%B1.jpg" alt="تلاوة: فاتقوا النار - فارس الشريف" loading="lazy">
+    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+</div>
 
-            card.append(img, play);
-            box.appendChild(card);
-        });
 
-        // أهم خطوة: إظهار القسم بوضوح على الشاشة
-        if (section) section.style.display = 'block';
+<div class="reel-card" data-title="ما يعلمهم إلا قليل" onclick="openReelModal('https://www.facebook.com/phsyf1/videos/1869408104444113/')">
+    <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/UploadThumbnail/%D9%85%D8%A7%20%D9%8A%D8%B9%D9%84%D9%85%D9%87%D9%85%20%D8%A5%D9%84%D8%A7%20%D9%82%D9%84%D9%8A%D9%84.jpg" alt="تلاوة: ما يعلمهم إلا قليل - فارس الشريف" loading="lazy">
+    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+</div>
 
-        box.dispatchEvent(new Event('scroll'));
-    }
 
-    // 1. عرض البيانات من الكاش فوراً إن وجدت
-    let hasCache = false;
-    try {
-        const c = JSON.parse(localStorage.getItem(CACHE_KEY));
-        if (c && c.l && c.l.length) {
-            renderList(c.l);
-            hasCache = true;
-            if (Date.now() - c.t < CACHE_MINUTES * 60000) return;
-        }
-    } catch (e) {}
+<div class="reel-card" data-title="وأولئك هم المفلحون" onclick="openReelModal('https://www.facebook.com/phsyf1/videos/1210881072111395/')">
+    <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/UploadThumbnail/%D9%88%D8%A3%D9%88%D9%84%D9%80%D9%B0%D8%A6%D9%83%20%D9%87%D9%85%20%D8%A7%D9%84%D9%85%D9%81%D9%84%D8%AD%D9%88%D9%86.jpg" alt="تلاوة: وأولئك هم المفلحون - فارس الشريف" loading="lazy">
+    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+</div>
 
-    // 2. تحديث البيانات من YouTube API
-    try {
-        let items = [], token = '';
-        do {
-            const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
-                + '?part=snippet&maxResults=50&playlistId=' + encodeURIComponent(PLAYLIST_ID)
-                + '&key=' + API_KEY + (token ? '&pageToken=' + token : '');
-            const res = await fetch(url);
-            if (!res.ok) throw new Error('API ' + res.status);
-            const data = await res.json();
-            items = items.concat(data.items || []);
-            token = data.nextPageToken || '';
-        } while (token);
 
-        const list = items
-            .filter(it => it.snippet && it.snippet.title !== 'Private video' && it.snippet.title !== 'Deleted video')
-            .map(it => {
-                const s = it.snippet, t = s.thumbnails || {};
-                const th = t.maxres || t.standard || t.high || t.medium || t.default;
-                return { id: s.resourceId.videoId, title: s.title, thumb: th ? th.url : '' };
-            })
-            .filter(v => v.thumb);
-
-        if (list.length) {
-            renderList(list);
-            try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), l: list })); } catch (e) {}
-        } else if (!hasCache && section) {
-            section.style.display = 'none';
-        }
-    } catch (err) {
-        console.error('فشل تحميل القائمة:', err);
-        if (!hasCache && section) section.style.display = 'none';
-    }
-})();
-</script>
+<div class="reel-card" data-title="واجعل لي لسان صدق في الآخرين" onclick="openReelModal('https://www.facebook.com/phsyf1/videos/1321350826749198/')">
+    <img src="https://raw.githubusercontent.com/phsyf1/physf/refs/heads/main/UploadThumbnail/%D9%88%D8%A7%D8%AC%D8%B9%D9%84%20%D9%84%D9%8A%20%D9%84%D8%B3%D8%A7%D9%86%20%D8%B5%D8%AF%D9%82%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A2%D8%AE%D8%B1%D9%8A%D9%86.jpg" alt="تلاوة: واجعل لي لسان صدق في الآخرين - فارس الشريف" loading="lazy">
+    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+</div>
