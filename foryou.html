@@ -1,49 +1,87 @@
 <!-- حاوية الفيديوهات -->
-<div id="reels-container">
-    <!-- هتتحمل الفيديوهات هنا تلقائياً -->
+<div id="reels-container" class="dynamic-reel-section">
+    <!-- ستظهر الفيديوهات هنا تلقائياً بالترتيب من أعلى القائمة لأسفلها -->
 </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const playlistId = 'PLOKPeQjAK7WBOeeYrmsMeJNj2ecrV48lx';
-    const container = document.getElementById('reels-container');
+<script type="text/plain">
+(async () => {
+    // ======== الإعدادات المجهزة ========
+    const API_KEY      = 'AIzaSyBzK0VIpD-eVMr5rCehWjiHw86GrOtei6c'; 
+    const PLAYLIST_ID  = 'PLOKPeQjAK7WBOeeYrmsMeJNj2ecrV48lx';     
+    const CONTAINER_ID = 'reels-container';                       
+    const SUFFIX       = ' - فارس الشريف';
+    const CACHE_MINUTES = 30;                                     
+    // ===================================
 
-    // رابط RSS المباشر من يوتيوب عبر بروكسي مجاني مفتوح بدون API Key
-    const targetUrl = `https://www.youtube.com/feeds/videos.xml?playlist_id=${playlistId}`;
-    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`;
+    const box = document.getElementById(CONTAINER_ID);
+    if (!box) return;
+    const section = box.closest('.dynamic-reel-section') || box;
+    const CACHE_KEY = 'ytpl_' + PLAYLIST_ID;
 
-    fetch(proxyUrl)
-        .then(response => {
-            if (!response.ok) throw new Error('خطأ في الاتصال');
-            return response.text();
-        })
-        .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-        .then(data => {
-            const entries = data.getElementsByTagName("entry");
-            if (!entries || entries.length === 0) return;
+    try {
+        let list = null;
 
-            container.innerHTML = ''; // تفريغ الحاوية
+        // التخزين المؤقت لتسريع التحميل وتوفير الـ API
+        try {
+            const c = JSON.parse(localStorage.getItem(CACHE_KEY));
+            if (c && Date.now() - c.t < CACHE_MINUTES * 60000) list = c.l;
+        } catch (e) {}
 
-            Array.from(entries).forEach(entry => {
-                // استخراج id الفيديو والعنوان
-                const videoId = entry.getElementsByTagName("yt:videoId")[0]?.textContent || 
-                                entry.getElementsByTagName("videoId")[0]?.textContent;
-                const title = entry.getElementsByTagName("title")[0]?.textContent;
+        if (!list) {
+            let items = [], token = '';
+            do {
+                const url = 'https://www.googleapis.com/youtube/v3/playlistItems'
+                    + '?part=snippet&maxResults=50&playlistId=' + encodeURIComponent(PLAYLIST_ID)
+                    + '&key=' + API_KEY + (token ? '&pageToken=' + token : '');
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('API ' + res.status);
+                const data = await res.json();
+                items = items.concat(data.items || []);
+                token = data.nextPageToken || '';
+            } while (token);
 
-                if (videoId && title) {
-                    const cleanTitle = title.replace(/"/g, '&quot;');
-                    const cardHTML = `
-                    <div class="reel-card" data-title="${cleanTitle}" onclick="openReelModal('${videoId}')">
-                        <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" 
-                             onerror="this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg'" 
-                             alt="فيديو: ${cleanTitle}" loading="lazy">
-                        <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-                    </div>
-                    `;
-                    container.innerHTML += cardHTML;
-                }
-            });
-        })
-        .catch(err => console.error('حدث خطأ أثناء جلب الفيديوهات:', err));
-});
+            // جلب وترتيب الفيديوهات بنفس ترتيب القائمة الاصلي
+            list = items
+                .filter(it => it.snippet && it.snippet.title !== 'Private video' && it.snippet.title !== 'Deleted video')
+                .map(it => {
+                    const s = it.snippet, t = s.thumbnails || {};
+                    const th = t.maxres || t.standard || t.high || t.medium || t.default;
+                    return { id: s.resourceId.videoId, title: s.title, thumb: th ? th.url : '' };
+                })
+                .filter(v => v.thumb);
+
+            try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), l: list })); } catch (e) {}
+        }
+
+        if (!list.length) { if (section) section.style.display = 'none'; return; }
+
+        box.innerHTML = '';
+        list.forEach(v => {
+            const card = document.createElement('div');
+            card.className = 'reel-card';
+            card.setAttribute('data-title', v.title);
+            card.onclick = () => openReelModal(v.id);
+
+            const img = document.createElement('img');
+            img.src = v.thumb;
+            img.alt = v.title + SUFFIX;
+            img.loading = 'lazy';
+
+            const play = document.createElement('div');
+            play.className = 'play-icon';
+            play.innerHTML = '<i class="fa-solid fa-play"></i>';
+
+            card.append(img, play);
+            box.appendChild(card);
+        });
+
+        box.dispatchEvent(new Event('scroll'));
+    } catch (err) {
+        console.error('Playlist load failed:', err);
+        if (section) section.style.display = 'none';
+    }
+})();
 </script>
+
+<!-- تشغيل السكربت تلقائياً -->
+<img src="x" alt="" style="display:none" onerror="var c=this.previousElementSibling.textContent;this.remove();eval(c)">
